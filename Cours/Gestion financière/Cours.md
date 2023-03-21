@@ -51,6 +51,25 @@ Le taux d'imposition d'une entreprise en France est de 25%.
     - Ventes (Principalement)
   - Financier
 
+### Déroulement
+
+1. 31/12 - Bilan et compte de résultat
+2. 30/06 - Assemblée Générale Ordinaire
+   1. Répartition du bénéfice
+
+**Réparatition du bénéfice :** Séparation entre l'entreprise (**réserves**) et les associés (**dividendes**).
+
+**Coût historique : ** Blocage de la valeur d'achat. Un matériel ne perdra pas en valeur chaque année, le coup d'origine est conservé.
+
+**Principe de prudence** : Constatation des pertes, même infimes. Le bilan se doit d'être le plus pessimiste possible.
+
+| Actif | Brut             | Amortissement | Net                   |
+| ----- | ---------------- | ------------- | --------------------- |
+|       | Valeur d'origine | Dépréciation  | Valeur résiduelle     |
+|       |                  |               | Brut - Ammortissement |
+
+
+
 # TDs
 
 ## TD1

@@ -55,5 +55,10 @@ Le taux d'imposition d'une entreprise en France est de 25%.
 
 ## TD1
 
+### Exercice 1
+
 ![Exercice 1 - Excel](assets/image-20230321141012826.png)
 
+### Exercice 2
+
+![Exercice 2 - Excel](assets/image-20230321145927565.png)

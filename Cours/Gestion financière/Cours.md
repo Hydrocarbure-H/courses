@@ -4,6 +4,10 @@
 
 Bilan comptable : Permet d'évaluer le patrimoine de l'entreprise. Contient les actifs et les passifs.
 
+Bilan = Biens/Dettes = Patrimoine
+
+Le taux d'imposition d'une entreprise en France est de 25%.
+
 Actifs : 
 
 - Immobilisés (tout ce que possède l'entreprise), 

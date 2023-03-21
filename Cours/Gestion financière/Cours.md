@@ -2,6 +2,12 @@
 
 Notes de cours par `Thomas Peugnet`. 
 
+## Evaluation
+
+- Contrôle continu - 60%
+  - TDs : Etude de cas (bilan, comptabilité...)
+- QCM - 40%
+
 ## Introduction
 
 Bilan comptable : Permet d'évaluer le patrimoine de l'entreprise. Contient les actifs et les passifs.
@@ -45,8 +51,9 @@ Le taux d'imposition d'une entreprise en France est de 25%.
     - Ventes (Principalement)
   - Financier
 
-## Evaluation
+# TDs
 
-- Contrôle continu - 60%
-  - TDs : Etude de cas (bilan, comptabilité...)
-- QCM - 40%
+## TD1
+
+![image-20230321141012826](assets/image-20230321141012826.png)
+

@@ -682,4 +682,4 @@ Efinn, évaluons $f$ ne A, B, C et D :
 - $C=\frac{37}{5} > 5$
 - $D=5$
 
-Donc, $f$ est max en $C$.
+Donc, $f$ est Max en $C$. Test de push automatique

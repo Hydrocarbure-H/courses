@@ -1,5 +1,7 @@
 # Gestion financière
 
+Notes de cours par `Thomas Peugnet`. 
+
 ## Introduction
 
 Bilan comptable : Permet d'évaluer le patrimoine de l'entreprise. Contient les actifs et les passifs.
@@ -30,13 +32,17 @@ Le taux d'imposition d'une entreprise en France est de 25%.
 - **Consommation/Charges**
 
   - Exploitation
+    - Consommables..
   - Financier
+    - Intérêts sur un prêt, Pertes en actions...
 
   - Exceptionnelles
+    - Toute dépense non-régulière, impromptue et non-prévue
 
 - **Production/Produits**
 
   - Exploitation
+    - Ventes (Principalement)
   - Financier
 
 ## Evaluation

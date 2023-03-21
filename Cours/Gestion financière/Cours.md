@@ -1,4 +1,4 @@
-# Gestion financière
+# Gestion financiere
 
 Notes de cours par `Thomas Peugnet`. 
 
@@ -55,5 +55,5 @@ Le taux d'imposition d'une entreprise en France est de 25%.
 
 ## TD1
 
-![image-20230321141012826](assets/image-20230321141012826.png)
+![Exercice 1 - Excel](assets/image-20230321141012826.png)
 

@@ -63,12 +63,23 @@ Le taux d'imposition d'une entreprise en France est de 25%.
 
 **Principe de prudence** : Constatation des pertes, même infimes. Le bilan se doit d'être le plus pessimiste possible.
 
-| Actif | Brut             | Amortissement | Net                   |
-| ----- | ---------------- | ------------- | --------------------- |
-|       | Valeur d'origine | Dépréciation  | Valeur résiduelle     |
-|       |                  |               | Brut - Ammortissement |
+| Actif | Brut             | Amortissement | Net (Brut - Amrtst) |
+| ----- | ---------------- | ------------- | ------------------- |
+|       | Valeur d'origine | Dépréciation  | Valeur résiduelle   |
 
+L'ammortissement est estimé selon une méthode de calcul. La méthode la plus fréquemment utilisée est la **méthode linéaire**.
 
+### Méthode linéaire
+
+**Amortissement** : Valeur d'origine $\times$ taux $\times$ prorata temporis
+
+**Valeur d'origine :** Coût de mise en service (HT déductible)
+
+**Coût de mise en service :** Tous les coûts jusqu'à la mise en service. Comprend donc le prix d'achat, frais d'achat (douane, stockage temporaire...), frais d'installation, frais de réglage.
+
+**Taux :** $\frac{100%}{\text{Duree d'utilisation}}$, avec la durée d'utilisation définie par les ingénieurs (entre autres).
+
+**Prorata temporis :** 
 
 # TDs
 

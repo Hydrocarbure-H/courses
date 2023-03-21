@@ -4,23 +4,40 @@
 
 Bilan comptable : Permet d'évaluer le patrimoine de l'entreprise. Contient les actifs et les passifs.
 
-Bilan = Biens/Dettes = Patrimoine
+Bilan : Biens/Dettes = Patrimoine
 
 Le taux d'imposition d'une entreprise en France est de 25%.
 
-Actifs : 
+**Actifs** : Contient les biens. Ce que l'entreprise possède.
 
-- Immobilisés (tout ce que possède l'entreprise), 
+- Immobilisés (tout ce que possède l'entreprise, long terme)
   - Corporelles : tout ce qui est physique.
   - Incorporelles : logiciels, brevets etc.
   - Financiers : 
-- Circulant : Biens ne gardant pas la même valeur, bougeant tout le temps (exemple : stocks)
+- Circulant : Biens ne gardant pas la même valeur, bougeant tout le temps (exemple : stocks) (court et moyen terme)
   - Créances : Argent qui est dû par les clients
   - Disponibilités : Argent disponible dans l'entreprise
 
-![image-20230313081633757](assets/image-20230313081633757.png)
+**Passifs** : Contient les dettes. Ce que l'entreprise doit.
 
+- Capitaux propres
+  - Ressources fournies par les actionnaires
 
+- Dettes![image-20230313081633757](assets/image-20230313081633757.png)
+
+**Compte de résultat :** consommation/production = activité
+
+- **Consommation/Charges**
+
+  - Exploitation
+  - Financier
+
+  - Exceptionnelles
+
+- **Production/Produits**
+
+  - Exploitation
+  - Financier
 
 ## Evaluation
 

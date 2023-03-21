@@ -79,7 +79,9 @@ L'ammortissement est estimé selon une méthode de calcul. La méthode la plus f
 
 **Taux :** $\frac{100%}{\text{Duree d'utilisation}}$, avec la durée d'utilisation définie par les ingénieurs (entre autres).
 
-**Prorata temporis :** 
+**Prorata temporis :** Nombre de mois d'utilisation par rapport à une année. $\frac{\text{Nombre de jours d'utilisation}}{\text{360 jours}}$. Dans cette technique, on considère que chaque mois possède 30 jours.
+
+<u>Exemple :</u> Matériel utilisé 6 mois sur 12, donc un prorata temporis de $\frac{1}{2}$.
 
 # TDs
 

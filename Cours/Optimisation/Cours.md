@@ -653,4 +653,18 @@ On obtient donc $B=(\frac{1}{3};\frac{2}{3})$.
 
 C est à l'intersection de :
 
--  
+-  $x - 2y + 1 = 0$
+- $2x +y -6 = 0$
+
+Ce qui, après quelques calculs, nous donne $C(\frac{11}{5}; \frac{8}{5})$
+
+Puis, de la même manière, $D=(3;0)$.
+
+Efinn, évaluons $f$ ne A, B, C et D :
+
+- $A=3$
+- $B=\frac{11}{3} < 5$
+- $C=\frac{37}{5} > 5$
+- $D=5$
+
+Donc, $f$ est Max en $C$.

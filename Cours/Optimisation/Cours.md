@@ -1,5 +1,20 @@
 # Théorie des graphes
 
+# Évaluation
+
+- Fermeture transitive
+- MA et MI
+- Rang
+- Dikjstra et Bellman
+- Ordonnancement
+- Recherche de chemin
+- Arbre couvrant
+- Coloration
+- BellaSummer, NordOuest, Marche-pied
+- Ford Fulkerson, Optimisation de chemin
+- Ford Fulkerson, Bellman
+- Simplexe
+
 ## Définitions & Théorèmes
 
 Un graphe $G = < S,A >$ est constitué de 

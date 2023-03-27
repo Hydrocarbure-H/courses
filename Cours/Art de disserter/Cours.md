@@ -117,15 +117,11 @@ Maison, Bureau, Distance, Travail, Ordinateur, Accès aux outils technologiques 
 
 Le Covid-19, un chamboulement dans les méthodes de travail. Durant cette période, le télétravail est devenu une norme pour de nombreuses entités, révolutionnant ainsi la manière dont les entreprises opèrent et les employés travaillent. 
 
-(Thomas) *Cependant, cette façon de travailler peut-être très controversée, car étant basée sur un concept de distance, elle altère indéniablement les relations entre chaque individu.* 
-
-(Anaelle) *Cependant, cette façon de travaillerà distance parfois controversée, altère indéniablement les relations entre chaque individu.* 
+Cependant, cette façon de travaillerà distance parfois controversée, altère indéniablement les relations entre chaque individu.
 
 Ainsi, la question à se poser ici est de savoir s'il existe des limites à effectuer une activité professionnelle effectuée en dehors du bureau. 
 
 Dans quelles mesures le télétravail affecte-t-il les relations entre individus ?
 
-(Thomas) *Pour répondre à cette question, nous commencerons par discuter sur la séparation entre vie professionnelle et vie personnelle, et nous poursuivrons par l'étude de la confiance et de l'autonomie, notions nécessaire au fonctionnement de ce système.*
-
-(Anaelle) *Tout d'abord, nous examinerons les enjeux des la communication dans le télétravail, puis la gestion du travail à distance sur les relations inter-personnelles.*
+Tout d'abord, nous examinerons les enjeux des la communication dans le télétravail, puis la gestion du travail à distance sur les relations inter-personnelles.
 

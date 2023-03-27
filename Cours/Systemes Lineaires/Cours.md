@@ -294,15 +294,22 @@ Donc, on obtient $\lim_{t \rightarrow \infty} x(t)= \lim_{p \rightarrow 0} pX(p)
 - $TL(x(\lambda t)) = \int_0^\infty x(\lambda t).e^{-pt}dt = \frac{1}{\lambda} \times \frac{P}{\lambda}$
 
 ### Transformée de LaPlace et convolution
+- $e(t) -\longrightarrow $ réponse impulsionnelle $M(t) \longrightarrow \Delta(t) = e(t) \times r(t)$.
+- $S(p) = E(p).R(p)$
+Donc nous avons $R(p) = \frac{S(p)}{E(p)}$.
+
+## Transformées de LaPlace usuelles
+
+- $TL(\delta(t)) = \int_0^\infty \delta(t)e^{-pt}dt =\int_{-\infty}^{+\infty} \delta(t).e^0dt = 1$
+
+![image-20230327101508423](assets/image-20230327101508423.png)
+
+- $TL(\delta(t-\theta)) = \int_0^\infty \delta(t-\theta)e^{-pt}dt =e^{-p\Theta}$
+
+- $TL(\delta(h(t))) = \int_0^\infty h(t).e^{-pt}dt =\int_0^\infty e^{-pt}dt = \frac{1}{p}TL(\delta(t))$
+
+![image-20230327101716308](assets/image-20230327101716308.png)
 
 
-# Généralisation
 
-## Transformation de Laplace
-
-## Réponse impulsionnelle
-
-## Réponse indicielle
-
-
-
+# Généralités

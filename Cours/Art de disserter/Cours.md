@@ -123,7 +123,11 @@ Tout d'abord, nous examinerons les enjeux des la communication dans le télétra
 
 Meetings, Réunions, visios, teams, mails, chats, 
 
-Les employés n'ayant plus de contacts physique entre eux, il n'en demeure pas moins important de conserver une communication active. C'est pourquoi de nombreux moyens d'échanger ont été mis en place afin de maintenir les contacts inter-employés. Nous pouvons compter parmis eux des plateformes 
+Les employés n'ayant plus de contacts physique entre eux, il n'en demeure pas moins important de conserver une communication active. C'est pourquoi de nombreux moyens d'échanger ont été mis en place afin de maintenir les contacts inter-employés. Nous pouvons compter parmis eux des plateformes comme Microsoft Works, la Worksuite de Google ou encore des alternatives open source telle que Framasuite.
+
+La majorité de ces logiciels ne sont pas exclusivement dédiés à de la communication sous forme de chat. Nous pouvons par exemple noter que Microsoft Teams possède une fonctionnalité de Dashboard, permettant de faire de la répartition des tâches
+
+
 
 
 

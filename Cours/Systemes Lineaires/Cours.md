@@ -236,12 +236,6 @@ Notre coupure est donc $(1 + AK)f_c > 10f_c \approx 100Hz$.
 
 Ce qui nous donne $G = \frac{S}{E} = \frac{F}{1+KF}$.
 
-$\Theta \omega \mu \alpha \sigma$
-
-$\Delta \rho \iota \phi \tau \kappa \iota \nu \gamma$
-
-$\tau \omicron \mu$
-
 
 
 # Généralisation

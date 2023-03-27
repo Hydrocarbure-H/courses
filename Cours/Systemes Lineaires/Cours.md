@@ -310,6 +310,11 @@ Donc nous avons $R(p) = \frac{S(p)}{E(p)}$.
 
 ![image-20230327101716308](assets/image-20230327101716308.png)
 
+- $TL(h(t-\theta)) = \frac{e^{-p\Theta}}{p}$
+- $TL(\Pi(t)) = TL(h(t) - h(t-\tau)) = \frac{1}{p} - \frac{e^{-p\tau}}{p} = \frac{1}{p} \times (1-e^{-p\tau})$
+
+![image-20230327102439758](assets/image-20230327102439758.png)
+
 
 
 # Généralités

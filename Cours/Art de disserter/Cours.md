@@ -96,20 +96,12 @@ Maison, Bureau, Distance, Travail, Ordinateur, Accès aux outils technologiques 
 
 7. Plan
 
-   1. Le télétravail, entre vie profesionnelle et vie personnelle
-      1. Une séparation difficile mais nécessaire
-      2. Des contacts humains qui ne doivent pas être négligés
-   2. Le télétravail, une histoire de confiance et d'autonomie
-      1. Assurer une autonomie de production sans avoir de contact physique
-
-   
-
    1. L'enjeux de la communication dans le télétravail  
       1. a. Un style de management émergent basé sur la confiance et l'autonomie 
       2. b. Favoriser les échanges entre employés malgré la distance 
    2. La gestion du travail à distance sur les relations interpersonnelles 
       1. a. une flexibilité avantageuse  
-      2. b. un équilibre difficile à trouver
+   2. b. un équilibre difficile à trouver
 
 *Comment le télétravail peut affecter les relations ? reformulation : une activité professionnelle effectué en dehors du bureau*
 
@@ -124,4 +116,16 @@ Ainsi, la question à se poser ici est de savoir s'il existe des limites à effe
 Dans quelles mesures le télétravail affecte-t-il les relations entre individus ?
 
 Tout d'abord, nous examinerons les enjeux des la communication dans le télétravail, puis la gestion du travail à distance sur les relations inter-personnelles.
+
+#### Première partie
+
+*Favoriser les échanges entre employés malgré la distance.*
+
+Meetings, Réunions, visios, teams, mails, chats, 
+
+Les employés n'ayant plus de contacts physique entre eux, il n'en demeure pas moins important de conserver une communication active. C'est pourquoi de nombreux moyens d'échanger ont été mis en place afin de maintenir les contacts inter-employés
+
+
+
+
 

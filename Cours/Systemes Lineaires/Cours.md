@@ -338,9 +338,28 @@ Graphiquement :
 
 ![Transformée de Laplace](assets/laplace9.gif)
 
-### Exercice
+### Exercices
+#### Exemple 1
 *Calculer la TL de $f(t)=t.h(t)$, avec $F(p) = \int_0^\infty te^{-pt}dt$*.
 
+![image-20230327110117635](assets/image-20230327110117635.png)
+- $f(t) = \int_0^th(\tau)d\tau$ nous donne donc $F(p) = \frac{1}{p^2}$
+#### Exemple 2
+*Calculer la TL de $g(t)=t.e^{-at}h(t)$, avec $G(p) = \int_0^\infty te^{-at}.e^{-pt}dt$*.
+L'objectif est d'utiliser les formules pour éviter les calculs fastidieux.
 
+Par ailleurs nous pouvons noter que $g(t) = f(t)\times e^{-at} \Rightarrow$ (Modulation) $G(p) = F(p+a)$
 
-# Généralités
+Nous avons donc : $G(p) = \frac{1}{(p+a)^2}$.
+
+#### Exemple 3
+*Calculer la TL de $u(t)=\frac{1}{b-a}\times (e^{-at} - e^{-bt}) \times h(t)$*. 
+
+Ce qui nous donne :
+
+- $U(p) = \frac{1}{b-a}\times (\frac{1}{p+a} - \frac{1}{p + b}) = \frac{1}{(p+a)(p+b)}$
+
+#### Exemple 4
+*Calculer la TL de $v(t)=\frac{ae^{et} - be^{-bt}}{a-b} \times h(t)$*.
+
+Ce qui nous donne : 

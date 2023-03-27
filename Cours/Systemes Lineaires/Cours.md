@@ -258,7 +258,15 @@ $x(t)$ définie $\forall t \in [0, +\infty[$
 
 - $x(t) \longrightarrow_{TL} X(p) = \int_0^{+\infty} x(t).e^{-pt}dt$
 
+**Dérivation :**
 
+- $x(t) \rightarrow_{TL} X(p)$
+- $y(t)=\frac{dx(t)}{dt} \rightarrow_{TL}Y(p)=\int_0^\infty \frac{dx(t)}{dt}e^{-p.t}dt$, ce qui, avec une IPP nous donne : 
+  - $pX(p)-x(0)$, avec $x(0)$ la conditition initiale sur $x(G)$
+
+**Intégration :**
+
+- $y((t) = \int_0 x(t)dt$, $Y(p) = ?$
 
 # Généralisation
 

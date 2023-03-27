@@ -294,28 +294,52 @@ Donc, on obtient $\lim_{t \rightarrow \infty} x(t)= \lim_{p \rightarrow 0} pX(p)
 - $TL(x(\lambda t)) = \int_0^\infty x(\lambda t).e^{-pt}dt = \frac{1}{\lambda} \times \frac{P}{\lambda}$
 
 ### Transformée de LaPlace et convolution
-- $e(t) -\longrightarrow $ réponse impulsionnelle $M(t) \longrightarrow \Delta(t) = e(t) \times r(t)$.
+- $e(t) \longrightarrow $ réponse impulsionnelle $M(t) \longrightarrow \Delta(t) = e(t) \times r(t)$.
 - $S(p) = E(p).R(p)$
+
 Donc nous avons $R(p) = \frac{S(p)}{E(p)}$.
 
 ## Transformées de LaPlace usuelles
 
-- $TL(\delta(t)) = \int_0^\infty \delta(t)e^{-pt}dt =\int_{-\infty}^{+\infty} \delta(t).e^0dt = 1$
+- $TL(\delta(t)) = 1$
+
+Graphiquement :
 
 ![image-20230327101508423](assets/image-20230327101508423.png)
 
-- $TL(\delta(t-\theta)) = \int_0^\infty \delta(t-\theta)e^{-pt}dt =e^{-p\Theta}$
+- $TL(\delta(t-\theta)) =e^{-p\Theta}$
 
-- $TL(\delta(h(t))) = \int_0^\infty h(t).e^{-pt}dt =\int_0^\infty e^{-pt}dt = \frac{1}{p}TL(\delta(t))$
+- $TL(\delta(h(t))) = \frac{1}{p}TL(\delta(t))$
+
+Graphiquement :
 
 ![image-20230327101716308](assets/image-20230327101716308.png)
 
 - $TL(h(t-\theta)) = \frac{e^{-p\Theta}}{p}$
-- $TL(\Pi(t)) = TL(h(t) - h(t-\tau)) = \frac{1}{p} - \frac{e^{-p\tau}}{p} = \frac{1}{p} \times (1-e^{-p\tau})$
+- $TL(\Pi(t)) = TL(h(t) - h(t-\tau)) = \frac{1}{p} \times (1-e^{-p\tau})$
+
+Graphiquement :
+
 
 ![image-20230327102439758](assets/image-20230327102439758.png)
 
+- $TL(h(t)e^{-at}) = \frac{1}{p+a}$ (Modulation)
+
+Graphiquement :
 ![image-20230327103839469](assets/image-20230327103839469.png)
+
+- $TL(h(t) \cos(wt) = \frac{1}{2}\times \frac{p}{p^2+\omega^2}$
+
+Graphiquement :
+
+![image-20230327104708520](assets/image-20230327104708520.png)
+
+### Résumé
+
+![Transformée de Laplace](assets/laplace9.gif)
+
+### Exercice
+*Calculer la TL de $f(t)=t.h(t)$, avec $F(p) = \int_0^\infty te^{-pt}dt$*.
 
 
 

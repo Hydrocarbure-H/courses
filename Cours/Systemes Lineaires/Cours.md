@@ -266,7 +266,15 @@ $x(t)$ définie $\forall t \in [0, +\infty[$
 
 **Intégration :**
 
-- $y((t) = \int_0 x(t)dt$, $Y(p) = ?$
+- $y((t) = \int_0 x(t)dt$, $Y(p) = \frac{1}{p}X(p)$
+
+**Retard :**
+
+- $TL(x(t-\Theta)) = e^{-p^\theta}X(p)$
+
+**Modulation : **
+
+- 
 
 # Généralisation
 

@@ -119,7 +119,11 @@ Tout d'abord, nous examinerons les enjeux des la communication dans le télétra
 
 #### Première partie
 
-*Favoriser les échanges entre employés malgré la distance.*
+La communication est un enjeu clé dans le télétravail, en particulier en ce qui concerne le style de management adopté. Les entreprises de la technologie telles que les GAFA ont adopté un style de management néopaternaliste, basé sur la confiance et l'autonomie. 
+
+Fabien Blanchot, expert en management, affirme que ce modèle de gestion implique de laisser les employés travailler de manière autonome tout en leur donnant les ressources et les outils nécessaires pour réussir. Cette approche permet également de créer un environnement de travail plus flexible, où les employés ont la liberté de travailler à leur rythme, ce qui peut avoir un impact positif sur leur productivité et leur satisfaction.
+
+
 
 Cependant, le télétravail peut également avoir un impact négatif sur la communication et les relations entre les individus. Les employés travaillant à distance peuvent se sentir isolés et déconnectés de leurs collègues et de leur entreprise, ce qui peut affecter leur motivation et leur engagement. 
 Pour pallier cela, il est important de favoriser les échanges entre employés malgré la distance, en utilisant notamment des outils de communication tels que la visioconférence, le chat en ligne ou les plateformes collaboratives. 
@@ -131,7 +135,21 @@ Par ailleurs, les tableau blancs inclus dans les différentes plateformes cités
 
 ### Seconde partie
 
-Comme nous avons pu l'indiquer dans la précédente partie, les employés n'ont plus ou presque plus de contacts physiques en eux. A contrario des relations familiales, qui se voient être beaucoup plus importante dû à une proximité accrue.
+Le télétravail permet une plus grande flexibilité dans la gestion du temps de travail, permettant aux employés de mieux concilier leur vie professionnelle et personnelle. Selon Fabien Blanchot, ce mode de travail peut permettre de renforcer la confiance entre employeurs et employés, et encourager la prise d’initiatives individuelles, favorisant ainsi l’autonomie et la responsabilité. 
 
-Par ailleurs, les temps de trajet étant soustrait aux horaires de travail, chaque individu possède davantage de temps
+En effet, les employés peuvent mieux organiser leur journée en fonction de leurs besoins personnels, réduisant ainsi le stress lié à la conciliation vie privée / vie professionnelle. Cette flexibilité peut également augmenter la productivité et la satisfaction des employés.
+
+
+
+Par ailleurs, les temps de trajets étant soustrait aux horaires de travail, chaque individu possède davantage de temps pour ses loisirs. Cependant, le lieu de travail étant situé au même endroit que le domicile familial, la nuance entre vie professionnelle et vie personnelle est à prendre très au sérieux.
+Il s'agit donc d'un équilibre à trouver, entre intéractions professionnelles, travail, production mais également entre vie familiale, loisirs et repos. 
+
+De la même manière pour les entreprises, l'important est de pouvoir conserver une certaine productivité, même en ayant des employés à distance.
+C'est pourquoi de nombreux procédés ont été mis en place, dans l'objectif de maintenir les employés en production. Nous pouvons noter, par exemple, des logiciels installés sur tous les postes de travail, analysant les horaires de connexion et d'activité de chaque employé. Ceci, suite à une crainte d'un équilibre entre vie professionnelle et personnelle encore fébrile.
+
+Mais, ces pratiques peuvent-être mal vues par les employés, qui peuvent se sentir surveillés, en constante analyse de leur production, etc. Du côté de la vie personnelle, l'équilibre à trouver est tout autant délicat à déterminer, dans le cadre où les obligations familiales rentrent en considération.
+
+## Conclusion
+
+
 

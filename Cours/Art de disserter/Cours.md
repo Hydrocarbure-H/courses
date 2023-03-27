@@ -105,7 +105,7 @@ Maison, Bureau, Distance, Travail, Ordinateur, Accès aux outils technologiques 
 
 *Comment le télétravail peut affecter les relations ? reformulation : une activité professionnelle effectué en dehors du bureau*
 
-#### Exploitation
+#### Introduction
 
 Le Covid-19, un chamboulement dans les méthodes de travail. Durant cette période, le télétravail est devenu une norme pour de nombreuses entités, révolutionnant ainsi la manière dont les entreprises opèrent et les employés travaillent. 
 
@@ -121,15 +121,17 @@ Tout d'abord, nous examinerons les enjeux des la communication dans le télétra
 
 *Favoriser les échanges entre employés malgré la distance.*
 
-Meetings, Réunions, visios, teams, mails, chats, 
-
+Cependant, le télétravail peut également avoir un impact négatif sur la communication et les relations entre les individus. Les employés travaillant à distance peuvent se sentir isolés et déconnectés de leurs collègues et de leur entreprise, ce qui peut affecter leur motivation et leur engagement. 
+Pour pallier cela, il est important de favoriser les échanges entre employés malgré la distance, en utilisant notamment des outils de communication tels que la visioconférence, le chat en ligne ou les plateformes collaboratives. 
 Les employés n'ayant plus de contacts physique entre eux, il n'en demeure pas moins important de conserver une communication active. C'est pourquoi de nombreux moyens d'échanger ont été mis en place afin de maintenir les contacts inter-employés. Nous pouvons compter parmis eux des plateformes comme Microsoft Works, la Worksuite de Google ou encore des alternatives open source telle que Framasuite.
+La majorité de ces logiciels ne sont pas exclusivement dédiés à de la communication sous forme de chat. Nous pouvons par exemple noter que Microsoft Teams possède une fonctionnalité de Dashboard, permettant de faire de la répartition de tâches. Ce genre d'outil de gestion était auparavant sur un support physique, un tableau, une pancarte, etc. 
+Nous ne pouvons nier que l'accessibilité à des outils en ligne permet une mise à jour beaucoup plus régulière de ses données, permettant ainsi une productivité accrue. 
 
-La majorité de ces logiciels ne sont pas exclusivement dédiés à de la communication sous forme de chat. Nous pouvons par exemple noter que Microsoft Teams possède une fonctionnalité de Dashboard, permettant de faire de la répartition des tâches
+Par ailleurs, les tableau blancs inclus dans les différentes plateformes cités précedemment, permettent également de présenter les données de façon claire et efficace.
 
+### Seconde partie
 
+Comme nous avons pu l'indiquer dans la précédente partie, les employés n'ont plus ou presque plus de contacts physiques en eux. A contrario des relations familiales, qui se voient être beaucoup plus importante dû à une proximité accrue.
 
-
-
-
+Par ailleurs, les temps de trajet étant soustrait aux horaires de travail, chaque individu possède davantage de temps
 

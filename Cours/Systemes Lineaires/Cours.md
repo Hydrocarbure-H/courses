@@ -242,6 +242,22 @@ Ce qui nous donne $G = \frac{S}{E} = \frac{F}{1+KF}$.
 
 $F(\omega) = \frac{\frac{j\omega}{\omega_0}}{(1+\frac{j\omega}{\omega_1})(1+\frac{j\omega}{\omega_2})}$, avec $\frac{\omega_1}{\omega_0}=0,4$ et $\frac{\omega_2}{\omega_0}=2,6$
 
+![image-20230327082156645](assets/image-20230327082156645.png)
+
+## Réponse temporelle
+
+### Générlisation aux régimes quelconques
+
+#### Transformée de Laplace
+
+$x(t)$ définie $\forall t \in ]-\infty, +\infty[$
+
+- $x(t) \longrightarrow_{TF} X(f) = \int x(t).e^{-2j\pi f t}dt$
+
+$x(t)$ définie $\forall t \in [0, +\infty[$
+
+- $x(t) \longrightarrow_{TL} X(p) = \int_0^{+\infty} x(t).e^{-pt}dt$
+
 
 
 # Généralisation

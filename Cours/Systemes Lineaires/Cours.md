@@ -284,6 +284,17 @@ On suppose connaitre $X(p)=TL(x(t))$, alors $\lim x(t) = ?$, quand $x \rightarro
 
 Soit $y(t)=\frac{dx(t)}{dt} \Rightarrow Y(p)=pX(p) - x(0)$.
 Or, $Y(p)=\int_0^\infty y(t)e^{-pt}dt$, donc $\lim_{p\rightarrow \infty} Y(p)=0$
+On obtient donc : $\lim_{t \rightarrow 0}(x(t) = \lim_{p\rightarrow \infty} pX(p)$ (Valeur initiale)
+
+De plus, $Y(p) = \int_0^{\infty} y(t)e^{-pt}dt$.
+Donc, on obtient $\lim_{t \rightarrow \infty} x(t)= \lim_{p \rightarrow 0} pX(p)$ (Valeur finale)
+
+**Changement d'échelle :**
+- $x(t) \rightarrow_{TL} X(p) = \int_0^\infty x(t) e^{-p^t}dt$
+- $TL(x(\lambda t)) = \int_0^\infty x(\lambda t).e^{-pt}dt = \frac{1}{\lambda} \times \frac{P}{\lambda}$
+
+### Transformée de LaPlace et convolution
+
 
 # Généralisation
 

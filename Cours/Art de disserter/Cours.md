@@ -143,5 +143,5 @@ Mais, ces pratiques peuvent-être mal vues par les employés, qui peuvent se sen
 
 ## Conclusion
 
-
+En conclusion, le télétravail peut avoir un impact sur les relations entre individus en créant des défis en termes de communication. Toutefois, en adoptant des pratiques de gestion efficaces, les entreprises peuvent surmonter ces défis et favoriser une dynamique de travail harmonieuse. Le télétravail peut donc être une opportunité pour les entreprises de créer un environnement de travail plus flexible et plus productif. Aux Etats-Unis, nous pouvons observer que le phénomène du télétravail commence à laisser place au retour au bureau, la France va-t-elle suivre le schéma des pionniers de la technologie ?
 

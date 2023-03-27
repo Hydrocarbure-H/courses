@@ -236,7 +236,11 @@ Notre coupure est donc $(1 + AK)f_c > 10f_c \approx 100Hz$.
 
 Ce qui nous donne $G = \frac{S}{E} = \frac{F}{1+KF}$.
 
-### Problème - Stabilité d'un système bouclé
+## Problème - Stabilité d'un système bouclé
+
+### Exercice
+
+$F(\omega) = \frac{\frac{j\omega}{\omega_0}}{(1+\frac{j\omega}{\omega_1})(1+\frac{j\omega}{\omega_2})}$, avec $\frac{\omega_1}{\omega_0}=0,4$ et $\frac{\omega_2}{\omega_0}=2,6$
 
 
 

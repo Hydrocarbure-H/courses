@@ -272,9 +272,18 @@ $x(t)$ définie $\forall t \in [0, +\infty[$
 
 - $TL(x(t-\Theta)) = e^{-p^\theta}X(p)$
 
-**Modulation : **
+**Modulation :**
 
-- 
+- $Y(p)=TL(x(t)e^{-at})=X(p+a)$
+
+**Périodicité** :
+To be announced... Issues with Markdown editor...!
+
+**Théorème de la valeur initiale/finale :**
+On suppose connaitre $X(p)=TL(x(t))$, alors $\lim x(t) = ?$, quand $x \rightarrow \infty,0$ ?
+
+Soit $y(t)=\frac{dx(t)}{dt} \Rightarrow Y(p)=pX(p) - x(0)$.
+Or, $Y(p)=\int_0^\infty y(t)e^{-pt}dt$, donc $\lim_{p\rightarrow \infty} Y(p)=0$
 
 # Généralisation
 

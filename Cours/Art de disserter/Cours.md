@@ -115,9 +115,7 @@ Tout d'abord, nous examinerons les enjeux des la communication dans le télétra
 
 #### Première partie
 
-La communication est un enjeu clé dans le télétravail, en particulier en ce qui concerne le style de management adopté. Les entreprises de la technologie telles que les GAFA ont adopté un style de management néopaternaliste, basé sur la confiance et l'autonomie. 
-
-Fabien Blanchot, expert en management, affirme que ce modèle de gestion implique de laisser les employés travailler de manière autonome tout en leur donnant les ressources et les outils nécessaires pour réussir. Cette approche permet également de créer un environnement de travail plus flexible, où les employés ont la liberté de travailler à leur rythme, ce qui peut avoir un impact positif sur leur productivité et leur satisfaction. 
+La communication est un enjeu clé dans le télétravail, en particulier en ce qui concerne le style de management adopté. Les entreprises de la technologie telles que les GAFA ont adopté un style de management néopaternaliste, basé sur la confiance et l'autonomie. Fabien Blanchot, expert en management, affirme que ce modèle de gestion implique de laisser les employés travailler de manière autonome tout en leur donnant les ressources et les outils nécessaires pour réussir. Cette approche permet également de créer un environnement de travail plus flexible, où les employés ont la liberté de travailler à leur rythme, ce qui peut avoir un impact positif sur leur productivité et leur satisfaction. 
 
 
 

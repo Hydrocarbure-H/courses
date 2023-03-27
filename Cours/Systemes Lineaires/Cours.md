@@ -363,3 +363,5 @@ Ce qui nous donne :
 *Calculer la TL de $v(t)=\frac{ae^{et} - be^{-bt}}{a-b} \times h(t)$*.
 
 Ce qui nous donne : 
+
+- $V(p) = \frac{a}{a-b} \times TL(e^{-at}h(t)) - \frac{b}{a-b} \times TL(e^{-bt}h(t)) = \frac{p}{(p+a)(p+b)}$

@@ -315,6 +315,8 @@ Donc nous avons $R(p) = \frac{S(p)}{E(p)}$.
 
 ![image-20230327102439758](assets/image-20230327102439758.png)
 
+![image-20230327103839469](assets/image-20230327103839469.png)
+
 
 
 # Généralités

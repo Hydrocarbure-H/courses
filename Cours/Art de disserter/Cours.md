@@ -107,11 +107,7 @@ Maison, Bureau, Distance, Travail, Ordinateur, Accès aux outils technologiques 
 
 #### Introduction
 
-Le Covid-19, un chamboulement dans les méthodes de travail. Durant cette période, le télétravail est devenu une norme pour de nombreuses entités, révolutionnant ainsi la manière dont les entreprises opèrent et les employés travaillent. 
-
-Cependant, cette façon de travaillerà distance parfois controversée, altère indéniablement les relations entre chaque individu.
-
-Ainsi, la question à se poser ici est de savoir s'il existe des limites à effectuer une activité professionnelle effectuée en dehors du bureau. 
+Le Covid-19, un chamboulement dans les méthodes de travail. Durant cette période, le télétravail est devenu une norme pour de nombreuses entités, révolutionnant ainsi la manière dont les entreprises opèrent et les employés travaillent. Cependant, cette façon de travaillerà distance parfois controversée, altère indéniablement les relations entre chaque individu. Ainsi, la question à se poser ici est de savoir s'il existe des limites à effectuer une activité professionnelle effectuée en dehors du bureau. 
 
 Dans quelles mesures le télétravail affecte-t-il les relations entre individus ?
 
@@ -121,17 +117,13 @@ Tout d'abord, nous examinerons les enjeux des la communication dans le télétra
 
 La communication est un enjeu clé dans le télétravail, en particulier en ce qui concerne le style de management adopté. Les entreprises de la technologie telles que les GAFA ont adopté un style de management néopaternaliste, basé sur la confiance et l'autonomie. 
 
-Fabien Blanchot, expert en management, affirme que ce modèle de gestion implique de laisser les employés travailler de manière autonome tout en leur donnant les ressources et les outils nécessaires pour réussir. Cette approche permet également de créer un environnement de travail plus flexible, où les employés ont la liberté de travailler à leur rythme, ce qui peut avoir un impact positif sur leur productivité et leur satisfaction.
+Fabien Blanchot, expert en management, affirme que ce modèle de gestion implique de laisser les employés travailler de manière autonome tout en leur donnant les ressources et les outils nécessaires pour réussir. Cette approche permet également de créer un environnement de travail plus flexible, où les employés ont la liberté de travailler à leur rythme, ce qui peut avoir un impact positif sur leur productivité et leur satisfaction. 
 
 
 
 Cependant, le télétravail peut également avoir un impact négatif sur la communication et les relations entre les individus. Les employés travaillant à distance peuvent se sentir isolés et déconnectés de leurs collègues et de leur entreprise, ce qui peut affecter leur motivation et leur engagement. 
-Pour pallier cela, il est important de favoriser les échanges entre employés malgré la distance, en utilisant notamment des outils de communication tels que la visioconférence, le chat en ligne ou les plateformes collaboratives. 
-Les employés n'ayant plus de contacts physique entre eux, il n'en demeure pas moins important de conserver une communication active. C'est pourquoi de nombreux moyens d'échanger ont été mis en place afin de maintenir les contacts inter-employés. Nous pouvons compter parmis eux des plateformes comme Microsoft Works, la Worksuite de Google ou encore des alternatives open source telle que Framasuite.
-La majorité de ces logiciels ne sont pas exclusivement dédiés à de la communication sous forme de chat. Nous pouvons par exemple noter que Microsoft Teams possède une fonctionnalité de Dashboard, permettant de faire de la répartition de tâches. Ce genre d'outil de gestion était auparavant sur un support physique, un tableau, une pancarte, etc. 
-Nous ne pouvons nier que l'accessibilité à des outils en ligne permet une mise à jour beaucoup plus régulière de ses données, permettant ainsi une productivité accrue. 
 
-Par ailleurs, les tableau blancs inclus dans les différentes plateformes cités précedemment, permettent également de présenter les données de façon claire et efficace.
+Pour pallier cela, il est important de favoriser les échanges entre employés malgré la distance, en utilisant notamment des outils de communication tels que la visioconférence, le chat en ligne ou les plateformes collaboratives. Nous ne pouvons nier que l'accessibilité à des outils en ligne permet une mise à jour beaucoup plus régulière de ses données, permettant ainsi une productivité accrue.
 
 ### Seconde partie
 
@@ -141,11 +133,11 @@ En effet, les employés peuvent mieux organiser leur journée en fonction de leu
 
 
 
-Par ailleurs, les temps de trajets étant soustrait aux horaires de travail, chaque individu possède davantage de temps pour ses loisirs. Cependant, le lieu de travail étant situé au même endroit que le domicile familial, la nuance entre vie professionnelle et vie personnelle est à prendre très au sérieux.
+Par ailleurs, les temps de trajets étant soustrait aux horaires de travail, chaque individu possède davantage de temps pour ses loisirs.
 Il s'agit donc d'un équilibre à trouver, entre intéractions professionnelles, travail, production mais également entre vie familiale, loisirs et repos. 
 
 De la même manière pour les entreprises, l'important est de pouvoir conserver une certaine productivité, même en ayant des employés à distance.
-C'est pourquoi de nombreux procédés ont été mis en place, dans l'objectif de maintenir les employés en production. Nous pouvons noter, par exemple, des logiciels installés sur tous les postes de travail, analysant les horaires de connexion et d'activité de chaque employé. Ceci, suite à une crainte d'un équilibre entre vie professionnelle et personnelle encore fébrile.
+C'est pourquoi de nombreux procédés ont été mis en place, dans l'objectif de maintenir les employés en production. Nous pouvons noter, par exemple, des logiciels installés sur tous les postes de travail, analysant les horaires de connexion et d'activité de chaque employé.
 
 Mais, ces pratiques peuvent-être mal vues par les employés, qui peuvent se sentir surveillés, en constante analyse de leur production, etc. Du côté de la vie personnelle, l'équilibre à trouver est tout autant délicat à déterminer, dans le cadre où les obligations familiales rentrent en considération.
 

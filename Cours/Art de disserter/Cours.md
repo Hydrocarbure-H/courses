@@ -123,7 +123,7 @@ Tout d'abord, nous examinerons les enjeux des la communication dans le télétra
 
 Meetings, Réunions, visios, teams, mails, chats, 
 
-Les employés n'ayant plus de contacts physique entre eux, il n'en demeure pas moins important de conserver une communication active. C'est pourquoi de nombreux moyens d'échanger ont été mis en place afin de maintenir les contacts inter-employés
+Les employés n'ayant plus de contacts physique entre eux, il n'en demeure pas moins important de conserver une communication active. C'est pourquoi de nombreux moyens d'échanger ont été mis en place afin de maintenir les contacts inter-employés. Nous pouvons compter parmis eux des plateformes 
 
 
 

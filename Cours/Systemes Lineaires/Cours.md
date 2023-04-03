@@ -365,4 +365,11 @@ Ce qui nous donne :
 Ce qui nous donne : 
 
 - $V(p) = \frac{a}{a-b} \times TL(e^{-at}h(t)) - \frac{b}{a-b} \times TL(e^{-bt}h(t)) = \frac{p}{(p+a)(p+b)}$
-- 
+
+## Inversion des fonctions du 2e ordre
+$( \frac{1}{p}, \frac{1}{p+a},...)$
+- $F(\phi)= \frac{1}{1 + 2m\frac{P}{\omega_0} + (\frac{P}{\omega_0})^2} = \frac{\omega_0^2}{p^2 + 2m\omega_0p + \omega_0^2}$
+- $\Delta = 4m^2\omega_0^2 - 4\omega_0^2 < 0$
+- $\Delta = 4\omega_0^2(m^2-1) < 1$
+
+Avec $0<n<1$

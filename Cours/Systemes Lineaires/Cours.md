@@ -375,20 +375,27 @@ $( \frac{1}{p}, \frac{1}{p+a},...)$
 Avec $0<n<1$. Sinon $F(\phi)$ se ramène au Ier ordre.
 
 Nous retrouvons donc deux racines complexes conjuguées : 
-- $P_1 = \frac{1}{2}(-2m\omega_0 + 2j\omega_0 \sqrt{n^2 - 1})$
-- $P_2 = \frac{1}{2}(-2m\omega_0 - 2j\omega_0 \sqrt{m^2 - 1})$
+- $P_1 = \frac{1}{2}(-2m\omega_0 + 2j\omega_0 \sqrt{1 - n^2})$
+- $P_2 = \frac{1}{2}(-2m\omega_0 - 2j\omega_0 \sqrt{1 - m^2})$
 
 Et donc : 
 
-- $P_1 = -m\omega_0 + 2j\omega_0 \sqrt{n^2 - 1})$
-- $P_2 = -m\omega_0 - 2j\omega_0 \sqrt{m^2 - 1})$
+- $P_1 = -m\omega_0 + 2j\omega_0 \sqrt{1 - n^2})$
+- $P_2 = -m\omega_0 - 2j\omega_0 \sqrt{1 - m^2})$
 
 $F(p) = \frac{\omega_0^2}{(p-p_1)(p-p_2)}$
 
 Par lecture de la table $\frac{1}{(p-p_1)(p-p_2)} \rightarrow_{TL^{-1}} \frac{e^{-bt} - e^{-at}}{a-b}$, avec $a=-p_1$ et $b=-p_2$.
 
 - $f(t) = \omega_0 (\frac{1}{-p_1+p_2})(e^{p_2t} - e^{p_1t})$
-- $f(t) = \frac{\omega_0}{\sqrt{n^2 - 1}}e^{-m\omega_0t} \times sin(\omega_0\sqrt{n^2-1t})$
+- $f(t) = \frac{\omega_0}{\sqrt{1 - n^2}}e^{-m\omega_0t} \times sin(\omega_0\sqrt{1 - m^2t})$
 
+![Pôles à partie réelle < 0](assets/image-20230403084927842.png)
 
+Nous pouvons donc conclure sur la stabilité d'un système linéaire. $F(p)$ : Pôles à partie réelle $ < 0$.
+Par ailleurs, si $n=0$ :
+- $F(p) = \frac{\omega_0^2}{p^2 + \omega_0^2}$
+- $f(t) = \omega_o \sin(\omega_ot)$
+
+![Pôles à partie réelle > 0](assets/image-20230403085638524.png)
 

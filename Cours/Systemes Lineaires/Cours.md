@@ -372,4 +372,23 @@ $( \frac{1}{p}, \frac{1}{p+a},...)$
 - $\Delta = 4m^2\omega_0^2 - 4\omega_0^2 < 0$
 - $\Delta = 4\omega_0^2(m^2-1) < 1$
 
-Avec $0<n<1$
+Avec $0<n<1$. Sinon $F(\phi)$ se ramène au Ier ordre.
+
+Nous retrouvons donc deux racines complexes conjuguées : 
+- $P_1 = \frac{1}{2}(-2m\omega_0 + 2j\omega_0 \sqrt{n^2 - 1})$
+- $P_2 = \frac{1}{2}(-2m\omega_0 - 2j\omega_0 \sqrt{m^2 - 1})$
+
+Et donc : 
+
+- $P_1 = -m\omega_0 + 2j\omega_0 \sqrt{n^2 - 1})$
+- $P_2 = -m\omega_0 - 2j\omega_0 \sqrt{m^2 - 1})$
+
+$F(p) = \frac{\omega_0^2}{(p-p_1)(p-p_2)}$
+
+Par lecture de la table $\frac{1}{(p-p_1)(p-p_2)} \rightarrow_{TL^{-1}} \frac{e^{-bt} - e^{-at}}{a-b}$, avec $a=-p_1$ et $b=-p_2$.
+
+- $f(t) = \omega_0 (\frac{1}{-p_1+p_2})(e^{p_2t} - e^{p_1t})$
+- $f(t) = \frac{\omega_0}{\sqrt{n^2 - 1}}e^{-m\omega_0t} \times sin(\omega_0\sqrt{n^2-1t})$
+
+
+

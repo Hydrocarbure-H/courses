@@ -365,3 +365,4 @@ Ce qui nous donne :
 Ce qui nous donne : 
 
 - $V(p) = \frac{a}{a-b} \times TL(e^{-at}h(t)) - \frac{b}{a-b} \times TL(e^{-bt}h(t)) = \frac{p}{(p+a)(p+b)}$
+- 

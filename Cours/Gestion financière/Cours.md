@@ -97,3 +97,5 @@ L'ammortissement est estimé selon une méthode de calcul. La méthode la plus f
 
 ### Exercice 3
 
+![image-20230404132907688](assets/image-20230404132907688.png)
+

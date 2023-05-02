@@ -106,6 +106,75 @@ L'ammortissement est estimé selon une méthode de calcul. La méthode la plus f
 
 ![image-20230502093039507](assets/image-20230502093039507.png)
 
+## Informations importantes
+
+- Patrimoine $\Leftrightarrow$ Capitaux propres  : Apports + réserves / résultat
+- Bilan : Valeur patrimoniale de l'entreprise à la date T
+- Patrimoine $\neq$ Trésorerie disponible : On peut être riche mais à découvert :laughing:
+- Le compte de résultat permet de décrire l'activité de l'entreprise et de calculer le résultat (Produits - Charges)
+- Il existe des décalages entre l'encaissement de produits et le paiement des charges
+- Le chiffre d'affaire est toujours calculé hors taxes
+- Deux types d'activités :
+  - Negoce : Vendre un produit qui n'a pas été transformé (marchandise)
+  - Industrie : Vendre ce qui a été fabriqué par l'entreprise (production vendue)
+- La prestation de service correspond au temps passé
+- **Marge commerciale** : Vente marchandises - Coût d'achat des marchandises vendues 
+  - Achats de marchandises $\pm$ variation de stockes de marchandises
+- Résultat de l'exercice : Résultat courant avant impôts $\pm$ Résultat exceptionnel - Impôts sur les bénéfices - Participation des salariés
+
+*Exemple :*
+
+![image-20230502101109858](assets/image-20230502101109858.png)
+
+*Commentaires :*
+
+- Le chiffre d'affaires baisse régulièrement $-3M \Rightarrow$ le marché se réduit
+- Le CA diminue et la marge est également plus faible sur ce dernier
+  - Cela affaiblit également la marge commerciale
+- Le CA diminue donc la Valeur Ajoutée diminue également
+- Pendant les 3 années, le taux de VA (Ce qui reste en pourcentage une fois qu'on enlève les charges) reste le même, donc la chute de la VA provident donc de la réduction de l'activité
+
+- L'année 2020 dégage une Insuffisance Brute d'Exploitation (IBE) (i.e. une EBE négatif)
+- L'EBE de 2019 a fortement baissé à cause d'embauches qui ont augmenté les charges de personnel de 1404k€
+- Le Résultat d'Exploitation a diminué en 2019 de façon importante à cause d'investissements qui ont augmenté les Dotations aux Amortissements et aux Provision
+
+# Analyse Financière
+
+## Soldes intermédiaires de gestion
+
+**Objectif : ** 
+
+- Comprendre ce qui fait perdre/gagner de l'argent
+- Rentabilité de l'entreprise
+- Distinction charges internes/externes
+
+## Types d'entreprises
+
+- Entreprise négoce : Chiffre d'affaires : Vente de marchandises
+- Entreprise de production : CA : Production vendue
+- Entreprise de production & négoce : CA : $\sum$ Production vendue et marchandises
+- Entreprise de service : CA : Prestation vendue
+
+## Derniers principes
+
+- Tout emploi doit être financé par une ressource d'une durée au moins équivalente à la durée de l'emploi
+
+- La sécurité est opposée à la rentabilité. Si on ne prend pas de risque, on gagne peu.
+- Il doit y avoir un équilibre entre emplois Long Terme et ressources LT / emplois Moyen Terme et ressources MT.
+- Fonds De Roulement : Réserves pour antivipes les besoins de financement MT
+  - FDR = Ressources LT - Emplois LT
+- Besoin en FDR : Besoin de financement venant de la zone MT, c'est à dire que les emplois MT ne sont pas financés par les ressources MT.
+  - BFR = Emplois MT - Ressources MT
+- Trésorerie Net : Ensemble des sommes d'argent mobilisables à court terme
+  - TN = Trésorerie Active - Trésorerie Passive
+
+**Ce qui nous donne donc :**
+
+- FDR = BFR + TN
+- Si FDR > 0 et FDR < BFR alors TN > 0 $\Rightarrow$ Déséquilibre financier
+- Si FDR > 0 et BFR < 0 alors TN > 0 $\Rightarrow$ Grande stabilité financière
+- Si FDR > 0 et BFR > 0 alors TN < 0 $\Rightarrow$ Grande difficulté financière
+
 # TDs
 
 ## TD1

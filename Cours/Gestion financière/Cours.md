@@ -51,13 +51,21 @@ Le taux d'imposition d'une entreprise en France est de 25%.
     - Ventes (Principalement)
   - Financier
 
+![image-20230502092334895](assets/image-20230502092334895.png)
+
+**Remarque :** Dans les charges, nous ne mettns que ce qui est consommé.
+
+>Ex: Pour une période donnée on a achats de MP=100 SI=0. et SF=20 à L’entreprise a acheté 100 et consommé 80 Donc coût d’achat des MP consommées = 100-20 = 80
+
+> Ex: Pour une période donnée on a achats de MP=100 SI=50. et SF=20 à L’entreprise a acheté 100, a tout consommé plus du stock pour 30. Donc coût d’achat des MP consommées = 100 + 30 = 130
+
 ### Déroulement
 
 1. 31/12 - Bilan et compte de résultat
 2. 30/06 - Assemblée Générale Ordinaire
    1. Répartition du bénéfice
 
-**Réparatition du bénéfice :** Séparation entre l'entreprise (**réserves**) et les associés (**dividendes**).
+**Répartition du bénéfice :** Séparation entre l'entreprise (**réserves**) et les associés (**dividendes**).
 
 **Coût historique : ** Blocage de la valeur d'achat. Un matériel ne perdra pas en valeur chaque année, le coup d'origine est conservé.
 
@@ -82,6 +90,21 @@ L'ammortissement est estimé selon une méthode de calcul. La méthode la plus f
 **Prorata temporis :** Nombre de mois d'utilisation par rapport à une année. $\frac{\text{Nombre de jours d'utilisation}}{\text{360 jours}}$. Dans cette technique, on considère que chaque mois possède 30 jours.
 
 <u>Exemple :</u> Matériel utilisé 6 mois sur 12, donc un prorata temporis de $\frac{1}{2}$.
+
+![image-20230502092643180](assets/image-20230502092643180.png)
+
+### Résultats
+
+![image-20230502092742486](assets/image-20230502092742486.png)
+
+- Résultat **d'exploitation** : Produits d'exploitation - charges d'exploitation
+- Résultat **courant** : Résultat d'exploitation - Résultat financier
+- Résultat **net avant impôts** : Résultat courant - résultat exceptionnel
+- Résultat **net après impôts** : Résultat net avant impôt - impôt sur les sociétés.
+
+### Impact du compte de résultat sur le bilan
+
+![image-20230502093039507](assets/image-20230502093039507.png)
 
 # TDs
 

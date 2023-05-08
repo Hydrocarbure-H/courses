@@ -175,6 +175,56 @@ L'ammortissement est estimé selon une méthode de calcul. La méthode la plus f
 - Si FDR > 0 et BFR < 0 alors TN > 0 $\Rightarrow$ Grande stabilité financière
 - Si FDR > 0 et BFR > 0 alors TN < 0 $\Rightarrow$ Grande difficulté financière
 
+## Construction du bilan fonctionnel
+
+### Retraitements comptables
+
+1. Transfert des amortissements et des provisions pour dépréciation vers le haut du passif, afin de les ajouter aux capitaux propres et former ainsi une partie nommée "Fonds Propres".
+
+| Actif            | Brut | Amortissement | Net        | Passif -> Fonds propres     |      |
+| ---------------- | ---- | ------------- | ---------- | --------------------------- | ---- |
+| Actif immobilisé |      | :no_entry:    | :no_entry: | Capitaux propres :no_entry: |      |
+| Actif circulant  |      | :no_entry:    | :no_entry: | Dettes                      |      |
+| Total            |      | :no_entry:    | :no_entry: | Total                       |      |
+
+2. Séparation du poste Emprunts
+
+| Actif            | Brut | Passif            |      |
+| ---------------- | ---- | ----------------- | ---- |
+| Actif immobilisé |      | Fonds Propres     |      |
+| Actif circulant  |      | Dettes : Emprunts |      |
+| Total            |      | Total             |      |
+
+### Retraitements extra-comptables
+
+1. Ajout d'effets escomptés non échus (E.E.N.E)
+
+## Présentation du bilan fonctionnel
+
+| Actif                                             | Passif                                               |
+| ------------------------------------------------- | ---------------------------------------------------- |
+| Actif immobilisé                                  | Capitaux Permanents (Fonds propres + LT)             |
+| Actif circulant (Exploitation, H-exp. Trésorerie) | Dettes circulantes (Exploitation, H-exp. Trésorerie) |
+
+## Besoin de fonds de roulement
+
+| Actif                             | Passif                               |
+| --------------------------------- | ------------------------------------ |
+| A.I.                              | C.P.e                                |
+| Actif circulant exploitation      | Dettes circulantes exploitation      |
+| Actif circulant hors-exploitation | Dettes circulantes hors-exploitation |
+| Trésorerie Active                 | Trésorerie Passive                   |
+
+## Valeurs remarquables
+
+**Fonds de roulement net global : FRNG**
+
+**BFR d'exploitation : BFRE** = Actif circulant exploitation (ACE) - dettes exploitation (DCE)
+
+**BFR Hors exploitatino : BFRHE** = Acrif crculant HE (ACHE) - dettes HE (DCHE)
+
+**Trésorerie nette : TN** = Trésorerie active - trésorerie passive
+
 # TDs
 
 ## TD1

@@ -4,6 +4,9 @@ Notes de cours par `Thomas Peugnet`.
 
 ---
 
-Références : https://www.geeksforgeeks.org/multithreading-in-c/
+**Références** :
 
-Test d'update des dates.
+- Threads en C - https://www.geeksforgeeks.org/multithreading-in-c/
+
+- Cours Système d'exploitation - https://iefrei.fr/?course_id=24
+- 

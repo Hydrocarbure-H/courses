@@ -115,8 +115,6 @@ TocToc. J'ai 14 ans. Mon grand-père toque à ma porte. "tiens, voici le vieil o
 
 **Notes **
 
-
-
 **Chute**
 
 Durant ce parcours, j'ai été fortement déçu, mis à rude épreuve, tant sur le plan physique et psychologique. Mais, j'ai su en tirer des enseignements et Je me présente devant vous aujourd'hui, maintenant expérimenté et prêt à me rendre utile à votre entreprise.

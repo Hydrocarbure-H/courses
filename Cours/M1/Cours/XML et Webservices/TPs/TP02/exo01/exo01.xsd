@@ -1,8 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <!-- Déclaration de l'élément racine "agenda" -->
-    <xs:element name="personne"></xs:element>
-    <xs:element name="entreprise"></xs:element>
+
+    <xs:element name="adresse">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Éléments pour l'adresse -->
+                <xs:element name="rue" type="xs:string" />
+                <xs:element name="numero" type="xs:int" />
+                <xs:element name="ville" type="xs:string" />
+                <xs:element name="code_postal" type="xs:string" />
+                <xs:element name="pays" type="xs:string" />
+                <xs:element name="cedex" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="personne">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Éléments pour le contact -->
+                <xs:element name="nom" type="xs:string" />
+                <xs:element name="prenom" type="xs:string" minOccurs="0" />
+                <xs:element name="telephone" type="xs:string" />
+                <!-- Élément "adresse" -->
+                <xs:element ref="adresse" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="entreprise">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Éléments pour le contact -->
+                <xs:element name="nom" type="xs:string" />
+                <xs:element name="telephone" type="xs:string" />
+                <!-- Élément "adresse" -->
+                <xs:element ref="adresse" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:element name="agenda">
         <xs:complexType>
             <xs:sequence>
@@ -14,24 +52,6 @@
                                 <xs:element ref="personne"></xs:element>
                                 <xs:element ref="entreprise"></xs:element>
                             </xs:choice>
-                            <!-- Éléments pour le contact -->
-                            <xs:element name="nom" type="xs:string" />
-                            <xs:element name="prenom" type="xs:string" minOccurs="0" />
-                            <xs:element name="telephone" type="xs:string" />
-                            <!-- Élément "adresse" -->
-                            <xs:element name="adresse">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <!-- Éléments pour l'adresse -->
-                                        <xs:element name="rue" type="xs:string" />
-                                        <xs:element name="numero" type="xs:int" />
-                                        <xs:element name="ville" type="xs:string" />
-                                        <xs:element name="code_postal" type="xs:string" />
-                                        <xs:element name="pays" type="xs:string" />
-                                        <xs:element name="cedex" type="xs:string" minOccurs="0" />
-                                    </xs:sequence>
-                                </xs:complexType>
-                            </xs:element>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>

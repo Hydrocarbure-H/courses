@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agenda xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="exo01.xsd">
+    <!-- Contact de type "personne" (Charles de Gaulle) -->
+    <contact>
+        <personne></personne>
+        <nom>De Gaulle</nom>
+        <prenom>Charles</prenom> <!-- Prénom (facultatif) -->
+        <telephone>123-456-7890</telephone>
+        <!-- Adresse de Charles de Gaulle -->
+        <adresse>
+            <rue>1 Avenue des Champs-Élysées</rue>
+            <numero>18</numero>
+            <ville>Paris</ville>
+            <code_postal>75008</code_postal>
+            <pays>France</pays>
+            <cedex>CEDEX 08</cedex> <!-- CEDEX (facultatif) -->
+        </adresse>
+    </contact>
+
+    <!-- Contact de type "entreprise" (Company Inc.) -->
+    <contact>
+        <entreprise></entreprise>
+        <nom>Company Inc.</nom>
+        <telephone>555-123-4567</telephone>
+        <!-- Adresse de l'entreprise -->
+        <adresse>
+            <rue>456 Business Avenue</rue>
+            <numero>20</numero>
+            <ville>Los Angeles</ville>
+            <code_postal>90001</code_postal>
+            <pays>États-Unis</pays>
+        </adresse>
+    </contact>
+</agenda>

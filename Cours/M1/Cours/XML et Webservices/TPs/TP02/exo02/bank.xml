@@ -1,6 +1,5 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
-<bank xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="bank.xsd">
+<bank xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <accounts>
         <savings_accounts>
             <savings_account id="a1" interest="0.03">

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<maths xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="maths.xsd">
+    <!-- (2 + 3) * 4 -->
+    <apply>
+        <times />
+        <cn>2</cn>
+        <cn>4</cn>
+    </apply>
+</maths>

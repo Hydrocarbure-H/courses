@@ -87,3 +87,23 @@ La keystream doit avoir les propriétés du **vrai aléatoire**.
 On ne peut pas chiffrer bit par bit, on doit avoir une taille de bloc prédéfinie (128bits par exemple).
 
 ![Padding oracle - hackndo](./assets/sc1.png)
+
+# Corrections
+
+## TP 01
+
+### Exercice 1
+
+### Exercice 2
+
+![image-20230907151129115](./assets/image-20230907151129115-4092291.png)
+
+**1. ** Polyalphabêtique
+
+**2.** 
+
+- $5 \times 4 \times 3 = 60$  
+- Position initiale : $26 \times 26 \times 26$.
+- $C_{12}^{26} = (_{12}^{26}) = \frac{26!}{12! (26 - 12)!}$
+- 
+

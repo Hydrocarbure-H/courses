@@ -126,3 +126,37 @@ Finalement, on change de méthode : on suppose que `m -> t`, ce qui nous donne $
 
 Bref, `a` = 3.
 
+# Authentification dans le Wifi
+
+![image-20230911081921493](./assets/image-20230911081921493-4413163.png)
+
+> **802.11x** :
+>
+> *802.1X est un standard lié à la sécurité des réseaux informatiques, mis au point en 2001 par l'IEEE. Il permet de contrôler l'accès aux équipements d'infrastructures réseau.* - Wikipédia
+>
+> Cela permet, par exemple, de ne pas pouvoir se retrouver sur le réseau d'une entreprise en se connectant sur un câble Ethenet.
+
+![IEEE 802.1x et sécurité des ports | Commutateurs Industriels | Perle](./assets/802.1X_wired_protocols.png)
+
+> **EAP** : Sécuriser la partie réseaux sur la couche la plus basse (L3).
+
+## Définitions
+
+**802.1X** : Réseau à accès contrôlé.
+
+**AAA** : Authentification, Authorization, Accounting.
+
+**Serveur AAA** : Serveur offrant les services d'authentification, d'autorisation et de traçabilité des évènements.
+
+**Client** : Élément de confiance d'un réseau 802.1X servant de point d'accès au réseau. Cet élément est appelé authenticator dans la norme 802.1X.
+
+**Supplicant** : Logiciel sur l'équipement d'extrémité cherchant à se connecter sur un réseau à accès contrôlé.
+
+**EAP : ** Extended Authenfication Protocol, permettant d'abstraire le mécanisme d'authentification spécifique utilisable.
+
+**EAPoL** : Idem ci-dessus over LAN, protocole d'encapsulation de trames EAP sur des réseaux locaux.
+
+**Réseau de confiance** : Réseau maîtrisé dans lequel le serveur et les clients communiquent.
+
+![image-20230911083309392](./assets/image-20230911083309392-4413990.png)
+

@@ -96,7 +96,7 @@ On ne peut pas chiffrer bit par bit, on doit avoir une taille de bloc prédéfin
 
 ### Exercice 2
 
-![image-20230907151129115](./assets/image-20230907151129115-4092291.png)
+![image-20230908132926628](./assets/image-20230908132926628-4172569.png)
 
 **1. ** Polyalphabêtique
 
@@ -105,5 +105,24 @@ On ne peut pas chiffrer bit par bit, on doit avoir une taille de bloc prédéfin
 - $5 \times 4 \times 3 = 60$  
 - Position initiale : $26 \times 26 \times 26$.
 - $C_{12}^{26} = (_{12}^{26}) = \frac{26!}{12! (26 - 12)!}$
-- 
+
+### Exercice 4
+
+![image-20230908132003169](./assets/image-20230908132003169-4172005.png)
+
+$y = ax + b$ implique une linéarité : $f(n+m)=f(n)+f(m)$
+
+Ce texte est monoalphabétique.
+
+![image-20230908132226262](./assets/image-20230908132226262-4172148.png)
+
+Le `t` est la première lettre la plus fréquente. Le `m`est la seconde. Donc on a une équation à deux inconnues : $\{^{19 = 4a + b}_{12 = 0 \times a + b}$, ce qui nous donne donc $19 = (4a + 12) \mod 26$, et donc $7 = 4a \mod 26$.
+
+Seulement, il n'y a pas de solution à cette équation : aucun multiple de 4 modulo 26 égal à 7.
+
+On prend donc la troisième lettre ayant la plus grande occurence. Mais problème identique, pas de solution.
+
+Finalement, on change de méthode : on suppose que `m -> t`, ce qui nous donne $\{^{19 = 4a + b}_{12 = 19 a + b}$ et donc $\{^{7 = -15a \mod 12}_{? = 0 a \mod 26}$.
+
+Bref, `a` = 3.
 

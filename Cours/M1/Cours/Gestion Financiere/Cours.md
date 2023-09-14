@@ -2,7 +2,7 @@
 
 Cours – 31/08/2023 
 
-# Rappel 
+# Rappels 
 
 <u>Compte de résultats :</u> 
 
@@ -95,14 +95,95 @@ Choix techniques de l’ingénieur => Couts (techno/produits/..) => cout produit
 
 <u>Charge directe :</u> 
 
--  
+-  [Notes manquantes]
 
 <u>Charge indirecte :</u> 
 
--  
+-  [Notes manquantes]
 
 DSI dépend de + en + du DAF, car DSI ont tendance à rencontrer des difficultés à gérer l’argent 
 
 Direction marketing on parfois le contrôle sur la DSI 
 
 DAF doit dépenser tout son budget.
+
+# Seuil de rentabilité
+
+> *Il s'agit du niveau des ventes à partir duquel on fait des bénéfices. Il permet de déterminer le CA minimum à réaliser pour être à l’équilibre. Il peut également permettre de fixer un objectif de vente.*
+
+![Calculer le seuil de rentabilité + définition + utilité](./assets/definition-seuil-de-rentabilite.png)
+
+## Exemple
+
+![image-20230911135545485](./assets/image-20230911135545485.png)
+
+# Rentabilité
+
+## Opex
+
+## Capex
+
+## Rentabilité des investissements
+
+### Difficultés
+
+Attention à l'estimation : Elle ne doit être ni pessimiste ni optimiste. Il est possible de faire plusieurs versions pour avoir un aperçu global.
+
+### ROI
+
+
+
+# Exercices
+
+## Exercice 7
+
+CV = 53% CA + 21% CA
+
+Seuil rentabilité = Coût Fixe / Marge Coût Variable = 241 538,40e
+
+Point mort = Seuil rentabilité $\times$ $\frac{330}{\text{CA}}$ = 318 jours (Avant d'être rentable)
+
+| Chiffre d'affaire : 250 000e  | 100% CA  |
+| ----------------------------- | -------- |
+| Coût variable : 185 000e      | -74% CA  |
+| Marge Coût Variable : 65 000e | - 26% CA |
+| Coût fixe : 62 800e           |          |
+
+## Exercice 1
+
+|                 | 1       | 2        | 3      | 4      | 5      |
+| --------------- | ------- | -------- | ------ | ------ | ------ |
+| Investissement  | -65 000 | $\alpha$ |        |        |        |
+| Cash Flow       | 20 000  | 20 000   | 20 000 | 20 000 | 20 000 |
+| Total CashFlow  | -45 000 | 20 000   | 20 000 | 20 000 | 20 000 |
+| Cashflow Cumulé | -45 000 | -25 000  | -5 000 | 15 000 | 35 000 |
+
+**VAN = -45 000 + (20 000 $\times$ 4) = 35 000**
+
+**Indice de profitabilité : VAN / Investissement = $\frac{35000}{65000}$ = 54%**
+
+ ## Exercice 2
+
+|                  | 0       | 1      | 2      | 3      | 4      | 5      |
+| ---------------- | ------- | ------ | ------ | ------ | ------ | ------ |
+| Cash Flow        | -35 000 | 92 000 | 94 000 | 86 000 | 82 000 | 76 000 |
+| Cash Flow Cumulé | 1       | 84 988 | 80 218 | 67 798 | 59 717 | 51 129 |
+
+**VAN : -350 000 + $\sum$ CF Actualisé = - 6 150 < 0** donc ce n'est pas rentable, rentrez chez vous.
+
+## Exercice 4
+
+|                             | 0         | 1                                  | 2                                  | 3         | 4         | 5          |
+| --------------------------- | --------- | ---------------------------------- | ---------------------------------- | --------- | --------- | ---------- |
+| Investissement              | $-48 000$ |                                    |                                    |           |           |            |
+| CA                          |           | $\frac{26 \times 50 000}{1300000}$ | $\frac{26 \times 60 000}{1300000}$ |           |           |            |
+| Charges                     |           | $\frac{23 \times 50000}{-1150000}$ |                                    |           |           |            |
+| Amortissement               |           | $-96000$                           |                                    |           |           |            |
+| **Résultat d'exploitation** |           | $54 000$                           |                                    |           |           |            |
+| Excédent Brut Exploitation  |           | $150 000$                          |                                    |           |           |            |
+| **Cash Flow**               | $-48 000$ | $150 000$                          | $180 000$                          | $210 000$ | $240 000$ | $270 000$  |
+| Cash Flow Actualisé à 12%   |           | $133 929$                          | $143 495$                          | $149 474$ | $152 524$ | $153 2205$ |
+| Cash Flow Cumué             | $-48 000$ | $-34607$                           | $-202 576$                         | $-53102$  | $99422$   | $252 627$  |
+|                             |           |                                    |                                    |           | **OK!**   |            |
+
+À partir de l'année numéro 4, on obtient un cashflow positif.

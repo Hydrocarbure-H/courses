@@ -90,12 +90,4 @@ Le langage possède une structure à balise configurable.
 
 ## 
 
-## Document bien formé
-
-# Partie 2 - Définition
-
-## DTD
-
-## XML Schema
-
 # Partie 3 - Mise en forme, traitement et transformations

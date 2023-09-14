@@ -158,5 +158,92 @@ Bref, `a` = 3.
 
 **Réseau de confiance** : Réseau maîtrisé dans lequel le serveur et les clients communiquent.
 
-![image-20230911083309392](./assets/image-20230911083309392-4413990.png)
+![image-20230911083500109](./assets/image-20230911083500109-4414101.png)
+
+> *Les **serveurs RADIUS** reçoivent des demandes de connexion des utilisateurs, authentifient l'utilisateur, puis renvoient les informations de configuration nécessaires pour que le client remette le service à l'utilisateur.* - Cisco.com
+
+## GPT Generated - Summary
+
+- **Supplicant** :
+  - Un supplicant est un élément du système qui cherche à s'authentifier auprès d'un serveur pour accéder à un réseau ou à des ressources.
+  - Il peut s'agir d'un utilisateur, d'un périphérique ou d'une application cherchant à obtenir l'accès.
+- **Client** :
+  - Le client est le composant logiciel ou matériel situé du côté de l'utilisateur ou du périphérique.
+  - Il agit comme un intermédiaire entre le supplicant et le serveur d'authentification.
+  - Son rôle est de collecter les informations d'authentification du supplicant et de les transmettre au serveur pour vérification.
+- **Serveur** :
+  - Le serveur est le composant central responsable de l'authentification des supplicants.
+  - Il valide les informations d'identification fournies par le client ou le supplicant et décide d'accorder ou de refuser l'accès au réseau ou aux ressources.
+- **Radius** :
+  - RADIUS (Remote Authentication Dial-In User Service) est un protocole de réseau utilisé pour l'authentification, l'autorisation et la comptabilisation des utilisateurs.
+  - Il est couramment utilisé dans les réseaux sans fil, les réseaux VPN et d'autres environnements pour gérer l'authentification des supplicants.
+- **Tunnel SSL EAP** :
+  - Un tunnel SSL (Secure Sockets Layer) EAP (Extensible Authentication Protocol) est une méthode sécurisée pour l'authentification.
+  - Il permet d'encapsuler les données d'authentification dans une connexion SSL chiffrée, assurant ainsi la confidentialité des informations d'identification pendant leur transmission.
+- **Confiance** :
+  - La confiance dans le contexte de l'authentification signifie que le serveur d'authentification a une raison de croire que le supplicant ou le client est légitime.
+  - Cela implique généralement une vérification réussie des informations d'identification et peut également inclure des mécanismes de vérification de la sécurité, tels que des certificats numériques.
+
+> *En résumé, dans le processus d'authentification, un supplicant (utilisateur ou périphérique) tente de se connecter à un réseau ou à des ressources en passant par un client qui transmet les informations d'identification au serveur. Le serveur utilise le protocole RADIUS pour vérifier l'authenticité du supplicant. Les données d'authentification sont souvent sécurisées via un tunnel SSL EAP, et la confiance est établie lorsque le serveur est convaincu de l'identité légitime du supplicant.*
+
+## `wpa_supplicant` - Linux
+
+> *`wpa_supplicant` est un logiciel libre implémentant IEEE 802.11i sous Linux, Windows. Il prend en charge WPA2 et les versions antérieures. Ses spécifications incluent : WPA et IEEE 802.11i/RSN/WPA2 complet WPA-PSK et WPA2-PSK WPA avec EAP Gestion de clés pour CCMP, TKIP et le peu sécurisé WEP.* - Wikipédia
+
+![Supported WPA/IEEE 802.11i Features](./assets/kyhnnAb.jpg)
+
+## Synoptique de connexion
+
+![Le réseau au norme 802.1x | SOKEM Technologies](./assets/802.1x-authenfication.png.webp)
+
+# Hashage
+
+## Fonction de hachage cryptographique
+
+-  Une fonction de hachage réalise idéalement une projection aléatoire
+- - D une entrée de taille quelconque
+  - sur `n` bits en sortie
+
+Chaque valeur de sortie est équiprobable ($p=2^{-n}$) et ne dépend pas des entrees de façon prévisible.
+
+Elle opère une compression : sortie de longueur fixe (et courte) : `n` bits
+
+![image-20230914133453542](./assets/image-20230914133453542.png)
+
+**MAC : Message Authentication Code**
+
+**CBC : Cypher Block Chain**
+
+![Chapter 11 Message Integrity and Message Authentication](./assets/images.png)
+
+### Preimage resistance
+
+Etnant donné une fonction de hachage $h$ et $y = h(M)$ il doit être extrêmement difficile pour Eve de truver un message $M'$ tel que $y = h(M')$
+
+### Second freimage resistance
+
+![image-20230914140734255](./assets/image-20230914140734255.png)
+
+### Collision
+
+![image-20230914140800761](./assets/image-20230914140800761.png)
+
+## Problèmes des anniversaires
+
+L'analyse des fonctions de hachage nécessite la compréhension des problèmes des anniversaires. Quatre prob`lemes sont souvent utilisés : 
+
+- a et b sont relatives, la freimage attack
+- c et d sont relatives à la collision
+
+[Image compliquée et tableau avec de nombreux chiffres.]
+
+[Explications](https://en.wikipedia.org/wiki/Birthday_problem) sur wikipedia.
+
+![Birthday problem - Wikipedia](./assets/Birthday_Paradox.svg)
+
+
+
+## VPN IpSec
+
+![Qu'est-ce qu'un VPN IPsec et comment ça marche - Surfshark](./assets/IPsec_VPN_3-1024x501.png)
 

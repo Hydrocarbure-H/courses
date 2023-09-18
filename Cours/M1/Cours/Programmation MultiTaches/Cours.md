@@ -301,4 +301,10 @@ En indiquant un `pid` à `- 1`, si le processus appartient au `root`, le signal 
 
 Si le `pid` est inférieur à -1, sa valeur absolue est récupérée. Ainsi, `pid = -2339` est équivalent à `pid = 2339`.
 
-## 
+# Arduino
+
+![image-20230915083327320](./assets/image-20230915083327320.png)
+
+
+
+ 

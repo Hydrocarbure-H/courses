@@ -36,5 +36,23 @@ Ces informations sont importantes à avoir sous la main lors de la certification
 
 ![image-20231102143052374](./assets/image-20231102143052374.png)
 
+Il est également possible de faire de l'administration déployée sur plusieurs instances par l'intemédiaire d'un SMC server.
+
+![image-20231102144140310](./assets/image-20231102144140310.png)
+
+# Get started
+
+Après avoir acheté le produit, obligation d'enregistrer le produit sur son compte `mystormshield.eu`.
+
+Le système de LED est documenté dans la documentation : LED orange = OK.
+
+### Configuration Usine
+
+![image-20231102145916148](./assets/image-20231102145916148.png)
+
+### Présentation de l'interface de configuration
+
+![image-20231102150635970](./assets/image-20231102150635970.png)
+
 
 

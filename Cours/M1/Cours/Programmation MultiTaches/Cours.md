@@ -307,4 +307,14 @@ Si le `pid` est inférieur à -1, sa valeur absolue est récupérée. Ainsi, `pi
 
 
 
- 
+ # Ordonnancement
+
+### Exemple
+
+![image-20230918140435693](./assets/image-20230918140435693.png)
+$$
+B_1 = MAX(2,6) + 0 = 6\\
+B_2 = MsX(5) + MAX(2,6) = 11\\
+B_3 = MAX(2) + MAX(4) + MAX(5) = 11
+$$
+Avec $B_i = $ blocage direct + blocage par héritage

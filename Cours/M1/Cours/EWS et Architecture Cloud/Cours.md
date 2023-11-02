@@ -91,3 +91,111 @@ Le principe du serverless conciste à déclencher la fonction requise à la dema
 Le principal bénéfice du FaaS cnciste à permettre la scalabilité à zéro !
 
 Ce mode de fonctionnement est particulièrement intéressant en termes de coût vis à vis des cloud providers et en terme d'optimisation des ressources en cloud privé.
+
+# Principaux acteurs du marché
+
+## Gartner Magic Quadrant
+
+En 2017 : ![gartner-iaas-magic-quadrant.png](./assets/gartner-iaas-magic-quadrant.jpeg)
+
+C'est durant cette année que les premiers acteurs chinois ont fait leur apparition.
+
+## Amazon Web Services
+
+En 2006, démarrage de la propositions de différents services web pour différentes entreprises.
+
+En 2017, premier datacenter d'AWS en France.
+
+Propose plus de 200 services. Problème principal : Prix.
+
+### Interface de gestion
+
+Utilise le concept du moindre privilège.
+
+**Prochain cours :** Présentation des différents services
+
+### Comparaison des architectures on-premises et AWS (IaaS)
+
+![AWS Technical Essentials – Module 1: Introduction & History of AWS (Part 2)  – DevOps24h](./assets/43777130035_8a953e4dd7_h.jpg)
+
+## Accounting
+
+Comte root - Compte de gestion pour une activité spécifique.
+
+- Permet de créer plusieurs comptes
+- Contient une @mail et un pwd.
+
+![AWS Root Account Best Practices | Logicata](./assets/image1-2.png)
+
+![AWS Root User Considerations | ACAI Consulting](./assets/RootUserMetamodel-1024x770.jpg)
+
+**SLA** - Service Level Agreement : Niveau de sécurité qui va être établi pour protéger le contenu des données.
+
+### Composants fondamentaux
+
+#### Les services réseaux
+
+**VPC :** - Virtual Private Cloud 
+
+- Provisionne un réseua (privé, virtuel, isolé)
+- Permet d'avoir le contrôle complet sur lénvironnement virtual du réseau de votre cloud privé.
+
+Le subnet d'un VPC permet le lancement de resources AWS au sein d'un sous-réseau.
+
+![Example: VPC with servers in private subnets and NAT - Amazon Virtual  Private Cloud](./assets/vpc-example-private-subnets.png)
+
+Il est possible de faire du VPC peering.
+
+![Transitive Routing Overview - DCLessons](./assets/mceu_692259411646725599817.png)
+
+Non transitif, et il sera nécessaire d'avoir des adresses disjoinctes.
+
+## EC2
+
+Les instances EC2 sont des serveurs virtualisés dans les datacenters AWS, ayant un contrôle complet des ressources (redimensionnables).
+
+![Choosing the Right EC2 Instance Type for Your Application | AWS News Blog](./assets/ec2_instance_types_table_1.png)
+
+### Serverless
+
+Site web : créer une nouvelle instance à chaque nouvel utilisateur. Si peu de visites dans le mois, facture basse, sinon haute.
+
+Mais mieux que pratiquement max chaque mois dû à une infra en static bare metal.
+
+Ce qui permet donc aussi d'utiliser la technologie d'autoscaling si jamais le besoin est + ou - important.
+
+## Stockage
+
+1. **Stockage par bloc :**
+   - Le stockage par bloc divise un support de stockage en blocs de taille fixe (généralement de quelques kilooctets à plusieurs mégaoctets).
+   - Chaque bloc est identifié par une adresse physique unique.
+   - Les données sont stockées sans aucune structure de fichier ou de système de fichiers. Les blocs sont simplement des unités de données brutes.
+   - Ce type de stockage est couramment utilisé dans les disques durs, les SSD (Solid State Drives) et les systèmes de stockage en réseau (SAN).
+   - Il est souvent utilisé dans des environnements qui nécessitent une performance élevée et une gestion fine du stockage, tels que les bases de données.
+2. **Stockage par fichiers :**
+   - Le stockage par fichiers organise les données en utilisant une structure de système de fichiers. Les fichiers sont des ensembles de données logiquement organisées.
+   - Chaque fichier a un nom, un type et une hiérarchie de dossiers qui le place dans une structure arborescente.
+   - Les données sont stockées de manière plus conviviale pour les utilisateurs, ce qui permet de les organiser et de les récupérer plus facilement.
+   - Ce type de stockage est couramment utilisé dans les systèmes d'exploitation, les serveurs de fichiers, et les services de stockage en réseau tels que le NAS (Network-Attached Storage).
+   - Il est adapté aux besoins des utilisateurs et des applications qui gèrent des données de manière plus traditionnelle, comme les documents, les images, les vidéos, etc.
+
+En résumé, la principale différence réside dans la manière dont les données sont organisées. Le stockage par blocs est plus adapté aux applications nécessitant une performance élevée et une gestion fine du stockage, tandis que le stockage par fichiers est plus adapté aux besoins des utilisateurs et des applications qui nécessitent une organisation logique des données en fichiers et dossiers. En pratique, de nombreuses solutions de stockage combinent ces deux approches pour répondre aux différents besoins des utilisateurs et des applications.
+
+## Amazon Simple Stoage Service
+
+1. **S3 Reduced Redundancy Storage (RRS)** :
+   - RRS est une classe de stockage qui offre une réduction des coûts par rapport à la classe de stockage Standard en échange d'une réduction légère de la redondance des données.
+   - Conçue pour stocker des données non critiques ou répliquées ailleurs, RRS présente un niveau de redondance moindre par rapport à la classe de stockage Standard, ce qui signifie qu'il existe un risque légèrement plus élevé de perte de données.
+   - Elle convient aux données qui peuvent être reconstituées facilement en cas de perte.
+2. **S3 Standard** :
+   - La classe de stockage S3 Standard offre une durabilité élevée des données grâce à la réplication multi-site des données.
+   - Les données stockées dans la classe S3 Standard sont conçues pour être accessibles avec une latence faible.
+   - Cette classe de stockage convient aux données fréquemment utilisées et aux applications nécessitant un accès rapide aux données.
+3. **S3 Standard-IA (Infrequent Access)** :
+   - S3 Standard-IA est une classe de stockage conçue pour stocker des données qui ne sont pas fréquemment utilisées, mais qui doivent être accessibles avec une latence relativement faible.
+   - Elle offre une réduction des coûts par rapport à la classe de stockage Standard tout en maintenant une durabilité élevée.
+   - Convient aux données auxquelles on accède moins fréquemment, mais qui doivent être rapidement disponibles lorsque nécessaire.
+4. **S3 Intelligent-Tiering** :
+   - S3 Intelligent-Tiering est une classe de stockage qui automatise le déplacement des objets entre les classes de stockage en fonction de leur fréquence d'accès.
+   - Il peut basculer automatiquement entre les classes S3 Standard et S3 Standard-IA, offrant ainsi un équilibre entre performance et coût en fonction du comportement d'accès réel des objets.
+   - Convient aux cas d'utilisation où les besoins en matière de stockage peuvent varier avec le temps.

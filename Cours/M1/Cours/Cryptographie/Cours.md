@@ -183,6 +183,57 @@ Bref, `a` = 3.
 - **Confiance** :
   - La confiance dans le contexte de l'authentification signifie que le serveur d'authentification a une raison de croire que le supplicant ou le client est légitime.
   - Cela implique généralement une vérification réussie des informations d'identification et peut également inclure des mécanismes de vérification de la sécurité, tels que des certificats numériques.
+- **OneTime Pad** :
+  - Méthode de chiffrement incassable mais impossible à mettre en place en pratique (taille clé doit correspondre à la taille de l'ensemble des messages echangés avec l'interlocuteur.). Chiffrement symétrique.
+
+- **Indice de coincidence:**
+  - Permet de déterminer si un chiffrement est monoalphabétique ou poly.
+
+
+![img](./assets/image.png)
+
+- **Chiffrement symétrique / asymétrique** :
+  - Symétrique plus rapide dû à des calculs plus simples.
+
+- **La cryptanalyse** est la technique qui consiste à déduire un texte en clair d’un texte [chiffré](https://fr.wiktionary.org/wiki/chiffré) sans posséder la [clé de chiffrement](https://fr.wikipedia.org/wiki/Clé_de_chiffrement). Le processus par lequel on tente de comprendre un message en particulier est appelé une *attaque*.
+
+Une attaque est généralement caractérisée selon les données qu'elle nécessite :
+
+- [attaque sur texte chiffré seul](https://fr.wikipedia.org/wiki/Attaque_sur_texte_chiffré_seul) (*ciphertext-only* en anglais) : le cryptanalyste possède des exemplaires chiffrés des messages, il peut faire des hypothèses sur les messages originaux qu'il ne possède pas. La cryptanalyse est plus ardue de par le manque d'informations à disposition ;
+
+- [attaque à texte clair connu](https://fr.wikipedia.org/wiki/Attaque_à_texte_clair_connu) (*known-plaintext attack* en anglais) : le cryptanalyste possède des messages ou des parties de messages en clair ainsi que les versions chiffrées. La [cryptanalyse linéaire](https://fr.wikipedia.org/wiki/Cryptanalyse_linéaire) fait partie de cette catégorie ;
+
+- [attaque à texte clair choisi](https://fr.wikipedia.org/wiki/Attaque_à_texte_clair_choisi) (*chosen-plaintext attack* en anglais) : le cryptanalyste possède des messages en clair, il peut créer les versions chiffrées de ces messages avec l'algorithme que l'on peut dès lors considérer comme une boîte noire. La [cryptanalyse différentielle](https://fr.wikipedia.org/wiki/Cryptanalyse_différentielle) est un exemple d'attaque à texte clair choisi ;
+
+- [attaque à texte chiffré choisi](https://fr.wikipedia.org/wiki/Attaque_à_texte_chiffré_choisi) (*chosen-ciphertext attack* en anglais) : le cryptanalyste possède des messages chiffrés et demande la version en clair de certains de ces messages pour mener l'attaque.
+
+- **WPA2 4 way Handsake** :
+
+  ![KRACK – Is it the end of WPA2? – SemFio Networks](./assets/4-way-handshake_orig.gif)
+
+  **Nonce** : 
+
+  Nombre arbitraire destiné à être utilisé une seule fois (généré aléatoire).
+
+  **PEAP (Protected Extensible Authentication Protocol) :**
+
+  1. Plus sécurisé, car il permet l'authentification du serveur via un certificat.
+  2. Nécessite généralement des certificats serveur et client.
+  3. Largement pris en charge par une variété de clients et de serveurs.
+  4. Utilise généralement EAP-MSCHAPv2 (ou EAP-GTC) pour l'authentification basée sur les noms d'utilisateur et les mots de passe.
+  5. Souvent utilisé dans les réseaux d'entreprise.
+
+  **TTLS (Tunneled Transport Layer Security) :**
+
+  1. Moins sécurisé en termes d'authentification du serveur, car il repose principalement sur des certificats clients.
+  2. Nécessite généralement uniquement des certificats clients.
+  3. Également pris en charge par de nombreux clients et serveurs, mais moins répandu que PEAP.
+  4. Offre une plus grande flexibilité en termes de méthodes d'authentification sous-jacentes.
+  5. Utilisé dans les réseaux d'entreprise, adapté aux situations où l'authentification du serveur est moins critique.
+
+  Le choix entre PEAP et TTLS dépendra des besoins spécifiques de sécurité et de déploiement de votre réseau, ainsi que des exigences de compatibilité avec les dispositifs clients et serveurs.
+
+  
 
 > *En résumé, dans le processus d'authentification, un supplicant (utilisateur ou périphérique) tente de se connecter à un réseau ou à des ressources en passant par un client qui transmet les informations d'identification au serveur. Le serveur utilise le protocole RADIUS pour vérifier l'authenticité du supplicant. Les données d'authentification sont souvent sécurisées via un tunnel SSL EAP, et la confiance est établie lorsque le serveur est convaincu de l'identité légitime du supplicant.*
 
@@ -220,7 +271,7 @@ Elle opère une compression : sortie de longueur fixe (et courte) : `n` bits
 
 Etnant donné une fonction de hachage $h$ et $y = h(M)$ il doit être extrêmement difficile pour Eve de truver un message $M'$ tel que $y = h(M')$
 
-### Second freimage resistance
+### Second preimage resistance
 
 ![image-20230914140734255](./assets/image-20230914140734255.png)
 

@@ -64,25 +64,19 @@ C'est au niveau du BAS que l'authentification du client va se faire et que les p
 
 - Le lien n°4 relie le BAS à ce routeur et les données circulent dans un tunnel de type L2TP (Layer 2 Tunnel Protocol). Il s'agit de construire un VPN (Virtual Private Network : réseau privé virtuel) entre le BAS et le réseau du fournisseur d'accès.
 
-# Architecture d'un réseau convergent
+# Cheat Sheet Cisco
 
-## Topologie réseaux et architectures de référence
+## Configuration statique
 
-## Réseaux mobiles
+On possède l'infrastructure suivante :
 
-## Composants d'un réseau convergent
+![image-20231013105223147](./assets/image-20231013105223147.png)
 
-## Protocoles utilisés pour la convergence
+Les subnets à créer sont les suivants :
 
-## SDN/SD-WAN
+![image-20231013105354886](./assets/image-20231013105354886.png)
 
-## IPv6 / Transition IPv6/IPv4
+Le subnet 0 n'est pas utilisé, le subnet 1 est pour les HeadQuarters, le subnet 2 est pour le WAN HeadQuarter - Agence et le subnet 3 est pour l'agance. L'utilisation d'un /26 nous donnant donc la possibilité d'utiliser 62 hôtes hors Broadcast et Network Address.
 
-# Implémentation d'un réseau convergent
 
-## Plannification et conception d'un réseau convergent
-
-# Sécurité dans un réseau convergent
-
-# Conclusion
 

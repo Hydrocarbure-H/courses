@@ -54,5 +54,86 @@ Le système de LED est documenté dans la documentation : LED orange = OK.
 
 ![image-20231102150635970](./assets/image-20231102150635970.png)
 
+# Configuration
 
+## Objets réseaux
+
+Il est possible de créer des objets de différents types.
+
+![image-20231103150948527](./assets/image-20231103150948527.png)
+
+Important : Si on crée un objet FQDN, l'adresse par défaut est celle utilisée au début, puis 5 minutes plus tard sera remplacée par la résolution DNS. Si l'IP résolue ne fonctionne pas, il testera l'ancienne valeur et non la valeur par défaut.
+
+## Modes de fonctionnement
+
+Il existe trois modes de fonctionnement principaux.
+
+- Transparent - Bridge
+
+  - Regarde tous les paquets en temps réel. Se place en man-in-the-middle, et détermine selon ses règles si le paquet doit être droppé ou non. 
+
+  - Il est également possible de le mettre entre deux routeurs.
+
+    ![image-20231103151811803](./assets/image-20231103151811803.png)
+
+    Le point positif de ce montage est que chaque élément de cette infrastructure se résume à sa fonction première. Le routeur ne fait que du routage, et le firewall que de l'analyse/drop.
+
+- Avancé - Routeur
+
+  - Le firewall fonctionne comme un routeur en gérant plusieurs réseaux réseaux.
+
+- Hybride
+
+  - Un mix entre les deux modes.
+
+## Interfaces
+
+Les différents types d'interfaces qui existent sont les suivants.
+
+**Note:** Le LACP est un protocole d'arggrégation de ports.
+
+![image-20231103153004310](./assets/image-20231103153004310.png)
+
+*Attention*: L'interface sur laquelle l'administrateur est connecté en ce moment-même possède une petite icône de type Porte de sortie. Si cette interface est modifiée, cela peut créer des problèmes immédiatement pour l'administrateur.
+
+*Attention*: En cas de modification de l'IP/du réseau de la machine de l'administrateur connectée au Firewall, il est possible que la connexion soit refusée si l'IP de la machine est toujours en 10.0.0.N alors que le firewall n'est censé accepter que du 192.168.N.N.
+
+Lors d'une configuration VPN, la MTU est très importante.
+
+Exemple:![image-20231103155030120](./assets/image-20231103155030120.png)
+
+L'encapsulation va rendre les paquets plus gros que le MTU maximum, ces derniers seront donc droppés. La modification de la MTU par défaut peut résoudre ce problème en indiquant que la taille maximale du payload est plus petite.
+
+# Routage
+
+## Routage statique
+
+![image-20231109132451838](./assets/image-20231109132451838.png)
+
+**Routage asymétrique** : Chemin d'aller différent du chemin retour. Problème car Firewall aller démarre la session TCP mais Firewall retour ne la connaît pas.
+
+## Routage avancé
+
+**Policy Based Routing :** 
+
+- 2 Sorties Internet (2 pays par exemple)
+- Volonté de sortir depuis l'IP Française si flux entrant est français.
+
+Il est donc possible de faire varier l'IP sortant en fonction d'un ensemble de règles.
+
+![image-20231109135518289](./assets/image-20231109135518289.png)
+
+# Filtrage
+
+Le filtrage permet la définition des flux autorisés et/ou bloqués par le firewall et la définition de critères d'application des différentes règles. Il pemet également les inspections de sécurité selon les flux.
+
+## Statefull
+
+![image-20231110143956142](./assets/image-20231110143956142.png)
+
+Quand on veut autoriser un flux, on autorise la requête puis la réponse sera automatiquement autorisée. Ceci en fonction de la règle qui est matchée.
+
+Dans le cas d'une session, les connexions initialisées depuis le serveur seront refusées, mais pas celles initialisées par le client et recevant une réponse du serveur.
+
+![image-20231110144825549](./assets/image-20231110144825549.png)
 

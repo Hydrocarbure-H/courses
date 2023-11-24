@@ -206,15 +206,32 @@ En résumé, la principale différence réside dans la manière dont les donnée
 
 > *Amazon Simple Storage Service (Amazon S3) est un service de stockage d'objets qui offre une capacité de mise à l'échelle, une disponibilité des données, une sécurité et des performances de pointe. Les clients de toutes les tailles et de tous les secteurs peuvent stocker et protéger n'importe quelle quantité de données pour la quasi-totalité des cas d'utilisation, par exemple les lacs de données ainsi que les applications natives cloud et mobiles. Grâce à des classes de stockage économiques et à des fonctions de gestion faciles à utiliser, vous pouvez optimiser les coûts, organiser les données et configurer des contrôles d'accès précis pour répondre à des exigences opérationnelles, organisationnelles et de conformité spécifiques.* - **aws.amazon.com**
 
+![Diagramme qui montre comment d&eacute;placer, stocker et analyser les donn&eacute;es avec Amazon S3. D&eacute;crit dans le lien &laquo;&nbsp;Agrandir et lire la description de l'image.&nbsp;&raquo;](./assets/product-page-diagram_Amazon-S3_HIW.cf4c2bd7aa02f1fe77be8aa120393993e08ac86d.png)
+
 **Règle des 3-2-1** : Avoir au moins une sauvegarde hors site.
 
 ## Classes de stocages d'objets
 
-- S3 Standard
+- **S3 Standard**
   - Accès performants et fréquents aux données
-- S3 Reduced Redundancy Storage
+- **S3 Reduced Redundancy Storage**
   - Non recommandé, classe suivante remplaçante, plus sécurisée et plus performante.
-- S3 Standard infrequent Access
+- **S3 Standard infrequent Access**
   - Données longues vies, backups. Moins cher que classe Standard
-- S3 Glacier Instant Retrieval
-  - 
+- **S3 Glacier Instant Retrieval**
+  - Archivage de données
+  - Aucun accès temps réel
+  - Coût très faible
+
+## Stockage Amazon EC2
+
+- Stockage Local : Ephémère sur l'hôte
+- Stockage extérieur à l'hôte
+
+# Identity / Access Management
+
+Il existe deux types de policies :
+
+- Resources-based policies
+- Users-based policies
+

@@ -38,6 +38,8 @@ Un réseau covergent permet de faire coexister différents types de trafic sur u
 
 d'exploitation, pourvu que ce dernier supporte le réseau TCP/IP.
 
+![image-20231124144310431](./assets/image-20231124144310431.png)
+
 #### Modem
 
 - Modulateur/Démodulateur. Une boîte dont la fonction est assez similaire à celle du modem RTC, à part
@@ -79,4 +81,101 @@ Les subnets à créer sont les suivants :
 Le subnet 0 n'est pas utilisé, le subnet 1 est pour les HeadQuarters, le subnet 2 est pour le WAN HeadQuarter - Agence et le subnet 3 est pour l'agance. L'utilisation d'un /26 nous donnant donc la possibilité d'utiliser 62 hôtes hors Broadcast et Network Address.
 
 
+
+# Routage
+
+Utilisation d'un routeur contre un switch permet de router les paquets d'un réseau à un autre en fonction d'une adresse IP. A chaque interface réseau d'un routeur est assignée une adresse IP.
+
+Le protocole de routage utilisé va faire varier comment sera choisi le prochain routeur.
+
+![image-20231124144731191](./assets/image-20231124144731191.png)
+
+Le prochain routeur est choisi en fonction d'une table de routage, qui contient les prochains HOP à faire pour atteindre un autre réseau.
+
+La table de routage contient les adresse réseaux de destination, les adresses des passerelles et l'interface de sortie.
+
+![image-20231124144947088](./assets/image-20231124144947088.png)
+
+
+
+![image-20231124144926241](./assets/image-20231124144926241.png)
+
+Lorsqu'un chemin n'est pas dans la table de routage de façon explicite, on utilise la passerelle par défaut.
+
+- **Routage statique**
+
+Les tables de routage sont mises à jour manuellement à chaque modification de la structure du réseau.
+
+![image-20231124145303485](./assets/image-20231124145303485.png)
+
+- **Routage dynamique**
+
+Les tables de routage sont mises à jour automatiquement selon le protocole chois (RIP, OSPF, etc.). A cet instant, le meilleur chemin est déterminé par un algorithme :
+
+- RIP - Bellman
+- OSPF - Dijkstra
+
+Le `Distance Vector` transmet les tables de routage reçues de ses voisins à ses voisins immédiats et fusionne la sienne avec celles reçues.
+
+Le `Link State` transmet les tables de routage à ses voisins immédias et retransmet les informations reçues des ses voisins à ses autres voisins. Puis, calcule sa table de routage.
+
+---
+
+Distance administrative définit la préférence d'une source de routage. Pour chaque route une valeur de 0 à 255 est attribuée. Plus la valeur est faible, plus la rotue est privilégiée.
+
+## OSPF - Open Shortest Path First
+
+RFC 1247 - 1583
+
+L'algotihme est dynamique, s'adapte aux changements de topoligie du réseau. Le routage est accepté par type de service (traitemment du champ service du datagramme IP).
+
+Un état de liens dans OSPF est une description de l’interface d’un routeur avec les éléments suivants :
+
+- Son adresse IP
+
+- Son masque
+
+- Le type de réseau
+
+- Son voisin (un routeur)
+
+- L’ensemble des liens OSPF est enregistré dans une base de données appelée link-state database, qui est identique sur tous les routeurs d’une même aire.
+
+Le routage fonctionne avec la création d'areas étant un ensemble de réseaux contigues. Chaque ensemble de réseaux ne connaît que sa propre zone.
+
+Cet aspect permet de ne pas avoir besoin de reconstruire toutes les tables à chaque changement dans une zone. Intéressant également sur le point de vue des performances CPU/RAM.
+
+## MPLS - Multi Protocol Label Switching
+
+Les intérêts de cette technologie est que le routage se fait à l'entrée du réseau, et que le coeur de réseau est plus rapide.
+
+Le réseau "interne" est composé de commutateurs et de routeurs, et l'intelligence du routage se fait à l'extérieur. L'extérieur, ce sont les labels (?).
+
+![image-20231124151359664](./assets/image-20231124151359664.png)
+
+Fait intervenir la QoS dans le routage, simplifie le fonctionnement par l'absence de superposition et de cumul des technologies.
+
+### Fonctionnement
+
+LSP (Label Switch Path), les chemis prédéfinis relient les extrémités du réseau. Un LSP est unidirectionnel. Les équipements MPLS sont nommés LSR pour Label Switch Router.
+
+1. À l'entrée du réseau, le premier LSR insère un label devant le paquet IP. 
+2. Le paquet est ensuite redirigé en fonction du label.
+
+3. Le LSR de sortie retire le label.
+4. Le paquet est ensuite routé selon le fonctionnement IP traditionnel.
+
+![MPLS - Exposé NT réseaux](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Figm.univ-mlv.fr%2F~dr%2FXPOSE2006%2Fmarot%2Fimages%2Fmpls_term.png&f=1&nofb=1&ipt=1f2468bf739d41542fda8a8bab5343f33ef139e2a98362e05742112382cd6bea&ipo=images)
+
+- **MPLS** Multiple Protocol Label Switching;
+
+- **iLER** ingress Label Edge Router (routeur d’entrée)
+
+- **eLER** egress Label Edge Router 
+
+Il est également possible d'empiler les lables pour permettre un traffic tunneled au travers de plusieurs réseaux.
+
+![image-20231124152233569](./assets/image-20231124152233569.png)
+
+Le **LSP** est l'ensemble des équipements touchés entre les deux E-LSR.
 

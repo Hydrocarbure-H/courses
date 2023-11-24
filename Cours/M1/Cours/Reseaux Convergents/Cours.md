@@ -160,9 +160,12 @@ Fait intervenir la QoS dans le routage, simplifie le fonctionnement par l'absenc
 LSP (Label Switch Path), les chemis prédéfinis relient les extrémités du réseau. Un LSP est unidirectionnel. Les équipements MPLS sont nommés LSR pour Label Switch Router.
 
 1. À l'entrée du réseau, le premier LSR insère un label devant le paquet IP. 
+   ![image-20231124152644878](./assets/image-20231124152644878.png)
 2. Le paquet est ensuite redirigé en fonction du label.
+   ![image-20231124152746826](./assets/image-20231124152746826.png)
 
 3. Le LSR de sortie retire le label.
+   ![image-20231124152814902](./assets/image-20231124152814902.png)
 4. Le paquet est ensuite routé selon le fonctionnement IP traditionnel.
 
 ![MPLS - Exposé NT réseaux](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Figm.univ-mlv.fr%2F~dr%2FXPOSE2006%2Fmarot%2Fimages%2Fmpls_term.png&f=1&nofb=1&ipt=1f2468bf739d41542fda8a8bab5343f33ef139e2a98362e05742112382cd6bea&ipo=images)
@@ -178,4 +181,8 @@ Il est également possible d'empiler les lables pour permettre un traffic tunnel
 ![image-20231124152233569](./assets/image-20231124152233569.png)
 
 Le **LSP** est l'ensemble des équipements touchés entre les deux E-LSR.
+
+Le MPLS permet la simplification du coeur de réseau, l'utilisation de plusieurs services et protocoles différents et est indépendant du protocole utilisé dans la couche 2.
+
+Un label peut signifier plusieurs choses, un chemin, une source, une destination, une application ou un QoS.
 

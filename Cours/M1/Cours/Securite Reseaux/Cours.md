@@ -137,3 +137,28 @@ Dans le cas d'une session, les connexions initialisées depuis le serveur seront
 
 ![image-20231110144825549](./assets/image-20231110144825549.png)
 
+**Ordre du filtrage:**
+
+![image-20231110145103860](./assets/image-20231110145103860.png)
+
+Lorsqu'un serveur web se trouve derrière une IP publique, c'est en suivant l'ordonnancement précédent que l'IP privée du serveur web sera translaté par le Firewall.
+
+Cet ordonnancement peut varier selon les constructeurs de Firewall.
+
+*Extrait de la documentation :* 
+
+>- **Le filtrage implicite** : Regroupe les règles de filtrage préconfigurées ou ajoutées dynamiquement par le firewall pour autoriser ou bloquer certains flux après l’activation d’un service. Par exemple, une règle implicite autorise les connexions à destination des interfaces internes de l’UTM sur le port HTTPS (443/TCP) afin d’assurer un accès continu à l’interface d’administration Web. Autre exemple, dès l’activation du service SSH, un ensemble de règles implicites sera ajouté pour autoriser ces connexions depuis toutes les machines des réseaux internes.
+>
+>- **Le filtrage global** : Regroupe les règles de filtrage injectées au firewall depuis l’outil d’administration « Stormshield Management Server » (SMC) ou après affichage des politiques globales.
+>
+>- **Le filtrage local** : Représente les règles de filtrage ajoutées par l’administrateur depuis l’interface d’administration.
+>
+>- **Le NAT implicite** : Regroupe les règles de NAT ajoutées dynamiquement par le firewall. Ces règles sont utilisées principalement lors de l’activation de la haute disponibilité.
+>
+>- **Le NAT global** : À l’instar du filtrage global, il regroupe les règle de NAT injectées au firewall depuis l’outil d’administration « Stormshield Management Server » (SMC) ou après affichage des politiques globales.
+>
+>- **Le NAT local** : Regroupe les règles de NAT ajoutées par l’administrateur depuis l’interface d’administration.
+
+![image-20231110151355514](./assets/image-20231110151355514.png)
+
+Use `tcpdump`.

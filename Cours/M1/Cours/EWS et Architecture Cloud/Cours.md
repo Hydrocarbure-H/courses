@@ -199,3 +199,9 @@ En résumé, la principale différence réside dans la manière dont les donnée
    - S3 Intelligent-Tiering est une classe de stockage qui automatise le déplacement des objets entre les classes de stockage en fonction de leur fréquence d'accès.
    - Il peut basculer automatiquement entre les classes S3 Standard et S3 Standard-IA, offrant ainsi un équilibre entre performance et coût en fonction du comportement d'accès réel des objets.
    - Convient aux cas d'utilisation où les besoins en matière de stockage peuvent varier avec le temps.
+
+# Stockage objet
+
+**Amazon Simple Storage Service - S3** 
+
+> *Amazon Simple Storage Service (Amazon S3) est un service de stockage d'objets qui offre une capacité de mise à l'échelle, une disponibilité des données, une sécurité et des performances de pointe. Les clients de toutes les tailles et de tous les secteurs peuvent stocker et protéger n'importe quelle quantité de données pour la quasi-totalité des cas d'utilisation, par exemple les lacs de données ainsi que les applications natives cloud et mobiles. Grâce à des classes de stockage économiques et à des fonctions de gestion faciles à utiliser, vous pouvez optimiser les coûts, organiser les données et configurer des contrôles d'accès précis pour répondre à des exigences opérationnelles, organisationnelles et de conformité spécifiques.* - **aws.amazon.com**

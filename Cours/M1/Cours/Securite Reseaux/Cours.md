@@ -167,3 +167,9 @@ Use `tcpdump`.
 
 ## Mode Proxy
 
+Permet de faire du filtrage d'URL fin. Peut faire en fonction de mots-clés ou faire appel à EWC (sous license) pour avoir simplement des catégories à filtrer. L'analyse de l'URL se fait sur les serveurs distants CloudURL.
+
+![image-20231207143454764](./assets/image-20231207143454764.png)
+
+**Note : ** Il n'est pas possible de savoir si une URL est présente ou non dans le cache.
+

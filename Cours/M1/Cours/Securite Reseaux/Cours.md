@@ -131,7 +131,7 @@ Le filtrage permet la définition des flux autorisés et/ou bloqués par le fire
 
 ![image-20231110143956142](./assets/image-20231110143956142.png)
 
-Quand on veut autoriser un flux, on autorise la requête puis la réponse sera automatiquement autorisée. Ceci en fonction de la règle qui est matchée.
+Quand on veut autoriser un flux, on autorise la requête **puis la réponse sera automatiquement autorisée**. Ceci en fonction de la règle qui est matchée.
 
 Dans le cas d'une session, les connexions initialisées depuis le serveur seront refusées, mais pas celles initialisées par le client et recevant une réponse du serveur.
 
@@ -162,3 +162,8 @@ Cet ordonnancement peut varier selon les constructeurs de Firewall.
 ![image-20231110151355514](./assets/image-20231110151355514.png)
 
 Use `tcpdump`.
+
+# Proxy
+
+## Mode Proxy
+

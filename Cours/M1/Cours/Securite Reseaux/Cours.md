@@ -173,3 +173,7 @@ Permet de faire du filtrage d'URL fin. Peut faire en fonction de mots-clés ou f
 
 **Note : ** Il n'est pas possible de savoir si une URL est présente ou non dans le cache.
 
+**IPS :** Intrusion Prevention System
+
+**IDS **: Intrusion Detection System
+

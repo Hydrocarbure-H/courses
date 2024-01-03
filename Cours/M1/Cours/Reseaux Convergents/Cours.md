@@ -239,9 +239,6 @@ L'objectif dans IPv6 est d'éviter la fragmentation autant que possible pour opt
   - **Cryptage des données** : IPsec chiffre les données pour assurer leur confidentialité pendant la transmission.
   - **Authentification des paquets** : Il permet de vérifier l'authenticité des paquets pour garantir qu'ils proviennent de sources légitimes.
   - **Intégrité des données** : IPsec s'assure que les données n'ont pas été altérées pendant leur transfert.
-- **Utilisation dans IPv6 :**
-  - Dans IPv6, IPsec est intégré nativement, ce qui signifie que le support d'IPsec est une fonctionnalité de base du protocole IPv6.
-  - L'intégration native d'IPsec dans IPv6 facilite la sécurisation des communications réseau sans nécessiter d'extensions supplémentaires.
 - **Avantages d'IPsec dans IPv6 :**
   - **Sécurité renforcée** : L'intégration native simplifie l'application de mesures de sécurité pour protéger les données en transit.
   - **Protection des communications** : IPsec dans IPv6 assure la confidentialité et l'intégrité des données, renforçant ainsi la sécurité des communications sur Internet.
@@ -250,3 +247,103 @@ L'objectif dans IPv6 est d'éviter la fragmentation autant que possible pour opt
 
 ### Intégration d'IPv6
 - **Interopérabilité** : Coexistence d'IPv6 et IPv4 grâce à des mécanismes de transition tels que Dual Stack, Tunneling, NAT64. Par exemple, Dual Stack permet à un périphérique de supporter à la fois IPv4 et IPv6.
+
+# Routage Dynamique et Statique - `Cisco`
+
+### Commandes Cisco pour le Routage Statique
+
+#### Configuration de l'itinéraire statique
+- **Configurer une route statique vers un réseau distant :**
+  ```
+  ip route <réseau de destination> <masque de sous-réseau> <adresse de passerelle ou interface de sortie>
+  ```
+
+- **Afficher la table de routage :**
+  ```
+  show ip route
+  ```
+
+- **Supprimer une route statique :**
+  ```
+  no ip route <réseau de destination> <masque de sous-réseau> <adresse de passerelle ou interface de sortie>
+  ```
+
+### Commandes Cisco pour le Routage Dynamique
+
+#### Protocoles de Routage Dynamique OSPF et RIP
+
+##### OSPF
+
+- **Activation d'un protocole de routage dynamique (par exemple OSPF) :**
+  
+  ```
+  router ospf <numéro du processus>
+  ```
+  
+- **Activation d'une interface pour le routage dynamique :**
+  ```
+  network <adresse de réseau> <masque de sous-réseau> area <numéro de zone>
+  ```
+
+- **Afficher les voisins adjacents OSPF :**
+  ```
+  show ip ospf neighbor
+  ```
+
+- **Afficher les informations de routage OSPF :**
+  ```
+  show ip ospf route
+  ```
+
+- **Désactiver un protocole de routage dynamique (par exemple OSPF) :**
+  ```
+  no router ospf <numéro du processus>
+  ```
+
+##### RIP
+
+#### Activation du RIP
+- **Activer le RIP sur un routeur :**
+  ```
+  router rip
+  ```
+
+#### Configuration des interfaces pour le RIP
+- **Activation du RIP sur une interface spécifique :**
+  ```
+  network <adresse de réseau>
+  ```
+
+#### Options de Configuration du RIP
+- **Configurer la version du RIP :**
+  ```
+  version 1  // RIP version 1
+  version 2  // RIP version 2
+  ```
+
+- **Définir la métrique maximale pour les routes RIP :**
+  ```
+  maximum-path <nombre de sauts>
+  ```
+
+#### Vérification et Débogage du RIP
+- **Afficher les informations de routage RIP :**
+  ```
+  show ip route rip
+  ```
+
+- **Afficher les voisins RIP adjacents :**
+  ```
+  show ip rip database
+  ```
+
+- **Afficher les mises à jour RIP reçues et envoyées :**
+  ```
+  debug ip rip
+  ```
+
+#### Désactivation du RIP
+- **Désactiver le RIP sur un routeur :**
+  ```
+  no router rip
+  ```

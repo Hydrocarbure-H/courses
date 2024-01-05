@@ -188,47 +188,6 @@ Un label peut signifier plusieurs choses, un chemin, une source, une destination
 
 # Fiches
 
-## IPv6
-
-Pour créer un cours détaillé sur IPv6, je vais me baser sur les informations pertinentes issues des trois documents que vous avez fournis. Compte tenu de la taille maximale de la réponse, je vais me concentrer sur les aspects les plus essentiels d'IPv6. 
-
-**IPv6 – Introduction et Fondamentaux**
-
-IPv6, ou Internet Protocol version 6, est la version la plus récente du protocole Internet (IP). Elle a été développée pour remplacer IPv4, la version précédente, en raison de la pénurie d'adresses IP disponibles et de la nécessité d'un système d'adressage plus efficace pour l'Internet en expansion rapide.
-
-**Caractéristiques Principales d'IPv6 :**
-- **Adressage étendu** : IPv6 utilise des adresses de 128 bits, offrant une quantité quasi-illimitée d'adresses IP, résolvant ainsi le problème de la pénurie d'adresses IP dans IPv4.
-- **Simplification de l'en-tête** : L'en-tête d'IPv6 est plus simple que celui d'IPv4, ce qui améliore l'efficacité du traitement des paquets.
-  - **Exemple** : En IPv6, les champs comme le checksum et les options d'acheminement, présents dans IPv4, sont éliminés ou optionnels, réduisant ainsi la complexité du traitement.
-
-- **Prise en charge de l'autoconfiguration** : IPv6 permet aux dispositifs de configurer automatiquement leur propre adresse IP.
-- **Meilleure sécurité** : IPv6 intègre des fonctionnalités de sécurité comme IPSec, qui n'était qu'optionnelle dans IPv4.
-  - **Exemple** : IPSec dans IPv6 permet l'authentification et le chiffrement de bout en bout, offrant une sécurité renforcée pour des données sensibles comme les transactions bancaires en ligne.
-
-- **Meilleur support pour QoS (Quality of Service)** : IPv6 permet une meilleure gestion de la qualité de service, ce qui est crucial pour le trafic multimédia et les applications en temps réel.
-  - **Exemple** : Pour une vidéoconférence, IPv6 priorise les paquets vidéo et audio, assurant une transmission fluide sans délai perceptible.
-
-
-**Transition de IPv4 à IPv6 :**
-La transition de IPv4 à IPv6 est un processus complexe et progressif. Elle implique plusieurs stratégies :
-- **Dual Stack** : Fonctionnement simultané d'IPv4 et d'IPv6.
-- **Tunnelling** : Encapsulation des paquets IPv6 dans des paquets IPv4 pour le transit sur des réseaux IPv4.
-- **Traduction d'adresses** : Traduction entre les adresses IPv4 et IPv6.
-
-**IPv6 dans les Réseaux d'Accès et Mobiles (4G/5G) :**
-- Dans les réseaux 4G et 5G, IPv6 joue un rôle crucial en permettant une multitude de dispositifs connectés (IoT, mobiles, etc.).
-- Il facilite la gestion des adresses dans des réseaux de plus en plus denses et hétérogènes.
-
-**Routage avec IPv6 :**
-- Les protocoles de routage tels que OSPFv3 et BGP sont adaptés pour prendre en charge IPv6.
-- IPv6 implique des changements dans les stratégies de routage et de distribution des adresses.
-
-**Défis et Perspectives :**
-- La migration complète vers IPv6 est encore un processus en cours dans de nombreux réseaux.
-- IPv6 ouvre la voie à des innovations en matière de connectivité et de services réseau.
-
-Cette synthèse offre une vue d'ensemble des éléments clés d'IPv6, en s'appuyant sur les informations fournies dans vos documents. Pour une compréhension approfondie, il est important de se référer aux documents originaux et aux études supplémentaires sur le sujet.
-
 # Routage
 
 ### Routage Statique
@@ -285,6 +244,43 @@ Cette synthèse offre une vue d'ensemble des éléments clés d'IPv6, en s'appuy
 - **Vitesse et Capacité** : 5G offre des vitesses nettement plus élevées et peut supporter un plus grand nombre de dispositifs connectés simultanément.
 - **Latence** : La 5G a une latence beaucoup plus faible que la 4G, essentielle pour des applications sensibles au temps.
 - **Applications** : Alors que la 4G a révolutionné le streaming mobile et l'accès à Internet, la 5G ouvre la voie à des applications plus avancées et diversifiées.
+
+## IPv6
+
+**Caractéristiques Principales d'IPv6 :**
+
+- **Adressage étendu** : IPv6 utilise des adresses de 128 bits, offrant une quantité quasi-illimitée d'adresses IP, résolvant ainsi le problème de la pénurie d'adresses IP dans IPv4.
+- **Simplification de l'en-tête** : L'en-tête d'IPv6 est plus simple que celui d'IPv4, ce qui améliore l'efficacité du traitement des paquets.
+  - **Exemple** : En IPv6, les champs comme le checksum et les options d'acheminement, présents dans IPv4, sont éliminés ou optionnels, réduisant ainsi la complexité du traitement.
+- **Prise en charge de l'autoconfiguration** : IPv6 permet aux dispositifs de configurer automatiquement leur propre adresse IP.
+- **Meilleure sécurité** : IPv6 intègre des fonctionnalités de sécurité comme IPSec, qui n'était qu'optionnelle dans IPv4.
+  - **Exemple** : IPSec dans IPv6 permet l'authentification et le chiffrement de bout en bout, offrant une sécurité renforcée pour des données sensibles comme les transactions bancaires en ligne.
+- **Meilleur support pour QoS (Quality of Service)** : IPv6 permet une meilleure gestion de la qualité de service, ce qui est crucial pour le trafic multimédia et les applications en temps réel.
+  - **Exemple** : Pour une vidéoconférence, IPv6 priorise les paquets vidéo et audio, assurant une transmission fluide sans délai perceptible.
+
+**Transition de IPv4 à IPv6 :**
+La transition de IPv4 à IPv6 est un processus complexe et progressif. Elle implique plusieurs stratégies :
+
+- **Dual Stack** : Fonctionnement simultané d'IPv4 et d'IPv6.
+- **Tunnelling** : Encapsulation des paquets IPv6 dans des paquets IPv4 pour le transit sur des réseaux IPv4.
+- **Traduction d'adresses** : Traduction entre les adresses IPv4 et IPv6.
+
+**IPv6 dans les Réseaux d'Accès et Mobiles (4G/5G) :**
+
+- Dans les réseaux 4G et 5G, IPv6 joue un rôle crucial en permettant une multitude de dispositifs connectés (IoT, mobiles, etc.).
+- Il facilite la gestion des adresses dans des réseaux de plus en plus denses et hétérogènes.
+
+**Routage avec IPv6 :**
+
+- Les protocoles de routage tels que OSPFv3 et BGP sont adaptés pour prendre en charge IPv6.
+- IPv6 implique des changements dans les stratégies de routage et de distribution des adresses.
+
+**Défis et Perspectives :**
+
+- La migration complète vers IPv6 est encore un processus en cours dans de nombreux réseaux.
+- IPv6 ouvre la voie à des innovations en matière de connectivité et de services réseau.
+
+Cette synthèse offre une vue d'ensemble des éléments clés d'IPv6, en s'appuyant sur les informations fournies dans vos documents. Pour une compréhension approfondie, il est important de se référer aux documents originaux et aux études supplémentaires sur le sujet.
 
 # Cisco
 

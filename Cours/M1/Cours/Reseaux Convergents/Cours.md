@@ -286,103 +286,45 @@ Cette synthèse offre une vue d'ensemble des éléments clés d'IPv6, en s'appuy
 - **Latence** : La 5G a une latence beaucoup plus faible que la 4G, essentielle pour des applications sensibles au temps.
 - **Applications** : Alors que la 4G a révolutionné le streaming mobile et l'accès à Internet, la 5G ouvre la voie à des applications plus avancées et diversifiées.
 
-# Routage Dynamique et Statique - `Cisco`
+# Cisco
 
-### Commandes Cisco pour le Routage Statique
+### TP 1 : Configuration Basique
+1. **`enable`** : Passer en mode privilégié.
+2. **`configure terminal`** : Entrer en mode de configuration.
+3. **`interface [type][numéro]`** : Accéder à l'interface pour la configuration.
+4. **`ip address [adresse IP] [masque de sous-réseau]`** : Attribuer une adresse IP à l'interface.
+5. **`no shutdown`** : Activer l'interface.
 
-#### Configuration de l'itinéraire statique
-- **Configurer une route statique vers un réseau distant :**
-  ```
-  ip route <réseau de destination> <masque de sous-réseau> <adresse de passerelle ou interface de sortie>
-  ```
+### TP2 : OSPF et RIPV2
 
-- **Afficher la table de routage :**
-  ```
-  show ip route
-  ```
+#### Commandes pour OSPF
+1. **`router ospf [ID]`** : Active OSPF et entre en mode configuration OSPF.
+2. **`network [adresse] [masque inverse] area [numéro]`** : Ajoute un réseau à OSPF.
+3. **`passive-interface [interface]`** : Empêche l'envoi de mises à jour OSPF sur l'interface.
+4. **`no passive-interface [interface]`** : Active l'envoi de mises à jour OSPF.
+5. **`area [numéro] range [adresse réseau] [masque]`** : Regroupe des réseaux dans une même area.
+6. **`default-information originate`** : Génère une route par défaut dans OSPF.
+7. **`show ip ospf neighbor`** : Affiche les informations sur les voisins OSPF.
+8. **`show ip ospf interface`** : Affiche les détails des interfaces OSPF.
+9. **`clear ip ospf process`** : Réinitialise le processus OSPF.
+10. **`ip ospf priority [valeur]`** : Définit la priorité OSPF de l'interface.
 
-- **Supprimer une route statique :**
-  ```
-  no ip route <réseau de destination> <masque de sous-réseau> <adresse de passerelle ou interface de sortie>
-  ```
+#### Commandes pour RIPV2
+1. **`router rip`** : Active RIP.
+2. **`version 2`** : Sélectionne la version 2 de RIP.
+3. **`network [adresse]`** : Ajoute un réseau à RIP.
+4. **`passive-interface [interface]`** : Empêche l'envoi de mises à jour RIP sur l'interface.
+5. **`no passive-interface [interface]`** : Active l'envoi de mises à jour RIP.
+6. **`default-information originate`** : Génère une route par défaut dans RIP.
+7. **`show ip rip database`** : Affiche la base de données RIP.
+8. **`clear ip route *`** : Efface la table de routage.
+9. **`debug ip rip`** : Active le débogage RIP.
+10. **`no debug ip rip`** : Désactive le débogage RIP.
 
-### Commandes Cisco pour le Routage Dynamique
+### TP IPv6 et DHCPv6 : Configuration IPv6 et DHCPv6
 
-#### Protocoles de Routage Dynamique OSPF et RIP
-
-##### OSPF
-
-- **Activation d'un protocole de routage dynamique (par exemple OSPF) :**
-  
-  ```
-  router ospf <numéro du processus>
-  ```
-  
-- **Activation d'une interface pour le routage dynamique :**
-  ```
-  network <adresse de réseau> <masque de sous-réseau> area <numéro de zone>
-  ```
-
-- **Afficher les voisins adjacents OSPF :**
-  ```
-  show ip ospf neighbor
-  ```
-
-- **Afficher les informations de routage OSPF :**
-  ```
-  show ip ospf route
-  ```
-
-- **Désactiver un protocole de routage dynamique (par exemple OSPF) :**
-  ```
-  no router ospf <numéro du processus>
-  ```
-
-##### RIP
-
-#### Activation du RIP
-- **Activer le RIP sur un routeur :**
-  ```
-  router rip
-  ```
-
-#### Configuration des interfaces pour le RIP
-- **Activation du RIP sur une interface spécifique :**
-  ```
-  network <adresse de réseau>
-  ```
-
-#### Options de Configuration du RIP
-- **Configurer la version du RIP :**
-  ```
-  version 1  // RIP version 1
-  version 2  // RIP version 2
-  ```
-
-- **Définir la métrique maximale pour les routes RIP :**
-  ```
-  maximum-path <nombre de sauts>
-  ```
-
-#### Vérification et Débogage du RIP
-- **Afficher les informations de routage RIP :**
-  ```
-  show ip route rip
-  ```
-
-- **Afficher les voisins RIP adjacents :**
-  ```
-  show ip rip database
-  ```
-
-- **Afficher les mises à jour RIP reçues et envoyées :**
-  ```
-  debug ip rip
-  ```
-
-#### Désactivation du RIP
-- **Désactiver le RIP sur un routeur :**
-  
-  ```
-  no router rip
-  ```
+1. **`ipv6 unicast-routing`** : Activer le routage IPv6.
+2. **`ipv6 address [adresse IPv6]`** : Attribuer une adresse IPv6 à l'interface.
+3. **`ipv6 dhcp pool [nom]`** : Créer un pool DHCPv6.
+4. **`dns-server [adresse DNS]`** : Définir le serveur DNS dans le pool DHCPv6.
+5. **`ipv6 dhcp server [nom pool]`** : Associer le pool DHCPv6 à l'interface.

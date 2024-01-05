@@ -193,25 +193,44 @@ Un label peut signifier plusieurs choses, un chemin, une source, une destination
 ### Routage Statique
 
 - **Définition** : Le routage statique implique la configuration manuelle des itinéraires dans un routeur. Ces itinéraires ne changent pas à moins d'une intervention manuelle.
+
 - **Utilisation** : Souvent utilisé dans des réseaux plus petits ou pour des chemins spécifiques nécessitant un contrôle constant.
+
 - **Avantages** : Simplicité, contrôle, moins de surcharge de bande passante.
+
 - **Inconvénients** : Manque de flexibilité, difficile à gérer dans de grands réseaux.
+
+  ![Configuration du routage statique - routeur Cisco](./assets/routage-statique.png)
 
 ### Routage Dynamique
 
 - **Définition** : Le routage dynamique utilise des protocoles qui permettent aux routeurs de communiquer entre eux pour adapter automatiquement les itinéraires en fonction des changements dans le réseau.
+
 - **Protocoles de Routage** : OSPF, EIGRP, BGP sont quelques exemples de protocoles de routage dynamique.
+
 - **Avantages** : Flexibilité, adaptabilité aux changements de réseau, échelle bien avec la taille du réseau.
+
 - **Inconvénients** : Plus complexe, nécessite plus de ressources de traitement.
+
+  ![Routage dynamique avec RIP (Routing Information Protocol) | CISCO PACKET  TRACER FOREVER](./assets/image1.png)
 
 ### Protocoles de Routage Dynamique
 
 - **OSPF (Open Shortest Path First)** : Un protocole de routage basé sur l'état des liens utilisé dans les grands réseaux IP internes.
+
   - **Fonctionnement** : OSPF est un protocole de routage interne basé sur l'état des liens.
+
   - **Principe** : OSPF utilise une méthode de diffusion des informations sur l'état des liens à tous les routeurs dans une zone. Chaque routeur construit ensuite une carte topologique du réseau et détermine le chemin le plus court vers chaque destination.
+
+    ![Lab Routage OSPF simple - cisco.goffinet.org](./assets/236b8e80-c667-47a0-8293-fc46129aaa34.png)
+
 - **BGP (Border Gateway Protocol)** : Utilisé pour le routage entre différents réseaux autonomes sur Internet.
+
   - **Fonctionnement** : BGP est utilisé pour le routage entre différents systèmes autonomes (AS) sur Internet.
+
   - **Principe** : BGP établit des sessions TCP avec des routeurs voisins pour échanger des informations de routage, sélectionnant le meilleur chemin en fonction de divers attributs comme la distance, la politique du réseau, etc.
+
+    ![Examiner les études de cas du protocole BGP - Cisco](./assets/26634-bgp-toc-10.png)
 
 ### Routage dans les Réseaux 4G et 5G
 
@@ -258,6 +277,8 @@ Un label peut signifier plusieurs choses, un chemin, une source, une destination
 - **Meilleur support pour QoS (Quality of Service)** : IPv6 permet une meilleure gestion de la qualité de service, ce qui est crucial pour le trafic multimédia et les applications en temps réel.
   - **Exemple** : Pour une vidéoconférence, IPv6 priorise les paquets vidéo et audio, assurant une transmission fluide sans délai perceptible.
 
+![Présentation de l'adressage IPv6 (Guide d'administration système : services  IP)](./assets/basic-IPv6-address.gif)
+
 **Transition de IPv4 à IPv6 :**
 La transition de IPv4 à IPv6 est un processus complexe et progressif. Elle implique plusieurs stratégies :
 
@@ -280,7 +301,9 @@ La transition de IPv4 à IPv6 est un processus complexe et progressif. Elle impl
 - La migration complète vers IPv6 est encore un processus en cours dans de nombreux réseaux.
 - IPv6 ouvre la voie à des innovations en matière de connectivité et de services réseau.
 
-Cette synthèse offre une vue d'ensemble des éléments clés d'IPv6, en s'appuyant sur les informations fournies dans vos documents. Pour une compréhension approfondie, il est important de se référer aux documents originaux et aux études supplémentaires sur le sujet.
+![Adressage IPv6 – Techno Skills](./assets/image-16.png)
+
+![IPv6 : Normes et définitions | IT-Connect](./assets/type-adresse-ipv6.png)
 
 # Cisco
 

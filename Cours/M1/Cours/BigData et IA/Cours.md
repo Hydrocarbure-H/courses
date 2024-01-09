@@ -257,3 +257,6 @@ Nous donnant ainsi le résultat suivant :
 Accuracy of the model with sigmoid :  0.9501475
 ```
 Nous pouvons constater que nous retrouvons précisément la même valeur que lors de la question précédente.
+
+
+

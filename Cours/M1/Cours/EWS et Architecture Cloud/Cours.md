@@ -239,16 +239,16 @@ Il existe deux types de policies :
 
 *GPT-Generated*
 
-#### Introduction au Cloud Computing
+# Introduction au Cloud Computing
 
 1. **Définition du Cloud Computing** :
    - **Concept** : Le Cloud Computing est un modèle qui permet un accès réseau omniprésent, pratique et à la demande à un ensemble partagé de ressources informatiques configurables.
    - **Caractéristiques Clés** : Accès en réseau, allocation rapide des ressources, gestion optimisée.
 
 2. **Types de Cloud Computing** :
-   - **Software as a Service (SaaS)** : Accès à des applications via Internet.
-   - **Platform as a Service (PaaS)** : Plateforme permettant le développement, le test, la livraison et la gestion d'applications.
-   - **Infrastructure as a Service (IaaS)** : Accès à des ressources informatiques virtualisées sur Internet.
+   - **Software as a Service (SaaS)** : Accès à des applications via Internet - Like Chime
+   - **Platform as a Service (PaaS)** : Plateforme permettant le développement, le test, la livraison et la gestion d'applications. - Like Elastic Beanstalk
+   - **Infrastructure as a Service (IaaS)** : Accès à des ressources informatiques virtualisées sur Internet  - Like EC2
 
 3. **Modèles de Déploiement du Cloud** :
    - **Cloud Privé** : Réservé à une seule organisation.
@@ -259,65 +259,110 @@ Il existe deux types de policies :
 #### Avantages et Défis du Cloud Computing
 
 1. **Avantages du Cloud Computing** :
-   - **Flexibilité et Évolutivité** : Adaptabilité rapide aux changements de charge de travail.
+   - **Flexibilité, Scalabilité et Évolutivité** : Adaptabilité rapide aux changements de charge de travail.
    - **Réduction des Coûts** : Économies sur les coûts d'infrastructure et d'opération.
    - **Accès à distance** : Accessibilité depuis n'importe quel endroit avec une connexion Internet.
-   - **Mises à jour Automatiques** : Les services cloud sont régulièrement mis à jour.
-
 2. **Défis du Cloud Computing** :
    - **Sécurité et Confidentialité** : Nécessité de protéger les données stockées et traitées dans le cloud.
    - **Gestion des Coûts** : Contrôle des dépenses liées à l'utilisation des services cloud.
-   - **Conformité Légale** : Respect des normes et réglementations locales et internationales.
-   - **Dépendance aux Fournisseurs** : Risque lié à la dépendance à un fournisseur de cloud spécifique.
 
-#### Impact sur les Structures d'Entreprise et les Professions IT
-
-1. **Transformation des Entreprises** :
-   - **Agilité d'Entreprise** : Le cloud offre une flexibilité pour s'adapter rapidement aux besoins du marché.
-   - **Innovation** : Facilite l'expérimentation et le déploiement rapide de nouvelles idées.
-   - **Collaboration Améliorée** : Permet un travail collaboratif plus efficace, même à distance.
-
-2. **Impact sur les Professions IT** :
-   - **Évolution des Compétences** : Nécessité pour les professionnels IT de se familiariser avec les technologies et stratégies cloud.
-   - **Nouveaux Rôles IT** : Émergence de rôles tels que l'architecte cloud, l'ingénieur DevOps, et le spécialiste de la sécurité cloud.
-   - **Décentralisation IT** : Passage d'une gestion IT centralisée à une approche plus distribuée et intégrée.
-
-#### Introduction Détaillée à Amazon Web Services (AWS)
+### Services Amazon Web Services (AWS)
 
 1. **Présentation Approfondie d'AWS** :
    - **Histoire et Évolution** : Comment AWS est devenu un leader du cloud computing.
    - **Infrastructure Globale** : Présentation des régions et zones de disponibilité AWS.
-
 2. **Services Clés d'AWS (Détails)** :
-   - **EC2** : Options de configuration, types d'instances, tarification.
-   - **S3** : Utilisations, sécurité, intégration avec d'autres services AWS.
-   - **RDS** : Bases de données supportées, gestion de la performance, sauvegarde et récupération.
-   - **Autres Services Importants** : Lambda (traitement sans serveur), DynamoDB (base de données NoSQL), IAM (gestion des identités et des accès).
-
+   1. **Amazon EC2** :
+      - Serveurs virtuels dans le cloud
+      - Configurations de CPU, mémoire, stockage et réseau personnalisables
+      - Compatible avec divers systèmes d'exploitation
+   2. **Amazon S3** :
+      - Stockage d'objets dans le cloud
+      - Durabilité et disponibilité élevées
+      - Intégration avec d'autres services AWS
+      - Convient pour le backup et l'archivage
+   3. **Amazon RDS (Relational Database Service)** :
+      - Gestion de bases de données relationnelles
+      - Support de plusieurs moteurs de base de données (MySQL, PostgreSQL, Oracle, etc.)
+      - Backup automatique et réplicas de lecture
+   4. **AWS Lambda** :
+      - Exécution de code en réponse à des événements
+      - Aucune gestion de serveur requise
+      - Facturation basée sur le temps d'exécution et la mémoire utilisée
+      - Prise en charge de nombreux langages de programmation
+   5. **Amazon DynamoDB** :
+      - Base de données NoSQL rapide et flexible
+      - Haute disponibilité et durabilité des données
+      - Backup et restauration simplifiés
+   6. **AWS IAM (Identity and Access Management)** :
+      - Gestion sécurisée de l'accès aux services AWS
+      - Contrôle d'accès granulaire
+      - Intégration avec l'authentification multi-facteurs
+      - Création de rôles et politiques personnalisés
 3. **Cas d'Usage et Scénarios** :
    - **Hébergement Web** : Utilisation d'AWS pour l'hébergement de sites web et applications.
    - **Big Data et Analytique** : Solutions AWS pour le traitement et l'analyse de grandes quantités de données.
-   - **Sécurité et Conformité** : Outils et pratiques pour assurer la sécurité des données.
-
-4. **Écosystème AWS et Communauté** :
-   - **Partenariats et Intégrations** : Comment AWS collabore avec d'autres entreprises.
-   - **Support et Ressources de Formation** : AWS Training and Certification, forums, documentation.
 
 #### Construire un Cloud Privé
 
 1. **Comprendre un Cloud Privé** :
    - **Définition** : Un cloud privé est une infrastructure cloud dédiée à une seule organisation.
    - **Avantages** : Meilleur contrôle, sécurité renforcée, personnalisation.
-
 2. **Étapes de Construction** :
    - **Planification et Analyse des Besoins** : Déterminer les exigences en termes de performance, sécurité, et conformité.
    - **Choix de la Technologie** : Sélectionner les technologies et les plateformes adaptées (par exemple, VMware, OpenStack).
    - **Mise en Place de l'Infrastructure** : Installer et configurer l'infrastructure nécessaire (serveurs, stockage, réseau).
 
-3. **Gestion et Sécurité** :
-   - **Maintenance et Mises à Jour** : Gérer les mises à jour logicielles et matérielles.
-   - **Sécurité** : Mettre en œuvre des stratégies de sécurité robustes pour protéger les données et les applications.
+## TPs - Concepts clés
 
-4. **Intégration et Optimisation** :
-   - **Intégration avec des Services Externes** : Connecter le cloud privé à des services cloud publics pour une approche hybride.
-   - **Optimisation des Ressources** : Utiliser des outils de gestion des ressources pour maximiser l'efficacité.
+**Virtual Private Cloud (VPC) :**
+
+Espace isolé dans AWS permettant de contrôler la configuration réseau virtuelle. Un VPC est la base de l'architecture réseau dans AWS, offrant la possibilité de segmenter le réseau en sous- réseaux publics et privés.
+
+**Sous-réseaux :**
+
+Divisions du VPC pour organiser les ressources. Les sous-réseaux publics sont accessibles depuis Internet, tandis que les sous-réseaux privés sont isolés de l'accès Internet direct.
+
+**Passerelle Internet :**
+
+Sert de point de jonction entre le VPC et Internet. Elle est essentielle pour permettre aux ressources dans les sous-réseaux publics d'accéder et d'être accessibles depuis Internet.
+
+**Tables de Routage :**
+
+Déterminent comment le trafic est dirigé entre les sous-réseaux, la passerelle Internet et d'autres destinations. Chaque sous-réseau a une table de routage associée qui contrôle son trafic.
+
+**Groupes de Sécurité et ACL :**
+
+Fonctionnent comme des pare-feu pour contrôler le trafic entrant et sortant des instances EC2 et des sous-réseaux, respectivement.
+
+**Serveur NAT :**
+
+Permet aux instances dans un sous-réseau privé d'accéder à Internet pour les mises à jour et le téléchargement, tout en restant inaccessibles de l'extérieur.
+
+**Équilibreur de Charge d'Application (ALB) :**
+
+Distribue le trafic entrant entre plusieurs instances EC2, améliorant la disponibilité et la robustesse.
+
+**Auto Scaling :**
+
+Gère automatiquement le nombre d'instances EC2, assurant une performance adaptée à la demande.
+
+**Analyse des Coûts via les Fichiers CSV :**
+
+Comprendre l'importance de l'analyse des fichiers d'export de coûts AWS en format CSV pour une vue détaillée des dépenses.
+
+**Utilisation de AWS Cost Explorer :**
+
+Cet outil permet une visualisation approfondie des coûts, aidant à identifier les tendances et les opportunités d'optimisation des coûts.
+
+**Création et Gestion de Budgets avec AWS Budgets :**
+
+Apprendre à établir des budgets pour surveiller et contrôler les coûts et l'utilisation des services AWS, en incluant la mise en place d'alertes email pour les dépassements de budget.
+
+**Budgets Spécifiques pour EC2 :**
+
+Mettre en œuvre des budgets dédiés aux instances EC2, avec des mécanismes d'alertes et d'actions automatisées pour maintenir les coûts sous contrôle.
+
+**Rapports de Budget Personnalisés :**
+
+Capacité à créer des rapports détaillés pour le suivi et la comparaison des dépenses réelles par rapport aux budgets prévus.

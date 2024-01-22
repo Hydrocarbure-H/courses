@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Thierry Vaira &lt;tvaira@free.fr&gt;" />
+  <title>Conversions des coordonnées GPS</title>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Conversions des coordonnées GPS</h1>
+<h2 class="author">Thierry Vaira &lt;<script type="text/javascript">
+                   <!--
+                   h='&#102;&#114;&#x65;&#x65;&#46;&#102;&#114;';a='&#64;';n='&#116;&#118;&#x61;&#x69;&#114;&#x61;';e=n+a+h;
+                   document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'<code>'+e+'</code>'+'<\/'+'a'+'>');
+                   // -->
+                   </script><noscript>tvaira at free dot fr</noscript>&gt;</h2>
+</div>
+<h2 id="trame-nmea-0183">Trame NMEA 0183</h2>
+<p>“$GPGGA,084222.000,4405.2015,N,00457.8908,E,1,05,1.7,26.5,M,,,,0000*3F”</p>
+<p>Latitude et longitude dans le format : ddmm.mmmm et dddmm.mmmm</p>
+<h2 id="conversion-format-gps-en-degré-décimal-dd.dddd">Conversion format GPS en degré décimal dd.dddd</h2>
+<p>dd + mm.mmmm/60</p>
+<p>4405.2015 —-&gt; 44 + 05.2015/60 = 44,0867 degres</p>
+<h2 id="conversion-degré-décimal-dd.dddd-en-degres-minutes-decimal-seconds-d-m-s">Conversion degré décimal dd.dddd en Degres Minutes decimal-Seconds (D° M’ S’’)</h2>
+<p>d = 44.0823</p>
+<p>D = int(d) —-&gt; 44</p>
+<p>M = int((d - D) x 60) —-&gt; ((44.0823 - 44) x 60) = 4,938 = 4</p>
+<p>s = (d - D - M/60) x 3600 —-&gt; (44.0823 - 44 - 4/60) x 3600</p>
+<p>ou s = (d - D) x 3600 - M x 60</p>
+<p>44.0867 —-&gt; 44° 5’ 12.12&quot;</p>
+<h2 id="liens">Liens</h2>
+<ul>
+<li><p><a href="http://www.coordonnees-gps.fr/conversion-coordonnees-gps">www.coordonnees-gps.fr</a></p></li>
+<li><p><a href="http://www.sunearthtools.com/dp/tools/conversion.php?lang=fr">www.sunearthtools.com</a></p></li>
+</ul>
+</body>
+</html>

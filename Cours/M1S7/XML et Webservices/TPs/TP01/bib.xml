@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bib>
+	<domain>
+		<title>Specifications</title>
+		<bib_ref>
+			<year>March 2000</year>
+			<title>MOF  1.3</title>
+			<author>OMG</author>
+			<weblink>D:\SALIM\Docs\Specifications\MOF1_3.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>August 2002</year>
+			<title>IDLto Java LanguageMapping
+Specification</title>
+			<author>OMG</author>
+			<weblink>D:\SALIM\Docs\Specifications\IDL2Java.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>1999</year>
+			<title>XML Metadata Interchange (XMI)
+Version 1.1</title>
+			<author>OMG</author>
+			<weblink>D:\SALIM\Docs\Specifications\xmi-1.1.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>2002</year>
+			<title>XML Metadata Interchange (XMI)
+Version 2</title>
+			<author>OMG</author>
+			<weblink>D:\SALIM\Docs\Specifications\XMI2.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>2002</year>
+			<title>XMI Version 1Production of XML
+Schema Specification</title>
+			<author>OMG</author>
+			<weblink>D:\SALIM\Docs\Specifications\XMI1XSD.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>2002</year>
+			<title>EDOC</title>
+			<author>OMG</author>
+			<weblink>D:\SALIM\Docs\Specifications\EDOC02-02-05.pdf</weblink>
+		</bib_ref>
+	</domain>
+	<domain>
+		<title>Theses</title>
+		<bib_ref>
+			<year>Octobre 2001</year>
+			<title>Echanges de Spécifications Hétérogènes et Réparties</title>
+			<author>Xavier Blanc</author>
+			<weblink>D:\SALIM\Docs\Theses\TheseXavier.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>Janvier 2001</year>
+			<title>Composition of Object-Oriented Software Design Models</title>
+			<author>Siobhan Clarke</author>
+			<weblink>D:\SALIM\Docs\Theses\SClarkeThesis.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>Juin 2002</year>
+			<title>Contribution à la représentation de processu par des techniques de méta modélisation</title>
+			<author>Erwan Breton</author>
+			<weblink>D:\SALIM\Docs\Theses\ErwanBretonThesis.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>Octobre 2000</year>
+			<title>Technique de Modélisation et de Méta modélisation</title>
+			<author>Richard Lemesle</author>
+			<weblink>D:\SALIM\Docs\Theses\RichardLemesle.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>Juillet 2002</year>
+			<title>Utilsation d'agents mobiles pour la construction des services distribués </title>
+			<author>Siegfried Rouvrais </author>
+			<weblink>D:\SALIM\Docs\Theses\theserouvrais.pdf</weblink>
+		</bib_ref>
+	</domain>
+	<domain>
+		<title>Rapport de Stages</title>
+		<bib_ref>
+			<year>2001</year>
+			<title>Composition de services </title>
+			<author>Olivier Nano </author>
+			<weblink>D:\SALIM\Docs\Rapport de stages\01-dea-nano.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>Septembre 2001</year>
+			<title>Intrumentation de la méthodologie ODAC pour une spécification opérationnelle</title>
+			<author>Salim Bouzitouna</author>
+			<weblink>D:\SALIM\Docs\Rapport de stages\rapport complet.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>Mai 2001</year>
+			<title>La composition de services dans les réseaux actifs </title>
+			<author>Prométhée Spathis</author>
+			<weblink>D:\SALIM\Docs\Rapport de stages\Rapport bibliographique Final.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>Septembre 2001</year>
+			<title>La composition de services en ANTS</title>
+			<author>Mahmoud Elias</author>
+			<weblink>D:\SALIM\Docs\Rapport de stages\Complet.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>Mai 1999</year>
+			<title>Les réseaux Actifs ANTS</title>
+			<author>Prométhée Spathis</author>
+			<weblink>D:\SALIM\Docs\Rapport de stages\Promethee.pdf</weblink>
+		</bib_ref>
+	</domain>
+	<domain>
+		<title>MOF</title>
+		<bib_ref>
+			<year>2003</year>
+			<title>Structuration de méta-modèles par séparation des préoccupations</title>
+			<author>Raphaël Marvie</author>
+			<weblink>D:\SALIM\Docs\MOF\marvie.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year/>
+			<title>Meta-modeling Techniques Meet
+Web Application Design Tools</title>
+			<author>L. Baresi, F. Garzotto, L. Mainetti, and P. Paolini</author>
+			<weblink>D:\SALIM\Docs\MOF\usingMetaModelforWeb.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>2002</year>
+			<title>Transformation entre un profil UML et un
+méta-modèle MOF</title>
+			<author>Mikaël Peltier</author>
+			<weblink>D:\SALIM\Docs\MOF\lmo_2002.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year/>
+			<title>UML Profile for MOF</title>
+			<author/>
+			<weblink>D:\SALIM\Docs\MOF\UMLProfileforMOF.pdf</weblink>
+		</bib_ref>
+	</domain>
+	<domain>
+		<title>EDOC</title>
+		<bib_ref>
+			<year/>
+			<title>From EDOC components to CCM components :
+a precise mapping specification</title>
+			<author>Mariano Belaunde, Mikael Peltier</author>
+			<weblink>D:\SALIM\Docs\EDOC\fromEDOCtoCCM.pdf</weblink>
+		</bib_ref>
+	</domain>
+	<domain>
+		<title>Processus </title>
+		<bib_ref>
+			<year>2002</year>
+			<title>Model-Driven Process Engineering</title>
+			<author>Erwan Breton, Jean Bézivin</author>
+			<weblink>D:\SALIM\Docs\Processus et WorkFlow\cite.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>2001</year>
+			<title>Un méta-modèle de gestion par les activités</title>
+			<author>Erwan Breton, Jean Bézivin</author>
+			<weblink>D:\SALIM\Docs\Processus et WorkFlow\compsac.pdf</weblink>
+		</bib_ref>
+	</domain>
+	<domain>
+		<title>MDA</title>
+		<bib_ref>
+			<year>2000</year>
+			<title>Model Driven Architecture</title>
+			<author>Richard Soley and the OMG Staff Strategy Group</author>
+			<weblink>D:\SALIM\Docs\MDA\MDA_Soley.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>2001</year>
+			<title>Model-Driven Architecture and Integration
+Opportunities and Challenges</title>
+			<author>Desmond DSouza, Kinetium</author>
+			<weblink>D:\SALIM\Docs\MDA\MDA_Challenges.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>2002</year>
+			<title>Towards an MDA-Oriented Methodology</title>
+			<author>Marie-Pierre Gervais </author>
+			<weblink>D:\SALIM\Docs\MDA\Gervais-COMPSAC.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year/>
+			<title>Model Driven Engineering</title>
+			<author>Stuart Kent</author>
+			<weblink>D:\SALIM\Docs\MDA\MDE.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year/>
+			<title>Generative Programming via Graph Transformations in the Model-Driven Architecture</title>
+			<author>Aditya Agrawal, Tihamer Levendovszky, Jon Sprinkle, Feng Shi, and Gabor Karsai</author>
+			<weblink>D:\SALIM\Docs\MDA\karsaig.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>2003</year>
+			<title>Chaîne de Production MDA</title>
+			<author>Xavier Blanc, Raphaël Marvie, Salim Bouzitouna</author>
+			<weblink>D:\SALIM\Docs\MDA\TSI.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>2001</year>
+			<title>From Object Composition to Model Transformation with the MDA</title>
+			<author>Jean Bézivin</author>
+			<weblink>D:\SALIM\Docs\MDA\TOOLS.USA.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>2002</year>
+			<title>Using OMG’s Model Driven Architecture (MDA) to Integrate Web Services
+</title>
+			<author>Jon Siegel</author>
+			<weblink>D:\SALIM\Docs\MDA\MDA-WS-integrate-WP.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>2001</year>
+			<title>Model-Driven Architecture: Vision, Standards
+And Emerging Technologies
+</title>
+			<author>John D. Poole</author>
+			<weblink>D:\SALIM\Docs\MDA\MDAimportant.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>2001</year>
+			<title>MDA – When a major software industry trend meets
+our toolset, implemented since 1994.
+</title>
+			<author>Philippe Desfray </author>
+			<weblink>D:\SALIM\Docs\MDA\MDA-Softeam-WhitePaper.pdf</weblink>
+		</bib_ref>
+	</domain>
+	<domain>
+		<title>Comosition de services</title>
+		<bib_ref>
+			<year>1998</year>
+			<title>Composing Active Services in NetScript</title>
+			<author>Sushil da Silva, Danilo Florissi, Yechiam Yemini</author>
+			<weblink>D:\SALIM\Docs\Comosition de services\ns-composition.pdf</weblink>
+			<comments/>
+		</bib_ref>
+	</domain>
+	<domain>
+		<title>Services Web</title>
+		<bib_ref>
+			<year>1992</year>
+			<title>Collecting and Querying
+Distributed Traces of Composite Service Executions</title>
+			<author>Marie-Christine Fauvet</author>
+			<weblink>D:\SALIM\Docs\WebServices\coopis02.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>2002</year>
+			<title>Towards Patterns of Web Services Comosition </title>
+			<author>B. Benatallah, M. Dumas, F.A. Rabhi</author>
+			<weblink>D:\SALIM\Docs\WebServices\towards-patterns-of-web.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>1998</year>
+			<title>Web Services: Why and How</title>
+			<author>Francisco Curbera, William A. Nagy and Sanjiva Weerawarana</author>
+			<weblink>D:\SALIM\Docs\WebServices\nagy.pdf</weblink>
+		</bib_ref>
+	</domain>
+	<domain>
+		<title>Composants</title>
+		<bib_ref>
+			<year>2000</year>
+			<title>JavaPod : une plate-forme à composants adaptable et
+extensible</title>
+			<author>Eric Bruneton , Michel Riveill</author>
+			<weblink>D:\SALIM\Docs\Composants\JavaPod.pdf</weblink>
+		</bib_ref>
+		<bib_ref>
+			<year>1998</year>
+			<title>OPAD : Outils Pour Architectures Dynamiques</title>
+			<author>Olivier Barais, Laurence Duchien</author>
+			<weblink>D:\SALIM\Docs\Composants\OPAD.pdf</weblink>
+		</bib_ref>
+	</domain>
+</bib>

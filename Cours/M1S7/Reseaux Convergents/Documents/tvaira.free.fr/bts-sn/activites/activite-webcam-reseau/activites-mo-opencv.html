@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Thierry Vaira &lt;tvaira@free.fr&gt;" />
+  <title>Mise en oeuvre d’OpenCV</title>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code &gt; span.kw { color: #007020; font-weight: bold; }
+code &gt; span.dt { color: #902000; }
+code &gt; span.dv { color: #40a070; }
+code &gt; span.bn { color: #40a070; }
+code &gt; span.fl { color: #40a070; }
+code &gt; span.ch { color: #4070a0; }
+code &gt; span.st { color: #4070a0; }
+code &gt; span.co { color: #60a0b0; font-style: italic; }
+code &gt; span.ot { color: #007020; }
+code &gt; span.al { color: #ff0000; font-weight: bold; }
+code &gt; span.fu { color: #06287e; }
+code &gt; span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link href="data:text/css,body%20%7B%0A%20%20%20%20margin%3A%20auto%3B%0A%20%20%20%20padding%2Dright%3A%201em%3B%0A%20%20%20%20padding%2Dleft%3A%201em%3B%0A%20%20%20%20max%2Dwidth%3A%2064em%3B%20%0A%20%20%20%20border%2Dleft%3A%201px%20solid%20black%3B%0A%20%20%20%20border%2Dright%3A%201px%20solid%20black%3B%0A%20%20%20%20color%3A%20black%3B%0A%20%20%20%20font%2Dfamily%3A%20Verdana%2C%20sans%2Dserif%3B%0A%20%20%20%20font%2Dsize%3A%20100%25%3B%0A%20%20%20%20line%2Dheight%3A%20140%25%3B%0A%20%20%20%20color%3A%20%23333%3B%20%0A%7D%0Apre%20%7B%0A%20%20%20%20border%3A%201px%20dotted%20gray%3B%0A%20%20%20%20background%2Dcolor%3A%20%23ececec%3B%0A%20%20%20%20color%3A%20%231111111%3B%0A%20%20%20%20padding%3A%200%2E5em%3B%0A%7D%0Acode%20%7B%0A%20%20%20%20font%2Dfamily%3A%20monospace%3B%0A%20%20%20%20font%2Dsize%3A%20130%25%3B%0A%7D%0Ah1%20a%2C%20h2%20a%2C%20h3%20a%2C%20h4%20a%2C%20h5%20a%20%7B%20%0A%20%20%20%20text%2Ddecoration%3A%20none%3B%0A%20%20%20%20color%3A%20%237a5ada%3B%20%0A%7D%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%20%7B%20font%2Dfamily%3A%20verdana%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20border%2Dbottom%3A%201px%20dotted%20black%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20color%3A%20%237a5ada%3B%20%7D%0Ah1%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20130%25%3B%0A%7D%0A%0Ah2%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20110%25%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%2Dright%3A%201em%3B%0A%7D%0A%0Ah3%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2095%25%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%2Dright%3A%201em%3B%0A%7D%0A%0Ah4%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2090%25%3B%0A%20%20%20%20%20%20%20%20font%2Dstyle%3A%20italic%3B%0A%7D%0A%0Ah5%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2090%25%3B%0A%20%20%20%20%20%20%20%20font%2Dstyle%3A%20italic%3B%0A%7D%0A%0Ah1%2Etitle%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20200%25%3B%0A%20%20%20%20%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%20%20%20%20%20%20padding%2Dtop%3A%200%2E2em%3B%0A%20%20%20%20%20%20%20%20padding%2Dbottom%3A%200%2E2em%3B%0A%20%20%20%20%20%20%20%20text%2Dalign%3A%20left%3B%0A%20%20%20%20%20%20%20%20border%3A%20none%3B%0A%7D%0A%0Adt%20code%20%7B%0A%20%20%20%20%20%20%20%20font%2Dweight%3A%20bold%3B%0A%7D%0Add%20p%20%7B%0A%20%20%20%20%20%20%20%20margin%2Dtop%3A%200%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%7D%0A%0Ap%20%7B%0A%20%20%20%20%20%20%20%20margin%2Dtop%3A%200%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%2Dright%3A%201em%3B%0A%7D%0A%0A%23footer%20%7B%0A%20%20%20%20%20%20%20%20padding%2Dtop%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2070%25%3B%0A%20%20%20%20%20%20%20%20color%3A%20gray%3B%0A%20%20%20%20%20%20%20%20%7D%0A%0Ah2%2Eauthor%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20110%25%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%200em%3B%0A%20%20%20%20%20%20%20%20margin%2Dright%3A%200em%3B%0A%7D%0A%0Atable%2EsourceCode%2C%20tr%2EsourceCode%2C%20td%2ElineNumbers%2C%20td%2EsourceCode%20%7B%0A%20%20margin%3A%200%3B%20padding%3A%200%3B%20vertical%2Dalign%3A%20baseline%3B%20border%3A%20none%3B%20%7D%0Atable%2EsourceCode%20%7B%20width%3A%20100%25%3B%20%7D%0Atd%2ElineNumbers%20%7B%20text%2Dalign%3A%20right%3B%20padding%2Dright%3A%204px%3B%20padding%2Dleft%3A%204px%3B%20color%3A%20%23aaaaaa%3B%20border%2Dright%3A%201px%20solid%20%23aaaaaa%3B%20%7D%0Atd%2EsourceCode%20%7B%20padding%2Dleft%3A%205px%3B%20%7D%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23007020%3B%20font%2Dweight%3A%20bold%3B%20%7D%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%2340a070%3B%20%7D%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%2340a070%3B%20%7D%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%234070a0%3B%20%7D%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%234070a0%3B%20%7D%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%2360a0b0%3B%20font%2Dstyle%3A%20italic%3B%20%7D%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%2306287e%3B%20%7D%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%0A" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="header">
+<h1 class="title">Mise en oeuvre d’OpenCV</h1>
+<h2 class="author">Thierry Vaira &lt;<script type="text/javascript">
+                   <!--
+                   h='&#102;&#114;&#x65;&#x65;&#46;&#102;&#114;';a='&#64;';n='&#116;&#118;&#x61;&#x69;&#114;&#x61;';e=n+a+h;
+                   document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'<code>'+e+'</code>'+'<\/'+'a'+'>');
+                   // -->
+                   </script><noscript>tvaira at free dot fr</noscript>&gt;</h2>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#mise-en-oeuvre-dopencv">Mise en oeuvre d’OpenCV</a><ul>
+<li><a href="#opencv">OpenCV</a><ul>
+<li><a href="#présentation">Présentation</a></li>
+<li><a href="#installation-ubuntu-12.04">Installation (Ubuntu 12.04)</a></li>
+<li><a href="#exemple-en-c">Exemple en C</a></li>
+<li><a href="#exemple-en-c-1">Exemple en C++</a></li>
+<li><a href="#exemple-en-qt">Exemple en Qt</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<p>Site : <a href="http://tvaira.free.fr/">tvaira.free.fr</a></p>
+<h1 id="mise-en-oeuvre-dopencv"><a href="#TOC">Mise en oeuvre d’OpenCV</a></h1>
+<h2 id="opencv"><a href="#TOC">OpenCV</a></h2>
+<h3 id="présentation"><a href="#TOC">Présentation</a></h3>
+<p><strong>OpenCV</strong> (<em>Open Computer Vision</em>) est une bibliothèque graphique libre, initialement développée par Intel, spécialisée dans le traitement d’images en temps réel. Cette bibliothèque est distribuée sous licence BSD.</p>
+<div class="figure">
+<img src="data:image/png;base64,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" /><p class="caption"></p>
+</div>
+<p>La bibliothèque OpenCV met à disposition de nombreuses fonctionnalités très diversifiées permettant de créer des programmes partant des données brutes pour aller jusqu’à la création d’interfaces graphiques basiques. Elle propose la plupart des opérations classiques en traitement bas niveau des images et des vidéos. Cette bibliothèque s’est imposée comme un standard dans le domaine de la recherche parce qu’elle propose un nombre important d’outils issus de l’état de l’art en vision des ordinateurs.</p>
+<p>La <a href="http://docs.opencv.org/">documentation</a> d’<strong>OpenCV</strong> (cf. <a href="http://docs.opencv.org/modules/refman.html">OpenCV API Reference</a>).</p>
+<p><a href="#">Retour au sommaire</a></p>
+<h3 id="installation-ubuntu-12.04"><a href="#TOC">Installation (Ubuntu 12.04)</a></h3>
+<p>Pour installer les bibliothèques de développement d’<strong>OpenCV</strong>, il faudra faire :</p>
+<pre><code>$ sudo apt-get install libcv-dev libhighgui-dev libopencv-dev</code></pre>
+<p>Les options de compilation seront :</p>
+<pre><code>$ pkg-config --cflags --libs opencv
+-I/usr/include/opencv  -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_ml -lopencv_video 
+-lopencv_features2d -lopencv_calib3d -lopencv_objdetect -lopencv_contrib -lopencv_legacy -lopencv_flann</code></pre>
+<p><a href="#">Retour au sommaire</a></p>
+<h3 id="exemple-en-c"><a href="#TOC">Exemple en C</a></h3>
+<p><strong>OpenCV</strong> fournit une API C pour l’acquisition vidéo en provenance d’une caméra ou d’un fichier. En C, on utilisera donc les appels <code>cvCaptureFromCAM()</code> ou <code>cvCaptureFromFile()</code> qui retournent un pointeur sur une structure <code>CvCapture</code>. En fin de programme, il ne faudra pas oublier de le libérer en appelant <code>cvReleaseCapture()</code>.</p>
+<p>Dans notre cas, la caméra n’étant raccordée physiquement à l’ordinateur, on ne pourra pas utiliser l’appel <code>cvCaptureFromCAM()</code>. En effet, on accéde au flux vidéo via un script CGI par le réseau. On doit donc utiliser l’appel <code>cvCaptureFromFile()</code>. <strong>OpenCV</strong> détecte le type des données image par l’extension du fichier. La documentation de la caméra nous informe que le format des données vidéos est du type MJPEG. Au final, il faudra donc passer en paramètre de l’appel <code>cvCaptureFromFile()</code> : l’adresse (adresse-ip-camera:99) qui pointe vers le script CGI (c’est-à-dire <code>videostream.cgi</code>) fournissant les données vidéos ET l’extension <code>.mjpg</code>, soit :</p>
+<pre><code>&quot;http://adresse-ip-camera:99/videostream.cgi?user=admin&amp;pwd=&amp;resolution=32&amp;rate=0&amp;.mjpg&quot;</code></pre>
+<p>Pour réaliser une ‘capture’, l’API C met à notre disposition 3 fonctions :</p>
+<ul>
+<li><code>int cvGrabFrame(CvCapture* capture)</code> qui réalise l’acquisition de la prochaine image (<em>frame</em>) du fichier vidéo ou de la caméra et renvoie vrai (non nul) en cas de succès.</li>
+<li><code>IplImage* cvRetrieveFrame(CvCapture* capture, int streamIdx=0)</code> qui décode et renvoie l’image (<em>frame</em>) précedemment acquise (<em>grab</em>). Si il n’y a aucune image (caméra déconnectée, ou plus d’images dans le fichier vidéo), la fonction retourne un pointeur <code>NULL</code>.</li>
+<li><code>IplImage* cvQueryFrame(CvCapture* capture)</code> qui regroupe les 2 fonctions précédentes (<code>cvGrabFrame()</code> et <code>cvRetrieveFrame()</code>) en un seul appel ce qui la rend plus pratique.</li>
+</ul>
+<p>Pour l’affichage, on utilisera l’appel <code>cvNamedWindow()</code> pour créer une fenêtre et <code>cvShowImage()</code> pour visualiser l’image (<em>frame</em>). <strong>Opencv</strong> fournit aussi des fonctions pour sauvegarder les images comme <code>cvSaveImage()</code>.</p>
+<p>cf. la documentation de l’API sur <a href="http://docs.opencv.org/modules/highgui/doc/reading_and_writing_images_and_video.html">docs.opencv.org</a>.</p>
+<pre class="sourceCode c"><code class="sourceCode c"><span class="ot">#include &lt;stdio.h&gt;</span>
+<span class="ot">#include &lt;cv.h&gt; // contient les déclarations des structures et fonctions de manipulation d'images</span>
+<span class="ot">#include &lt;highgui.h&gt; // contient déclarations des fonctions d'affichage des images</span>
+
+<span class="ot">#define DEBUG</span>
+
+<span class="co">// gcc -O2 -Wall -o opencv-0 opencv-0.c `pkg-config --cflags --libs opencv`</span>
+
+<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> *argv[])
+{
+    <span class="co">// cf. http://docs.opencv.org/modules/highgui/doc/reading_and_writing_images_and_video.html</span>
+    CvCapture *capture = cvCaptureFromFile(
+    <span class="st">&quot;http://192.168.52.14:99/videostream.cgi?user=admin&amp;pwd=&amp;resolution=32&amp;rate=0&amp;.mjpg&quot;</span>);
+    <span class="kw">if</span>(!capture)
+    {
+        printf(<span class="st">&quot;Erreur d'initialisation !</span><span class="ch">\n</span><span class="st">&quot;</span>);
+        exit(<span class="dv">1</span>);
+    }
+
+    <span class="co">//cvNamedWindow(&quot;Wanscam&quot;);</span>
+    cvNamedWindow(<span class="st">&quot;Wanscam&quot;</span>, CV_WINDOW_AUTOSIZE);
+
+    <span class="kw">while</span>(<span class="dv">1</span>)
+    {    
+        <span class="ot">#ifdef DEBUG</span>
+        <span class="dt">double</span> t1 = (<span class="dt">double</span>)cvGetTickCount();
+        <span class="ot">#endif</span>
+
+        <span class="co">// Méthode 1 :</span>
+        <span class="co">/*if(!cvGrabFrame(capture))</span>
+<span class="co">        {</span>
+<span class="co">            printf(&quot;Erreur d'acquisition !\n&quot;);</span>
+<span class="co">            exit(1);</span>
+<span class="co">        }</span>
+<span class="co">        IplImage *img = cvRetrieveFrame(capture);*/</span>
+
+        <span class="co">// Méthode 2 :</span>
+        IplImage *img = cvQueryFrame(capture);
+        <span class="kw">if</span>(img == NULL)
+        {
+            printf(<span class="st">&quot;Erreur de lecture !</span><span class="ch">\n</span><span class="st">&quot;</span>);
+            exit(<span class="dv">1</span>);
+        }
+
+        <span class="ot">#ifdef DEBUG</span>
+        printf(<span class="st">&quot;%dx%d pixels (%d canaux couleurs)</span><span class="ch">\n</span><span class="st">&quot;</span>, img-&gt;width, img-&gt;height, img-&gt;nChannels); 
+        <span class="dt">double</span> t2 = (<span class="dt">double</span>)cvGetTickCount();
+        printf(<span class="st">&quot;time: %gms  fps: %.2g</span><span class="ch">\n</span><span class="st">&quot;</span>, 
+               (t2-t1)/(cvGetTickFrequency()*<span class="dv">1000</span>.), <span class="dv">1000</span>./((t2-t1)/(cvGetTickFrequency()*<span class="dv">1000</span>.)));
+        <span class="ot">#endif    </span>
+
+        cvShowImage(<span class="st">&quot;Wanscam&quot;</span>, img);
+
+        <span class="co">// Si on veut sauvegarder l'image</span>
+        <span class="co">//cvSaveImage(&quot;foo.jpg&quot;, img);</span>
+
+        <span class="co">//cvReleaseImage(&amp;img);</span>
+
+        <span class="co">// Appuyez sur une touche pour sortir</span>
+        <span class="kw">if</span>(cvWaitKey(<span class="dv">0</span>) &gt;= <span class="dv">0</span>) <span class="kw">break</span>;
+    }    
+
+    cvReleaseCapture(&amp;capture);
+
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<p>Le <a href="http://tvaira.free.fr/wanscam-opencv/wanscam-opencv.zip">source</a> de l’exemple C.</p>
+<p><a href="#">Retour au sommaire</a></p>
+<h3 id="exemple-en-c-1"><a href="#TOC">Exemple en C++</a></h3>
+<p>En C++, <strong>OpenCV</strong> fournit une classe <code>VideoCapture</code> pour l’acquisition vidéo en provenance d’une caméra ou d’un fichier. On utilisera la méthode <code>open()</code> pour ouvrir le flux vidéo de la caméra.</p>
+<p>Pour rappel, on accéde au flux vidéo via un script CGI par le réseau. <strong>OpenCV</strong> détecte le type des données image par l’extension du fichier. La documentation de la caméra nous informe que le format des données vidéos est du type MJPEG. Au final, il faudra donc passer en paramètre de l’appel <code>open()</code> : l’adresse (adresse-ip-camera:99) qui pointe vers le script CGI (c’est-à-dire <code>videostream.cgi</code>) fournissant les données vidéos ET l’extension <code>.mjpg</code>, soit :</p>
+<pre><code>&quot;http://adresse-ip-camera:99/videostream.cgi?user=admin&amp;pwd=&amp;resolution=32&amp;rate=0&amp;.mjpg&quot;</code></pre>
+<p>Pour réaliser une ‘capture’, l’API C++ met à notre disposition 3 méthodes :</p>
+<ul>
+<li><code>bool VideoCapture::grab()</code> qui réalise l’acquisition de la prochaine image (<em>frame</em>) du fichier vidéo ou de la caméra et renvoie vrai (<code>true</code>) en cas de succès.</li>
+<li><code>bool VideoCapture::retrieve(Mat&amp; image, int channel=0)</code> qui décode et renvoie l’image (<em>frame</em>) précedemment acquise (<em>grab</em>). Si il n’y a aucune image (caméra déconnectée, ou plus d’images dans le fichier vidéo), la fonction retourne faux (<code>false</code>).</li>
+<li><code>bool VideoCapture::read(Mat&amp; image)</code> qui regroupe les 2 fonctions précédentes (<code>cvGrabFrame()</code> et <code>cvRetrieveFrame()</code>) en un seul appel ce qui la rend plus pratique. L’opérateur <code>&gt;&gt;</code> peut aussi être utilisé.</li>
+</ul>
+<p>Pour manipuler des images, <strong>OpenCV</strong> utilise une classe <code>Mat</code> (cf. <a href="http://docs.opencv.org/modules/core/doc/basic_structures.html#mat">cv::Mat</a>).</p>
+<p>Pour l’affichage des images, on utilisera la méthode <code>cv::imshow()</code>. <strong>Opencv</strong> fournit aussi des méthodes pour lire des images comme <code>imread()</code> et pour les sa uvegarder avec <code>imwrite()</code>.</p>
+<p>cf. la documentation de l’API sur <a href="http://docs.opencv.org/modules/highgui/doc/reading_and_writing_images_and_video.html">docs.opencv.org</a>.</p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;iostream&gt;</span>
+<span class="ot">#include &lt;cv.h&gt; </span><span class="co">// contient les déclarations des classes de manipulation d'images</span>
+<span class="ot">#include &lt;highgui.h&gt; </span><span class="co">// contient déclarations des fonctions d'affichage des images</span>
+
+<span class="ot">#define DEBUG</span>
+
+<span class="kw">using</span> <span class="kw">namespace</span> cv;
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="co">// g++ -o opencv-1 opencv-1.cpp `pkg-config --cflags --libs opencv`</span>
+
+<span class="dt">int</span> main(<span class="dt">int</span>, <span class="dt">char</span>**) 
+{
+    VideoCapture capture;
+    Mat img;
+
+    <span class="dt">const</span> string adresseFluxVideo = 
+    <span class="st">&quot;http://192.168.52.14:99/videostream.cgi?user=admin&amp;pwd=&amp;resolution=32&amp;rate=0&amp;.mjpg&quot;</span>; 
+
+    <span class="kw">if</span>(!capture.open(adresseFluxVideo)) 
+    {
+        cout &lt;&lt; <span class="st">&quot;Erreur d'initialisation !&quot;</span> &lt;&lt; endl;
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="ot">#ifdef DEBUG</span>
+    <span class="dt">double</span> dWidth = capture.get(CV_CAP_PROP_FRAME_WIDTH);
+    <span class="dt">double</span> dHeight = capture.get(CV_CAP_PROP_FRAME_HEIGHT);
+    cout &lt;&lt; dWidth &lt;&lt; <span class="st">&quot; x &quot;</span> &lt;&lt; dHeight &lt;&lt; endl;
+    <span class="ot">#endif    </span>
+
+    <span class="co">//namedWindow(&quot;Wanscam&quot;);</span>
+    namedWindow(<span class="st">&quot;Wanscam&quot;</span>, CV_WINDOW_AUTOSIZE);
+
+    <span class="kw">while</span>(<span class="dv">1</span>)
+    {            
+        <span class="co">// Méthode 1 :</span>
+        <span class="co">/*if(!capture.grab())</span>
+<span class="co">        {</span>
+<span class="co">            cout &lt;&lt; &quot;Erreur d'acquisition !&quot; &lt;&lt; endl;            </span>
+<span class="co">            exit(1);</span>
+<span class="co">        }</span>
+<span class="co">        if(!capture.retrieve(img))</span>
+<span class="co">        {</span>
+<span class="co">            cout &lt;&lt; &quot;Erreur de récupération !&quot; &lt;&lt; endl;            </span>
+<span class="co">            exit(1);</span>
+<span class="co">        }*/</span>
+
+        <span class="co">// Méthode 2 :</span>
+        <span class="kw">if</span>(!capture.read(img)) 
+        {
+            cout &lt;&lt; <span class="st">&quot;Erreur de lecture !&quot;</span> &lt;&lt; endl;
+            <span class="kw">return</span> <span class="dv">1</span>;
+        }
+
+        imshow(<span class="st">&quot;Wanscam&quot;</span>, img);
+
+        <span class="co">// Si on veut sauvegarder l'image</span>
+        <span class="co">//imwrite(&quot;foo.jpg&quot;, img);</span>
+
+        <span class="co">// Appuyez sur une touche pour sortir</span>
+        <span class="kw">if</span>(cv::waitKey(<span class="dv">0</span>) &gt;= <span class="dv">0</span>) <span class="kw">break</span>;
+    }       
+
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<p><strong>OpenCV</strong> fournit de très nombreuses fonctionnalités. Voici un exemple de deux transformations possibles sur des objets image de type <code>Mat</code> :</p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// ...</span>
+
+namedWindow(<span class="st">&quot;Flip&quot;</span>, CV_WINDOW_AUTOSIZE);
+namedWindow(<span class="st">&quot;Negative&quot;</span>, CV_WINDOW_AUTOSIZE);
+
+<span class="kw">while</span>(<span class="dv">1</span>)
+{
+    <span class="co">// ...</span>
+    flip(img, img, <span class="dv">1</span>);
+    imshow(<span class="st">&quot;Flip&quot;</span>, img);
+
+    Mat gray, edge, draw;
+    cvtColor(img, gray, CV_BGR2GRAY); 
+    Canny(gray, edge, <span class="dv">50</span>, <span class="dv">150</span>, <span class="dv">3</span>); 
+    edge.convertTo(draw, CV_8U);
+    imshow(<span class="st">&quot;Negative&quot;</span>, draw);        
+
+    <span class="co">// ...</span>
+}
+
+<span class="co">// ...</span></code></pre>
+<p>Le <a href="http://tvaira.free.fr/wanscam-opencv/wanscam-opencv.zip">source</a> de l’exemple C++.</p>
+<p><a href="#">Retour au sommaire</a></p>
+<h3 id="exemple-en-qt"><a href="#TOC">Exemple en Qt</a></h3>
+<p>Sous <strong>Qt</strong>, on utilisera un objet <code>QLabel</code> et un objet <code>QImage</code> pour assurer l’affichage des <em>frames</em> dans l’IHM. Le principe est le suivant :</p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp">QLabel *imageLabel = <span class="kw">new</span> QLabel;
+imageLabel-&gt;setBackgroundRole(QPalette::Base);
+
+QImage image(<span class="st">&quot;vide.png&quot;</span>);
+imageLabel-&gt;setPixmap(QPixmap::fromImage(image));
+imageLabel-&gt;resize(imageLabel-&gt;pixmap()-&gt;size());</code></pre>
+<p>On utilise le code C++ ci-dessus (voir Exemple en C++) que l’on adapte à Qt pour la capture. À partir d’une frame de type <code>Mat</code> ou <code>IplImage</code>, il faut pouvoir la convertir dans un type Qt (ici <code>QImage</code> ). Pour cela, on va se servir de la méthode <a href="http://forum.qtfr.org/discussion/13427/opencv-et-qt">Ipl2QImage()</a> qui permet de convertir une image OpenCV de type <code>IplImage</code> vers une image Qt de type <code>QImage</code>.</p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp">Mat frame;
+
+<span class="co">// capture de la frame (voir plus haut) ... puis :</span>
+IplImage *img = <span class="kw">new</span> IplImage(frame);
+
+QImage image = Ipl2QImage(img);
+imageLabel-&gt;setPixmap(QPixmap::fromImage(image));
+imageLabel-&gt;resize(imageLabel-&gt;pixmap()-&gt;size());</code></pre>
+<p>Pour la gestion de la caméra, on peut prendre un objet <code>QNetworkAccessManager</code> et sa méthode <code>get()</code> pour accéder aux scripts CGI de la caméra. Voici le principe pour la commande <code>flip</code> :</p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">class</span> X : <span class="kw">public</span> QWidget
+{
+    <span class="kw">Q_OBJECT</span>
+
+<span class="kw">public</span>:
+    X( QWidget *parent = <span class="dv">0</span> );
+    ~X();
+
+<span class="kw">private</span>:
+    QNetworkAccessManager *manager;
+    QNetworkReply         *reply;    
+    <span class="co">//...</span>
+    QTextEdit             *journal;
+
+<span class="kw">public</span> <span class="kw">slots</span>:    
+    <span class="dt">void</span> flip();
+    <span class="dt">void</span> replyFinished(QNetworkReply *reply);    
+    <span class="co">//...</span>
+};
+
+X::X( QWidget *parent ) : QWidget( parent )
+{
+    <span class="co">// ...</span>
+    manager = <span class="kw">new</span> QNetworkAccessManager(<span class="kw">this</span>);
+    <span class="kw">connect</span>(manager, <span class="kw">SIGNAL</span>(finished(QNetworkReply*)), <span class="kw">this</span>, <span class="kw">SLOT</span>(replyFinished(QNetworkReply*)));
+}
+
+<span class="dt">void</span> X::flip()
+{
+    <span class="co">//QString URL = &quot;http://&quot; + adresseIP + &quot;:&quot; + QString::number(port) + </span>
+    <span class="co">// &quot;/camera_control.cgi?param=5&amp;value=1&quot; + &quot;&amp;user=&quot; + user + &quot;&amp;pwd=&quot; + pwd;</span>
+    QString URL = <span class="st">&quot;http://192.168.52.14:99/camera_control.cgi?param=5&amp;value=1&amp;user=admin&amp;pwd=&quot;</span>;
+    manager-&gt;get(QNetworkRequest(QUrl(URL)));
+}
+
+<span class="dt">void</span> X::noflip()
+{
+    <span class="co">//QString URL = &quot;http://&quot; + adresseIP + &quot;:&quot; + QString::number(port) + </span>
+    <span class="co">// &quot;/camera_control.cgi?param=5&amp;value=0&quot; + &quot;&amp;user=&quot; + user + &quot;&amp;pwd=&quot; + pwd;</span>
+    QString URL = <span class="st">&quot;http://192.168.52.14:99/camera_control.cgi?param=5&amp;value=0&amp;user=admin&amp;pwd=&quot;</span>;
+    manager-&gt;get(QNetworkRequest(QUrl(URL)));
+}
+
+<span class="dt">void</span> X::replyFinished(QNetworkReply *reply)
+{
+    QByteArray datas = reply-&gt;readAll();
+    qDebug() &lt;&lt; QString::fromUtf8(<span class="st">&quot;&lt;X::replyFinished()&gt; reply : &quot;</span>) &lt;&lt; datas;
+
+    QString infos(datas);
+    journal-&gt;append(infos);
+}    </code></pre>
+<p>Le <a href="http://tvaira.free.fr/wanscam-opencv/wanscam-opencv-qt.zip">source</a> de l’exemple Qt.</p>
+<p><a href="#">Retour au sommaire</a></p>
+<div id="footer">
+  © 2015 <a href="http://tvaira.free.fr/">Thierry Vaira</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Thierry Vaira &lt;tvaira@free.fr&gt;" />
+  <title>TP GNU/Linux</title>
+  <link href="data:text/css,body%20%7B%0A%20%20%20%20margin%3A%20auto%3B%0A%20%20%20%20padding%2Dright%3A%201em%3B%0A%20%20%20%20padding%2Dleft%3A%201em%3B%0A%20%20%20%20max%2Dwidth%3A%2064em%3B%20%0A%20%20%20%20border%2Dleft%3A%201px%20solid%20black%3B%0A%20%20%20%20border%2Dright%3A%201px%20solid%20black%3B%0A%20%20%20%20color%3A%20black%3B%0A%20%20%20%20font%2Dfamily%3A%20Verdana%2C%20sans%2Dserif%3B%0A%20%20%20%20font%2Dsize%3A%20100%25%3B%0A%20%20%20%20line%2Dheight%3A%20140%25%3B%0A%20%20%20%20color%3A%20%23333%3B%20%0A%7D%0Apre%20%7B%0A%20%20%20%20border%3A%201px%20dotted%20gray%3B%0A%20%20%20%20background%2Dcolor%3A%20%23ececec%3B%0A%20%20%20%20color%3A%20%231111111%3B%0A%20%20%20%20padding%3A%200%2E5em%3B%0A%7D%0Acode%20%7B%0A%20%20%20%20font%2Dfamily%3A%20monospace%3B%0A%20%20%20%20font%2Dsize%3A%20130%25%3B%0A%7D%0Ah1%20a%2C%20h2%20a%2C%20h3%20a%2C%20h4%20a%2C%20h5%20a%20%7B%20%0A%20%20%20%20text%2Ddecoration%3A%20none%3B%0A%20%20%20%20color%3A%20%237a5ada%3B%20%0A%7D%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%20%7B%20font%2Dfamily%3A%20verdana%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20border%2Dbottom%3A%201px%20dotted%20black%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20color%3A%20%237a5ada%3B%20%7D%0Ah1%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20130%25%3B%0A%7D%0A%0Ah2%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20110%25%3B%0A%7D%0A%0Ah3%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2095%25%3B%0A%7D%0A%0Ah4%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2090%25%3B%0A%20%20%20%20%20%20%20%20font%2Dstyle%3A%20italic%3B%0A%7D%0A%0Ah5%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2090%25%3B%0A%20%20%20%20%20%20%20%20font%2Dstyle%3A%20italic%3B%0A%7D%0A%0Ah1%2Etitle%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20200%25%3B%0A%20%20%20%20%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%20%20%20%20%20%20padding%2Dtop%3A%200%2E2em%3B%0A%20%20%20%20%20%20%20%20padding%2Dbottom%3A%200%2E2em%3B%0A%20%20%20%20%20%20%20%20text%2Dalign%3A%20left%3B%0A%20%20%20%20%20%20%20%20border%3A%20none%3B%0A%7D%0A%0Acode%20%7B%0A%20%20%20%20%20%20%20%20font%2Dweight%3A%20bold%3B%0A%7D%0Add%20p%20%7B%0A%20%20%20%20%20%20%20%20margin%2Dtop%3A%200%3B%0A%7D%0A%0A%23footer%20%7B%0A%20%20%20%20%20%20%20%20padding%2Dtop%3A%201em%3B%0A%20%20%20%20%20%20%20%20padding%2Dbottom%3A%200%2E4em%3B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2080%25%3B%0A%20%20%20%20%20%20%20%20color%3A%20gray%3B%0A%7D%0A%0Aa%20%7B%0A%20%20color%3A%20%23563d7c%3B%20%20%20%20%0A%7D%0A%0Aa%3Ahover%20%7B%0A%20%20color%3A%20%233a3a3a%3B%0A%7D%0A" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="header">
+<h1 class="title">TP GNU/Linux</h1>
+<h2 class="author">Thierry Vaira &lt;<script type="text/javascript">
+                   <!--
+                   h='&#102;&#114;&#x65;&#x65;&#46;&#102;&#114;';a='&#64;';n='&#116;&#118;&#x61;&#x69;&#114;&#x61;';e=n+a+h;
+                   document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'<code>'+e+'</code>'+'<\/'+'a'+'>');
+                   // -->
+                   </script><noscript>tvaira at free dot fr</noscript>&gt;</h2>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#tp-1-commandes-de-base-et-shell">TP 1 : Commandes de base et shell</a></li>
+<li><a href="#tp-2-les-scripts">TP 2 : Les scripts</a><ul>
+<li><a href="#exercice-1">Exercice 1</a></li>
+<li><a href="#exercice-2">Exercice 2</a></li>
+<li><a href="#exercice-3">Exercice 3</a></li>
+<li><a href="#exercice-4">Exercice 4</a></li>
+<li><a href="#exercice-5">Exercice 5</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="tp-1-commandes-de-base-et-shell"><a href="#TOC">TP 1 : Commandes de base et shell</a></h1>
+<ol style="list-style-type: decimal">
+<li><p>Affichez le nom de votre répertoire de travail (le répertoire courant).</p></li>
+<li><p>Listez tous les attributs du fichier <code>.bashrc</code> (et uniquement de ce fichier là).</p></li>
+<li><p>Créez un fichier <code>numtel</code> avec l’éditeur <code>vim</code> contenant le texte suivant :</p></li>
+</ol>
+<pre><code>MARIE 04-91-85-96-34
+ODILE 04-91-56-92-35
+ALAIN 04-42-46-87-12</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Affichez le contenu de ce fichier trié par ordre alphabétique.</p></li>
+<li><p>Affichez le nombre de lignes du fichier <code>numtel</code>.</p></li>
+<li><p>Créez un répertoire <code>rep1</code> et faites-en votre répertoire de travail (répertoire courant), copier le fichier <code>numtel</code> dans ce répertoire, remontez dans le répertoire parent puis créez un répertoire <code>rep2</code> et déplacer <code>numtel</code> dedans (sans changer de répertoire, évidement).</p></li>
+<li><p>Supprimez en une seule commande le répertoire <code>rep2</code> et son contenu.</p></li>
+<li><p>Modifiez les droits du répertoire <code>rep1</code>, en utilisant le <strong>mode littéral</strong>, de façon à ce qu’il n’y est que vous qui puisse accéder (avec tous les droits).</p></li>
+<li><p>Créez un lien symbolique nommé <code>repertoire</code> vers le fichier <code>numtel</code>, dans le répertoire <code>rep1</code>.</p></li>
+<li><p>Donnez un nom supplémentaire au fichier <code>numtel</code>. Vérifier qu’il s’agit bien du même <strong>fichier physique</strong>.</p></li>
+<li><p>Cherchez quelle est la variable d’environnement qui contient l’invite de commande.</p></li>
+<li><p>Afficher le contenu du fichier <code>/usr/share/dict/words</code> ou du fichier <code>/usr/share/dict/french</code>, page par page. Si ces fichiers ne sont pas présents, faites une recherche avec <code>sudo apt-file search</code> pour connaître le <em>package</em> à installer.</p></li>
+<li><p>Afficher les 10 premières puis les 10 dernières lignes du fichier <code>/usr/share/dict/words</code> ou du fichier <code>/usr/share/dict/french</code> (en une seule ligne de commande).</p></li>
+<li><p>Afficher seulement la 10 ième ligne du fichier <code>/usr/share/dict/words</code> ou du fichier <code>/usr/share/dict/french</code> (en une seule ligne de commande).</p></li>
+<li><p>Trouvez tous les fichiers <code>*.conf</code> appartenant à l’utilisateur <em>root</em> contenus dans <code>/etc</code> et ses sous répertoires.</p></li>
+<li><p>Affichez le contenu du fichier <code>numtel</code> avec les noms en minuscules (avec <code>tr</code>).</p></li>
+<li><p>Cachez le fichier <code>numtel</code>. Cherchez alors l’option de la commande <code>ls</code> qui permet de lister aussi les fichiers cachés.</p></li>
+<li><p>Donnez la commande <code>ls</code> (en format long) qui permet d’afficher les répertoires avant les fichiers, ceux-ci étant triés alphabétiquement par leur extension.</p></li>
+<li><p>Trouvez dans le fichier <code>/usr/share/dict/words</code> tous les mots qui commencent par <strong>acro</strong> ou <strong>Acro</strong> (avec <code>grep</code>). Exemple de résultat :</p></li>
+</ol>
+<pre><code>Acropora
+acrotic
+...</code></pre>
+<ol start="20" style="list-style-type: decimal">
+<li>Donnez la commande <code>find</code> qui permet de rechercher les fichiers qui ont été modifiés depuis 24 heures dans le répertoire personnel d’un utilisateur.</li>
+</ol>
+<h1 id="tp-2-les-scripts"><a href="#TOC">TP 2 : Les scripts</a></h1>
+<h2 id="exercice-1"><a href="#TOC">Exercice 1</a></h2>
+<p>Créez un script <code>mkrep.sh</code> qui crée 100 répertoires nommés <code>toto1</code>, <code>toto2</code>, <code>toto3</code>, … avec les droits <code>rwxr-x---</code> mais en utilisant le <strong>mode octal</strong>.</p>
+<h2 id="exercice-2"><a href="#TOC">Exercice 2</a></h2>
+<p>Écrire un script qui permet de faire l’addition de notes (entières) saisies au clavier, de cette façon :</p>
+<pre><code># ./note.sh
+note : 0
+note : 15
+note : 10
+note : .
+Somme = 25</code></pre>
+<p><em>Bonus</em> : Ajouter le calcul et l’affichage de la moyenne.</p>
+<h2 id="exercice-3"><a href="#TOC">Exercice 3</a></h2>
+<p>Écrire un script qui affiche des informations sur la connexion d’un utilisateur dont le <em>nom</em> est passé en paramètre, de cette façon :</p>
+<pre><code># ./infouser.sh ttoto
+L'utilisateur ttoto s'est connecté 3049321 fois sur servux.intra.org
+Ses 3 dernières connexions sont:
+Mer 2 oct 09:32 - 17:55
+Mar 1 oct 18:13 - 18:14
+Mar 1 oct 11:31 – 12:35</code></pre>
+<h2 id="exercice-4"><a href="#TOC">Exercice 4</a></h2>
+<p>Écrire un script <code>voyage.sh</code> qui reçoit en argument une <em>distance</em> en km et qui fournit en résultat les messages suivants en fonction de la distance reçue : “petit voyage” (si la distance est inférieure ou égale à 2km), “moyen voyage” (si la distance est inférieure ou égale à 40 km mais supérieure à 2km) ou “grand voyage” (pour les distances supérieures à 40 km).</p>
+<h2 id="exercice-5"><a href="#TOC">Exercice 5</a></h2>
+<p>Écrire un script <code>affiche.sh</code> qui reçoit en argument le <em>nom</em> d’un fichier texte et éventuellement un <em>nombre</em>. Si aucun nombre est fourni, le script affiche le contenu du fichier avec leur numéro de ligne, sinon il affiche seulement la ligne correspondant au nombre fourni.</p>
+<pre><code>./affiche.sh numtel
+==== fichier : numtel
+     1 MARIE 04-91-85-96-34
+     2 ODILE 04-91-56-92-35
+     3 ALAIN 04-42-46-87-12
+
+./affiche.sh numtel 2
+==== ligne : 2
+     ODILE 04-91-56-92-35</code></pre>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=utf8"></head><body><div id="footer">
+  © 2015 <a href="http://tvaira.free.fr/">Thierry Vaira</a>
+</div>
+
+</body></html>
+</body>
+</html>

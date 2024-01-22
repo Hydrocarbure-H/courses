@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Thierry Vaira &lt;tvaira@free.fr&gt;" />
+  <title>Mise en oeuvre de POCO</title>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code &gt; span.kw { color: #007020; font-weight: bold; }
+code &gt; span.dt { color: #902000; }
+code &gt; span.dv { color: #40a070; }
+code &gt; span.bn { color: #40a070; }
+code &gt; span.fl { color: #40a070; }
+code &gt; span.ch { color: #4070a0; }
+code &gt; span.st { color: #4070a0; }
+code &gt; span.co { color: #60a0b0; font-style: italic; }
+code &gt; span.ot { color: #007020; }
+code &gt; span.al { color: #ff0000; font-weight: bold; }
+code &gt; span.fu { color: #06287e; }
+code &gt; span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link href="data:text/css,body%20%7B%0A%20%20%20%20margin%3A%20auto%3B%0A%20%20%20%20padding%2Dright%3A%201em%3B%0A%20%20%20%20padding%2Dleft%3A%201em%3B%0A%20%20%20%20max%2Dwidth%3A%2064em%3B%20%0A%20%20%20%20border%2Dleft%3A%201px%20solid%20black%3B%0A%20%20%20%20border%2Dright%3A%201px%20solid%20black%3B%0A%20%20%20%20color%3A%20black%3B%0A%20%20%20%20font%2Dfamily%3A%20Verdana%2C%20sans%2Dserif%3B%0A%20%20%20%20font%2Dsize%3A%20100%25%3B%0A%20%20%20%20line%2Dheight%3A%20140%25%3B%0A%20%20%20%20color%3A%20%23333%3B%20%0A%7D%0Apre%20%7B%0A%20%20%20%20border%3A%201px%20dotted%20gray%3B%0A%20%20%20%20background%2Dcolor%3A%20%23ececec%3B%0A%20%20%20%20color%3A%20%231111111%3B%0A%20%20%20%20padding%3A%200%2E5em%3B%0A%7D%0Acode%20%7B%0A%20%20%20%20font%2Dfamily%3A%20monospace%3B%0A%20%20%20%20font%2Dsize%3A%20130%25%3B%0A%7D%0Ah1%20a%2C%20h2%20a%2C%20h3%20a%2C%20h4%20a%2C%20h5%20a%20%7B%20%0A%20%20%20%20text%2Ddecoration%3A%20none%3B%0A%20%20%20%20color%3A%20%237a5ada%3B%20%0A%7D%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%20%7B%20font%2Dfamily%3A%20verdana%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20border%2Dbottom%3A%201px%20dotted%20black%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20color%3A%20%237a5ada%3B%20%7D%0Ah1%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20130%25%3B%0A%7D%0A%0Ah2%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20110%25%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%2Dright%3A%201em%3B%0A%7D%0A%0Ah3%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2095%25%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%2Dright%3A%201em%3B%0A%7D%0A%0Ah4%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2090%25%3B%0A%20%20%20%20%20%20%20%20font%2Dstyle%3A%20italic%3B%0A%7D%0A%0Ah5%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2090%25%3B%0A%20%20%20%20%20%20%20%20font%2Dstyle%3A%20italic%3B%0A%7D%0A%0Ah1%2Etitle%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20200%25%3B%0A%20%20%20%20%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%20%20%20%20%20%20padding%2Dtop%3A%200%2E2em%3B%0A%20%20%20%20%20%20%20%20padding%2Dbottom%3A%200%2E2em%3B%0A%20%20%20%20%20%20%20%20text%2Dalign%3A%20left%3B%0A%20%20%20%20%20%20%20%20border%3A%20none%3B%0A%7D%0A%0Adt%20code%20%7B%0A%20%20%20%20%20%20%20%20font%2Dweight%3A%20bold%3B%0A%7D%0Add%20p%20%7B%0A%20%20%20%20%20%20%20%20margin%2Dtop%3A%200%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%7D%0A%0Ap%20%7B%0A%20%20%20%20%20%20%20%20margin%2Dtop%3A%200%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%2Dright%3A%201em%3B%0A%7D%0A%0A%23footer%20%7B%0A%20%20%20%20%20%20%20%20padding%2Dtop%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2070%25%3B%0A%20%20%20%20%20%20%20%20color%3A%20gray%3B%0A%20%20%20%20%20%20%20%20%7D%0A%0Ah2%2Eauthor%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20110%25%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%200em%3B%0A%20%20%20%20%20%20%20%20margin%2Dright%3A%200em%3B%0A%7D%0A%0Atable%2EsourceCode%2C%20tr%2EsourceCode%2C%20td%2ElineNumbers%2C%20td%2EsourceCode%20%7B%0A%20%20margin%3A%200%3B%20padding%3A%200%3B%20vertical%2Dalign%3A%20baseline%3B%20border%3A%20none%3B%20%7D%0Atable%2EsourceCode%20%7B%20width%3A%20100%25%3B%20%7D%0Atd%2ElineNumbers%20%7B%20text%2Dalign%3A%20right%3B%20padding%2Dright%3A%204px%3B%20padding%2Dleft%3A%204px%3B%20color%3A%20%23aaaaaa%3B%20border%2Dright%3A%201px%20solid%20%23aaaaaa%3B%20%7D%0Atd%2EsourceCode%20%7B%20padding%2Dleft%3A%205px%3B%20%7D%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23007020%3B%20font%2Dweight%3A%20bold%3B%20%7D%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%2340a070%3B%20%7D%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%2340a070%3B%20%7D%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%234070a0%3B%20%7D%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%234070a0%3B%20%7D%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%2360a0b0%3B%20font%2Dstyle%3A%20italic%3B%20%7D%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%2306287e%3B%20%7D%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%0A" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="header">
+<h1 class="title">Mise en oeuvre de POCO</h1>
+<h2 class="author">Thierry Vaira &lt;<script type="text/javascript">
+                   <!--
+                   h='&#102;&#114;&#x65;&#x65;&#46;&#102;&#114;';a='&#64;';n='&#116;&#118;&#x61;&#x69;&#114;&#x61;';e=n+a+h;
+                   document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'<code>'+e+'</code>'+'<\/'+'a'+'>');
+                   // -->
+                   </script><noscript>tvaira at free dot fr</noscript>&gt;</h2>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#mise-en-oeuvre-de-poco">Mise en oeuvre de POCO</a><ul>
+<li><a href="#poco">POCO</a><ul>
+<li><a href="#présentation">Présentation</a></li>
+<li><a href="#objectifs">Objectifs</a></li>
+<li><a href="#installation-ubuntu-12.04">Installation (Ubuntu 12.04)</a></li>
+<li><a href="#exemple-en-c">Exemple en C++</a></li>
+<li><a href="#exemple-avec-la-caméra-wanscam">Exemple avec la caméra Wanscam</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<p>Site : <a href="http://tvaira.free.fr/">tvaira.free.fr</a></p>
+<h1 id="mise-en-oeuvre-de-poco"><a href="#TOC">Mise en oeuvre de POCO</a></h1>
+<h2 id="poco"><a href="#TOC">POCO</a></h2>
+<h3 id="présentation"><a href="#TOC">Présentation</a></h3>
+<p><strong>POCO</strong> (<a href="http://pocoproject.org/">pocoproject.org</a>) est un ensemble de bibliothèques <em>open source</em> C ++ pour la construction d’applications liées au réseau et Internet qui fonctionnent pour des stations, serveurs, mobiles et systèmes embarqués.</p>
+<div class="figure">
+<img src="data:image/jpeg;base64,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" /><p class="caption"></p>
+</div>
+<p>La <a href="http://pocoproject.org/documentation/index.html">documentation</a> de <strong>POCO</strong> (cf. <a href="http://pocoproject.org/docs/">POCO C++ Libraries</a>).</p>
+<p><a href="#">Retour au sommaire</a></p>
+<h3 id="objectifs"><a href="#TOC">Objectifs</a></h3>
+<p>L’utilisation des bibliothèques <strong>POCO</strong> doit permettre d’émettre des requêtes HTTP vers les CGI de la caméra Wanscam afin de commander son orientation <strong>PTZ</strong>.</p>
+<p>Remarque : les unités PTZ (<em>Pan Tilt Zoom</em>) sont utilisées pour la mise au point des caméras de surveillance et de visioconférence sur un objet. <em>Pan</em> est la rotation de la caméra autour de l’axe Z, <em>Tilt</em> est l’inclinaison de la caméra sur l’axe X, et <em>Zoom</em> est le mouvement de la lentille motorisée le long de l’axe Y.</p>
+<h3 id="installation-ubuntu-12.04"><a href="#TOC">Installation (Ubuntu 12.04)</a></h3>
+<p>Pour installer les bibliothèques de développement de <strong>POCO</strong>, il faudra faire :</p>
+<pre><code>$ sudo apt-get install libpoco-dev</code></pre>
+<p>Les options de compilation seront :</p>
+<pre><code>-lPocoNet -lPocoFoundation</code></pre>
+<p><a href="#">Retour au sommaire</a></p>
+<h3 id="exemple-en-c"><a href="#TOC">Exemple en C++</a></h3>
+<p>Pour tester la mise en oeuvre des bibliothèques POCO dans le cadre de nos besoins, nous allons utiliser un programme d’exemple fourni.</p>
+<p>Celui-ci reçoit en argument de la ligne de commande l’URL (<em>Uniform Resource Locator</em>), émet une requête HTTP vers cette adresse web et reçoit la réponse du serveur :</p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;Poco/Net/HTTPClientSession.h&gt;</span>
+<span class="ot">#include &lt;Poco/Net/HTTPRequest.h&gt;</span>
+<span class="ot">#include &lt;Poco/Net/HTTPResponse.h&gt;</span>
+<span class="ot">#include &lt;Poco/StreamCopier.h&gt;</span>
+<span class="ot">#include &lt;Poco/Path.h&gt;</span>
+<span class="ot">#include &lt;Poco/URI.h&gt;</span>
+<span class="ot">#include &lt;Poco/Exception.h&gt;</span>
+<span class="ot">#include &lt;iostream&gt;</span>
+<span class="ot">#include &lt;string&gt;</span>
+
+<span class="kw">using</span> <span class="kw">namespace</span> Poco::Net;
+<span class="kw">using</span> <span class="kw">namespace</span> Poco;
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="co">// sudo apt-get install libpoco-dev</span>
+<span class="co">// g++ -o test-poco-0 test-poco-0.cpp -lPocoNet -lPocoFoundation</span>
+
+<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)
+{
+  <span class="kw">if</span> (argc != <span class="dv">2</span>)
+  {
+    cout &lt;&lt; <span class="st">&quot;Usage: &quot;</span> &lt;&lt; argv[<span class="dv">0</span>] &lt;&lt; <span class="st">&quot; &lt;uri&gt;&quot;</span> &lt;&lt; endl;
+    cout &lt;&lt; <span class="st">&quot;       fetches the resource identified by &lt;uri&gt; and print it&quot;</span> &lt;&lt; endl;
+    <span class="kw">return</span> -<span class="dv">1</span>;
+  }
+
+  <span class="kw">try</span>
+  {
+    <span class="co">// prepare session</span>
+    URI uri(argv[<span class="dv">1</span>]);
+    HTTPClientSession session(uri.getHost(), uri.getPort());
+
+    <span class="co">// prepare path</span>
+    string path(uri.getPathAndQuery());
+    <span class="kw">if</span> (path.empty()) path = <span class="st">&quot;/&quot;</span>;
+
+    <span class="co">// send request</span>
+    HTTPRequest req(HTTPRequest::HTTP_GET, path, HTTPMessage::HTTP_1_1);
+    session.sendRequest(req);
+
+    <span class="co">// get response</span>
+    HTTPResponse res;
+    cout &lt;&lt; res.getStatus() &lt;&lt; <span class="st">&quot; &quot;</span> &lt;&lt; res.getReason() &lt;&lt; endl;
+
+    <span class="co">// print response</span>
+    istream &amp;is = session.receiveResponse(res);
+    StreamCopier::copyStream(is, cout);
+  }
+  <span class="kw">catch</span> (Exception &amp;ex)
+  {
+    cerr &lt;&lt; ex.displayText() &lt;&lt; endl;
+    <span class="kw">return</span> -<span class="dv">1</span>;
+  }
+
+  <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<p>On fabrique l’exécutable :</p>
+<pre><code>$ g++ -o test-poco-0 test-poco-0.cpp -lPocoNet -lPocoFoundation</code></pre>
+<p>Et on réalise un simple test vers une l’adresse web <code>http://tvaira.free.fr/test.htm</code> :</p>
+<pre><code>$ ./test-poco-0
+Usage: ./test-poco-0 &lt;uri&gt;
+       fetches the resource identified by &lt;uri&gt; and print it
+
+$ ./test-poco-0 http://tvaira.free.fr/test.htm
+200 OK
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;fr&quot; lang=&quot;fr&quot;&gt;
+  &lt;head&gt;
+      &lt;title&gt;Un titre&lt;/title&gt;
+      &lt;meta http-equiv=&quot;Content-type&quot; content=&quot;text/html; charset=ISO-8859-1&quot; /&gt;
+      &lt;style type=&quot;text/css&quot;&gt;
+      body
+      {
+        background-color: #000000;
+      }
+      img
+      {
+        border: 1px solid #fff;
+      }
+      #entrer
+      {
+        position: absolute;
+        width: 100px; height: 100px;
+        top: 50%; left: 50%;
+        margin-left: -50px; margin-top: -50px;
+      }
+      &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;div id=&quot;entrer&quot;&gt;
+      &lt;img src=&quot;./logo.gif&quot; alt=&quot;entrez !&quot; /&gt;
+      &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>Conclusion : le programme de test fourni est capable d’émettre une requête HTTP et recevoir une réponse du serveur contacté.</p>
+<h3 id="exemple-avec-la-caméra-wanscam"><a href="#TOC">Exemple avec la caméra Wanscam</a></h3>
+<p>On reprend l’exemple précédent et on y intègre une URL vers un CGI de la caméra Wanscam. Ici pour le test, on se limite à une commande en montée de la caméra :</p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;Poco/Net/HTTPClientSession.h&gt;</span>
+<span class="ot">#include &lt;Poco/Net/HTTPRequest.h&gt;</span>
+<span class="ot">#include &lt;Poco/Net/HTTPResponse.h&gt;</span>
+<span class="ot">#include &lt;Poco/StreamCopier.h&gt;</span>
+<span class="ot">#include &lt;Poco/Path.h&gt;</span>
+<span class="ot">#include &lt;Poco/URI.h&gt;</span>
+<span class="ot">#include &lt;Poco/Exception.h&gt;</span>
+<span class="ot">#include &lt;iostream&gt;</span>
+<span class="ot">#include &lt;string&gt;</span>
+
+<span class="kw">using</span> <span class="kw">namespace</span> Poco::Net;
+<span class="kw">using</span> <span class="kw">namespace</span> Poco;
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="co">// sudo apt-get install libpoco-dev</span>
+<span class="co">// g++ -o test-poco-1 test-poco-1.cpp -lPocoNet -lPocoFoundation</span>
+
+<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)
+{  
+    <span class="co">// Commande en montée la caméra IP Wanscam </span>
+    <span class="dt">char</span> url[] = <span class="st">&quot;http://192.168.52.216:99/decoder_control.cgi?command=0&amp;onestep=1&amp;user=admin&amp;pwd=&quot;</span>; 
+
+    <span class="co">// prepare session</span>
+    URI uri(url);
+    HTTPClientSession session(uri.getHost(), uri.getPort());
+
+    <span class="co">// prepare path</span>
+    string path(uri.getPathAndQuery());
+    <span class="kw">if</span> (path.empty()) path = <span class="st">&quot;/&quot;</span>;
+
+    <span class="co">// send request</span>
+    HTTPRequest req(HTTPRequest::HTTP_GET, path, HTTPMessage::HTTP_1_1);
+    session.sendRequest(req);
+
+    <span class="co">// get response</span>
+    HTTPResponse res;
+    cout &lt;&lt; res.getStatus() &lt;&lt; <span class="st">&quot; &quot;</span> &lt;&lt; res.getReason() &lt;&lt; endl;
+
+    <span class="co">// print response</span>
+    istream &amp;is = session.receiveResponse(res);
+    StreamCopier::copyStream(is, cout);
+
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<p>Les <a href="./mo-poco.zip">sources</a> des exemples C++.</p>
+<p><a href="#">Retour au sommaire</a></p>
+<div id="footer">
+  © 2015 <a href="http://tvaira.free.fr/">Thierry Vaira</a>
+</div>
+
+</body>
+</html>

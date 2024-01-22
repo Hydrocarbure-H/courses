@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Thierry Vaira &lt;tvaira@free.fr&gt;" />
+  <title>Activité : mise en oeuvre d’un périphérique USB sous Linux</title>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Activité : mise en oeuvre d’un périphérique USB sous Linux</h1>
+<h2 class="author">Thierry Vaira &lt;<script type="text/javascript">
+                   <!--
+                   h='&#102;&#114;&#x65;&#x65;&#46;&#102;&#114;';a='&#64;';n='&#116;&#118;&#x61;&#x69;&#114;&#x61;';e=n+a+h;
+                   document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'<code>'+e+'</code>'+'<\/'+'a'+'>');
+                   // -->
+                   </script><noscript>tvaira at free dot fr</noscript>&gt;</h2>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#cahier-des-charges">Cahier des charges</a></li>
+<li><a href="#pré-requis">Pré-requis</a></li>
+<li><a href="#exigences">Exigences</a></li>
+<li><a href="#ressources-documentaires">Ressources documentaires</a></li>
+<li><a href="#voir-aussi">Voir aussi</a></li>
+<li><a href="#ressources-denvironnement">Ressources d’environnement</a></li>
+<li><a href="#matériel">Matériel</a></li>
+<li><a href="#compétences-et-savoir-faire">Compétences et Savoir-faire</a></li>
+</ul>
+</div>
+<p>Site : <a href="http://tvaira.free.fr/">tvaira.free.fr</a></p>
+<h2 id="cahier-des-charges"><a href="#TOC">Cahier des charges</a></h2>
+<p>Vous intervenez en équipe en tant que technicien IR dans une entreprise spécialisée dans les systèmes numériques. Vous venez de recevoir le périphérique USB correspondant à vos besoins et vous devez :</p>
+<ul>
+<li>identifier les informations techniques nécessaire à sa prise en charge</li>
+<li>intégrer le nouveau matériel au système</li>
+<li>rendre opérationnel sa mise en oeuvre</li>
+<li>réaliser la recette de son installation</li>
+<li>développer un module logiciel minimal</li>
+<li>rendre la solution opérationnelle et la documenter</li>
+</ul>
+<h2 id="pré-requis"><a href="#TOC">Pré-requis</a></h2>
+<ul>
+<li>connaissance des commandes de base du système GNU/Linux</li>
+<li>connaissances en programmation C/C++ et en programmation orienté objet (POO)</li>
+</ul>
+<h2 id="exigences"><a href="#TOC">Exigences</a></h2>
+<ul>
+<li>équipe de 3 étudiants</li>
+<li>assurer un compte-rendu oral et être capable de répondre à des questions techniques</li>
+<li>fournir un manuel d’installation au format source markdown et au format HTML</li>
+<li>élaborer et compléter une fiche de recette au format source openoffice et au format PDF</li>
+<li>livrer un programme source C++ de nom <code>nmea.cpp</code> qui recevra en argument le nom du fichier spécial de périphérique (sinon on utilisera le nom par défaut) et qui utilisera les services de la classes <code>QextSerialPort</code> pour gérer le périphérique USB à votre charge. Le programme produira l’affichage de quelques données extraites des trames de communication et formatées suivant les besoins.</li>
+</ul>
+<h2 id="ressources-documentaires"><a href="#TOC">Ressources documentaires</a></h2>
+<ul>
+<li><p><a href="./mo-peripherique-usb.html">Mise en oeuvre d’un périphérique USB sous Linux</a></p></li>
+<li><p><a href="./aide-peripherique-usb.html">Aide à la mise en oeuvre d’un périphérique USB sous Linux</a></p></li>
+<li><p><a href="./activites-qt.html">Mise en oeuvre d’un port série sous Qt</a></p></li>
+<li><p><a href="./conversions.html">Conversions de coordonnées GPS</a></p></li>
+<li><p><a href="./activites-peripherique-usb-questions.html">Questionnaire</a></p></li>
+</ul>
+<h2 id="voir-aussi"><a href="#TOC">Voir aussi</a></h2>
+<ul>
+<li><a href="./mo-peripherique-usb-windows.html">Mise en oeuvre d’un périphérique USB sous Windows</a></li>
+</ul>
+<h2 id="ressources-denvironnement"><a href="#TOC">Ressources d’environnement</a></h2>
+<ul>
+<li>Système d’exploitation : GNU/Linux (Ubuntu 12.04.5 LTS)</li>
+<li>Environnement de développement : Geany 1.24.1</li>
+<li>Compilateur : GNU g++/gcc version 4.6.3</li>
+<li>Chaîne de fabrication : qmake 2.01a et GNU make 3.81</li>
+<li>API : Qt 4.8.1</li>
+<li>Bibliothèque : <a href="http://code.google.com/p/qextserialport/">QextSerialPort</a>.</li>
+</ul>
+<h2 id="matériel"><a href="#TOC">Matériel</a></h2>
+<ol style="list-style-type: decimal">
+<li><a href="http://www.gpsdgps.com/product/gpsdgps_dl/120223/v-800_quick_start.pdf">Columbus V-800 GPS Receiver</a></li>
+<li><a href="https://learn.adafruit.com/downloads/pdf/adafruit-ultimate-gps.pdf">Adafruit Ultimate GPS</a></li>
+<li><a href="https://learn.adafruit.com/downloads/pdf/adafruit-ultimate-gps.pdf">Adafruit Ultimate GPS</a></li>
+<li><a href="http://www.lcjcapteurs.com/wp-content/uploads/2015/05/LCJ-Capteurs_ManuelUtilisateur-CV7_FRA_web.pdf">CV7-V-USB</a></li>
+</ol>
+<h2 id="compétences-et-savoir-faire"><a href="#TOC">Compétences et Savoir-faire</a></h2>
+<ul>
+<li>A1. Rechercher et/ou exploiter des documents …
+<ul>
+<li>T1.2 Extraire et synthétiser l’information pertinente.
+<ul>
+<li>C1.1 Rechercher et structurer des informations techniques.
+<ul>
+<li>SF01. Déterminer les critères de recherche et identifier les informations disponibles.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>A7. Réaliser ou mettre en oeuvre et valider une solution.
+<ul>
+<li>T7.2 Produire un prototype logiciel et/ou matériel.
+<ul>
+<li>C4.1 Câbler et/ou intégrer un matériel.
+<ul>
+<li>SF35. Réaliser la mise en situation et interconnecter du matériel.</li>
+</ul></li>
+<li>C4.2 Adapter et/ou configurer un matériel.
+<ul>
+<li>SF36. Rendre opérationnel un matériel.</li>
+</ul></li>
+<li>C4.3 Installer et configurer une chaîne de développement
+<ul>
+<li>SF38. Fournir un environnement de développement opérationnel.</li>
+</ul></li>
+<li>C4.4 Développer un module logiciel.
+<ul>
+<li>SF42. S’assurer de la conformité du logiciel avec le cahier des charges.</li>
+</ul></li>
+</ul></li>
+<li>T7.3 Valider le prototype.
+<ul>
+<li>C4.5 Tester et valider un module logiciel et matériel.
+<ul>
+<li>SF44. Faire la recette d’un module.</li>
+</ul></li>
+<li>C4.6 : intégrer un module logiciel
+<ul>
+<li>SF46. Rendre opérationnel le système ou le sous-système.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>A9. Elaborer et/ou mettre en oeuvre le processus de réception …
+<ul>
+<li>T9.2 Installer un système ou un service.
+<ul>
+<li>C5.1 Préparer la solution et le plan d’action.
+<ul>
+<li>SF49. Le système est opérationnel et documenté.</li>
+</ul></li>
+<li>C5.2 Mettre en oeuvre une solution matérielle/logicielle en situation.
+<ul>
+<li>SF50. Rendre la solution opérationnelle et la documenter.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p><a href="#">Retour au sommaire</a></p>
+</body>
+</html>

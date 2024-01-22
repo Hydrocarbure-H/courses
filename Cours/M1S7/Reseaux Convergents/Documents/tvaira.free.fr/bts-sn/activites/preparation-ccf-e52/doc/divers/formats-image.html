@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Thierry Vaira &lt;tvaira@free.fr&gt;" />
+  <title>Les formats d’image</title>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Les formats d’image</h1>
+<h2 class="author">Thierry Vaira &lt;<script type="text/javascript">
+                   <!--
+                   h='&#102;&#114;&#x65;&#x65;&#46;&#102;&#114;';a='&#64;';n='&#116;&#118;&#x61;&#x69;&#114;&#x61;';e=n+a+h;
+                   document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'<code>'+e+'</code>'+'<\/'+'a'+'>');
+                   // -->
+                   </script><noscript>tvaira at free dot fr</noscript>&gt;</h2>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#les-formats-dimage">Les formats d’image</a><ul>
+<li><a href="#définition">Définition</a></li>
+<li><a href="#images-matricielles-ou-images-bitmap">Images matricielles (ou images <em>bitmap</em>)</a></li>
+<li><a href="#images-vectorielles">Images vectorielles</a></li>
+<li><a href="#définition-et-résolution">Définition et résolution</a></li>
+<li><a href="#représentation-des-couleurs">Représentation des couleurs</a></li>
+<li><a href="#mjpeg-motion-jpeg">MJPEG (Motion JPEG)</a></li>
+</ul></li>
+</ul>
+</div>
+<p>Site : <a href="http://tvaira.free.fr/">tvaira.free.fr</a></p>
+<h1 id="les-formats-dimage"><a href="#TOC">Les formats d’image</a></h1>
+<h2 id="définition"><a href="#TOC">Définition</a></h2>
+<p>L’appellation « image numérique » désigne toute image (dessin, icône, photographie …) acquise, créée, traitée et stockée sous forme binaire.</p>
+<p>Un format d’image est donc une représentation informatique de l’image, associée à des informations sur la façon dont l’image est codée et fournissant éventuellement des indications sur la manière de la décoder et de la manipuler (métadonnées).</p>
+<p>On distingue essentiellement deux types d’images :</p>
+<ul>
+<li><p>les images matricielles (ou images <em>bitmap</em>)</p></li>
+<li><p>les images vectorielles</p></li>
+</ul>
+<h2 id="images-matricielles-ou-images-bitmap"><a href="#TOC">Images matricielles (ou images <em>bitmap</em>)</a></h2>
+<p>Une image matricielle, ou « carte de points » (<em>bitmap</em>), est une image constituée d’une matrice de points colorés. C’est-à-dire, constituée d’un tableau, d’une grille, où chaque case possède une couleur qui lui est propre et est considérée comme un point. Il s’agit donc d’une juxtaposition de points de couleurs formant, dans leur ensemble, une image.</p>
+<p>Cette expression est principalement utilisée dans les domaines de l’imagerie numérique (infographie, informatique, photographie numérique, etc.) afin de marquer l’opposition de ce concept avec celui des images vectorielles. Dans ces domaines, les points de couleurs les constituant s’appellent des <strong>pixels</strong> (pour <em>picture element</em> soit un élément d’image).</p>
+<p>Les inconvénients de ce type d’image sont la perte de qualité lorsqu’on désire l’agrandir indéfiniment et le fort encombrement pour stocker l’ensemble des pixels (que l’on peut compenser en utilisant une compression). L’avantage est le traitement rapide pour afficher ce type d’image.</p>
+<p>Les formats matriciels les plus utilisés sont : JPEG, GIF, PNG et TIFF.</p>
+<h2 id="images-vectorielles"><a href="#TOC">Images vectorielles</a></h2>
+<p>Le principe est de représenter les données de l’image par des formules géométriques qui vont pouvoir être décrites d’un point de vue mathématique. Cela signifie qu’au lieu de mémoriser une mosaïque de points élémentaires, on stocke la succession d’opérations conduisant au tracé. Par exemple, un dessin peut être mémorisé par l’ordinateur comme « une droite tracée entre les points (x1, y1) et (x2, y2) », puis « un cercle tracé de centre (x3, y3) et de rayon 30 de couleur rouge ».</p>
+<p>L’avantage de ce type d’image est la possibilité de l’agrandir indéfiniment sans perdre la qualité initiale, ainsi qu’un faible encombrement. L’inconvénient est le fort traitement “mathématique” associé à ce type d’image.</p>
+<p>Exemple de format vectoriel : SVG.</p>
+<h2 id="définition-et-résolution"><a href="#TOC">Définition et résolution</a></h2>
+<p>Les images matricielles sont également définies par leur définition et leur résolution.</p>
+<p>La <strong>définition</strong> d’une image est définie par le nombre de points la composant. En image numérique, cela correspond au nombre de pixels qui composent l’image en hauteur (axe vertical) et en largeur (axe horizontal) : 200 pixels par 450 pixels par exemple, abrégé en « 200 × 450 ».</p>
+<p>La <strong>résolution</strong> d’une image est définie par un nombre de pixels par unité de longueur de la structure à numériser (classiquement en ppp). Ce paramètre est défini lors de la numérisation (passage de l’image sous forme binaire), et dépend principalement des caractéristiques du matériel utilisé lors de la numérisation. Plus le nombre de pixels par unité de longueur de la structure à numériser est élevé, plus la quantité d’information qui décrit cette structure est importante et plus la résolution est élevée. La résolution d’une image numérique définit le degré de détail de l’image. Ainsi, plus la résolution est élevée, meilleure est la restitution.</p>
+<h2 id="représentation-des-couleurs"><a href="#TOC">Représentation des couleurs</a></h2>
+<p>Il existe plusieurs modes de codage informatique des couleurs, le plus utilisé pour le maniement des images est l’espace colorimétrique rouge, vert, bleu (RVB ou RGB pour <em>red green blue</em>). Cet espace est basé sur une synthèse additive des couleurs, c’est-à-dire que le mélange des trois composantes R, V, et B à leur valeur maximum donne du blanc, à l’instar de la lumière.</p>
+<p>Les images <em>bitmap</em> en couleurs peuvent être représentées soit par une image dans laquelle la valeur du pixel est une combinaison linéaire des valeurs des trois composantes couleurs, soit par trois images représentant chacune une composante couleur. Dans le premier cas, selon le nombre de bits (unité d’information élémentaire qui peut prendre deux valeurs distinctes) alloués pour le stockage d’une couleur de pixel, on distingue généralement les différents types d’images suivants :</p>
+<ul>
+<li>Images 24 bits (ou « couleurs vraies ») : Le codage de la couleur est réalisé sur trois octets, chaque octet représentant la valeur d’une composante couleur par un entier de 0 à 255.</li>
+<li>Images à palettes, images en 256 couleurs (8 bits) : Pour réduire la place occupée par l’information de couleur, on utilise une palette de couleurs « attachée » à l’image. On parle alors de couleurs indexées : la valeur associée à un pixel ne véhicule plus la couleur effective du pixel, mais renvoie à l’entrée correspondant à cette valeur dans une table (ou palette)</li>
+<li>Images en teintes (ou niveaux) de gris : On ne code ici plus que le niveau de l’intensité lumineuse, généralement sur un octet (256 valeurs). Par convention, la valeur zéro représente le noir (intensité lumineuse nulle) et la valeur 255 le blanc (intensité lumineuse maximale)</li>
+<li>Images avec gestion de la translucidité : On peut attribuer à une image un canal supplémentaire, appelé canal alpha, qui définit le degré de transparence de l’image.</li>
+</ul>
+<h2 id="mjpeg-motion-jpeg"><a href="#TOC">MJPEG (Motion JPEG)</a></h2>
+<p>Le Motion JPEG ou M-JPEG est un codec vidéo qui compresse les images une à une en JPEG.</p>
+<p>Le débit binaire d’un flux MJPEG se situe généralement entre celui de formats non compressés (comme RVB de compression 1:1) et celui des formats MPEG (de l’ordre de 1:100). Des débits de l’ordre de 29 Mbit/s sont courants pour des vidéos de très bonne qualité, mais conduisent en comparaison à d’autres formats à des tailles de fichier très importantes.</p>
+<p>H.264, ou MPEG-4 AVC (<em>Advanced Video Coding</em>) est une autre norme de codage vidéo.</p>
+<p><a href="#">Retour au sommaire</a></p>
+</body>
+</html>

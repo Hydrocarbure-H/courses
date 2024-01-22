@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Thierry Vaira &lt;tvaira@free.fr&gt;" />
+  <title>Mise en oeuvre d’un périphérique USB sous Linux</title>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Mise en oeuvre d’un périphérique USB sous Linux</h1>
+<h2 class="author">Thierry Vaira &lt;<script type="text/javascript">
+                   <!--
+                   h='&#102;&#114;&#x65;&#x65;&#46;&#102;&#114;';a='&#64;';n='&#116;&#118;&#x61;&#x69;&#114;&#x61;';e=n+a+h;
+                   document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'<code>'+e+'</code>'+'<\/'+'a'+'>');
+                   // -->
+                   </script><noscript>tvaira at free dot fr</noscript>&gt;</h2>
+</div>
+<p>Site : <a href="http://tvaira.free.fr/">tvaira.free.fr</a></p>
+<h1 id="questionnaire">Questionnaire</h1>
+<h2 id="généralités">Généralités</h2>
+<ol style="list-style-type: decimal">
+<li><p>Quel est le rôle d’un système d’exploitation ?</p></li>
+<li><p>Le noyau (<em>kernel</em>) Linux a été développé avec quel langage de programmation ?</p></li>
+<li><p>Le système d’exploitation GNU/Linux est-il multitâche ?</p></li>
+<li><p>Est-il possible de recomplier un noyau Linux suivant sa propre configuration ?</p></li>
+<li><p>Quel est la particularité des noyau modulaire ?</p></li>
+<li><p>Dans quel répertoire de l’arborescence Linux est stocké le noyau ?</p></li>
+<li><p>Que contient un module chargeable (LKM) sous Linux ? Quel est son extension ?</p></li>
+<li><p>Qu’est-ce qu’un fichier spécial de périphérique ?</p></li>
+<li><p>Dans quel répertoire sont-ils stockés ?</p></li>
+<li><p>À quoi servent les droits d’accès d’un fichier spécial de périphérique ?</p></li>
+<li><p>Quels sont les rôles des numéros majeur et mineur associés à fichier spécial de périphérique ?</p></li>
+<li><p>Qu’est ce que l’USB ?</p></li>
+<li><p>Comment s’appelle la technique en informatique qui permet à un périphérique d’être détecté automatiquement par le système ?</p></li>
+<li><p>Que faut-il pour qu’il soit pris en charge par le système ?</p></li>
+<li><p>Quels sont les rôles des identifiants vendor et product associés au périphérique USB ?</p></li>
+<li><p>Quel est le protocole utilisé par les recpeteurs GPS du commerce ?</p></li>
+<li><p>Qu’est-ce qu’un port série virtuel ?</p></li>
+<li><p>Que représente la norme RS232 ?</p></li>
+<li><p>Quels sont les paramètres habituels d’un port série ?</p></li>
+<li><p>Que représente la norme NMEA 0183 ?</p></li>
+<li><p>Quels sont les caractéristiques d’une trame NMEA 0183 ?</p></li>
+<li><p>Quel est le rôle d’une somme de contrôle (checksum) dans une communication ?</p></li>
+<li><p>Quel opérateur est utilisé pour réaliser une somme de contrôle (checksum) dans une trame ?</p></li>
+<li><p>Citer les quatre appels systèmes de base utilisés pour gérer un port série sous Linux ?</p></li>
+<li><p>Classer les causes probables de panne si votre périphérique n’est plus opérationnel ?</p></li>
+</ol>
+<h2 id="mise-en-oeuvre">Mise en oeuvre</h2>
+<ol>
+<li><p>Quel est la version de votre noyau Linux ?</p></li>
+<li><p>Est-ce que le périphérique USB est détecté automatiquement par le système ?</p></li>
+<li><p>Est-ce que le périphérique USB a été pris en charge par le système ?</p></li>
+<li><p>Quel(s) module(s) chargeable(s) gère(nt) votre périphérique USB ?</p></li>
+<li><p>Quels sont les identifiants <em>vendor</em> et <em>product</em> associés à votre périphérique USB ?</p></li>
+<li><p>Quel est le nom du fichier spécial de votre périphérique ?</p></li>
+<li><p>Quel est le type (c ou b) du fichier spécial de votre périphérique ?</p></li>
+<li><p>Quel sont les droits d’accès du fichier spécial de votre périphérique ?</p></li>
+<li><p>Quels sont les paramètres de votre port série ?</p></li>
+<li><p>Quels types de trame émet votre périphérique USB ?</p></li>
+</ol>
+<p><a href="#">Retour au sommaire</a></p>
+</body>
+</html>

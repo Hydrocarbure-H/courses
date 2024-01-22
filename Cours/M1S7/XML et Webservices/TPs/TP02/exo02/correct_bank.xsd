@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This is an XML Schema (XSD) definition -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- Define the root element named "bank" -->
+    <xs:element name="bank">
+        <xs:complexType>
+
+            <!-- Elements inside "bank" must appear in this sequence -->
+            <xs:sequence>
+
+                <!-- Define the "accounts" element -->
+                <xs:element name="accounts">
+                    <xs:complexType>
+
+                        <!-- Elements inside "accounts" must appear in this sequence -->
+                        <xs:sequence>
+
+                            <!-- Define the "account" element, which can occur zero or more times -->
+                            <xs:element name="account" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+
+                                    <!-- Elements inside "account" must appear in this sequence -->
+                                    <xs:sequence>
+
+                                        <!-- Define the "balance" element with a restriction on its
+                                        content -->
+                                        <xs:element name="balance">
+                                            <xs:simpleType>
+
+                                                <!-- Restrict "balance" to be of type "xs:integer"
+                                                with a minimum value of -5000 -->
+                                                <xs:restriction base="xs:integer">
+                                                    <xs:minInclusive value="-5000" />
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+
+                                        <!-- Define the "interest" element, which can occur zero or
+                                        more times and has a data type of "xs:decimal" -->
+                                        <xs:element name="interest" type="xs:decimal"
+                                            maxOccurs="unbounded" minOccurs="0" />
+                                    </xs:sequence>
+
+                                    <!-- Define attributes for the "account" element -->
+                                    <xs:attribute name="type" type="xs:string" />
+                                    <xs:attribute name="id" type="xs:string" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- Define the "customers" element -->
+                <xs:element name="customers">
+                    <xs:complexType>
+
+                        <!-- Elements inside "customers" must appear in this sequence -->
+                        <xs:sequence>
+
+                            <!-- Define the "customer" element, which can occur zero or more times -->
+                            <xs:element name="customer" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+
+                                    <!-- Elements inside "customer" must appear in this sequence -->
+                                    <xs:sequence>
+
+                                        <!-- Define the "name" and "address" elements with data type
+                                        "xs:string" -->
+                                        <xs:element name="name" type="xs:string" />
+                                        <xs:element name="address" type="xs:string" />
+                                    </xs:sequence>
+
+                                    <!-- Define an attribute for the "customer" element -->
+                                    <xs:attribute name="id" type="xs:string" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <!-- Define the "customer_accounts" element -->
+                <xs:element name="customer_accounts">
+                    <xs:complexType>
+
+                        <!-- Elements inside "customer_accounts" must appear in this sequence -->
+                        <xs:sequence>
+
+                            <!-- Define the "customer_account" element, which can occur zero or more
+                            times -->
+                            <xs:element name="customer_account" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+
+                                    <!-- Define attributes for the "customer_account" element -->
+                                    <xs:attribute name="c_id" type="xs:string" />
+                                    <xs:attribute name="ac_id" type="xs:string" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

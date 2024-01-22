@@ -1,0 +1,427 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Thierry Vaira &lt;tvaira@free.fr&gt;" />
+  <title>Mise en oeuvre d’un port série sous Qt</title>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code &gt; span.kw { color: #007020; font-weight: bold; }
+code &gt; span.dt { color: #902000; }
+code &gt; span.dv { color: #40a070; }
+code &gt; span.bn { color: #40a070; }
+code &gt; span.fl { color: #40a070; }
+code &gt; span.ch { color: #4070a0; }
+code &gt; span.st { color: #4070a0; }
+code &gt; span.co { color: #60a0b0; font-style: italic; }
+code &gt; span.ot { color: #007020; }
+code &gt; span.al { color: #ff0000; font-weight: bold; }
+code &gt; span.fu { color: #06287e; }
+code &gt; span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link href="data:text/css,body%20%7B%0A%20%20%20%20margin%3A%20auto%3B%0A%20%20%20%20padding%2Dright%3A%201em%3B%0A%20%20%20%20padding%2Dleft%3A%201em%3B%0A%20%20%20%20max%2Dwidth%3A%2064em%3B%20%0A%20%20%20%20border%2Dleft%3A%201px%20solid%20black%3B%0A%20%20%20%20border%2Dright%3A%201px%20solid%20black%3B%0A%20%20%20%20color%3A%20black%3B%0A%20%20%20%20font%2Dfamily%3A%20Verdana%2C%20sans%2Dserif%3B%0A%20%20%20%20font%2Dsize%3A%20100%25%3B%0A%20%20%20%20line%2Dheight%3A%20140%25%3B%0A%20%20%20%20color%3A%20%23333%3B%20%0A%7D%0Apre%20%7B%0A%20%20%20%20border%3A%201px%20dotted%20gray%3B%0A%20%20%20%20background%2Dcolor%3A%20%23ececec%3B%0A%20%20%20%20color%3A%20%231111111%3B%0A%20%20%20%20padding%3A%200%2E5em%3B%0A%7D%0Acode%20%7B%0A%20%20%20%20font%2Dfamily%3A%20monospace%3B%0A%20%20%20%20font%2Dsize%3A%20130%25%3B%0A%7D%0Ah1%20a%2C%20h2%20a%2C%20h3%20a%2C%20h4%20a%2C%20h5%20a%20%7B%20%0A%20%20%20%20text%2Ddecoration%3A%20none%3B%0A%20%20%20%20color%3A%20%237a5ada%3B%20%0A%7D%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%20%7B%20font%2Dfamily%3A%20verdana%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20border%2Dbottom%3A%201px%20dotted%20black%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20color%3A%20%237a5ada%3B%20%7D%0Ah1%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20130%25%3B%0A%7D%0A%0Ah2%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20110%25%3B%0A%7D%0A%0Ah3%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2095%25%3B%0A%7D%0A%0Ah4%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2090%25%3B%0A%20%20%20%20%20%20%20%20font%2Dstyle%3A%20italic%3B%0A%7D%0A%0Ah5%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2090%25%3B%0A%20%20%20%20%20%20%20%20font%2Dstyle%3A%20italic%3B%0A%7D%0A%0Ah1%2Etitle%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20200%25%3B%0A%20%20%20%20%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%20%20%20%20%20%20padding%2Dtop%3A%200%2E2em%3B%0A%20%20%20%20%20%20%20%20padding%2Dbottom%3A%200%2E2em%3B%0A%20%20%20%20%20%20%20%20text%2Dalign%3A%20left%3B%0A%20%20%20%20%20%20%20%20border%3A%20none%3B%0A%7D%0A%0Adt%20code%20%7B%0A%20%20%20%20%20%20%20%20font%2Dweight%3A%20bold%3B%0A%7D%0Add%20p%20%7B%0A%20%20%20%20%20%20%20%20margin%2Dtop%3A%200%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%7D%0A%0Ap%20%7B%0A%20%20%20%20%20%20%20%20margin%2Dtop%3A%200%3B%0A%7D%0A%0A%23footer%20%7B%0A%20%20%20%20%20%20%20%20padding%2Dtop%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2070%25%3B%0A%20%20%20%20%20%20%20%20color%3A%20gray%3B%0A%20%20%20%20%20%20%20%20%7D%0A%0Ah2%2Eauthor%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20110%25%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%200em%3B%0A%20%20%20%20%20%20%20%20margin%2Dright%3A%200em%3B%0A%7D%0A%0Atable%2EsourceCode%2C%20tr%2EsourceCode%2C%20td%2ElineNumbers%2C%20td%2EsourceCode%20%7B%0A%20%20margin%3A%200%3B%20padding%3A%200%3B%20vertical%2Dalign%3A%20baseline%3B%20border%3A%20none%3B%20%7D%0Atable%2EsourceCode%20%7B%20width%3A%20100%25%3B%20%7D%0Atd%2ElineNumbers%20%7B%20text%2Dalign%3A%20right%3B%20padding%2Dright%3A%204px%3B%20padding%2Dleft%3A%204px%3B%20color%3A%20%23aaaaaa%3B%20border%2Dright%3A%201px%20solid%20%23aaaaaa%3B%20%7D%0Atd%2EsourceCode%20%7B%20padding%2Dleft%3A%205px%3B%20%7D%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23007020%3B%20font%2Dweight%3A%20bold%3B%20%7D%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%2340a070%3B%20%7D%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%2340a070%3B%20%7D%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%234070a0%3B%20%7D%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%234070a0%3B%20%7D%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%2360a0b0%3B%20font%2Dstyle%3A%20italic%3B%20%7D%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%2306287e%3B%20%7D%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%0A" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="header">
+<h1 class="title">Mise en oeuvre d’un port série sous Qt</h1>
+<h2 class="author">Thierry Vaira &lt;<script type="text/javascript">
+                   <!--
+                   h='&#102;&#114;&#x65;&#x65;&#46;&#102;&#114;';a='&#64;';n='&#116;&#118;&#x61;&#x69;&#114;&#x61;';e=n+a+h;
+                   document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'<code>'+e+'</code>'+'<\/'+'a'+'>');
+                   // -->
+                   </script><noscript>tvaira at free dot fr</noscript>&gt;</h2>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#mise-en-oeuvre-dun-port-série-sous-qt">Mise en oeuvre d’un port série sous Qt</a><ul>
+<li><a href="#présentation">Présentation</a></li>
+<li><a href="#version-de-qt">Version de Qt</a></li>
+<li><a href="#environnement-de-développement-intégré-edi">Environnement de Développement Intégré (EDI)</a></li>
+<li><a href="#structure-générale-des-classes-qt">Structure générale des classes Qt</a></li>
+<li><a href="#qmake">qmake</a></li>
+<li><a href="#démarrer-un-projet-vierge">Démarrer un projet vierge</a></li>
+<li><a href="#gérer-les-arguments-dun-programme-cc-avec-qt">Gérer les arguments d’un programme C/C++ avec Qt</a></li>
+<li><a href="#manipuler-des-chaînes-de-caractères-avec-qt">Manipuler des chaînes de caractères avec Qt</a></li>
+<li><a href="#gestion-du-port-série-sous-qt">Gestion du port série sous Qt</a></li>
+</ul></li>
+</ul>
+</div>
+<p>Site : <a href="http://tvaira.free.fr/">tvaira.free.fr</a></p>
+<h1 id="mise-en-oeuvre-dun-port-série-sous-qt"><a href="#TOC">Mise en oeuvre d’un port série sous Qt</a></h1>
+<h2 id="présentation"><a href="#TOC">Présentation</a></h2>
+<p>Qt est une <strong>bibliothèque logicielle orientée objet</strong> développée en <strong>C++</strong> par Qt Development Frameworks, filiale de Digia.</p>
+<div class="figure">
+<img src="data:image/png;base64,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" /><p class="caption"></p>
+</div>
+<p>Qt est une plateforme de développement d’interfaces graphiques (GUI - <em>Graphical User Interface</em>) fournie à l’origine par la société norvégienne Troll Tech, rachetée par Nokia en février 2008 puis cédée intégralement en 2012 à Digia (<a href="http://www.qt.io/">www.qt.io</a>).</p>
+<p>Qt permet la portabilité des applications (qui n’utilisent que ses composants) par simple recompilation du code source. Les environnements supportés sont les Unix (dont Linux) qui utilisent le système graphique X Window System, Windows et Mac OS X.</p>
+<p>Qt est principalement dédiée au développement d’interfaces graphiques en fournissant des éléments prédéfinis appelés widgets (pour windows gadgets) qui peuvent être utilisés pour créer ses propres fenêtres et des boîtes de dialogue complètement prédéfinies (ouverture / enregistrement de fichiers, progression d’opération, etc). Qt dispose d’un moteur de rendu graphique 2D performant.</p>
+<p>Qt fournit également un ensemble de classes décrivant des éléments non graphiques : accès aux données, connexions réseaux (<em>socket</em>), gestion des fils d’exécution (<em>thread</em>), analyse XML, etc.</p>
+<p>La dernière version est Qt 5.0 qui est sorti le 19 décembre 2012. Bien que marquant des changements majeurs sur bien des points, le passage de Qt4 à Qt5 casse au minimum la compatibilité au niveau des sources.</p>
+<h2 id="version-de-qt"><a href="#TOC">Version de Qt</a></h2>
+<p>Vous pouvez vérifier la version installée sur votre poste :</p>
+<pre><code>$ dpkg-query -l | grep qt[0-9]
+...
+ii  libqt4-xmlpatterns:i386 4:4.8.1-0ubuntu4.9 Qt 4 XML patterns module
+ii  qt4-demos               4:4.8.1-0ubuntu4.9 Qt 4 examples and demos
+ii  qt4-designer            4:4.8.1-0ubuntu4.9 graphical designer for Qt 4 applications
+ii  qt4-dev-tools           4:4.8.1-0ubuntu4.9 Qt 4 development tools
+ii  qt4-doc                 4:4.8.1-0ubuntu4.9 Qt 4 API documentation
+ii  qt4-linguist-tools      4:4.8.1-0ubuntu4.9 Qt 4 Linguist tools
+ii  qt4-qmake               4:4.8.1-0ubuntu4.9 Qt 4 qmake Makefile generator tool
+...</code></pre>
+<p>On utilisera donc <strong>Qt4</strong> !</p>
+<p>Qt4 sépare sa bibliothèque en modules :</p>
+<ul>
+<li>QtCore : pour les fonctionnalités non graphiques utilisées par les autres modules ;</li>
+<li>QtGui : pour les composants graphiques, maintenant QtWidgets (qt5);</li>
+<li>QtNetwork : pour la programmation réseau ;</li>
+<li>etc …</li>
+</ul>
+<p>Mais ici pour une prise en main minimale de Qt, <strong>nous n’utiliserons pas de modules spécifiques de Qt</strong>.</p>
+<h2 id="environnement-de-développement-intégré-edi"><a href="#TOC">Environnement de Développement Intégré (EDI)</a></h2>
+<p><strong>Qt Creator</strong> est l’environnement de développement intégré dédié à Qt et facilite la gestion d’un projet Qt. Son éditeur de texte offre les principales fonctions que sont la coloration syntaxique, le complètement, l’indentation, etc… Qt Creator intègre en son sein les outils Qt Designer et Qt Assistant. Il intègre aussi un mode débuggage.</p>
+<p><em>Remarque : même si Qt Creator est présenté comme l’environnement de développement de référence pour Qt, il existe des modules Qt pour les environnements de développement Eclipse et Visual Studio. Il existe d’autres EDI dédiés à Qt et développés indépendamment de Nokia, comme QDevelop et Monkey Studio.</em></p>
+<p>Mais ici pour une prise en main minimale de Qt, <strong>nous n’utiliserons pas Qt Creator</strong>.</p>
+<h2 id="structure-générale-des-classes-qt"><a href="#TOC">Structure générale des classes Qt</a></h2>
+<p>L’API Qt est constituée de classes aux noms préfixés par <strong><code>Q</code></strong> et dont chaque mot commence par une majuscule (<code>QString</code>, <code>QObject</code>, …). Il faut savoir que la classe <code>QObject</code> est la classe mère de toutes les classes Qt.</p>
+<p>Par exemple, la classe <code>QString</code> est une classe Qt pour <strong>manipuler les chaînes de caractères</strong>. Pour pouvoir utiliser une classe Qt, il ne faudra oublier d’inclure son fichier de déclaration :</p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;QString&gt;</span>
+
+...
+
+QString myString;</code></pre>
+<p>Ici pour une prise en main minimale de Qt, <strong>nous utiliserons seulement la classe <code>QString</code></strong>.</p>
+<h2 id="qmake"><a href="#TOC">qmake</a></h2>
+<p>Qt se voulant un environnement de développement portable, il a été nécessaire de concevoir un moteur de production spécifique. C’est ainsi qu’est conçu le programme <code>qmake</code>.</p>
+<p>Ce dernier prend en entrée un fichier (avec l’extension <code>.pro</code>) décrivant le projet (liste des fichiers sources, dépendances, paramètres passés au compilateur, etc…) et génère un fichier de projet spécifique à la plateforme. Ainsi, sous les systèmes UNIX/Linux, <code>qmake</code> produira un <code>Makefile</code>.</p>
+<p>Le fichier de projet est fait pour être très facilement éditable par un développeur. Il consiste en une série d’affectations de variables.</p>
+<p>La génération d’une application se fait en plusieurs étapes :</p>
+<ul>
+<li><p>création d’un répertoire et des sources (cela pourra dépendre de l’EDI utilisé) : le nom initial du répertoire détermine le nom du projet et donc de l’exécutable qui sera produit (par défaut)</p></li>
+<li><p>générer un fichier <code>.pro</code> qui décrit comment générer un <code>Makefile</code> pour compiler ce qui est présent dans le dossier courant : <code>$ qmake -project</code></p></li>
+<li><p>générer un <code>Makefile</code> à partir des informations du fichier <code>.pro</code> : <code>$ qmake</code></p></li>
+<li><p>fabriquer l’application en appelant l’outil make : <code>$ make</code></p></li>
+</ul>
+<p><em>Remarque : on exécute la commande <code>qmake</code> seulement si le fichier <code>.pro</code> est modifié</em></p>
+<h2 id="démarrer-un-projet-vierge"><a href="#TOC">Démarrer un projet vierge</a></h2>
+<p>À partir de la ligne de commandes (CLI), voici la procédure pour créer un projet Qt “vierge” :</p>
+<pre><code>$ mkdir mo-qt-0
+
+$ cd mo-qt-0/
+
+$ vim main.cpp
+int main()
+{
+    return 0;
+}
+
+$ qmake -project
+
+$ qmake
+
+$ make
+
+$ ./mo-qt-0
+
+$ cat mo-qt-0.pro
+TEMPLATE = app
+TARGET = 
+DEPENDPATH += .
+INCLUDEPATH += .
+
+# Input
+SOURCES += main.cpp</code></pre>
+<p>Le fichier de projet est fait pour être très facilement éditable par un développeur. Il consiste en une série d’affectations de variables :</p>
+<pre><code>$ vim mo-qt-0.pro
+TEMPLATE = app
+TARGET = monProgramme # le nom de l'exécutable
+DEPENDPATH += .
+INCLUDEPATH += .
+
+# on peut choisir les chemins :
+OBJECTS_DIR = ./tmp # pour les fichiers objets (.o, .obj)
+MOC_DIR = ./tmp # pour les fichiers générés par moc
+DESTDIR = ./bin # pour l'exécutable
+
+# Input
+SOURCES += main.cpp
+
+$ qmake
+
+$ make
+
+$ ./bin/monProgramme
+
+$ ls -l ./tmp/
+-rw-rw-r-- 1 tv tv 1312 sept. 19 17:52 main.o
+
+$ make clean
+rm -f tmp/main.o
+rm -f *~ core *.core
+
+$ ls -l ./tmp/
+total 0</code></pre>
+<h2 id="gérer-les-arguments-dun-programme-cc-avec-qt"><a href="#TOC">Gérer les arguments d’un programme C/C++ avec Qt</a></h2>
+<p>Un paramètre (ou argument) est au sens large un élément d’information à prendre en compte pour prendre une décision ou pour effectuer un calcul.</p>
+<p>Un paramètre est une donnée manipulée par une section de code (programme, shell script, sous-programme, fonction, méthode) et connue du code appelant cette section.</p>
+<p>On distingue deux types de paramètres :</p>
+<ul>
+<li>les paramètres d’entrée : donnée fournie par le code appelant au code appelé</li>
+<li>les paramètres de sortie : donnée fournie par le code appelé au code appelant</li>
+</ul>
+<p>En programmation C/C++, on parle de paramètre effectif. Il s’agit de la variable (ou valeur) fournie lors de l’appel du programme (ou d’un sous-programme). <strong>Lorsqu’on saisit des arguments après le nom d’un programme, ceux-ci sont passés en paramètres de la fonction principal <code>main</code>.</strong></p>
+<p>Le prototype de la fonction <code>main</code> d’un programme C/C++ est <code>int main(int argc, char *argv[]) { ... }</code> ce qui correspond à :</p>
+<ul>
+<li><p>Le paramètre d’entrée <code>argc</code> contient le nombre d’arguments (<code>int</code>)</p></li>
+<li><p>Le paramètre d’entrée <code>argv</code> contient l’ensemble des arguments sous la forme de chaînes de caractère : argv[0] contient le nom du programme, argv[1] contient le premier argument, etc … (<code>char *argv[]</code> ou <code>char **argv</code>)</p></li>
+<li><p>Le paramètre de sortie contient le code de retour à la fin de l’exécution de la fonction <code>main</code> (<code>int</code>)</p></li>
+</ul>
+<p><em>Remarque : pour les affichages dans la console, on utilisera exclusivement <strong><code>qDebug()</code></strong> (donc pas de <code>cout</code> ni de <code>printf</code> !).</em></p>
+<p>Voici un exemple qui permet de comprendre la <strong>gestion des arguments d’un programme C/C++</strong> :</p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;QDebug&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> *argv[])
+{
+   <span class="dt">int</span> i;
+
+   qDebug(<span class="st">&quot;nb d'arguments = %d&quot;</span>, argc);
+   qDebug(<span class="st">&quot;nom du programme argv[0] : %s</span><span class="ch">\n</span><span class="st">&quot;</span>, argv[<span class="dv">0</span>]);
+
+   <span class="kw">for</span>(i=<span class="dv">0</span>;i&lt;argc;i++)
+      qDebug(<span class="st">&quot;argv[%d] = %s&quot;</span>, i, argv[i]);
+
+   <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<p>On obtient :</p>
+<pre><code>$ ./bin/monProgramme hello world
+nb d'arguments = 3
+nom du programme argv[0] : ./bin/monProgramme
+
+argv[0] = ./bin/mo-qt-1
+argv[1] = hello
+argv[2] = world</code></pre>
+<p>Il est possible de l’adapter à nos besoins : par exemple <strong>récupérer le nom du fichier spécial d’accès à un périphérique USB</strong></p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;QDebug&gt;</span>
+<span class="ot">#include &lt;QString&gt;</span>
+
+<span class="ot">#define PORT    &quot;/dev/ttyACM0&quot;</span>
+
+<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> *argv[])
+{   
+   QString nomPort(PORT); <span class="co">// port par défaut</span>
+
+   <span class="co">// un nom a été fourni ? </span>
+   <span class="kw">if</span>(argc &gt; <span class="dv">1</span>)
+   {   
+       nomPort = QString(argv[<span class="dv">1</span>]); <span class="co">// port choisi au lancement du programme</span>
+   }
+
+   qDebug() &lt;&lt; <span class="st">&quot;nom du port : &quot;</span> &lt;&lt; nomPort;
+
+   <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<p>Maintenant, on obtient :</p>
+<pre><code>$ ./bin/monProgramme
+nom du port :  &quot;/dev/ttyACM0&quot; 
+
+$ ./bin/monProgramme /dev/ttyUSB0
+nom du port :  &quot;/dev/ttyUSB0&quot;</code></pre>
+<h2 id="manipuler-des-chaînes-de-caractères-avec-qt"><a href="#TOC">Manipuler des chaînes de caractères avec Qt</a></h2>
+<p>La classe <code>QString</code> contient de nombreuses méthodes pour manipuler des chaînes de caractère. Il vous faudra consulter très souvent sa documentation : <a href="http://doc.qt.io/qt-4.8/qstring.html">doc.qt.io/qt-4.8/qstring.html</a>.</p>
+<p><em>Remarque : la documentation de Qt est très riche et très bien faite !</em></p>
+<p>Voici quelques exemples d’utilisation de la classe <code>QString</code> dans le cadre d’un <strong>traitement d’une trame NMEA 0183</strong> :</p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;QDebug&gt;</span>
+<span class="ot">#include &lt;QString&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> *argv[])
+{
+    QString phrase = <span class="st">&quot;$GPGGA,064036.289,4836.5375,N,00740.9373,E,1,04,3.2,200.2,M,,,,0000*0E&quot;</span>;
+    <span class="co">// Faire des essais :</span>
+    <span class="co">//QString phrase = &quot;&quot;;</span>
+    <span class="co">//QString phrase = &quot;GPGGA,064036.289,4836.5375,N,00740.9373,E,1,04,3.2,200.2,M,,,,0000*0E&quot;;</span>
+    <span class="co">//QString phrase = &quot;$GPAAM,A,A,0.10,N,WPTNME*32&quot;;</span>
+    <span class="co">//QString phrase = &quot;$GPGGA,064036.289,4836.5375,N,00740.9373,E,1,04,3.2,200.2,M,,,,0000&quot;;</span>
+
+    QString checksum;
+    <span class="dt">const</span> QString debutTrame = <span class="st">&quot;$&quot;</span>;
+    <span class="dt">const</span> QString typeTrame = <span class="st">&quot;GPGGA&quot;</span>;
+    <span class="dt">const</span> QString debutChecksum = <span class="st">&quot;*&quot;</span>;
+
+    <span class="co">// phrase vide ?</span>
+    <span class="kw">if</span>(phrase.length() != <span class="dv">0</span>)
+    {    
+        <span class="co">// est-ce une phrase NMEA 0183 ?</span>
+        <span class="kw">if</span>(phrase.startsWith(debutTrame))
+        {    
+            <span class="co">// est-ce la bonne phrase ?</span>
+            <span class="kw">if</span>(phrase.startsWith(debutTrame + typeTrame))
+            {
+                <span class="co">// y-a-t-il un checksum ?</span>
+                <span class="kw">if</span>(phrase.contains(debutChecksum))
+                {
+                    checksum = phrase.section(debutChecksum, <span class="dv">1</span>, <span class="dv">1</span>);
+                    qDebug() &lt;&lt; <span class="st">&quot;checksum : 0x&quot;</span> &lt;&lt; checksum;
+                }
+                <span class="kw">else</span>
+                    qDebug() &lt;&lt; <span class="st">&quot;Attention : il n'y a pas de checksum dans cette phrase !&quot;</span>;
+            }
+            <span class="kw">else</span>
+                qDebug() &lt;&lt; <span class="st">&quot;Erreur : ce n'est pas une trame GGA !&quot;</span>;
+        }
+        <span class="kw">else</span>
+            qDebug() &lt;&lt; <span class="st">&quot;Erreur : ce n'est pas une trame NMEA 0183 !&quot;</span>;
+    }
+    <span class="kw">else</span>
+        qDebug() &lt;&lt; <span class="st">&quot;Erreur : phrase vide !&quot;</span>;
+
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<p>L’autre utilisation fréquente de la classe <code>QString</code> est la <strong>conversion des données numériques (<code>int</code>, <code>double</code>, …)</strong> :</p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;QDebug&gt;</span>
+<span class="ot">#include &lt;QString&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> *argv[])
+{
+    <span class="co">/* Exemple de base */</span>
+    <span class="dt">int</span> i = <span class="dv">2</span>;
+    <span class="dt">double</span> d = <span class="fl">3.14</span>;
+
+    <span class="co">// Du numérique -&gt; chaîne de caractères</span>
+    QString entier = QString::number(i); <span class="co">// int -&gt; QString</span>
+    QString reel = QString::number(d); <span class="co">// double -&gt; QString</span>
+
+    qDebug() &lt;&lt; <span class="st">&quot;L'entier i : &quot;</span> &lt;&lt; entier;
+    qDebug() &lt;&lt; <span class="st">&quot;Le réel d : &quot;</span> &lt;&lt; reel;
+
+    <span class="co">// De chaîne de caractères -&gt; numérique</span>
+    entier = <span class="st">&quot;100&quot;</span>;
+    reel = <span class="st">&quot;2.71828&quot;</span>;
+    i = entier.toInt(); <span class="co">// QString -&gt; int</span>
+    d = reel.toDouble(); <span class="co">// QString -&gt; double</span>
+
+    qDebug() &lt;&lt; <span class="st">&quot;L'entier i : &quot;</span> &lt;&lt; i;
+    qDebug() &lt;&lt; <span class="st">&quot;Le réel d : &quot;</span> &lt;&lt; d;
+
+    <span class="co">/* Exemple appliqué */</span>
+    QString phrase = <span class="st">&quot;$GPGGA,064036.289,4836.5375,N,00740.9373,E,1,04,3.2,200.2,M,,,,0000*0E&quot;</span>;    
+    QString horodatage;
+    <span class="dt">unsigned</span> <span class="dt">int</span> heure, minute;
+    <span class="dt">double</span> seconde;
+
+    <span class="co">// découpe la trame avec le délimiteur ',' et récupère le deuxième champ</span>
+    horodatage = phrase.section(',', <span class="dv">1</span>, <span class="dv">1</span>); 
+    <span class="co">// découpe une chaine à partir d'une position et un nombre de caractères</span>
+    heure = horodatage.mid(<span class="dv">0</span>, <span class="dv">2</span>).toInt();
+    minute = horodatage.mid(<span class="dv">2</span>, <span class="dv">2</span>).toInt();
+    seconde = horodatage.mid(<span class="dv">4</span>, <span class="dv">2</span>).toDouble();
+
+    qDebug() &lt;&lt; <span class="st">&quot;Horodatage : &quot;</span> &lt;&lt; horodatage;
+
+    horodatage = QString::number(heure) + <span class="st">&quot; h &quot;</span> + QString::number(minute) 
+                 + <span class="st">&quot; &quot;</span> + QString::number(seconde) + <span class="st">&quot; s&quot;</span>;
+
+    qDebug() &lt;&lt; <span class="st">&quot;Horodatage : &quot;</span> &lt;&lt; horodatage;    
+
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<h2 id="gestion-du-port-série-sous-qt"><a href="#TOC">Gestion du port série sous Qt</a></h2>
+<p>Malheureusement, la version 4 de Qt ne fournit pas de classes pour gérer un port série nativement. On va donc devoir utiliser une <strong>bibliothèque logicielle</strong> externe à Qt.</p>
+<p><em>Remarque : le problème n’existe plus en Qt5 car on dispose alors de la classe <a href="http://doc.qt.io/qt-5/qserialport.html"><code>QSerialPort</code></a> !</em></p>
+<p>On va utiliser la classe <code>QextSerialPort</code> disponible <a href="http://code.google.com/p/qextserialport/">ici</a>.</p>
+<p>On crée un nouveau répertoire et on se déplace à l’intérieur :</p>
+<pre><code>$ mkdir mo-qt-1
+
+$ cd mo-qt-1/</code></pre>
+<p>On télécharge l’archive :</p>
+<pre><code>$ wget http://qextserialport.googlecode.com/files/qextserialport-1.2rc.zip</code></pre>
+<p>On décompresse l’archive téléchargée :</p>
+<pre><code>$ unzip qextserialport-1.2rc.zip</code></pre>
+<p>On déplace les sources et on renomme le répertoire :</p>
+<pre><code>$ mv qextserialport-1.2rc/src ./qextserialport</code></pre>
+<p>On peut maintenant supprimer l’archive téléchargée :</p>
+<pre><code>$ rm -f qextserialport-1.2rc.zip</code></pre>
+<p>On crée un nouveau fichier de projet :</p>
+<pre><code>$ vim mo-qt-1.pro
+include(qextserialport/qextserialport.pri)
+
+TEMPLATE = app
+TARGET = 
+DEPENDPATH += .
+INCLUDEPATH += .
+
+OBJECTS_DIR = ./tmp
+MOC_DIR = ./tmp
+DESTDIR = ./bin
+
+# Input
+SOURCES += main.cpp</code></pre>
+<p>On crée maintenant un programme de <strong>test du port série</strong> :</p>
+<pre><code>$ vim main.cpp</code></pre>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &quot;qextserialport.h&quot;</span>
+
+<span class="ot">#define PORT &quot;/dev/ttyACM0&quot;</span>
+
+<span class="co">// Mode débuggage</span>
+<span class="ot">#define DEBUG</span>
+
+<span class="ot">#ifdef DEBUG</span>
+<span class="ot">#include &lt;QDebug&gt;</span>
+<span class="ot">#endif</span>
+
+<span class="dt">int</span> main()
+{
+    QextSerialPort *port;
+
+    <span class="co">// création du port en mode asynchrone -&gt; QextSerialPort::Polling</span>
+    port = <span class="kw">new</span> QextSerialPort(QLatin1String(PORT), QextSerialPort::Polling);
+
+    <span class="co">// TODO : paramètrer le port (débit, ...)</span>
+
+    <span class="co">// ouverture du port</span>
+    port-&gt;open(QIODevice::ReadWrite | QIODevice::Unbuffered);
+    <span class="ot">#ifdef DEBUG</span>
+    qDebug(<span class="st">&quot;&lt;debug&gt; etat ouverture port : %d&quot;</span>, port-&gt;isOpen());
+    <span class="ot">#endif</span>
+
+    <span class="co">// TODO : réceptionner des données</span>
+
+    <span class="co">// fermeture du port</span>
+    port-&gt;close();
+    <span class="ot">#ifdef DEBUG</span>
+    qDebug(<span class="st">&quot;&lt;debug&gt; etat ouverture port : %d&quot;</span>, port-&gt;isOpen());
+    <span class="ot">#endif</span>
+
+    <span class="kw">delete</span> port;
+
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<p>On fabrique et on exécute le programme de test du port série :</p>
+<pre><code>$ qmake
+
+$ make
+
+$ ./bin/mo-qt-1
+&lt;debug&gt; etat ouverture port : 1
+&lt;debug&gt; etat ouverture port : 0</code></pre>
+<p>Le paramétrage du port série se fait avec les méthodes suivantes :</p>
+<ul>
+<li><code>setBaudRate()</code></li>
+<li><code>setParity()</code></li>
+<li><code>setDataBits()</code></li>
+<li><code>setStopBits()</code></li>
+<li>… voir la <a href="http://docs.qextserialport.googlecode.com/git/1.2/index.html">documentation</a></li>
+</ul>
+<p>Et pour les opération de lecture et d’écriture, on utilisera les méthodes <a href="http://doc.qt.io/qt-4.8/qiodevice.html"><code>read()</code> et <code>write()</code></a>.</p>
+<p><a href="#">Retour au sommaire</a></p>
+<div id="footer">
+  © 2015 <a href="http://tvaira.free.fr/">Thierry Vaira</a>
+</div>
+</body>
+</html>

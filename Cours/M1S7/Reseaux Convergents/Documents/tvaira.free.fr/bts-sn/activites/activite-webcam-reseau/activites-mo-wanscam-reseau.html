@@ -1,0 +1,406 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Thierry Vaira &lt;tvaira@free.fr&gt;" />
+  <title>Mise en oeuvre réseau de la caméra IP</title>
+  <link href="data:text/css,body%20%7B%0A%20%20%20%20margin%3A%20auto%3B%0A%20%20%20%20padding%2Dright%3A%201em%3B%0A%20%20%20%20padding%2Dleft%3A%201em%3B%0A%20%20%20%20max%2Dwidth%3A%2064em%3B%20%0A%20%20%20%20border%2Dleft%3A%201px%20solid%20black%3B%0A%20%20%20%20border%2Dright%3A%201px%20solid%20black%3B%0A%20%20%20%20color%3A%20black%3B%0A%20%20%20%20font%2Dfamily%3A%20Verdana%2C%20sans%2Dserif%3B%0A%20%20%20%20font%2Dsize%3A%20100%25%3B%0A%20%20%20%20line%2Dheight%3A%20140%25%3B%0A%20%20%20%20color%3A%20%23333%3B%20%0A%7D%0Apre%20%7B%0A%20%20%20%20border%3A%201px%20dotted%20gray%3B%0A%20%20%20%20background%2Dcolor%3A%20%23ececec%3B%0A%20%20%20%20color%3A%20%231111111%3B%0A%20%20%20%20padding%3A%200%2E5em%3B%0A%7D%0Acode%20%7B%0A%20%20%20%20font%2Dfamily%3A%20monospace%3B%0A%20%20%20%20font%2Dsize%3A%20130%25%3B%0A%7D%0Ah1%20a%2C%20h2%20a%2C%20h3%20a%2C%20h4%20a%2C%20h5%20a%20%7B%20%0A%20%20%20%20text%2Ddecoration%3A%20none%3B%0A%20%20%20%20color%3A%20%237a5ada%3B%20%0A%7D%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%20%7B%20font%2Dfamily%3A%20verdana%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20border%2Dbottom%3A%201px%20dotted%20black%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20color%3A%20%237a5ada%3B%20%7D%0Ah1%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20130%25%3B%0A%7D%0A%0Ah2%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20110%25%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%2Dright%3A%201em%3B%0A%7D%0A%0Ah3%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2095%25%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%2Dright%3A%201em%3B%0A%7D%0A%0Ah4%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2090%25%3B%0A%20%20%20%20%20%20%20%20font%2Dstyle%3A%20italic%3B%0A%7D%0A%0Ah5%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2090%25%3B%0A%20%20%20%20%20%20%20%20font%2Dstyle%3A%20italic%3B%0A%7D%0A%0Ah1%2Etitle%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20200%25%3B%0A%20%20%20%20%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%20%20%20%20%20%20padding%2Dtop%3A%200%2E2em%3B%0A%20%20%20%20%20%20%20%20padding%2Dbottom%3A%200%2E2em%3B%0A%20%20%20%20%20%20%20%20text%2Dalign%3A%20left%3B%0A%20%20%20%20%20%20%20%20border%3A%20none%3B%0A%7D%0A%0Adt%20code%20%7B%0A%20%20%20%20%20%20%20%20font%2Dweight%3A%20bold%3B%0A%7D%0Add%20p%20%7B%0A%20%20%20%20%20%20%20%20margin%2Dtop%3A%200%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%7D%0A%0Ap%20%7B%0A%20%20%20%20%20%20%20%20margin%2Dtop%3A%200%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%2Dright%3A%201em%3B%0A%7D%0A%0A%23footer%20%7B%0A%20%20%20%20%20%20%20%20padding%2Dtop%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%201em%3B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%2070%25%3B%0A%20%20%20%20%20%20%20%20color%3A%20gray%3B%0A%20%20%20%20%20%20%20%20%7D%0A%0Ah2%2Eauthor%20%7B%0A%20%20%20%20%20%20%20%20font%2Dsize%3A%20110%25%3B%0A%20%20%20%20%20%20%20%20margin%2Dleft%3A%200em%3B%0A%20%20%20%20%20%20%20%20margin%2Dright%3A%200em%3B%0A%7D%0A%0Atable%2EsourceCode%2C%20tr%2EsourceCode%2C%20td%2ElineNumbers%2C%20td%2EsourceCode%20%7B%0A%20%20margin%3A%200%3B%20padding%3A%200%3B%20vertical%2Dalign%3A%20baseline%3B%20border%3A%20none%3B%20%7D%0Atable%2EsourceCode%20%7B%20width%3A%20100%25%3B%20%7D%0Atd%2ElineNumbers%20%7B%20text%2Dalign%3A%20right%3B%20padding%2Dright%3A%204px%3B%20padding%2Dleft%3A%204px%3B%20color%3A%20%23aaaaaa%3B%20border%2Dright%3A%201px%20solid%20%23aaaaaa%3B%20%7D%0Atd%2EsourceCode%20%7B%20padding%2Dleft%3A%205px%3B%20%7D%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23007020%3B%20font%2Dweight%3A%20bold%3B%20%7D%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%2340a070%3B%20%7D%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%2340a070%3B%20%7D%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%234070a0%3B%20%7D%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%234070a0%3B%20%7D%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%2360a0b0%3B%20font%2Dstyle%3A%20italic%3B%20%7D%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%2306287e%3B%20%7D%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%0A" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="header">
+<h1 class="title">Mise en oeuvre réseau de la caméra IP</h1>
+<h2 class="author">Thierry Vaira &lt;<script type="text/javascript">
+                   <!--
+                   h='&#102;&#114;&#x65;&#x65;&#46;&#102;&#114;';a='&#64;';n='&#116;&#118;&#x61;&#x69;&#114;&#x61;';e=n+a+h;
+                   document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'<code>'+e+'</code>'+'<\/'+'a'+'>');
+                   // -->
+                   </script><noscript>tvaira at free dot fr</noscript>&gt;</h2>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#mise-en-oeuvre-réseau-de-la-caméra-ip">Mise en oeuvre réseau de la caméra IP</a><ul>
+<li><a href="#adressage-ip-par-dhcp">Adressage IP par DHCP</a></li>
+<li><a href="#services-disponibles">Services disponibles</a></li>
+<li><a href="#accès-web-test-en-ligne-de-commande">Accès web : test en ligne de commande</a></li>
+<li><a href="#accès-telnet">Accès <code>telnet</code></a></li>
+</ul></li>
+</ul>
+</div>
+<p>Site : <a href="http://tvaira.free.fr/">tvaira.free.fr</a></p>
+<h1 id="mise-en-oeuvre-réseau-de-la-caméra-ip"><a href="#TOC">Mise en oeuvre réseau de la caméra IP</a></h1>
+<h2 id="adressage-ip-par-dhcp"><a href="#TOC">Adressage IP par DHCP</a></h2>
+<p>Pour communiquer avec la caméra IP, il faut que celle-ci possède une adresse IP dans le réseau local.</p>
+<p>On distingue deux situations pour assigner une adresse IP à un équipement :</p>
+<ul>
+<li><p>de manière statique : l’adresse est fixe et configurée le plus souvent manuellement puis stockée dans la configuration de son système d’exploitation.</p></li>
+<li><p>de manière dynamique : l’adresse est automatiquement transmise et assignée grâce au protocole DHCP (<em>Dynamic Host Configuration Protocol</em>) ou BOOTP.</p></li>
+</ul>
+<p>Dans notre situation, l’adresse IP de la caméra est assignée par un serveur DHCP.</p>
+<p>On va donc se connecter au serveur puis rechercher l’adresse IP attribuée à partir de l’adresse MAC de la caméra :</p>
+<pre><code>$ ssh toto@192.168.52.83
+
+# cat /var/lib/dhcp/dhcpd.leases | grep -A 1 -B 5 -i &quot;00:D1:13:11:36:ED&quot;
+lease 192.168.52.216 {
+  starts 3 2015/09/09 13:09:31;
+  ends 3 2015/09/09 21:09:31;
+  tstp 3 2015/09/09 21:09:31;
+  binding state free;
+  hardware ethernet 00:d1:13:11:36:ed;
+  uid &quot;\001\000\321\023\0216\355&quot;;
+--
+lease 192.168.52.216 {
+  starts 5 2015/09/25 06:06:29;
+  ends 5 2015/09/25 14:06:29;
+  binding state active;
+  next binding state free;
+  hardware ethernet 00:d1:13:11:36:ed;
+  uid &quot;\001\000\321\023\0216\355&quot;;</code></pre>
+<p><strong>SSH</strong> (<em>Secure Shell</em>) est à la fois un programme informatique et un protocole de communication sécurisé. Le protocole de connexion impose un échange de clés de chiffrement en début de connexion. Le protocole SSH a été conçu avec l’objectif de remplacer les différents programmes <code>rlogin</code>, <code>telnet</code>, <code>rcp</code>, <code>ftp</code> et <code>rsh</code>.</p>
+<p>Une <strong>adresse MAC</strong> (<em>Media Access Control address</em>) est un identifiant physique stocké dans une carte réseau ou une interface réseau et utilisé pour attribuer mondialement une adresse unique (codé sur 48 bits). L’adresse MAC est utilisée dans les trames transmises. Une trame transporte un paquet. L’adresse MAC identifie donc de manière unique l’interface physique de communication. Par exemple, on aura donc une adresse MAS pour l’interface Ethernet et une autre pour l’interface Wifi.</p>
+<p>Maintenant, on va vérifier l’état de la communication IP avec la caméra :</p>
+<pre><code>$ ping 192.168.52.216 -c 1
+PING 192.168.52.216 (192.168.52.216) 56(84) bytes of data.
+64 bytes from 192.168.52.216: icmp_req=1 ttl=64 time=0.432 ms
+
+--- 192.168.52.216 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.432/0.432/0.432/0.000 ms</code></pre>
+<p><strong>ping</strong> est le nom d’une commande informatique réseau permettant d’envoyer une requête ICMP (demande d’ECHO ou <em>echo-request</em>) d’une machine à une autre machine (qui retourne une réponse d’ECHO ou <em>echo-reply</em>). Selon la réponse on connaît l’état de la machine distante. Si la machine ne répond pas il se peut que l’on ne puisse tout simplement pas communiquer avec elle. Cette commande réseau de base permet donc d’obtenir des informations et en particulier le temps de réponse de la machine à travers le réseau et aussi quel est l’état de la connexion avec cette machine (renvoi d’un code d’erreur correspondant).</p>
+<h2 id="services-disponibles"><a href="#TOC">Services disponibles</a></h2>
+<p>La caméra IP fournit un certain nombre de services. Pour les découvrir, il suffit de “scanner” les ports ouverts sur la caméra. En effet, pour accéder à un service distant (notion de serveur offrant un service), il faut pouvoir l’identifier et cela est réalisé par le numéro de port. On peut remarquer que l’adresse IP ne permet que d’identifier la “machine” avec laquelle on communique mais cela ne suffira pas pour identifier l’application avec laquelle on veut communiquer.</p>
+<p>Pour trouver les numéros de port “ouvert”, on va utiliser l’outil <code>nmap</code> côté client :</p>
+<pre><code>$ sudo apt-get install nmap
+
+$ nmap -A -T4 192.168.52.216
+
+Starting Nmap 5.21 ( http://nmap.org ) at 2015-09-25 08:28 CEST
+Nmap scan report for 192.168.52.216
+Host is up (0.015s latency).
+Not shown: 997 closed ports
+PORT     STATE SERVICE    VERSION
+23/tcp   open  telnet     BusyBox telnetd
+99/tcp   open  http       GoAhead httpd (WAP http config)
+| http-auth: HTTP Service requires authentication
+|_  Auth type: Digest, realm = GoAhead
+|_html-title: Document Error: Unauthorized
+8600/tcp open  tcpwrapped
+Service Info: Device: WAP
+
+Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 11.40 seconds
+
+$ nmap -p 21-23 192.168.52.216
+
+Starting Nmap 5.21 ( http://nmap.org ) at 2015-09-25 08:34 CEST
+Nmap scan report for 192.168.52.216
+Host is up (0.00071s latency).
+PORT   STATE  SERVICE
+21/tcp closed ftp
+22/tcp closed ssh
+23/tcp open   telnet
+
+Nmap done: 1 IP address (1 host up) scanned in 0.03 seconds</code></pre>
+<p>On en conclut que :</p>
+<ul>
+<li><p>un serveur HTTP s’exécute sur le port 99 (et pas 80, le port par défaut pour les serveurs web)</p></li>
+<li><p>un serveur telnet s’exécute sur son port par défaut le 23</p></li>
+</ul>
+<p><strong>Telnet</strong> (<em>TErminal NETwork ou TELecommunication NETwork</em>, ou encore <em>TELetype NETwork</em>) est un protocole utilisé sur tout réseau TCP/IP, permettant de communiquer avec un serveur distant en échangeant des lignes de textes et en recevant des réponses également sous forme de texte. Créé en 1969, telnet est un moyen de communication très généraliste et bi-directionnel. Il appartient à la couche application du modèle OSI et du modèle ARPA (DoD). Il est normalisé par l’IETF (RFC 15, 854 et 855). Il était notamment utilisé pour administrer des serveurs UNIX distant ou de l’équipement réseau, avant de tomber en désuétude par défaut de sécurisation, le texte étant échangé en clair, et l’adoption de SSH.</p>
+<p>On peut vérifier le port affecté au service <code>telnet</code> dans la liste des ports <em>well-known</em> (bien connus) :</p>
+<pre><code>$ cat /etc/services | grep telnet
+telnet      23/tcp
+...</code></pre>
+<h2 id="accès-web-test-en-ligne-de-commande"><a href="#TOC">Accès web : test en ligne de commande</a></h2>
+<p>Il est possible de tester l’accès aux CGI du serveur web de la caméra en ligne de commandes :</p>
+<pre><code>$ curl -v -X GET 'http://192.168.52.14:99/get_params.cgi?user=admin&amp;pwd='
+* About to connect() to 192.168.52.14 port 99 (#0)
+*   Trying 192.168.52.14... connected
+&gt; GET /get_params.cgi?user=admin&amp;pwd= HTTP/1.1
+&gt; User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0
+&gt; Host: 192.168.52.14:99
+&gt; Accept: */*
+&gt; 
+&lt; HTTP/1.1 200 OK
+&lt; Date: Mon Sep 28 16:43:42 2015
+&lt; Server: GoAhead-Webs
+&lt; Last-modified: Mon Mar  2 20:56:00 1970
+&lt; Content-type: text/html
+&lt; Cache-Control:no-cache
+&lt; Content-length: 3331
+&lt; Connection: close
+&lt; 
+var now1=1443458622;
+var tz=-28800;
+var ntp_enable=1;
+var ntp_svr=&quot;time.nist.gov&quot;;
+var dhcpen=1;
+var ip=&quot;192.168.52.14&quot;;
+var mask=&quot;255.255.255.0&quot;;
+...</code></pre>
+<p><strong>CGI</strong> (<em>Common Gateway Interface</em>) est une interface utilisée par les serveurs HTTP. Elle a été normalisée par la RFC 3875. Au lieu d’envoyer le contenu d’un fichier (fichier HTML, image), le serveur HTTP exécute un programme, puis retourne le contenu généré. CGI est le standard industriel qui indique comment transmettre la requête du serveur HTTP au programme, et comment récupérer la réponse générée. Une des caractéristiques de l’interface CGI est d’être indépendante de tout langage de programmation, car elle utilise les flux standard et les variables d’environnement. Même si le langage Perl a historiquement été souvent utilisé pour en écrire, il est possible d’écrire un programme CGI en C, Python, PHP, script shell, en VB ou en tout autre langage de programmation.</p>
+<p>Le protocole <strong>NTP</strong> (<em>Network Time Protocol</em>) est un protocole qui permet de synchroniser, via un réseau informatique, l’horloge locale d’un ordinateur sur une référence d’heure.</p>
+<h2 id="accès-telnet"><a href="#TOC">Accès <code>telnet</code></a></h2>
+<p>Pour accéder au serveur telnet de la caméra, il faut un compte. Ici, il apparait que le compte <code>root</code> n’est pas le même que celui pour administrer la caméra à partir de l’interface web (port 99). Obtenir le mot de pass de <code>root</code> sort du cadre de ce document. Mais on peut décrire la procédure si le système Linux est l’OS de la caméra :</p>
+<ul>
+<li>obtenir le <em>firmware</em> par le site du fabricant (c’est une habitude des constructeurs de le fournir car cela permet de mettre à jour le “logiciel” embarqué dans la caméra)</li>
+<li>analyser le <em>firmware</em> (un outil comme <code>binwalk</code> peut s’avérer utile)</li>
+<li>rechercher le fichier contenant le compte <code>root</code> et son passe crypté (généralement un fichier <code>passwd</code> et éventuellement le fichier <code>shadow</code>)</li>
+<li>casser le mot de passe avec un logiciel comme <em>John the Ripper</em> (un outil comme <code>hydra</code> peut aussi être utilisé)</li>
+</ul>
+<pre><code>// on recherche l'identifiant (PK) des fichiers ZIP
+$ hexdump -n 160 -C 67.2.2.172.bin 
+00000000  77 69 66 69 2d 63 61 6d  65 72 61 2d 73 79 73 2d  |wifi-camera-sys-|
+00000010  71 65 74 79 69 70 61 64  67 6a 6c 7a 63 62 6d 6e  |qetyipadgjlzcbmn|
+00000020  25 0d 05 00 50 4b 03 04  0a 00 00 00 00 00 c2 99  |%...PK..........|
+00000030  6c 43 00 00 00 00 00 00  00 00 00 00 00 00 07 00  |lC..............|
+00000040  1c 00 73 79 73 74 65 6d  2f 55 54 09 00 03 7b 0d  |..system/UT...{.|
+00000050  82 52 3d 12 7b 53 75 78  0b 00 01 04 fe ff 00 00  |.R=.{Sux........|
+00000060  04 fe ff 00 00 50 4b 03  04 0a 00 00 00 00 00 c2  |.....PK.........|
+00000070  99 6c 43 00 00 00 00 00  00 00 00 00 00 00 00 0b  |.lC.............|
+00000080  00 1c 00 73 79 73 74 65  6d 2f 77 77 77 2f 55 54  |...system/www/UT|
+00000090  09 00 03 7b 0d 82 52 3d  12 7b 53 75 78 0b 00 01  |...{..R=.{Sux...|
+000000a0
+
+// on renomme alors le fichier en .zip
+$ mv 67.2.2.172.bin 67.2.2.172.zip
+
+// on décompresse l'archive
+$ unzip 67.2.2.172.zip 
+Archive:  67.2.2.172.zip
+warning [67.2.2.172.zip]:  36 extra bytes at beginning or within zipfile
+  (attempting to process anyway)
+   creating: system/
+   creating: system/www/
+   creating: system/system/
+   creating: system/system/bin/
+  inflating: system/system/bin/daemon.v5.9  
+  inflating: system/system/bin/encoder  
+  inflating: system/system/bin/gmail_thread  
+   creating: system/system/lib/
+   creating: system/system/drivers/
+   creating: system/Wireless/
+   creating: system/init/
+  inflating: system/init/ipcam.sh
+
+// on recherche le fichier passwd (et éventuellement shadow)
+$ strings system/system/bin/daemon.v5.9 | grep -A 1 -B 1 passwd
+/system/system/bin/encoder &amp;
+/etc/passwd
+root:LSiuY7pOmZG2s:0:0:Adminstrator:/:/bin/sh
+--
+recive failed by zqh errno=%d
+user or passwd is error
+rm -f /tmp/post1.bin
+check user or passwd is ok
+GCC: (GNU) 3.3.2
+
+// on peut rechercher si il y a des décompressions (avec unzip) avec mot de passe
+$ strings system/system/bin/daemon.v5.9 | grep -A 1 -B 1 unzip
+cp /tmp/system-b.ini /system/www/system-b.ini
+unzip1 -o -P vstarcam!@#$%  /tmp/www.zip -d /system
+rm /tmp/www.zip
+--
+First Extract all file Except daemon
+unzip -o /tmp/system.zip -x system/system/bin/daemon* -d /.
+Sencond Extract daemon only
+unzip -o /tmp/system.zip system/system/bin/daemon* -d /.
+chmod a+x /system/system/bin/*
+
+// il faut donc décrypter la chaîne LSiuY7pOmZG2s (cf. John the Ripper)
+
+// vérifions le mot de passe obtenu
+$ perl -e &quot;print crypt('123456','LS');&quot;
+LSiuY7pOmZG2s</code></pre>
+<p><em>John the Ripper</em> (ou JTR, ou John) est un logiciel libre de cassage de mot de passe, utilisé notamment pour tester la sécurité d’un mot de passe (audit, crack). D’abord développé pour tourner sous les systèmes dérivés d’UNIX, le programme fonctionne aujourd’hui sous une cinquantaine de plates-formes différentes, telles que BeOS, BSD et ses dérivés, DOS, Linux, OpenVMS, Win32 … John est l’un des craqueurs de mots de passe les plus populaires, car il inclut l’autodétection des tables de hachage utilisées par les mots de passe, l’implémentation d’un grand nombre d’algorithmes de cassage, par le fait qu’il soit très facilement modifiable, et aussi qu’il soit possible de reprendre une attaque après une pause (arrêt de la machine).</p>
+<p>Ici, le mot de passe par défaut (mais peut-on le changer ? cf. <code>chpasswd</code>) du compte <code>root</code> est <strong><code>123456</code></strong> !</p>
+<pre><code>$ telnet 192.168.52.216
+Trying 192.168.52.216...
+Connected to 192.168.52.216.
+Escape character is '^]'.
+
+(none) login: root
+Password: 123456
+
+BusyBox v1.12.1 (2012-11-20 15:16:24 CST) built-in shell (ash)
+Enter 'help' for a list of built-in commands.
+
+# ls
+var     usr     tmp     system  sys     sbin    proc    param   mnt     media   lib     
+init    home    etc_ro  etc     dev     bin
+
+# ifconfig 
+eth2      Link encap:Ethernet  HWaddr 00:D1:13:11:36:ED
+...</code></pre>
+<p><strong>BusyBox</strong> est un logiciel qui implémente un grand nombre des commandes standard sous Unix, à l’instar des GNU Core Utilities. Comme chaque fichier binaire exécutable pour Linux comporte plusieurs kilooctets d’informations additionnelles, l’idée de combiner plus de deux cent programmes en un seul fichier exécutable permet de gagner une taille considérable. Distribué sous la licence GNU GPL version 2, BusyBox est un logiciel libre.</p>
+<p>Pour connaître l’architecture processeur de la caméra IP, on peut faire :</p>
+<pre><code># cat proc/cpuinfo 
+system type             : Ralink SoC
+processor               : 0
+cpu model               : MIPS 24K V4.12
+BogoMIPS                : 239.10
+...
+
+# free
+              total         used         free       shared      buffers
+  Mem:        29336        21940         7396            0         1012
+ Swap:            0            0            0
+Total:        29336        21940         7396</code></pre>
+<p>Conclusion : la caméra est équipée d’un processeur Ralink MIPS CPU à 360Mhz, avec 32MB de RAM.</p>
+<p>Et pour son système d’exploitation :</p>
+<pre><code># cat proc/version 
+Linux version 2.6.21 (root@mailzxh-desktop) (gcc version 3.4.2) #653 Tue Nov 20 15:22:24 CST 2012</code></pre>
+<p>Sur les systèmes du type Unix/Linux, <strong><code>procfs</code></strong> (<em>process file system</em>, système de fichiers processus) est un <strong>pseudo-système de fichiers</strong> (pseudo car dynamiquement généré au démarrage) utilisé pour accéder aux informations du noyau sur les processus. Le système de fichiers est souvent monté sur le répertoire <code>/proc</code>. Puisque <code>/proc</code> n’est pas une arborescence réelle, il ne consomme aucun espace disque mais seulement une quantité limitée de mémoire vive. Une modification d’un fichier situé dans <code>/proc</code> ne sera donc pas permanente. Certains fichiers ne sont accessibles qu’en lecture seule.</p>
+<p>On termine notre petit tour par une observation des serveurs actifs :</p>
+<pre><code># netstat -nap
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:99              0.0.0.0:*               LISTEN      147/encoder
+tcp        0      0 0.0.0.0:23              0.0.0.0:*               LISTEN      28/telnetd
+tcp        0      0 0.0.0.0:8600            0.0.0.0:*               LISTEN      29/daemon.v5.5
+tcp        0      0 192.168.52.14:23        192.168.52.2:43586      ESTABLISHED 28/telnetd
+udp      472      0 127.0.0.1:8832          0.0.0.0:*                           147/encoder
+udp        0      0 127.0.0.1:6666          0.0.0.0:*                           147/encoder
+udp        0      0 0.0.0.0:8600            0.0.0.0:*                           29/daemon.v5.5
+udp        0      0 127.0.0.1:9123          0.0.0.0:*                           29/daemon.v5.5
+udp        0      0 127.0.0.1:9124          0.0.0.0:*                           147/encoder
+udp        0      0 0.0.0.0:32108           0.0.0.0:*                           147/encoder
+udp        0      0 127.0.0.1:8812          0.0.0.0:*                           31/gmail_thread
+udp        0      0 127.0.0.1:8813          0.0.0.0:*                           147/encoder
+udp        0      0 127.0.0.1:8822          0.0.0.0:*                           147/encoder
+udp        0      0 0.0.0.0:20989           0.0.0.0:*                           147/encoder
+udp        0      0 127.0.0.1:8831          0.0.0.0:*                           30/cmd_thread</code></pre>
+<p>On en déduit que :</p>
+<ul>
+<li><p>le serveur web (HTTP) est le processus <code>encoder</code> (!) sur le port 99</p></li>
+<li><p>le serveur telnet est <code>telnetd</code> sur le port 23</p></li>
+<li><p>et qu’il y a un serveur qui s’exécute sur le port 8600 (?)</p></li>
+</ul>
+<p>Cela correspond évidemment à ce que l’on avait obtenu avec <code>nmap</code> côté client.</p>
+<p>Lorsque le système d’exploitation de la caméra démarre à la mise sous tension, celui-ci exécutera un script qui lance les serveurs identifiés précedemment :</p>
+<pre><code>// Que se passe-t-il au démarrage ?
+# cat etc_ro/inittab 
+::sysinit:/etc_ro/rcS
+ttyS1::respawn:/bin/sh
+
+// on lance le script rc suivant :
+# cat etc_ro/rcS 
+#!/bin/sh
+mount -a
+mkdir -p /var/run
+cat /etc_ro/motd
+nvram_daemon&amp;
+#goahead&amp;
+#for telnet debugging
+#telnetd
+#for syslogd
+#/usr/sbin/network.sh
+mkdir -p /var/log
+mount -t jffs2 /dev/mtdblock6 /system
+mount -t jffs2 /dev/mtdblock7 /param
+/system/init/ipcam.sh
+
+// qui se termine par l'exécution du script :
+# cat system/init/ipcam.sh
+export LD_LIBRARY_PATH=/system/system/lib:$LD_LIBRARY_PATH
+export PATH=/system/system/bin:$PATH
+telnetd
+/system/system/bin/daemon.v5.5 &amp;
+/system/system/bin/cmd_thread &amp;
+/system/system/bin/gmail_thread &amp;</code></pre>
+<p>Le contrôle d’accès des pages web est réalisé à partir du fichier <code>login.cgi</code> :</p>
+<pre><code># cat param/login.cgi      
+var loginuser=&quot;admin&quot;;
+var loginpass=&quot;&quot;;
+var pri=255;</code></pre>
+<p>Mais ce fichier est ré-écrit par le processus <code>encoder</code> (le serveur web) à partir du fichier <code>system.ini</code> qui contient la configuration réalisée par l’interface web. Ce fichier est un format binaire propre à l’application <code>encoder</code> contenant des chaînes des caractères :</p>
+<pre><code>$ strings system/system/bin/encoder | grep login.cgi
+login.cgi
+/param/login.cgi
+login cgi is error
+
+$ strings system/system/bin/encoder | grep system.ini
+rm /system/www/system.ini
+cp /system/www/system.ini /system/www/system-b.ini
+cp /system/www/system.ini /tmp/system.ini
+cp /tmp/system.ini /system/www/system.ini
+chmod a+x /system/init/ipcam.sh
+==== %-16s, line %4d, %-24s:read system.ini
+cp /system/www/system-b.ini /system/www/system.ini
+
+# cd /system/www/
+
+# vi lire.sh 
+#!/bin/sh
+
+# affiche un caractere visible
+chr(){
+    n=`expr &quot;$1&quot; : '[[:print:]]*'`
+    if [ &quot;$n&quot; -eq 0 ]
+    then
+       # on remplace par le caractere %
+       echo -n '%'
+       return 1
+    fi
+    echo -n $1
+}
+
+# enleve les caracteres de controle
+#cat &quot;$1&quot; | sed -e 's/[[:cntrl:]]/ /g' &gt; &quot;.$1&quot;
+cat &quot;$1&quot; &gt; &quot;.$1&quot;
+
+# affiche le fichier comme la commande strings
+for ligne in $(cat &quot;.$1&quot;);
+do
+   len=${#ligne}
+   let i=0
+   while [ $i -lt $len ]
+   do
+      a=${ligne:$i:1}
+      chr $a
+      let i=i+1
+   done
+   echo &quot;&quot;
+done
+
+rm -f &quot;.$1&quot;
+
+# ./lire.sh system.ini
+JWEV-182544-CFCFFIPCAM%%%C00:D1:13:11:36:ED%%00:D1:13:11:36:EE%%yHV%%%%%time.nist.gov
+http://ipcpnp.com/upgengxin.aspP%P%192.168.52.216255.255.255.0192.168.52.18.8.8.8192.168.52.1%c
+%%admin%%wanscam_office88888888%PIPCAM0123456789192.168.9.1255.255.255.0192.168.9.2192.168.9.254
+%%%&lt;%%%%%%%%%@P%%%
+%@%%192.168.1.111IPCAMipcc</code></pre>
+<p>Ici, le compte administrateur de l’interface web est <code>admin</code> sans mot de passe.</p>
+<p>Les fichiers composant l’interface web sont stockés à la racine du serveur HTTP :</p>
+<pre><code># ls -l system/www/
+system/www/Japanese/             system/www/codebase/             system/www/italian/              
+system/www/public.js             system/www/spanish/              system/www/Korean/
+system/www/config.htm            system/www/jquery-1.3.1.js       system/www/reboot.htm
+system/www/status.htm            system/www/Polski/               system/www/control.htm
+system/www/jquery/               system/www/rebootme.htm          system/www/style.css
+system/www/Portugal/             system/www/datetime.htm          system/www/live.htm
+system/www/recordpath.htm        system/www/swedish/              system/www/Russian/
+system/www/ddns.htm              system/www/log.htm               system/www/recordpath2.htm
+system/www/system-b.ini          system/www/admin.htm             system/www/decoder.htm
+system/www/login.htm             system/www/recordplay.htm        system/www/system.ini
+...</code></pre>
+<p>Pour éditer un fichier, on peut évidemment utiliser le célèbre <code>vi</code> (voilà à quoi il sert !) :</p>
+<pre><code># vi system/www/index.htm :</code></pre>
+<p>On constate qu’il existe une variable <code>language</code> qui permet de sélectionner la langue par défaut pour l’interface web (la valeur 3 correspond au français)</p>
+<p>Pour sortir d’une session telnet, il suffit de faire :</p>
+<pre><code># exit</code></pre>
+<p>Il est évidemment possible de <em>sniffer</em> le trafic de la communication <code>telnet</code> pour vérifier si l’authentification (<em>login/password</em>) est transmise en clair ou sous une forme cryptée.</p>
+<p>Pour cela, vous pouvez utiliser <strong>Wireshark</strong> (en appliquant la règle de filtrage <code>tcp.port == 23</code>) :</p>
+<pre><code>$ gksudo wireshark</code></pre>
+<p>Ou <code>tcpdump</code> en ligne de commandes :</p>
+<pre><code>$ sudo tcpdump -Av port 23
+...</code></pre>
+<p><a href="#">Retour au sommaire</a></p>
+<div id="footer">
+  © 2015 <a href="http://tvaira.free.fr/">Thierry Vaira</a>
+</div>
+
+</body>
+</html>

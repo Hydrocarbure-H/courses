@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- Define the element for numeric values -->
+    <xs:element name="cn" type="xs:integer" />
+
+    <!-- Define the possible operation elements using xs:choice -->
+    <xs:element name="plus" />
+    <xs:element name="times" />
+    <xs:element name="divide" />
+    <xs:element name="minus" />
+    <xs:element name="quotient" />
+
+    <!-- Define the apply element as a named complex type -->
+    <xs:element name="apply" type="ApplyType" />
+
+    <!-- Define the complex type for apply = REALLY HARD TO FIND. Another easier method does exists
+    ?-->
+    <xs:complexType name="ApplyType">
+        <xs:sequence>
+            <!-- Use xs:choice to specify the operation elements  Max = Min = 1 because we do not
+            want multiple operators for one operation-->
+            <xs:choice minOccurs="1" maxOccurs="1">
+                <xs:element ref="plus" />
+                <xs:element ref="times" />
+                <xs:element ref="divide" />
+                <xs:element ref="minus" />
+                <xs:element ref="quotient" />
+            </xs:choice>
+            <!-- Second child is a sequence of cn elements Max to 2 because N operator M-->
+            <xs:element ref="cn" minOccurs="0" maxOccurs="2" />
+            <!-- Allow for nested apply elements = REALLY HARD TO FIND-->
+            <xs:element ref="apply" minOccurs="0" maxOccurs="2" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Define the maths element that wraps everything -->
+    <xs:element name="maths">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="apply" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="cn" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="plus" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="times" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="divide" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="minus" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="quotient" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

@@ -299,7 +299,7 @@ Permet l'enregistrement de mots de passe.
 
 ![image-20240122104215363](./assets/image-20240122104215363.png)
 
-​	
+​	Des modèles peuvent être créés dans des `fichiers.inf`.
 
 # Security Compliance Tookkit
 
@@ -368,3 +368,27 @@ Un `Security Descriptor` dans Windows est une structure qui contient des informa
 | `S-1-3-0`      | Creator Owner |
 | `S-1-3-1`      | Creator Group |
 | `S-1-3-4`      | Owner Rights  |
+
+# SDDL
+
+> *Le formatage SDDL (Security Descriptor Definition Language) est utilisé dans les systèmes Windows pour décrire les descripteurs de sécurité (security descriptors) de manière textuelle. - ChatGPT*
+
+**SDDL Format**
+- **`O:owner’s SID`** : Spécifie l'identifiant de sécurité (SID) du propriétaire de l'objet.
+- **`G:group owner SID`** : Indique le SID du groupe principal de l'objet.
+- **`D:dacl_flags(string_ace1)(string_ace2)... (string_acen)`** : Représente la liste de contrôle d'accès discrétionnaire (DACL) avec ses drapeaux et les entrées de liste de contrôle d'accès (ACE).
+- **`S:sacl_flags(string_ace1)(string_ace2)... (string_acen)`** : Décrit la liste de contrôle d'accès système (SACL), incluant les ACE pour l'audit et le suivi.
+
+**ACE Format**
+
+- **`ace_type;ace_flags;rights;object_guid;inherit_object_guid;account_sid;(resource_attribute)`** : Format des entrées ACE dans les DACL et SACL.
+  - `ace_type` : Type de l'ACE (par exemple, accès accordé ou refusé).
+  - `ace_flags` : Drapeaux définissant comment l'ACE est héritée.
+  - `rights` : Droits ou permissions spécifiés par l'ACE.
+  - `object_guid` et `inherit_object_guid` : Identifiants pour les objets spécifiques et leur héritage.
+  - `account_sid` : SID du compte associé à l'ACE.
+  - `resource_attribute` : Attributs de ressource supplémentaires.
+
+**APIs**
+- **`ConvertSecurityDescriptorToStringSecurityDescriptor()`** : Convertit un descripteur de sécurité en sa représentation SDDL.
+- **`ConvertStringSecurityDescriptorToSecurityDescriptor()`** : Fait l'inverse, convertissant une chaîne SDDL en descripteur de sécurité.

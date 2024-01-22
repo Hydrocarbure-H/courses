@@ -117,6 +117,8 @@ Permet l'enregistrement de mots de passe.
 - **Utilisation** : Employé par divers services Windows et applications pour sécuriser les communications.
 - **Interactions avec LSASS** : SSPI communique avec LSASS pour l'accès aux fonctions de sécurité.
 
+![image-20240122102116641](./assets/image-20240122102116641.png)
+
 ## Structure des call dispatch
 
 ![image-20240122094726060](./assets/image-20240122094726060.png)
@@ -136,6 +138,8 @@ Permet l'enregistrement de mots de passe.
 - **Utilisateur Standard vs Administrateur** : Fait la distinction entre les droits des utilisateurs standards et ceux des administrateurs.
 - **Compatibilité avec les Applications** : Peut nécessiter des ajustements pour les anciennes applications non conçues pour UAC.
 - **Gestion Centralisée** : Peut être configuré via des politiques de groupe dans un environnement d'entreprise.
+
+![image-20240122102255146](./assets/image-20240122102255146.png)
 
 ## Liste des Filtered Groups
 
@@ -164,7 +168,7 @@ Permet l'enregistrement de mots de passe.
 
 ## GSMA (Group Managed Service Account)
 
-**GMSA (Group Managed Service Account)** est une fonctionnalité dans les environnements Windows Server, conçue pour offrir une gestion automatisée et sécurisée des comptes de service.
+**GMSA (Group Managed Service Account)** est une fonctionnalité dans les environnements **Windows Server**, conçue pour offrir une gestion automatisée et sécurisée des comptes de service.
 
 - **Gestion Automatisée des Mots de Passe** : GMSA permet la gestion automatique des mots de passe, éliminant le besoin de les changer manuellement.
 - **Sécurité Renforcée** : Améliore la sécurité des applications et des services en évitant la gestion manuelle des mots de passe.
@@ -173,3 +177,4 @@ Permet l'enregistrement de mots de passe.
 - **Active Directory** : Nécessite Active Directory pour stocker et gérer les comptes GMSA.
 - **Automatisation avec PowerShell** : Géré principalement via PowerShell pour l'automatisation et la configuration.
 - **Restrictions et Délégation** : Permet de définir des restrictions et des délégations spécifiques pour les comptes de service.
+

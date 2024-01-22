@@ -222,7 +222,7 @@ Permet l'enregistrement de mots de passe.
 
 - **Importance pour la Sécurité** : La gestion correcte de ces privilèges est vitale pour maintenir la sécurité du système, en prévenant les abus de droits et en limitant les risques d'actions malveillantes.
 
-*En résumé, les privilèges de type session sont une partie intégrante du modèle de sécurité de Windows, permettant une gestion flexible et sécurisée des autorisations au niveau des sessions individuelles.*
+*En résumé, les privilèges de type session sont une partie intégrante du modèle de sécurité de Windows, permettant une gestion flexible et sécurisée des autorisations au niveau des sessions individuelles.*, 
 
 ## Tableaux détaillés
 
@@ -347,3 +347,24 @@ Un `Security Descriptor` dans Windows est une structure qui contient des informa
 | **DACL (Discretionary Access Control List)** | Contient une liste de règles d'accès (ACEs) définissant les permissions pour les utilisateurs et les groupes. |
 | **SACL (System Access Control List)**        | Utilisée pour le journal d'audit, indique les tentatives d'accès qui doivent être enregistrées dans le journal de sécurité. |
 
+## Fonctionnement
+
+![image-20240122112755357](./assets/image-20240122112755357.png)
+
+## Exemples
+
+### Success
+
+![image-20240122112849573](./assets/image-20240122112849573.png)
+
+### Deny
+
+![image-20240122112908371](./assets/image-20240122112908371.png)
+
+## SIDs (DACLs)
+
+| Well-known SID | Description   |
+| -------------- | ------------- |
+| `S-1-3-0`      | Creator Owner |
+| `S-1-3-1`      | Creator Group |
+| `S-1-3-4`      | Owner Rights  |

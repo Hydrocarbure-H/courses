@@ -168,7 +168,7 @@ Permet l'enregistrement de mots de passe.
 
 ## GSMA (Group Managed Service Account)
 
-**GMSA (Group Managed Service Account)** est une fonctionnalité dans les environnements **Windows Server**, conçue pour offrir une gestion automatisée et sécurisée des comptes de service.
+***GMSA (Group Managed Service Account)** est une fonctionnalité dans les environnements **Windows Server**, conçue pour offrir une gestion automatisée et sécurisée des comptes de service. - ChatGPT*
 
 - **Gestion Automatisée des Mots de Passe** : GMSA permet la gestion automatique des mots de passe, éliminant le besoin de les changer manuellement.
 - **Sécurité Renforcée** : Améliore la sécurité des applications et des services en évitant la gestion manuelle des mots de passe.
@@ -177,4 +177,73 @@ Permet l'enregistrement de mots de passe.
 - **Active Directory** : Nécessite Active Directory pour stocker et gérer les comptes GMSA.
 - **Automatisation avec PowerShell** : Géré principalement via PowerShell pour l'automatisation et la configuration.
 - **Restrictions et Délégation** : Permet de définir des restrictions et des délégations spécifiques pour les comptes de service.
+
+# Windows Privileges
+
+*Les privilèges de type session dans Windows sont des autorisations spécifiques accordées à un utilisateur ou à un processus pour une session donnée. Ces privilèges déterminent les actions que l'utilisateur ou le processus peut effectuer pendant la durée de la session. - ChatGPT* 
+
+- **Attribution Dynamique** : Les privilèges de type session sont attribués dynamiquement lorsqu'une session utilisateur est créée. Ils varient en fonction du niveau d'accès de l'utilisateur ou du rôle du processus.
+
+- **Gestion de la Sécurité** : Ces privilèges sont essentiels pour la gestion de la sécurité au niveau des sessions, limitant ou étendant les capacités des utilisateurs ou des processus en fonction de leurs besoins et de leur niveau de confiance.
+
+- **Exemples de Privilèges** : Parmi les privilèges de type session, on trouve le droit de déboguer des programmes (`SeDebugPrivilege`), de charger ou de décharger des pilotes de périphériques (`SeLoadDriverPrivilege`), et de gérer l'audit et les journaux de sécurité (`SeSecurityPrivilege`).
+
+- **Contrôle d'Accès** : Les privilèges de session jouent un rôle crucial dans le contrôle d'accès, en s'assurant que seules les actions autorisées peuvent être effectuées par un utilisateur ou un processus donné pendant une session.
+
+- **Importance pour la Sécurité** : La gestion correcte de ces privilèges est vitale pour maintenir la sécurité du système, en prévenant les abus de droits et en limitant les risques d'actions malveillantes.
+
+En résumé, les privilèges de type session sont une partie intégrante du modèle de sécurité de Windows, permettant une gestion flexible et sécurisée des autorisations au niveau des sessions individuelles.
+
+## Tableaux détaillés
+
+| Type de Privilège de Session        | Description                                                  |
+| ----------------------------------- | ------------------------------------------------------------ |
+| **SeCreateTokenPrivilege**          | Permet à un processus de créer un jeton d'accès.             |
+| **SeAssignPrimaryTokenPrivilege**   | Permet à un processus de modifier le jeton d'accès d'un processus. |
+| **SeLockMemoryPrivilege**           | Autorise le verrouillage des pages en mémoire.               |
+| **SeIncreaseQuotaPrivilege**        | Permet d'augmenter les quotas de mémoire pour un processus.  |
+| **SeMachineAccountPrivilege**       | Autorise la création d'un compte machine dans le domaine.    |
+| **SeTcbPrivilege**                  | Permet de se comporter comme une partie du système d'exploitation. |
+| **SeSecurityPrivilege**             | Autorise la modification des paramètres de sécurité et des journaux d'audit. |
+| **SeTakeOwnershipPrivilege**        | Permet de prendre possession d'un objet sans autorisation.   |
+| **SeLoadDriverPrivilege**           | Autorise le chargement ou le déchargement des pilotes de périphériques. |
+| **SeSystemProfilePrivilege**        | Permet de profiler les performances du système.              |
+| **SeSystemtimePrivilege**           | Autorise la modification de l'heure du système.              |
+| **SeProfileSingleProcessPrivilege** | Permet de profiler les performances d'un processus unique.   |
+| **SeIncreaseBasePriorityPrivilege** | Permet d'augmenter la priorité d'exécution d'un processus.   |
+| **SeCreatePagefilePrivilege**       | Autorise la création d'un fichier d'échange.                 |
+| **SeCreatePermanentPrivilege**      | Permet de créer des objets permanents dans le noyau.         |
+| **SeBackupPrivilege**               | Autorise la sauvegarde de fichiers et de dossiers.           |
+| **SeRestorePrivilege**              | Permet de restaurer des fichiers et des dossiers.            |
+| **SeShutdownPrivilege**             | Autorise l'arrêt et le redémarrage du système.               |
+| **SeDebugPrivilege**                | Permet d'accéder à des informations sensibles dans d'autres processus. |
+| **SeAuditPrivilege**                | Autorise l'activation des journaux d'audit.                  |
+| **SeSystemEnvironmentPrivilege**    | Permet de modifier les variables d'environnement du système. |
+| **SeChangeNotifyPrivilege**         | Autorise la réception de notifications de modification de fichiers ou de dossiers. |
+| **SeRemoteShutdownPrivilege**       | Autorise l'arrêt à distance d'un ordinateur.                 |
+| **SeUndockPrivilege**               | Permet de détacher un ordinateur portable de sa station d'accueil. |
+| **SeSyncAgentPrivilege**            | Permet d'effectuer des synchronisations de fichiers en tant qu'agent. |
+| **SeEnableDelegationPrivilege**     | Permet d'activer la délégation de sécurité.                  |
+
+# Privileges Management
+
+*La gestion des privilèges, ou `Privileges Management`, dans les systèmes informatiques, est un aspect crucial de la sécurité et de l'administration système. Elle implique l'attribution, la gestion et le contrôle des privilèges (droits) accordés aux utilisateurs, aux comptes de service et aux processus. - ChatGPT*
+
+1. **Contrôle d'Accès** : La gestion des privilèges est essentielle pour contrôler l'accès aux ressources et fonctions du système. Elle détermine qui peut effectuer quelles actions et sur quels objets.
+
+2. **Prévention des Abus** : En limitant les privilèges au strict nécessaire, on réduit le risque d'abus ou d'exploitation malveillante des droits étendus.
+
+3. **Principe du Moindre Privilège** : Il s'agit d'une pratique de sécurité consistant à accorder aux utilisateurs uniquement les privilèges nécessaires pour effectuer leurs tâches, réduisant ainsi la surface d'attaque potentielle.
+
+4. **Gestion des Comptes Utilisateur** : Implique de définir des rôles et des responsabilités, et d'associer les privilèges appropriés à ces rôles.
+
+5. **Audit et Suivi** : La surveillance et l'audit des privilèges permettent de détecter les anomalies de sécurité et de conformité, en enregistrant qui a fait quoi, quand et où.
+
+6. **Outils de Gestion des Privilèges** : Des logiciels spécialisés aident à gérer les privilèges, offrant des fonctionnalités comme la gestion automatisée des privilèges, l'analyse des droits et la délégation de droits.
+
+7. **Mises à Jour et Révisions** : Les privilèges doivent être régulièrement revus et ajustés en fonction des changements de rôle, des départs d'employés ou de l'évolution des politiques de sécurité.
+
+8. **Intégration avec la Gestion des Identités** : La gestion des privilèges est souvent intégrée à des solutions plus larges de gestion des identités et des accès (IAM) pour une administration cohérente des droits d'utilisateur.
+
+![image-20240122103108062](./assets/image-20240122103108062.png)
 

@@ -120,3 +120,56 @@ Permet l'enregistrement de mots de passe.
 ## Structure des call dispatch
 
 ![image-20240122094726060](./assets/image-20240122094726060.png)
+
+## Fonctionnement de SSPI
+
+![image-20240122094851754](./assets/image-20240122094851754.png)
+
+# UAC (User Account Control)
+
+***UAC (User Account Control)** est une fonctionnalité de sécurité dans les systèmes d'exploitation Windows qui aide à prévenir les modifications non autorisées sur le système. Elle vise à améliorer la sécurité en demandant une autorisation ou des informations d'identification d'administrateur avant de lancer des tâches pouvant affecter le fonctionnement du système ou modifier des paramètres sensibles. - ChatGPT*
+
+- **Contrôle des Modifications Système** : Prévient les changements non autorisés sur le système.
+- **Demande d'Élévation de Privileges** : Demande une autorisation pour les tâches nécessitant des droits d'administrateur.
+- **Sécurité Renforcée** : Réduit le risque d'infections par des logiciels malveillants et d'actions non autorisées.
+- **Modes de Notification** : Plusieurs niveaux de notifications selon les paramètres de l'utilisateur.
+- **Utilisateur Standard vs Administrateur** : Fait la distinction entre les droits des utilisateurs standards et ceux des administrateurs.
+- **Compatibilité avec les Applications** : Peut nécessiter des ajustements pour les anciennes applications non conçues pour UAC.
+- **Gestion Centralisée** : Peut être configuré via des politiques de groupe dans un environnement d'entreprise.
+
+## Liste des Filtered Groups
+
+| Groupe d'Utilisateurs                                        | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **Domain Admins**                                            | Administrateurs du domaine avec privilèges complets, restreints sous UAC. |
+| **Read-only Domain Controllers**                             | Contrôleurs de domaine en lecture seule, avec des droits limités. |
+| **Enterprise Read-only Domain Controllers**                  | Contrôleurs de domaine d'entreprise en lecture seule, avec des droits spécifiques. |
+| **Administrators**                                           | Groupe d'administrateurs avec privilèges élevés, limités sous UAC. |
+| **Power Users**                                              | Utilisateurs avec certains privilèges administratifs, réduits sous UAC. |
+| **Account Operators**                                        | Gère les comptes utilisateurs, avec des privilèges limités sous UAC. |
+| **Server Operators**                                         | Opérateurs de serveur avec des droits limités en présence d'UAC. |
+| **Print Operators**                                          | Opérateurs d'impression avec des droits restreints sous UAC. |
+| **Backup Operators**                                         | Opérateurs de sauvegarde avec des privilèges spéciaux, filtrés par UAC. |
+| **Pre-Windows 2000 Compatible Access**                       | Accès compatible avec les versions antérieures à Windows 2000, limité par UAC. |
+| **Cert Publishers**                                          | Éditeurs de certificats, avec des droits spécifiques sous UAC. |
+| **Schema Admins**                                            | Administrateurs de schéma avec des privilèges élevés, restreints par UAC. |
+| **Enterprise Admins**                                        | Administrateurs d'entreprise avec droits complets, filtrés sous UAC. |
+| **Group Policy Creator Owners**                              | Propriétaires créateurs de stratégies de groupe, avec des privilèges spéciaux sous UAC. |
+| **RAS and IAS Servers Access**                               | Accès limité sous UAC pour les serveurs RAS et IAS.          |
+| **Network Configuration Operators**                          | Opérateurs de configuration réseau, avec droits limités sous UAC. |
+| **Cryptographic Operators**                                  | Opérateurs cryptographiques avec des privilèges restreints sous UAC. |
+| **NT AUTHORITY\Local account and member of Administrators group** | Comptes locaux membres du groupe Administrateurs, avec droits d'administrateur filtrés sous UAC. |
+
+# Service Account
+
+## GSMA (Group Managed Service Account)
+
+**GMSA (Group Managed Service Account)** est une fonctionnalité dans les environnements Windows Server, conçue pour offrir une gestion automatisée et sécurisée des comptes de service.
+
+- **Gestion Automatisée des Mots de Passe** : GMSA permet la gestion automatique des mots de passe, éliminant le besoin de les changer manuellement.
+- **Sécurité Renforcée** : Améliore la sécurité des applications et des services en évitant la gestion manuelle des mots de passe.
+- **Utilisation sur Plusieurs Serveurs** : Contrairement aux MSA (Managed Service Accounts), les GMSA peuvent être utilisés sur plusieurs serveurs.
+- **Support d'Applications et Services** : Idéal pour les services Windows, IIS, SQL Server et d'autres applications qui nécessitent des comptes de service.
+- **Active Directory** : Nécessite Active Directory pour stocker et gérer les comptes GMSA.
+- **Automatisation avec PowerShell** : Géré principalement via PowerShell pour l'automatisation et la configuration.
+- **Restrictions et Délégation** : Permet de définir des restrictions et des délégations spécifiques pour les comptes de service.

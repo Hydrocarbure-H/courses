@@ -8,20 +8,20 @@
 
 | Well-known SID | Description                       |
 | -------------- | --------------------------------- |
-| S-1-5-18       | Local System Account              |
-| S-1-5-19       | Local Service Account             |
-| S-1-5-20       | Network Service Account           |
-| S-1-5-32-544   | Administrators Group              |
-| S-1-5-32-545   | Users Group                       |
-| S-1-5-32-546   | Guests Group                      |
-| S-1-5-32-547   | Power Users Group                 |
-| S-1-5-32-548   | Account Operators Group           |
-| S-1-5-32-549   | Server Operators Group            |
-| S-1-5-32-550   | Print Operators Group             |
-| S-1-5-32-551   | Backup Operators Group            |
-| S-1-5-32-552   | Replicators Group                 |
-| S-1-5-11       | Authenticated Users Special Group |
-| S-1-5-15       | This Organization Special Group   |
+| `S-1-5-18`     | Local System Account              |
+| `S-1-5-19`     | Local Service Account             |
+| `S-1-5-20`     | Network Service Account           |
+| `S-1-5-32-544` | Administrators Group              |
+| `S-1-5-32-545` | Users Group                       |
+| `S-1-5-32-546` | Guests Group                      |
+| `S-1-5-32-547` | Power Users Group                 |
+| `S-1-5-32-548` | Account Operators Group           |
+| `S-1-5-32-549` | Server Operators Group            |
+| `S-1-5-32-550` | Print Operators Group             |
+| `S-1-5-32-551` | Backup Operators Group            |
+| `S-1-5-32-552` | Replicators Group                 |
+| `S-1-5-11`     | Authenticated Users Special Group |
+| `S-1-5-15`     | This Organization Special Group   |
 
 ## Access Token
 
@@ -163,6 +163,14 @@ Permet l'enregistrement de mots de passe.
 | **Network Configuration Operators**                          | Opérateurs de configuration réseau, avec droits limités sous UAC. |
 | **Cryptographic Operators**                                  | Opérateurs cryptographiques avec des privilèges restreints sous UAC. |
 | **NT AUTHORITY\Local account and member of Administrators group** | Comptes locaux membres du groupe Administrateurs, avec droits d'administrateur filtrés sous UAC. |
+
+# Summary
+
+- **Windows Identity** : SID et Access Token
+- **SAM**: Account database
+- **LSASS** : Hôte pour les services d'authentifications
+- **SSPI** : API d'authentification de Windows
+- **UAC**: Protection des comptes privilégiés
 
 # Service Account
 

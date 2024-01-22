@@ -361,6 +361,8 @@ Un `Security Descriptor` dans Windows est une structure qui contient des informa
 
 ![image-20240122112908371](./assets/image-20240122112908371.png)
 
+Accès refusé à Dena, spécifiquement.
+
 ## SIDs (DACLs)
 
 | Well-known SID | Description   |

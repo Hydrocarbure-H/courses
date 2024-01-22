@@ -392,3 +392,48 @@ Un `Security Descriptor` dans Windows est une structure qui contient des informa
 **APIs**
 - **`ConvertSecurityDescriptorToStringSecurityDescriptor()`** : Convertit un descripteur de sécurité en sa représentation SDDL.
 - **`ConvertStringSecurityDescriptorToSecurityDescriptor()`** : Fait l'inverse, convertissant une chaîne SDDL en descripteur de sécurité.
+
+# Mandatory levels Dynamic Access Control
+
+> *Mandatory Access Control (MAC) Levels, dans le cadre de Dynamic Access Control (DAC) dans Windows, sont utilisés pour définir et imposer des politiques de sécurité basées sur des niveaux de confidentialité ou d'intégrité. - ChatGPT*
+
+- **Principe de Fonctionnement** : MAC associe des étiquettes de sécurité aux ressources et aux utilisateurs/processus. L'accès est accordé ou refusé en fonction de ces étiquettes.
+
+- **Niveaux de Sécurité** : Différents niveaux (bas, moyen, élevé, etc.) sont attribués aux objets et aux utilisateurs. Par exemple, un document peut être marqué comme "Confidentiel".
+
+- **Étiquettes d'Intégrité** : En plus des niveaux de confidentialité, les étiquettes d'intégrité (comme faible, moyen, élevé) peuvent être utilisées pour empêcher des processus à faible intégrité d'affecter ceux à haute intégrité.
+
+- **Application dans DAC** : Dans Dynamic Access Control, les niveaux MAC sont combinés avec d'autres attributs (comme l'identité de l'utilisateur, le rôle, etc.) pour définir des politiques d'accès plus flexibles et dynamiques.
+
+- **Contrôle Centralisé** : Permet une gestion centralisée des politiques de sécurité, importantes pour les grandes organisations.
+
+- **Sécurité Renforcée** : Aide à prévenir les fuites d'informations et à assurer que seuls les utilisateurs autorisés ont accès aux données sensibles.
+
+- **Déploiement** : Nécessite une planification et une mise en œuvre minutieuses pour être efficace, souvent intégré dans les stratégies de sécurité d'entreprise.
+
+## Levels
+
+| Niveau d'Intégrité    | SID Correspondant | Description                                                  |
+| --------------------- | ----------------- | ------------------------------------------------------------ |
+| **Untrusted**         | `S-1-16-0`        | Niveau attribué aux processus non fiables, avec les privilèges les plus bas. Utilisé pour isoler des applications potentiellement dangereuses. |
+| **Low**               | `S-1-16-4096`     | Attribué aux processus qui s'exécutent avec des droits très limités. Typique pour les applications Internet et autres processus considérés comme moins fiables. |
+| **Medium**            | `S-1-16-8192`     | Niveau par défaut pour les utilisateurs standards. La plupart des applications s'exécutent à ce niveau. |
+| **High**              | `S-1-16-12288`    | Attribué aux processus qui nécessitent des droits élevés pour fonctionner correctement. Typiquement utilisé par les administrateurs système et certaines applications critiques. |
+| **System**            | `S-1-16-16384`    | Niveau réservé aux processus du système d'exploitation. Donne un accès étendu aux ressources système. |
+| **Protected/Trusted** | `S-1-16-20480`    | Le niveau le plus élevé, utilisé pour les processus qui nécessitent la plus haute fiabilité et confiance. |
+
+> *`icacls.exe` est un outil en ligne de commande dans Windows utilisé pour afficher et modifier les listes de contrôle d'accès discrétionnaires (DACLs) et les listes de contrôle d'accès système (SACLs) des fichiers et dossiers. - ChatGPT*
+
+	## Integrity ACE
+
+> *Les `Integrity ACEs` (Access Control Entries) dans Windows sont utilisées pour mettre en œuvre la sécurité basée sur l'intégrité. Elles permettent de définir des politiques pour contrôler comment les processus interagissent en fonction de leur niveau d'intégrité.  - ChatGPT*
+
+1. **No Write Up** : Empêche les processus à un niveau d'intégrité inférieur d'écrire dans les objets à un niveau supérieur, assurant ainsi que les processus moins fiables ne puissent pas modifier les données des processus plus sécurisés.
+
+2. **No Read Up** : Restreint les processus à un niveau d'intégrité inférieur de lire les informations des objets à un niveau supérieur, empêchant ainsi les fuites d'informations sensibles vers des processus moins sécurisés.
+
+3. **No Execute Up** : Interdit aux processus à un niveau d'intégrité inférieur d'exécuter des fichiers ou des scripts dans un contexte de niveau supérieur, protégeant ainsi contre l'exécution de code malveillant.
+
+## Set DACL on resources
+
+> *"Set DACL on resources" fait référence à l'action de définir ou de modifier la liste de contrôle d'accès discrétionnaire (DACL) sur des ressources telles que des fichiers, des dossiers ou des objets système dans Windows. Cela permet de précisément contrôler qui peut accéder à ces ressources et quelles actions sont autorisées, renforçant ainsi la sécurité des données et des objets. - ChatGPT*

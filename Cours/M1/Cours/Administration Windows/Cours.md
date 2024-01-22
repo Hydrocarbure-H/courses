@@ -300,3 +300,23 @@ Permet l'enregistrement de mots de passe.
 ![image-20240122104215363](./assets/image-20240122104215363.png)
 
 ​	
+
+# Security Compliance Tookkit
+
+> *Le `Security Compliance Toolkit` (SCT) est un ensemble d'outils fourni par Microsoft pour aider les organisations à gérer, analyser et renforcer la conformité de la sécurité de leurs systèmes Windows. - ChatGPT*
+
+1. **Modèles de Sécurité Baseline** : Inclut des modèles de configuration de sécurité (baselines) recommandés par Microsoft pour divers produits Windows, y compris Windows Server et Windows 10.
+
+2. **Outils d'Analyse de la Conformité** : Permet d'évaluer et de comparer la configuration actuelle d'un système avec les baselines de sécurité recommandées.
+
+3. **Personnalisation des Baselines** : Les administrateurs peuvent personnaliser les baselines selon les besoins spécifiques de leur organisation.
+
+4. **Amélioration de la Sécurité** : Aide à identifier et à appliquer les meilleures pratiques de sécurité pour renforcer les systèmes contre les vulnérabilités.
+
+5. **Outils d'Automatisation** : Comprend des scripts et des outils pour automatiser la gestion de la conformité et la configuration de la sécurité.
+
+6. **Intégration avec d'Autres Outils** : Peut être utilisé en conjonction avec d'autres outils de gestion de la sécurité et des politiques, tels que `Group Policy` et `Microsoft Endpoint Configuration Manager`.
+
+7. **Rapports et Diagnostics** : Fournit des capacités de reporting pour aider à comprendre l'état de conformité de sécurité des systèmes.
+
+8. **Utilisation par les Professionnels de la Sécurité** : Principalement destiné aux professionnels de la sécurité informatique et aux administrateurs système pour gérer la conformité et la configuration de sécurité.

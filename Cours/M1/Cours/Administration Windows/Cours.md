@@ -91,3 +91,32 @@ Session:
 - Logon Session (LSASS)
   - Utilisateur authentifié sur la machine (LUID, Localy-…)
 
+![image-20240122094121703](./assets/image-20240122094121703.png)
+
+## Authentifications Packages (DLLs)
+
+![image-20240122094214536](./assets/image-20240122094214536.png)
+
+## Credentials Manager
+
+Permet l'enregistrement de mots de passe.
+
+![image-20240122094342168](./assets/image-20240122094342168.png)
+
+**Note**: Possible de faire 2 types de call pour accéder à ces données, Local RPC ou Named Pipes.
+
+# SSPI (Security Support Provider Interface)
+
+***SSPI (Security Support Provider Interface)** est une interface de programmation dans les systèmes Windows qui offre des services de sécurité tels que l'authentification, l'autorisation, et la gestion des échanges de clés cryptographiques. - ChatGPT*
+
+- **Interface** : Fournit une interface pour la sécurité au niveau du système.
+- **Authentification** : Gère l'authentification, l'autorisation, et l'échange de clés cryptographiques.
+- **Abstraction** : Cache les détails spécifiques des protocoles de sécurité.
+- **Protocoles supportés** : Inclut Kerberos, NTLM, Schannel (SSL/TLS), Digest.
+- **Extensible** : Peut intégrer de nouveaux protocoles de sécurité.
+- **Utilisation** : Employé par divers services Windows et applications pour sécuriser les communications.
+- **Interactions avec LSASS** : SSPI communique avec LSASS pour l'accès aux fonctions de sécurité.
+
+## Structure des call dispatch
+
+![image-20240122094726060](./assets/image-20240122094726060.png)

@@ -320,3 +320,30 @@ Permet l'enregistrement de mots de passe.
 7. **Rapports et Diagnostics** : Fournit des capacités de reporting pour aider à comprendre l'état de conformité de sécurité des systèmes.
 
 8. **Utilisation par les Professionnels de la Sécurité** : Principalement destiné aux professionnels de la sécurité informatique et aux administrateurs système pour gérer la conformité et la configuration de sécurité.
+
+# DACL Model
+
+> *Le modèle DACL (Discretionary Access Control List) est un mécanisme de sécurité dans les systèmes Windows qui permet aux propriétaires de ressources de contrôler l'accès à ces ressources. - ChatGPT*
+
+**Note:** SACL: System Access Control List, ACE: Access Control Entry
+
+- **Liste de Contrôle d'Accès** : Une DACL est une liste qui identifie les utilisateurs ou groupes ayant des permissions sur une ressource.
+- **Permissions Spécifiques** : Inclut des permissions comme lire, écrire, exécuter, modifier, ou supprimer.
+- **Contrôle Discretionnaire** : Le propriétaire de la ressource définit et modifie les DACL.
+- **Sécurité des Ressources** : Utilisée pour sécuriser les fichiers, dossiers, objets de registre, et autres objets Windows.
+- **Application** : Les DACL sont appliquées lors de l'accès à une ressource, déterminant si l'accès est autorisé.
+- **Intégration avec Active Directory** : Dans les environnements de domaine, les DACL peuvent également être utilisées pour contrôler l'accès aux objets Active Directory.
+- **Audit et Conformité** : Les DACL aident à répondre aux exigences d'audit et de conformité en documentant qui a accès à quoi.
+- **Outils de Gestion** : Peuvent être gérées via des outils graphiques (comme l'Explorateur de fichiers) ou des commandes PowerShell.
+
+## Security Descriptor
+
+Un `Security Descriptor` dans Windows est une structure qui contient des informations de sécurité importantes pour les objets comme les fichiers, les dossiers, et les clés de registre. Voici un tableau décrivant ses composants principaux :
+
+| Composant                                    | Description                                                  |
+| -------------------------------------------- | ------------------------------------------------------------ |
+| **Owner**                                    | Identifie l'utilisateur ou le groupe qui possède l'objet. A le droit de modifier les permissions. |
+| **Group**                                    | Généralement utilisé pour des raisons d'administration. Spécifie le groupe principal de l'objet. |
+| **DACL (Discretionary Access Control List)** | Contient une liste de règles d'accès (ACEs) définissant les permissions pour les utilisateurs et les groupes. |
+| **SACL (System Access Control List)**        | Utilisée pour le journal d'audit, indique les tentatives d'accès qui doivent être enregistrées dans le journal de sécurité. |
+

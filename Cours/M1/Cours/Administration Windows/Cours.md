@@ -1,441 +1,291 @@
-# Administration et sécurité Windows
+# Note introductive - Active Directory
 
-# SIDs
+Suite à l'extrème incompétence, une fois de plus, de la part de l'administration, ici se trouve un cours concernant les services d'Active Directory, et non un cours sur l'Administration et la Sécurité Windows. Le cours suivi pendant 8h sur cette matière se trouve sur [cette page](https://iefrei.fr/courses/md_sync_s8/Cours/Securite%20Windows/Cours.html), mais ne sera plus mis à jour suite à ce changement.
 
-> *Un SID (Security Identifier) en informatique, notamment dans les environnements Windows, est un identifiant unique utilisé pour gérer les permissions de sécurité. Chaque compte d'utilisateur, groupe d'utilisateurs, et même certains processus ou composants dans le système d'exploitation Windows, se voient attribuer un SID qui les identifie de manière unique. - ChatGPT*
+# Présentation
 
-![Microsoft Windows Security: Security Identifiers in Microsoft Windows](./assets/img1.jpeg)
+## Active Directory
 
-| Well-known SID | Description                       |
-| -------------- | --------------------------------- |
-| `S-1-5-18`     | Local System Account              |
-| `S-1-5-19`     | Local Service Account             |
-| `S-1-5-20`     | Network Service Account           |
-| `S-1-5-32-544` | Administrators Group              |
-| `S-1-5-32-545` | Users Group                       |
-| `S-1-5-32-546` | Guests Group                      |
-| `S-1-5-32-547` | Power Users Group                 |
-| `S-1-5-32-548` | Account Operators Group           |
-| `S-1-5-32-549` | Server Operators Group            |
-| `S-1-5-32-550` | Print Operators Group             |
-| `S-1-5-32-551` | Backup Operators Group            |
-| `S-1-5-32-552` | Replicators Group                 |
-| `S-1-5-11`     | Authenticated Users Special Group |
-| `S-1-5-15`     | This Organization Special Group   |
+*L'`Active Directory` est un service de répertoire développé par Microsoft, utilisé principalement dans les environnements Windows pour centraliser et gérer les informations réseau et les ressources. Il joue un rôle clé dans la gestion des identités et l'accès aux ressources dans un réseau d'entreprise. - ChatGPT*
 
-## Access Token
+- **Service de répertoire**: Stocke les informations sur les objets du réseau.
+- **Gestion des utilisateurs**: Permet de créer et de gérer des comptes d'utilisateurs.
+- **Gestion des groupes**: Facilite la gestion des droits d'accès par des groupes.
+- **Authentification et autorisation**: Contrôle l'accès aux ressources du réseau.
+- **Politiques de sécurité**: Applique des règles de sécurité sur les ordinateurs et utilisateurs.
+- **Services d'intégration**: Compatible avec divers services comme `DNS`, `LDAP`.
+- **Facilité de gestion**: Interface graphique pour une gestion simplifiée.
+- **Évolutivité**: Conçu pour les grandes comme les petites organisations.
+- **Interopérabilité**: Supporte la gestion d'objets non-Windows via des extensions.
 
-Représente l'identité d'un utilisateur.
+![image-20240123141850671](./assets/image-20240123141850671.png)
 
-Contient : 
+# Principaux composants
 
-- User SID
-- Group SIDs
-- Privilèges
-- Impersonation Level
+## Domain Services
 
-`whoami /all` : Donne toutes les informations contenues dans le Access Token, dont les privilèges, pour un utilisateur donné (celui logged in).
+*Les `Domain Services` dans l'`Active Directory` sont au cœur de la fonctionnalité du service de répertoire. Ils fournissent les mécanismes essentiels pour la gestion des identités et des relations dans un réseau d'entreprise. - ChatGPT*
 
-# SAM
+- **Gestion des identités**: Centralise les comptes d'utilisateurs, groupes et ordinateurs.
+- **Authentification**: Processus de vérification des identifiants des utilisateurs.
+- **Stockage de données**: Conserve des informations sur les objets du réseau.
+- **Sécurité**: Contrôle l'accès aux ressources et applique des politiques de sécurité.
+- **Services de répertoire**: Permet la recherche et l'accès aux informations des objets du réseau.
+- **Intégration avec d'autres services**: Comme `DNS`, pour la résolution de noms dans le réseau.
 
-> *SAM Access Control est un aspect fondamental de la sécurité et de la gestion des comptes d'utilisateurs dans Windows. Il assure que les informations d'utilisateur sont stockées, gérées et accédées de manière sécurisée, tout en fournissant les mécanismes nécessaires pour l'authentification et la gestion des comptes. - ChatGPT*
+## Domain controller
 
-La base SAM est représentée par le fichier `"**%SystemRoot%\system32\config\SAM**"` (généralement dans `"C:\Windows\"`) qui est en fait un fichier associé à la base de [Registre Windows](https://www.it-connect.fr/quest-ce-que-la-base-de-registre-windows/) : `HKEY_LOCAL_MACHINE\SAM\`.
+*Un `Domain Controller` dans `Active Directory` est un serveur qui répond aux demandes d'authentification et stocke les données d'annuaire de l'organisation. Il joue un rôle central dans la gestion des politiques de sécurité et des accès aux ressources du réseau. - ChatGPT*
 
-![Les domaines de la base SAM](./assets/Les-domaines-de-la-base-SAM.png)
+- **Authentification**: Gère les demandes de connexion des utilisateurs.
+- **Base de données d'annuaire**: Stocke les informations des comptes utilisateurs, groupes, et autres objets.
+- **Réplication**: Assure la cohérence des données entre plusieurs contrôleurs de domaine.
+- **Politique de groupe**: Applique et gère les politiques de sécurité sur les ordinateurs et utilisateurs du domaine.
+- **Services intégrés**: Comprend souvent des services comme `DNS` pour résoudre les noms dans le réseau.
+- **Redondance**: Plusieurs contrôleurs de domaine peuvent être utilisés pour la haute disponibilité.
+- **Rôles FSMO**: Gère des rôles spéciaux pour le fonctionnement correct du domaine.
+- **Sécurité**: Joue un rôle crucial dans la sécurisation de l'environnement de réseau.
 
-![image-20240122092238306](./assets/image-20240122092238306.png)
+![img](./assets/1691089012526.png)
 
-# LSA
+## Domains
 
-On peut accéder à ces services via RPC (Remote Procedure Call).
+*Les `Domains` dans l'`Active Directory` représentent la structure de base de l'organisation dans le réseau, définissant le cadre pour la gestion des identités et des politiques. - ChatGPT*
 
-### **RPC (Remote Procedure Call)**
+- **Unité administrative**: Un domaine est une unité administrative logique.
+- **Gestion centralisée**: Permet la gestion centralisée des utilisateurs, groupes et ressources.
+- **Sécurité et politique**: Applique des politiques de sécurité au niveau du domaine.
+- **Réplication**: Partage les informations entre les contrôleurs de domaine dans le même domaine.
+- **Hiérarchie et structure**: Peut être structuré hiérarchiquement en arbres et forêts pour organiser les ressources.
 
-- **Communication inter-processus** : Permet à un programme d'exécuter des fonctions dans un autre programme, souvent sur un autre ordinateur.
-- **Abstraction réseau** : Masque la complexité de la communication réseau.
-- **Protocoles divers** : Implémentations comme DCOM, Java RMI, XML-RPC.
-- **Sécurité** : Authentification, chiffrement, gestion des autorisations.
-- **Systèmes distribués** : Utilisé dans architectures distribuées, cloud, services web.
-- **Défis** : Gestion des erreurs réseau, latence, sérialisation/désérialisation.
+## Trusts
 
-### **LSA (Local Security Authority)**
+*Les `Trusts` dans l'`Active Directory` sont des liens de confiance établis entre différents domaines ou forêts pour permettre aux utilisateurs d'un domaine d'accéder aux ressources d'un autre. - ChatGPT*
 
-- **Authentification** : Vérifie les identifiants des utilisateurs.
-- **Jetons d'accès** : Crée des jetons après authentification réussie.
-- **Politiques de sécurité** : Gère les stratégies de mot de passe, droits utilisateurs.
-- **SAM et Active Directory** : Interagit pour informations d'identification.
+- **Accès inter-domaines**: Facilite l'accès aux ressources entre différents domaines.
+- **Types de trusts**: Peuvent être unidirectionnels ou bidirectionnels.
+- **Sécurité**: Assure que les politiques de sécurité sont respectées même dans des environnements multi-domaines.
+- **Simplification de la gestion**: Réduit la complexité de gestion dans les grands réseaux.
+- **Interopérabilité**: Permet l'intégration avec des domaines d'autres forêts.
 
-#### **LSASS (Local Security Authority Subsystem Service)**
+![Creating an Active Directory Trust – itopia Help Center](./assets/image.png)
 
-- **Processus** : Exécute les fonctions de LSA.
-- **Sécurité système** : Gère les politiques de sécurité, les comptes, les mots de passe.
-- **Protection** : Fonctionne avec des privilèges élevés pour la sécurité.
-- **Cible des attaques** : Souvent visé par des malwares pour accéder aux données de sécurité.
+### Types
 
-## Exemples de RPC
+1. **Forest Trust** :
+   - Un trust de forêt (Forest Trust) permet d'établir une relation de confiance entre deux forêts Active Directory distinctes.
+   - Il est utile lorsque des entreprises ou des organisations distinctes ont besoin de partager des ressources ou des informations entre leurs environnements Active Directory.
+2. **Shortcut Trust** :
+   - Un trust Shortcut (ou trust raccourci) est un type de trust qui est spécifiquement utilisé pour simplifier la communication entre deux domaines dans une même forêt.
+   - Il peut réduire la complexité des chemins d'accès lorsqu'il y a plusieurs domaines intermédiaires.
+3. **External Trust** :
+   - Un trust externe est utilisé pour établir une relation de confiance avec des domaines situés en dehors de la forêt principale.
+   - Il est couramment utilisé pour établir des liens de confiance avec des domaines dans d'autres entreprises ou organisations.
+4. **Realm Trust** :
+   - Les trusts de royaume (Realm Trust) sont utilisés pour établir des relations de confiance avec des systèmes non-Windows, tels que des serveurs Unix ou Linux utilisant Kerberos.
+   - Ils permettent l'authentification inter-système d'exploitation.
 
-![image-20240122092956392](./assets/image-20240122092956392.png)
 
-## Exemple de Winlogon
 
-Authentification de l'utilisateur, vérification des credentials, démarrage de userinit.exe…
+## Identity services
 
-![image-20240122093432312](./assets/image-20240122093432312.png)
+*Les `Identity Services` dans l'`Active Directory` assurent la gestion centralisée des comptes d'utilisateurs et de dispositifs, permettant une authentification et une autorisation efficaces. - ChatGPT*
+
+- **Gestion centralisée des comptes**: Création et gestion des comptes utilisateurs et appareils.
+- **Authentification et autorisation**: Vérification des identités et gestion des accès.
+- **Intégration avec d'autres services**: Fonctionne avec des services comme `Azure Active Directory`.
+
+### Users and groups
+
+Dans l'`Active Directory`, la gestion des **utilisateurs et des groupes** est fondamentale pour structurer et contrôler l'accès aux ressources du réseau.
+
+- **Organisation des utilisateurs**: Permet de créer et de gérer des comptes d'utilisateurs individuels.
+- **Gestion des groupes**: Facilite l'assignation de droits d'accès et de politiques à des groupes d'utilisateurs.
+- **Sécurité et efficacité**: Améliore la sécurité et l'efficacité de la gestion des droits d'accès.
+
+#### SIDs
+
+- **Identification unique** :
+  - Les SID sont des identifiants uniques attribués à chaque objet de sécurité, tels que les utilisateurs, les groupes, les ordinateurs et les ressources, au sein d'un environnement Windows.
+  - Ils garantissent l'unicité de chaque objet, évitant ainsi les conflits d'identité.
+
+- **Format du SID** :
+  - Les SID sont généralement représentés sous forme de chaînes de caractères numériques, comprenant une séquence de chiffres et de tirets, par exemple : `S-1-5-21-3623811015-3361044348-30300820-1013`.
+  - Ces chaînes sont divisées en différentes parties contenant des informations sur l'objet.
+
+
+![image-20240123145213044](./assets/image-20240123145213044.png)
+
+##### SIDs connus
+
+| SID                   | Display Name                            |
+| --------------------- | --------------------------------------- |
+| S-1-0-0               | Null SID                                |
+| S-1-5-2               | Network                                 |
+| S-1-5-11              | Authenticated Users                     |
+| S-1-5-15              | This Organization                       |
+| S-1-5-18              | Local System                            |
+| S-1-5-19              | NT Authority\Local Service              |
+| S-1-5-20              | NT Authority\Network Service            |
+| S-1-5-32-544          | BUILTIN\Administrators                  |
+| S-1-5-32-545          | BUILTIN\Users                           |
+| S-1-5-32-544-500      | Administrator                           |
+| S-1-5-32-544-501      | Guest                                   |
+| S-1-5-32-544-502      | KRBTGT (Key Distribution Center)        |
+| S-1-5-21-<domain>-498 | Enterprise Read-only Domain Controllers |
+| S-1-5-21-<domain>-512 | Domain Admins                           |
+| S-1-5-21-<domain>-513 | Domain Users                            |
+| S-1-5-21-<domain>-514 | Domain Guests                           |
+| S-1-5-21-<domain>-515 | Domain Computers                        |
+
+![Sid le paresseux - IceAge](./assets/sid.png)
+
+### Authentication and Authorization
+
+Dans l'`Active Directory`, **l'authentification et l'autorisation** sont des processus clés pour sécuriser l'accès aux ressources du réseau.
+
+- **Authentification**: Vérification de l'identité des utilisateurs avant l'accès.
+- **Autorisation**: Détermine les ressources auxquelles un utilisateur authentifié peut accéder.
+- **Politiques de sécurité**: Contrôlent l'accès basé sur les rôles et les groupes d'utilisateurs.
+
+### Certificates
+
+*Les `Certificates` dans l'`Active Directory` jouent un rôle crucial dans la sécurisation des communications et l'authentification des utilisateurs et des dispositifs. Ils font partie de l'infrastructure de clé publique (PKI). - ChatGPT*
+
+- **Authentification forte**: Utilisés pour une authentification plus sécurisée.
+- **Chiffrement**: Protège les communications.
+- **PKI (`Public Key Infrastructure`)**: Gère la création et la distribution des certificats.
+
+## Directory Services
+
+*Les `Directory Services` dans l'`Active Directory` sont essentiels pour organiser, stocker et gérer les informations sur les objets du réseau comme les utilisateurs, les groupes et les ordinateurs. - ChatGPT*
+
+- **Stockage centralisé**: Contient des informations détaillées sur les objets du réseau.
+- **Recherche et accès aux données**: Permet de trouver et d'accéder facilement aux informations.
+- **`Schema`**: Définit les types d'objets et leurs attributs.
+- **`Global Catalog`**: Offre une vue d'ensemble des objets de l'ensemble de la forêt `Active Directory`.
+- **`LDAP` (Lightweight Directory Access Protocol)**: Protocole standard pour accéder aux services d'annuaire.
+
+### Schema
+
+*Le `Schema` dans l'`Active Directory` est une composante essentielle qui définit la structure de l'annuaire, spécifiant les types d'objets et leurs attributs pouvant être stockés dans l'`Active Directory`. - ChatGPT*
+
+- **Définition des objets**: Décrit les objets comme les utilisateurs, ordinateurs, groupes.
+- **Attributs des objets**: Spécifie les caractéristiques et informations stockées pour chaque type d'objet.
+- **Extensible**: Peut être modifié ou étendu pour répondre aux besoins spécifiques de l'organisation.
+- **Contrôle de version**: Gère les mises à jour et modifications du schéma.
+
+### Global Catalog
+
+*Le `Global Catalog` dans l'`Active Directory` est un index distribué contenant des informations essentielles sur tous les objets de la forêt `Active Directory`. Il permet des recherches rapides et efficaces à travers la forêt. - ChatGPT*
+
+- **Recherche rapide**: Facilite la recherche d'objets dans l'ensemble de la forêt.
+- **Informations essentielles**: Contient un sous-ensemble des attributs les plus utilisés des objets.
+- **Réplication**: Distribue ses données à travers différents contrôleurs de domaine.
+- **Authentification et localisation**: Aide à localiser les objets et à authentifier les utilisateurs dans la forêt.
+
+**Sans global catalogue, pas d'authentification.**
+
+### LDAP
+
+*LDAP (Lightweight Directory Access Protocol) est un protocole de communication standard utilisé dans le contexte d'Active Directory et d'autres annuaires pour accéder et gérer les informations stockées dans ces annuaires.- ChatGPT*
+
+- **Protocole de communication**:
+
+  - LDAP est un protocole réseau qui permet aux clients d'accéder et de rechercher des données dans un annuaire, tel qu'Active Directory.
+
+  - Il utilise le modèle client-serveur, où un client LDAP envoie des requêtes au serveur LDAP pour récupérer des informations.
+
+- **Structure d'annuaire**:
+
+  - LDAP organise les données sous forme d'une arborescence hiérarchique, similaire à la structure d'Active Directory.
+
+  - Chaque objet dans l'annuaire est représenté par un DN (Distinguished Name) unique qui indique son emplacement dans l'arborescence.
+
+- **Authentification et autorisation**:
+
+  - LDAP est utilisé pour l'authentification des utilisateurs lors de leur connexion à Active Directory.
+
+  - Il est également utilisé pour vérifier les autorisations et les droits d'accès des utilisateurs aux ressources.
+
+- **LDAP et Active Directory**:
+
+  - Active Directory est basé sur LDAP et étend ses fonctionnalités pour offrir des services d'annuaire plus complets aux environnements Windows.
+
+  - LDAP est utilisé en interne par Active Directory pour les opérations de base.
+
+# Intégration dans l'AD
+
+## Logon & AD
+
+- **Authentification** :
+
+  - Lorsqu'un utilisateur se connecte à un système Windows au moyen de son nom d'utilisateur et de son mot de passe, le système doit vérifier ces informations pour s'assurer de l'identité de l'utilisateur.
+
+  - Active Directory joue un rôle central dans cette authentification, car il stocke les informations d'identification des utilisateurs et des ordinateurs au sein d'un domaine.
+
+- **Accès aux ressources** :
+
+  - Une fois qu'un utilisateur s'est authentifié avec succès auprès d'Active Directory, il obtient un jeton d'authentification qui contient des informations sur ses droits et autorisations.
+
+  - Ce jeton d'authentification est ensuite utilisé pour déterminer quelles ressources et quelles actions l'utilisateur est autorisé à effectuer au sein du domaine.
+
+- **Gestion des politiques de groupe (GPO)** :
+
+  - Active Directory permet la création de politiques de groupe (GPO) qui définissent des règles de configuration et de sécurité pour les utilisateurs et les ordinateurs dans un domaine.
+
+  - Lorsque l'utilisateur se connecte, les GPO sont appliquées en fonction de son emplacement dans l'annuaire, ce qui influence la manière dont le système est configuré et sécurisé.
+
+- **Centralisation de l'identité et de l'authentification** :
+   - Active Directory offre une gestion centralisée des identités, des groupes et des comptes d'utilisateur.
+   - Cela simplifie la gestion des utilisateurs et des ordinateurs dans un environnement Windows, en permettant aux administrateurs de gérer efficacement les comptes et les droits d'accès.
 
 # Authentification
 
-Session:
+Dans un environnement AD, deux principaux protocoles utilisés. `NTML` et `Kerberos`.
 
-- Session, Kernel (partitionnement système entre utilisateurs)
-- Logon Session (LSASS)
-  - Utilisateur authentifié sur la machine (LUID, Localy-…)
+## NTLM
 
-![image-20240122094121703](./assets/image-20240122094121703.png)
+![NTLM | Comment fonctionne ce procédé d'authentification ? - IONOS](./assets/cadre-d-une-authentification-ntlm.png)
 
-## Authentifications Packages (DLLs)
+## Kerberos
 
-![image-20240122094214536](./assets/image-20240122094214536.png)
+### Fonctionnement
 
-## Credentials Manager
+*Kerberos est un protocole d'authentification réseau développé par le MIT (Massachusetts Institute of Technology) qui offre un niveau élevé de sécurité pour l'authentification des utilisateurs et le chiffrement des communications dans un environnement informatique. - ChatGPT*
 
-Permet l'enregistrement de mots de passe.
+1. **Pré-authentification** :
+   - Lorsqu'un utilisateur souhaite accéder à un service ou se connecter à un système, il contacte un service d'authentification Kerberos, généralement appelé `Key Distribution Center` (KDC).
+2. **Demande de Ticket TGT** :
+   - L'utilisateur envoie une demande d'authentification au KDC en fournissant son identifiant.
+   - Le KDC répond en générant un `Ticket Granting Ticket` (TGT) chiffré avec une clé secrète basée sur le mot de passe de l'utilisateur. Le TGT est également associé à un horodatage.
+3. **TGT et demande de service** :
+   - L'utilisateur demande un service spécifique (par exemple, un accès à un serveur de fichiers) en fournissant le TGT au service demandé.
+   - Le service demandé ne peut pas déchiffrer le TGT car il ne connaît pas le mot de passe de l'utilisateur. Cependant, il sait comment le transmettre au KDC pour vérification.
+4. **Authentification auprès du TGS** :
+   - Le service demandé envoie le TGT au TGS (`Ticket Granting Service`) du KDC pour vérification.
+   - Le TGS valide le TGT, vérifie l'identité de l'utilisateur et génère un `Service Ticket Granting Ticket` (TGS) chiffré avec une clé spécifique au service demandé.
+5. **Utilisation du Ticket de Service** :
+   - Le Service Ticket Granting Ticket est renvoyé à l'utilisateur, qui peut maintenant l'utiliser pour accéder au service demandé sans avoir à fournir de mot de passe supplémentaire.
+   - Le service vérifie le TGS avec sa propre clé secrète pour s'assurer qu'il est légitime.
+6. **Sessions sécurisées** :
+   - Une fois l'utilisateur authentifié, une session sécurisée est établie entre l'utilisateur et le service.
+   - Les communications sont chiffrées pour garantir la confidentialité des données échangées.
 
-![image-20240122094342168](./assets/image-20240122094342168.png)
+![Let's talk about Kerberos... Summary: | by John D Cyber | Medium](./assets/kerberos.png)
 
-**Note**: Possible de faire 2 types de call pour accéder à ces données, Local RPC ou Named Pipes.
+### Trust & Kerberos
 
-# SSPI (Security Support Provider Interface)
+![image-20240123151928785](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Administration Windows/assets/image-20240123151928785.png)
 
-> ***SSPI (Security Support Provider Interface)** est une interface de programmation dans les systèmes Windows qui offre des services de sécurité tels que l'authentification, l'autorisation, et la gestion des échanges de clés cryptographiques. - ChatGPT*
+### Delegation, ou Kerberos Forwarding
 
-- **Interface** : Fournit une interface pour la sécurité au niveau du système.
-- **Authentification** : Gère l'authentification, l'autorisation, et l'échange de clés cryptographiques.
-- **Abstraction** : Cache les détails spécifiques des protocoles de sécurité.
-- **Protocoles supportés** : Inclut Kerberos, NTLM, Schannel (SSL/TLS), Digest.
-- **Extensible** : Peut intégrer de nouveaux protocoles de sécurité.
-- **Utilisation** : Employé par divers services Windows et applications pour sécuriser les communications.
-- **Interactions avec LSASS** : SSPI communique avec LSASS pour l'accès aux fonctions de sécurité.
+*La délégation Kerberos, souvent appelée "Kerberos Forwarding" ou "Kerberos Constrained Delegation", est une fonctionnalité de sécurité d'Active Directory qui permet à un service ou à un serveur de transmettre l'authentification de l'utilisateur à un autre service ou serveur, tout en garantissant la sécurité de l'opération. Cette fonctionnalité est utilisée pour permettre à un service de demander des services supplémentaires au nom de l'utilisateur sans avoir à stocker les informations d'identification de l'utilisateur ou à les transmettre explicitement. - ChatGPT*
 
-![image-20240122102116641](./assets/image-20240122102116641.png)
+#### Fonctionnement
 
-## Structure des call dispatch
+Il existe deux types de délégation Kerberos :
 
-![image-20240122094726060](./assets/image-20240122094726060.png)
+1. **Délégation simple (Unconstrained Delegation)** : Dans ce type de délégation, le service intermédiaire peut demander un TGS pour n'importe quel service au nom de l'utilisateur. Il nécessite un niveau de confiance élevé, ce qui peut présenter des risques de sécurité si mal configuré.
 
-## Fonctionnement de SSPI
-
-![image-20240122094851754](./assets/image-20240122094851754.png)
-
-# UAC (User Account Control)
-
-> ***UAC (User Account Control)** est une fonctionnalité de sécurité dans les systèmes d'exploitation Windows qui aide à prévenir les modifications non autorisées sur le système. Elle vise à améliorer la sécurité en demandant une autorisation ou des informations d'identification d'administrateur avant de lancer des tâches pouvant affecter le fonctionnement du système ou modifier des paramètres sensibles. - ChatGPT*
-
-- **Contrôle des Modifications Système** : Prévient les changements non autorisés sur le système.
-- **Demande d'Élévation de Privileges** : Demande une autorisation pour les tâches nécessitant des droits d'administrateur.
-- **Sécurité Renforcée** : Réduit le risque d'infections par des logiciels malveillants et d'actions non autorisées.
-- **Modes de Notification** : Plusieurs niveaux de notifications selon les paramètres de l'utilisateur.
-- **Utilisateur Standard vs Administrateur** : Fait la distinction entre les droits des utilisateurs standards et ceux des administrateurs.
-- **Compatibilité avec les Applications** : Peut nécessiter des ajustements pour les anciennes applications non conçues pour UAC.
-- **Gestion Centralisée** : Peut être configuré via des politiques de groupe dans un environnement d'entreprise.
-
-![image-20240122102255146](./assets/image-20240122102255146.png)
-
-## Liste des Filtered Groups
-
-| Groupe d'Utilisateurs                                        | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| **Domain Admins**                                            | Administrateurs du domaine avec privilèges complets, restreints sous UAC. |
-| **Read-only Domain Controllers**                             | Contrôleurs de domaine en lecture seule, avec des droits limités. |
-| **Enterprise Read-only Domain Controllers**                  | Contrôleurs de domaine d'entreprise en lecture seule, avec des droits spécifiques. |
-| **Administrators**                                           | Groupe d'administrateurs avec privilèges élevés, limités sous UAC. |
-| **Power Users**                                              | Utilisateurs avec certains privilèges administratifs, réduits sous UAC. |
-| **Account Operators**                                        | Gère les comptes utilisateurs, avec des privilèges limités sous UAC. |
-| **Server Operators**                                         | Opérateurs de serveur avec des droits limités en présence d'UAC. |
-| **Print Operators**                                          | Opérateurs d'impression avec des droits restreints sous UAC. |
-| **Backup Operators**                                         | Opérateurs de sauvegarde avec des privilèges spéciaux, filtrés par UAC. |
-| **Pre-Windows 2000 Compatible Access**                       | Accès compatible avec les versions antérieures à Windows 2000, limité par UAC. |
-| **Cert Publishers**                                          | Éditeurs de certificats, avec des droits spécifiques sous UAC. |
-| **Schema Admins**                                            | Administrateurs de schéma avec des privilèges élevés, restreints par UAC. |
-| **Enterprise Admins**                                        | Administrateurs d'entreprise avec droits complets, filtrés sous UAC. |
-| **Group Policy Creator Owners**                              | Propriétaires créateurs de stratégies de groupe, avec des privilèges spéciaux sous UAC. |
-| **RAS and IAS Servers Access**                               | Accès limité sous UAC pour les serveurs RAS et IAS.          |
-| **Network Configuration Operators**                          | Opérateurs de configuration réseau, avec droits limités sous UAC. |
-| **Cryptographic Operators**                                  | Opérateurs cryptographiques avec des privilèges restreints sous UAC. |
-| **NT AUTHORITY\Local account and member of Administrators group** | Comptes locaux membres du groupe Administrateurs, avec droits d'administrateur filtrés sous UAC. |
-
-# Summary
-
-- **Windows Identity** : SID et Access Token
-- **SAM**: Account database
-- **LSASS** : Hôte pour les services d'authentifications
-- **SSPI** : API d'authentification de Windows
-- **UAC**: Protection des comptes privilégiés
-
-# Service Account
-
-## GSMA (Group Managed Service Account)
-
-> ***GMSA (Group Managed Service Account)** est une fonctionnalité dans les environnements **Windows Server**, conçue pour offrir une gestion automatisée et sécurisée des comptes de service. - ChatGPT*
-
-- **Gestion Automatisée des Mots de Passe** : GMSA permet la gestion automatique des mots de passe, éliminant le besoin de les changer manuellement.
-- **Sécurité Renforcée** : Améliore la sécurité des applications et des services en évitant la gestion manuelle des mots de passe.
-- **Utilisation sur Plusieurs Serveurs** : Contrairement aux MSA (Managed Service Accounts), les GMSA peuvent être utilisés sur plusieurs serveurs.
-- **Support d'Applications et Services** : Idéal pour les services Windows, IIS, SQL Server et d'autres applications qui nécessitent des comptes de service.
-- **Active Directory** : Nécessite Active Directory pour stocker et gérer les comptes GMSA.
-- **Automatisation avec PowerShell** : Géré principalement via PowerShell pour l'automatisation et la configuration.
-- **Restrictions et Délégation** : Permet de définir des restrictions et des délégations spécifiques pour les comptes de service.
-
-### gSMA Operations
-
-> *Les opérations avec `Group Managed Service Accounts` (`gMSA`) dans Windows Server sont conçues pour simplifier la gestion des comptes de service, en particulier pour les mots de passe automatiquement gérés et synchronisés. - ChatGPT*
-
-**Fonctionnement:**
-
-1. **Création de `gMSA`** : Les administrateurs créent un `gMSA` dans Active Directory. Ils spécifient les systèmes où le `gMSA` peut être utilisé.
-
-2. **Automatisation des Mots de Passe** : `gMSA` gère automatiquement les changements de mot de passe, éliminant le besoin pour les administrateurs de les mettre à jour manuellement.
-
-3. **Utilisation sur Plusieurs Serveurs** : Contrairement à un `Managed Service Account` (`MSA`), un `gMSA` peut être utilisé sur plusieurs serveurs, ce qui est idéal pour des services équilibrés sur plusieurs machines.
-
-4. **Sécurité Renforcée** : Les mots de passe `gMSA` sont complexes et régulièrement renouvelés, améliorant ainsi la sécurité.
-
-5. **Configuration des Services** : Les services ou applications sur les serveurs sont configurés pour utiliser le `gMSA` pour l'authentification. Cela inclut des services comme IIS, SQL Server ou des tâches planifiées.
-
-6. **Accès aux Ressources** : Les services utilisant `gMSA` peuvent accéder aux ressources du réseau de manière sécurisée sans nécessiter une intervention pour la gestion des mots de passe.
-
-7. **Dépendance Active Directory** : `gMSA` nécessite une infrastructure Active Directory et est principalement géré via PowerShell.
-
-8. **Restrictions et Politiques** : Les administrateurs peuvent définir des politiques de sécurité et des restrictions spécifiques pour les `gMSA` dans Active Directory.
-
-# Windows Privileges
-
-> *Les privilèges de type session dans Windows sont des autorisations spécifiques accordées à un utilisateur ou à un processus pour une session donnée. Ces privilèges déterminent les actions que l'utilisateur ou le processus peut effectuer pendant la durée de la session. - ChatGPT* 
-
-- **Attribution Dynamique** : Les privilèges de type session sont attribués dynamiquement lorsqu'une session utilisateur est créée. Ils varient en fonction du niveau d'accès de l'utilisateur ou du rôle du processus.
-
-- **Gestion de la Sécurité** : Ces privilèges sont essentiels pour la gestion de la sécurité au niveau des sessions, limitant ou étendant les capacités des utilisateurs ou des processus en fonction de leurs besoins et de leur niveau de confiance.
-
-- **Exemples de Privilèges** : Parmi les privilèges de type session, on trouve le droit de déboguer des programmes (`SeDebugPrivilege`), de charger ou de décharger des pilotes de périphériques (`SeLoadDriverPrivilege`), et de gérer l'audit et les journaux de sécurité (`SeSecurityPrivilege`).
-
-- **Contrôle d'Accès** : Les privilèges de session jouent un rôle crucial dans le contrôle d'accès, en s'assurant que seules les actions autorisées peuvent être effectuées par un utilisateur ou un processus donné pendant une session.
-
-- **Importance pour la Sécurité** : La gestion correcte de ces privilèges est vitale pour maintenir la sécurité du système, en prévenant les abus de droits et en limitant les risques d'actions malveillantes.
-
-*En résumé, les privilèges de type session sont une partie intégrante du modèle de sécurité de Windows, permettant une gestion flexible et sécurisée des autorisations au niveau des sessions individuelles.*, 
-
-## Tableaux détaillés
-
-| Type de Privilège de Session        | Description                                                  |
-| ----------------------------------- | ------------------------------------------------------------ |
-| **SeCreateTokenPrivilege**          | Permet à un processus de créer un jeton d'accès.             |
-| **SeAssignPrimaryTokenPrivilege**   | Permet à un processus de modifier le jeton d'accès d'un processus. |
-| **SeLockMemoryPrivilege**           | Autorise le verrouillage des pages en mémoire.               |
-| **SeIncreaseQuotaPrivilege**        | Permet d'augmenter les quotas de mémoire pour un processus.  |
-| **SeMachineAccountPrivilege**       | Autorise la création d'un compte machine dans le domaine.    |
-| **SeTcbPrivilege**                  | Permet de se comporter comme une partie du système d'exploitation. |
-| **SeSecurityPrivilege**             | Autorise la modification des paramètres de sécurité et des journaux d'audit. |
-| **SeTakeOwnershipPrivilege**        | Permet de prendre possession d'un objet sans autorisation.   |
-| **SeLoadDriverPrivilege**           | Autorise le chargement ou le déchargement des pilotes de périphériques. |
-| **SeSystemProfilePrivilege**        | Permet de profiler les performances du système.              |
-| **SeSystemtimePrivilege**           | Autorise la modification de l'heure du système.              |
-| **SeProfileSingleProcessPrivilege** | Permet de profiler les performances d'un processus unique.   |
-| **SeIncreaseBasePriorityPrivilege** | Permet d'augmenter la priorité d'exécution d'un processus.   |
-| **SeCreatePagefilePrivilege**       | Autorise la création d'un fichier d'échange.                 |
-| **SeCreatePermanentPrivilege**      | Permet de créer des objets permanents dans le noyau.         |
-| **SeBackupPrivilege**               | Autorise la sauvegarde de fichiers et de dossiers.           |
-| **SeRestorePrivilege**              | Permet de restaurer des fichiers et des dossiers.            |
-| **SeShutdownPrivilege**             | Autorise l'arrêt et le redémarrage du système.               |
-| **SeDebugPrivilege**                | Permet d'accéder à des informations sensibles dans d'autres processus. |
-| **SeAuditPrivilege**                | Autorise l'activation des journaux d'audit.                  |
-| **SeSystemEnvironmentPrivilege**    | Permet de modifier les variables d'environnement du système. |
-| **SeChangeNotifyPrivilege**         | Autorise la réception de notifications de modification de fichiers ou de dossiers. |
-| **SeRemoteShutdownPrivilege**       | Autorise l'arrêt à distance d'un ordinateur.                 |
-| **SeUndockPrivilege**               | Permet de détacher un ordinateur portable de sa station d'accueil. |
-| **SeSyncAgentPrivilege**            | Permet d'effectuer des synchronisations de fichiers en tant qu'agent. |
-| **SeEnableDelegationPrivilege**     | Permet d'activer la délégation de sécurité.                  |
-
-# Privileges Management
-
-> *La gestion des privilèges, ou `Privileges Management`, dans les systèmes informatiques, est un aspect crucial de la sécurité et de l'administration système. Elle implique l'attribution, la gestion et le contrôle des privilèges (droits) accordés aux utilisateurs, aux comptes de service et aux processus. - ChatGPT*
-
-1. **Contrôle d'Accès** : La gestion des privilèges est essentielle pour contrôler l'accès aux ressources et fonctions du système. Elle détermine qui peut effectuer quelles actions et sur quels objets.
-
-2. **Prévention des Abus** : En limitant les privilèges au strict nécessaire, on réduit le risque d'abus ou d'exploitation malveillante des droits étendus.
-
-3. **Principe du Moindre Privilège** : Il s'agit d'une pratique de sécurité consistant à accorder aux utilisateurs uniquement les privilèges nécessaires pour effectuer leurs tâches, réduisant ainsi la surface d'attaque potentielle.
-
-4. **Gestion des Comptes Utilisateur** : Implique de définir des rôles et des responsabilités, et d'associer les privilèges appropriés à ces rôles.
-
-5. **Audit et Suivi** : La surveillance et l'audit des privilèges permettent de détecter les anomalies de sécurité et de conformité, en enregistrant qui a fait quoi, quand et où.
-
-6. **Outils de Gestion des Privilèges** : Des logiciels spécialisés aident à gérer les privilèges, offrant des fonctionnalités comme la gestion automatisée des privilèges, l'analyse des droits et la délégation de droits.
-
-7. **Mises à Jour et Révisions** : Les privilèges doivent être régulièrement revus et ajustés en fonction des changements de rôle, des départs d'employés ou de l'évolution des politiques de sécurité.
-
-8. **Intégration avec la Gestion des Identités** : La gestion des privilèges est souvent intégrée à des solutions plus larges de gestion des identités et des accès (IAM) pour une administration cohérente des droits d'utilisateur.
-
-![image-20240122103108062](./assets/image-20240122103108062.png)
-
-# Local Security Database
-
-> *La `Local Security Database` dans les systèmes Windows est un composant essentiel qui stocke les informations de sécurité locales pour un ordinateur. - ChatGPT*
-
-1. **Stockage d'Informations de Sécurité** : Contient des données telles que les comptes d'utilisateurs, les groupes, les politiques de sécurité et les mots de passe.
-
-2. **Gérée par SAM (`Security Account Manager`)** : La base de données est gérée par le SAM, qui contrôle l'accès et la gestion des comptes utilisateurs et des groupes.
-
-3. **Utilisée pour l'Authentification Locale** : Permet l'authentification des utilisateurs sur l'ordinateur local sans nécessiter de connexion à un serveur Active Directory.
-
-4. **Politiques de Sécurité** : Inclut des politiques telles que les exigences de mot de passe, les droits de connexion et les paramètres d'audit.
-
-5. **Gestion des Comptes** : Permet aux administrateurs de créer, modifier et supprimer des comptes locaux et des groupes.
-
-6. **Indépendante de l'Active Directory** : Fonctionne indépendamment d'Active Directory, importante pour les systèmes qui ne sont pas membres d'un domaine.
-
-7. **Outil de Gestion** : Accessible via des outils comme l'`Local Users and Groups` du `Computer Management` ou via des commandes PowerShell.
-
-8. **Sécurité** : Essentielle pour la sécurité de l'ordinateur, notamment en termes de gestion des accès et des droits des utilisateurs.
-
-![image-20240122104215363](./assets/image-20240122104215363.png)
-
-​	Des modèles peuvent être créés dans des `fichiers.inf`.
-
-# Security Compliance Tookkit
-
-> *Le `Security Compliance Toolkit` (SCT) est un ensemble d'outils fourni par Microsoft pour aider les organisations à gérer, analyser et renforcer la conformité de la sécurité de leurs systèmes Windows. - ChatGPT*
-
-1. **Modèles de Sécurité Baseline** : Inclut des modèles de configuration de sécurité (baselines) recommandés par Microsoft pour divers produits Windows, y compris Windows Server et Windows 10.
-
-2. **Outils d'Analyse de la Conformité** : Permet d'évaluer et de comparer la configuration actuelle d'un système avec les baselines de sécurité recommandées.
-
-3. **Personnalisation des Baselines** : Les administrateurs peuvent personnaliser les baselines selon les besoins spécifiques de leur organisation.
-
-4. **Amélioration de la Sécurité** : Aide à identifier et à appliquer les meilleures pratiques de sécurité pour renforcer les systèmes contre les vulnérabilités.
-
-5. **Outils d'Automatisation** : Comprend des scripts et des outils pour automatiser la gestion de la conformité et la configuration de la sécurité.
-
-6. **Intégration avec d'Autres Outils** : Peut être utilisé en conjonction avec d'autres outils de gestion de la sécurité et des politiques, tels que `Group Policy` et `Microsoft Endpoint Configuration Manager`.
-
-7. **Rapports et Diagnostics** : Fournit des capacités de reporting pour aider à comprendre l'état de conformité de sécurité des systèmes.
-
-8. **Utilisation par les Professionnels de la Sécurité** : Principalement destiné aux professionnels de la sécurité informatique et aux administrateurs système pour gérer la conformité et la configuration de sécurité.
-
-# DACL Model
-
-> *Le modèle DACL (Discretionary Access Control List) est un mécanisme de sécurité dans les systèmes Windows qui permet aux propriétaires de ressources de contrôler l'accès à ces ressources. - ChatGPT*
-
-**Note:** SACL: System Access Control List, ACE: Access Control Entry
-
-- **Liste de Contrôle d'Accès** : Une DACL est une liste qui identifie les utilisateurs ou groupes ayant des permissions sur une ressource.
-- **Permissions Spécifiques** : Inclut des permissions comme lire, écrire, exécuter, modifier, ou supprimer.
-- **Contrôle Discretionnaire** : Le propriétaire de la ressource définit et modifie les DACL.
-- **Sécurité des Ressources** : Utilisée pour sécuriser les fichiers, dossiers, objets de registre, et autres objets Windows.
-- **Application** : Les DACL sont appliquées lors de l'accès à une ressource, déterminant si l'accès est autorisé.
-- **Intégration avec Active Directory** : Dans les environnements de domaine, les DACL peuvent également être utilisées pour contrôler l'accès aux objets Active Directory.
-- **Audit et Conformité** : Les DACL aident à répondre aux exigences d'audit et de conformité en documentant qui a accès à quoi.
-- **Outils de Gestion** : Peuvent être gérées via des outils graphiques (comme l'Explorateur de fichiers) ou des commandes PowerShell.
-
-## Security Descriptor
-
-Un `Security Descriptor` dans Windows est une structure qui contient des informations de sécurité importantes pour les objets comme les fichiers, les dossiers, et les clés de registre. Voici un tableau décrivant ses composants principaux :
-
-| Composant                                    | Description                                                  |
-| -------------------------------------------- | ------------------------------------------------------------ |
-| **Owner**                                    | Identifie l'utilisateur ou le groupe qui possède l'objet. A le droit de modifier les permissions. |
-| **Group**                                    | Généralement utilisé pour des raisons d'administration. Spécifie le groupe principal de l'objet. |
-| **DACL (Discretionary Access Control List)** | Contient une liste de règles d'accès (ACEs) définissant les permissions pour les utilisateurs et les groupes. |
-| **SACL (System Access Control List)**        | Utilisée pour le journal d'audit, indique les tentatives d'accès qui doivent être enregistrées dans le journal de sécurité. |
-
-## Fonctionnement
-
-![image-20240122112755357](./assets/image-20240122112755357.png)
-
-## Exemples
-
-### Success
-
-![image-20240122112849573](./assets/image-20240122112849573.png)
-
-### Deny
-
-![image-20240122112908371](./assets/image-20240122112908371.png)
-
-Accès refusé à Dena, spécifiquement.
-
-## SIDs (DACLs)
-
-| Well-known SID | Description   |
-| -------------- | ------------- |
-| `S-1-3-0`      | Creator Owner |
-| `S-1-3-1`      | Creator Group |
-| `S-1-3-4`      | Owner Rights  |
-
-# SDDL
-
-> *Le formatage SDDL (Security Descriptor Definition Language) est utilisé dans les systèmes Windows pour décrire les descripteurs de sécurité (security descriptors) de manière textuelle. - ChatGPT*
-
-**SDDL Format**
-- **`O:owner’s SID`** : Spécifie l'identifiant de sécurité (SID) du propriétaire de l'objet.
-- **`G:group owner SID`** : Indique le SID du groupe principal de l'objet.
-- **`D:dacl_flags(string_ace1)(string_ace2)... (string_acen)`** : Représente la liste de contrôle d'accès discrétionnaire (DACL) avec ses drapeaux et les entrées de liste de contrôle d'accès (ACE).
-- **`S:sacl_flags(string_ace1)(string_ace2)... (string_acen)`** : Décrit la liste de contrôle d'accès système (SACL), incluant les ACE pour l'audit et le suivi.
-
-**ACE Format**
-
-- **`ace_type;ace_flags;rights;object_guid;inherit_object_guid;account_sid;(resource_attribute)`** : Format des entrées ACE dans les DACL et SACL.
-  - `ace_type` : Type de l'ACE (par exemple, accès accordé ou refusé).
-  - `ace_flags` : Drapeaux définissant comment l'ACE est héritée.
-  - `rights` : Droits ou permissions spécifiés par l'ACE.
-  - `object_guid` et `inherit_object_guid` : Identifiants pour les objets spécifiques et leur héritage.
-  - `account_sid` : SID du compte associé à l'ACE.
-  - `resource_attribute` : Attributs de ressource supplémentaires.
-
-**APIs**
-- **`ConvertSecurityDescriptorToStringSecurityDescriptor()`** : Convertit un descripteur de sécurité en sa représentation SDDL.
-- **`ConvertStringSecurityDescriptorToSecurityDescriptor()`** : Fait l'inverse, convertissant une chaîne SDDL en descripteur de sécurité.
-
-# Mandatory levels Dynamic Access Control
-
-> *Mandatory Access Control (MAC) Levels, dans le cadre de Dynamic Access Control (DAC) dans Windows, sont utilisés pour définir et imposer des politiques de sécurité basées sur des niveaux de confidentialité ou d'intégrité. - ChatGPT*
-
-- **Principe de Fonctionnement** : MAC associe des étiquettes de sécurité aux ressources et aux utilisateurs/processus. L'accès est accordé ou refusé en fonction de ces étiquettes.
-
-- **Niveaux de Sécurité** : Différents niveaux (bas, moyen, élevé, etc.) sont attribués aux objets et aux utilisateurs. Par exemple, un document peut être marqué comme "Confidentiel".
-
-- **Étiquettes d'Intégrité** : En plus des niveaux de confidentialité, les étiquettes d'intégrité (comme faible, moyen, élevé) peuvent être utilisées pour empêcher des processus à faible intégrité d'affecter ceux à haute intégrité.
-
-- **Application dans DAC** : Dans Dynamic Access Control, les niveaux MAC sont combinés avec d'autres attributs (comme l'identité de l'utilisateur, le rôle, etc.) pour définir des politiques d'accès plus flexibles et dynamiques.
-
-- **Contrôle Centralisé** : Permet une gestion centralisée des politiques de sécurité, importantes pour les grandes organisations.
-
-- **Sécurité Renforcée** : Aide à prévenir les fuites d'informations et à assurer que seuls les utilisateurs autorisés ont accès aux données sensibles.
-
-- **Déploiement** : Nécessite une planification et une mise en œuvre minutieuses pour être efficace, souvent intégré dans les stratégies de sécurité d'entreprise.
-
-## Levels
-
-| Niveau d'Intégrité    | SID Correspondant | Description                                                  |
-| --------------------- | ----------------- | ------------------------------------------------------------ |
-| **Untrusted**         | `S-1-16-0`        | Niveau attribué aux processus non fiables, avec les privilèges les plus bas. Utilisé pour isoler des applications potentiellement dangereuses. |
-| **Low**               | `S-1-16-4096`     | Attribué aux processus qui s'exécutent avec des droits très limités. Typique pour les applications Internet et autres processus considérés comme moins fiables. |
-| **Medium**            | `S-1-16-8192`     | Niveau par défaut pour les utilisateurs standards. La plupart des applications s'exécutent à ce niveau. |
-| **High**              | `S-1-16-12288`    | Attribué aux processus qui nécessitent des droits élevés pour fonctionner correctement. Typiquement utilisé par les administrateurs système et certaines applications critiques. |
-| **System**            | `S-1-16-16384`    | Niveau réservé aux processus du système d'exploitation. Donne un accès étendu aux ressources système. |
-| **Protected/Trusted** | `S-1-16-20480`    | Le niveau le plus élevé, utilisé pour les processus qui nécessitent la plus haute fiabilité et confiance. |
-
-> *`icacls.exe` est un outil en ligne de commande dans Windows utilisé pour afficher et modifier les listes de contrôle d'accès discrétionnaires (DACLs) et les listes de contrôle d'accès système (SACLs) des fichiers et dossiers. - ChatGPT*
-
-	## Integrity ACE
-
-> *Les `Integrity ACEs` (Access Control Entries) dans Windows sont utilisées pour mettre en œuvre la sécurité basée sur l'intégrité. Elles permettent de définir des politiques pour contrôler comment les processus interagissent en fonction de leur niveau d'intégrité.  - ChatGPT*
-
-1. **No Write Up** : Empêche les processus à un niveau d'intégrité inférieur d'écrire dans les objets à un niveau supérieur, assurant ainsi que les processus moins fiables ne puissent pas modifier les données des processus plus sécurisés.
-
-2. **No Read Up** : Restreint les processus à un niveau d'intégrité inférieur de lire les informations des objets à un niveau supérieur, empêchant ainsi les fuites d'informations sensibles vers des processus moins sécurisés.
-
-3. **No Execute Up** : Interdit aux processus à un niveau d'intégrité inférieur d'exécuter des fichiers ou des scripts dans un contexte de niveau supérieur, protégeant ainsi contre l'exécution de code malveillant.
-
-## Set DACL on resources
-
-> *"Set DACL on resources" fait référence à l'action de définir ou de modifier la liste de contrôle d'accès discrétionnaire (DACL) sur des ressources telles que des fichiers, des dossiers ou des objets système dans Windows. Cela permet de précisément contrôler qui peut accéder à ces ressources et quelles actions sont autorisées, renforçant ainsi la sécurité des données et des objets. - ChatGPT*
+2. **Délégation contrainte (Constrained Delegation)** : Ce type de délégation est plus sécurisé car il permet au service intermédiaire de demander un TGS uniquement pour un service spécifique, limitant ainsi les risques potentiels.

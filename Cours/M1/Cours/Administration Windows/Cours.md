@@ -24,7 +24,7 @@ Suite à l'extrème incompétence, une fois de plus, de la part de l'administrat
 
 ## Domain Services
 
-*Les `Domain Services` dans l'`Active Directory` sont au cœur de la fonctionnalité du service de répertoire. Ils fournissent les mécanismes essentiels pour la gestion des identités et des relations dans un réseau d'entreprise. - ChatGPT*
+> *Les `Domain Services` dans l'`Active Directory` sont au cœur de la fonctionnalité du service de répertoire. Ils fournissent les mécanismes essentiels pour la gestion des identités et des relations dans un réseau d'entreprise. - ChatGPT*
 
 - **Gestion des identités**: Centralise les comptes d'utilisateurs, groupes et ordinateurs.
 - **Authentification**: Processus de vérification des identifiants des utilisateurs.
@@ -35,7 +35,7 @@ Suite à l'extrème incompétence, une fois de plus, de la part de l'administrat
 
 ## Domain controller
 
-*Un `Domain Controller` dans `Active Directory` est un serveur qui répond aux demandes d'authentification et stocke les données d'annuaire de l'organisation. Il joue un rôle central dans la gestion des politiques de sécurité et des accès aux ressources du réseau. - ChatGPT*
+> *Un `Domain Controller` dans `Active Directory` est un serveur qui répond aux demandes d'authentification et stocke les données d'annuaire de l'organisation. Il joue un rôle central dans la gestion des politiques de sécurité et des accès aux ressources du réseau. - ChatGPT*
 
 - **Authentification**: Gère les demandes de connexion des utilisateurs.
 - **Base de données d'annuaire**: Stocke les informations des comptes utilisateurs, groupes, et autres objets.
@@ -50,7 +50,7 @@ Suite à l'extrème incompétence, une fois de plus, de la part de l'administrat
 
 ## Domains
 
-*Les `Domains` dans l'`Active Directory` représentent la structure de base de l'organisation dans le réseau, définissant le cadre pour la gestion des identités et des politiques. - ChatGPT*
+> *Les `Domains` dans l'`Active Directory` représentent la structure de base de l'organisation dans le réseau, définissant le cadre pour la gestion des identités et des politiques. - ChatGPT*
 
 - **Unité administrative**: Un domaine est une unité administrative logique.
 - **Gestion centralisée**: Permet la gestion centralisée des utilisateurs, groupes et ressources.
@@ -60,7 +60,8 @@ Suite à l'extrème incompétence, une fois de plus, de la part de l'administrat
 
 ## Trusts
 
-*Les `Trusts` dans l'`Active Directory` sont des liens de confiance établis entre différents domaines ou forêts pour permettre aux utilisateurs d'un domaine d'accéder aux ressources d'un autre. - ChatGPT*
+> *Les `Trusts` dans l'`Active Directory` sont des liens de confiance établis entre différents domaines ou forêts pour permettre aux utilisateurs d'un domaine d'accéder aux ressources d'un autre. - ChatGPT*
+>
 
 - **Accès inter-domaines**: Facilite l'accès aux ressources entre différents domaines.
 - **Types de trusts**: Peuvent être unidirectionnels ou bidirectionnels.
@@ -89,7 +90,8 @@ Suite à l'extrème incompétence, une fois de plus, de la part de l'administrat
 
 ## Identity services
 
-*Les `Identity Services` dans l'`Active Directory` assurent la gestion centralisée des comptes d'utilisateurs et de dispositifs, permettant une authentification et une autorisation efficaces. - ChatGPT*
+> *Les `Identity Services` dans l'`Active Directory` assurent la gestion centralisée des comptes d'utilisateurs et de dispositifs, permettant une authentification et une autorisation efficaces. - ChatGPT*
+>
 
 - **Gestion centralisée des comptes**: Création et gestion des comptes utilisateurs et appareils.
 - **Authentification et autorisation**: Vérification des identités et gestion des accès.
@@ -97,7 +99,7 @@ Suite à l'extrème incompétence, une fois de plus, de la part de l'administrat
 
 ### Users and groups
 
-Dans l'`Active Directory`, la gestion des **utilisateurs et des groupes** est fondamentale pour structurer et contrôler l'accès aux ressources du réseau.
+> *Dans l'`Active Directory`, la gestion des **utilisateurs et des groupes** est fondamentale pour structurer et contrôler l'accès aux ressources du réseau. - ChatGPT*
 
 - **Organisation des utilisateurs**: Permet de créer et de gérer des comptes d'utilisateurs individuels.
 - **Gestion des groupes**: Facilite l'assignation de droits d'accès et de politiques à des groupes d'utilisateurs.
@@ -150,7 +152,7 @@ Dans l'`Active Directory`, **l'authentification et l'autorisation** sont des pro
 
 ### Certificates
 
-*Les `Certificates` dans l'`Active Directory` jouent un rôle crucial dans la sécurisation des communications et l'authentification des utilisateurs et des dispositifs. Ils font partie de l'infrastructure de clé publique (PKI). - ChatGPT*
+> *Les `Certificates` dans l'`Active Directory` jouent un rôle crucial dans la sécurisation des communications et l'authentification des utilisateurs et des dispositifs. Ils font partie de l'infrastructure de clé publique (PKI). - ChatGPT*
 
 - **Authentification forte**: Utilisés pour une authentification plus sécurisée.
 - **Chiffrement**: Protège les communications.
@@ -158,7 +160,7 @@ Dans l'`Active Directory`, **l'authentification et l'autorisation** sont des pro
 
 ## Directory Services
 
-*Les `Directory Services` dans l'`Active Directory` sont essentiels pour organiser, stocker et gérer les informations sur les objets du réseau comme les utilisateurs, les groupes et les ordinateurs. - ChatGPT*
+> *Les `Directory Services` dans l'`Active Directory` sont essentiels pour organiser, stocker et gérer les informations sur les objets du réseau comme les utilisateurs, les groupes et les ordinateurs. - ChatGPT*
 
 - **Stockage centralisé**: Contient des informations détaillées sur les objets du réseau.
 - **Recherche et accès aux données**: Permet de trouver et d'accéder facilement aux informations.
@@ -168,7 +170,7 @@ Dans l'`Active Directory`, **l'authentification et l'autorisation** sont des pro
 
 ### Schema
 
-*Le `Schema` dans l'`Active Directory` est une composante essentielle qui définit la structure de l'annuaire, spécifiant les types d'objets et leurs attributs pouvant être stockés dans l'`Active Directory`. - ChatGPT*
+> *Le `Schema` dans l'`Active Directory` est une composante essentielle qui définit la structure de l'annuaire, spécifiant les types d'objets et leurs attributs pouvant être stockés dans l'`Active Directory`. - ChatGPT*
 
 - **Définition des objets**: Décrit les objets comme les utilisateurs, ordinateurs, groupes.
 - **Attributs des objets**: Spécifie les caractéristiques et informations stockées pour chaque type d'objet.
@@ -177,7 +179,7 @@ Dans l'`Active Directory`, **l'authentification et l'autorisation** sont des pro
 
 ### Global Catalog
 
-*Le `Global Catalog` dans l'`Active Directory` est un index distribué contenant des informations essentielles sur tous les objets de la forêt `Active Directory`. Il permet des recherches rapides et efficaces à travers la forêt. - ChatGPT*
+> *Le `Global Catalog` dans l'`Active Directory` est un index distribué contenant des informations essentielles sur tous les objets de la forêt `Active Directory`. Il permet des recherches rapides et efficaces à travers la forêt. - ChatGPT*
 
 - **Recherche rapide**: Facilite la recherche d'objets dans l'ensemble de la forêt.
 - **Informations essentielles**: Contient un sous-ensemble des attributs les plus utilisés des objets.
@@ -188,7 +190,7 @@ Dans l'`Active Directory`, **l'authentification et l'autorisation** sont des pro
 
 ### LDAP
 
-*LDAP (Lightweight Directory Access Protocol) est un protocole de communication standard utilisé dans le contexte d'Active Directory et d'autres annuaires pour accéder et gérer les informations stockées dans ces annuaires.- ChatGPT*
+> *LDAP (Lightweight Directory Access Protocol) est un protocole de communication standard utilisé dans le contexte d'Active Directory et d'autres annuaires pour accéder et gérer les informations stockées dans ces annuaires.- ChatGPT*
 
 - **Protocole de communication**:
 
@@ -252,7 +254,7 @@ Dans un environnement AD, deux principaux protocoles utilisés. `NTML` et `Kerbe
 
 ### Fonctionnement
 
-*Kerberos est un protocole d'authentification réseau développé par le MIT (Massachusetts Institute of Technology) qui offre un niveau élevé de sécurité pour l'authentification des utilisateurs et le chiffrement des communications dans un environnement informatique. - ChatGPT*
+> *Kerberos est un protocole d'authentification réseau développé par le MIT (Massachusetts Institute of Technology) qui offre un niveau élevé de sécurité pour l'authentification des utilisateurs et le chiffrement des communications dans un environnement informatique. - ChatGPT*
 
 1. **Pré-authentification** :
    - Lorsqu'un utilisateur souhaite accéder à un service ou se connecter à un système, il contacte un service d'authentification Kerberos, généralement appelé `Key Distribution Center` (KDC).
@@ -276,11 +278,11 @@ Dans un environnement AD, deux principaux protocoles utilisés. `NTML` et `Kerbe
 
 ### Trust & Kerberos
 
-![image-20240123151928785](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Administration Windows/assets/image-20240123151928785.png)
+![image-20240123151928785](./assets/image-20240123151928785.png)
 
 ### Delegation, ou Kerberos Forwarding
 
-*La délégation Kerberos, souvent appelée "Kerberos Forwarding" ou "Kerberos Constrained Delegation", est une fonctionnalité de sécurité d'Active Directory qui permet à un service ou à un serveur de transmettre l'authentification de l'utilisateur à un autre service ou serveur, tout en garantissant la sécurité de l'opération. Cette fonctionnalité est utilisée pour permettre à un service de demander des services supplémentaires au nom de l'utilisateur sans avoir à stocker les informations d'identification de l'utilisateur ou à les transmettre explicitement. - ChatGPT*
+> *La délégation Kerberos, souvent appelée "Kerberos Forwarding" ou "Kerberos Constrained Delegation", est une fonctionnalité de sécurité d'Active Directory qui permet à un service ou à un serveur de transmettre l'authentification de l'utilisateur à un autre service ou serveur, tout en garantissant la sécurité de l'opération. Cette fonctionnalité est utilisée pour permettre à un service de demander des services supplémentaires au nom de l'utilisateur sans avoir à stocker les informations d'identification de l'utilisateur ou à les transmettre explicitement. - ChatGPT*
 
 #### Fonctionnement
 
@@ -289,3 +291,66 @@ Il existe deux types de délégation Kerberos :
 1. **Délégation simple (Unconstrained Delegation)** : Dans ce type de délégation, le service intermédiaire peut demander un TGS pour n'importe quel service au nom de l'utilisateur. Il nécessite un niveau de confiance élevé, ce qui peut présenter des risques de sécurité si mal configuré.
 
 2. **Délégation contrainte (Constrained Delegation)** : Ce type de délégation est plus sécurisé car il permet au service intermédiaire de demander un TGS uniquement pour un service spécifique, limitant ainsi les risques potentiels.
+
+# Security
+
+## Stratégie
+
+> *La stratégie de défense dans le cadre de la sécurité informatique adopte une approche multicouche. - ChatGPT*
+
+- **Sécurité physique**: Première ligne de défense. Contrôle de l'accès physique au matériel informatique.
+- **Identité et accès**: Contrôle d'accès aux infrastructures, utilisation de l'authentification unique (`single sign-on`) et de l'authentification multifactorielle. Audit des événements et changements.
+- **Périmètre**: Protection contre les attaques par déni de service distribué (`DDoS`), utilisation de pare-feu pour détecter et alerter sur les attaques malveillantes.
+- **Réseau**: Limitation de la communication entre ressources par segmentation et contrôles d'accès, politique de refus par défaut, restriction de l'accès Internet entrant et limitation de l'accès sortant.
+- **Calcul/Compute**: Sécurisation de l'accès aux machines virtuelles
+- **Application**:
+  - Assurer la sécurité des applications, les rendre exemptes de vulnérabilités.
+  - Stocker les secrets d'application sensibles dans un support de stockage sécurisé.
+  - Intégrer la sécurité comme exigence de conception dans le développement d'applications.
+- **Données**:
+  - Stockage des données dans des bases de données.
+  - Conservation des données sur disque dans des machines virtuelles.
+  - Utilisation d'applications SaaS pour le stockage des données, comme `Office 365`.
+  - Stockage des données dans des solutions de stockage cloud
+
+## Initial Breach
+
+![image-20240125140858679](./assets/image-20240125140858679.png)
+
+> *Le concept de la "première brèche" (`Initial Breach`) fait référence à l'étape initiale d'une attaque informatique, où un attaquant réussit à pénétrer dans un système ou un réseau. Cette étape est cruciale car elle constitue le point de départ de l'attaque et peut définir la trajectoire et l'impact de l'ensemble de l'incident de sécurité. - ChatGPT*
+
+- **Importance de l'identité** : Dans le contexte actuel, l'identité devient le nouveau périmètre de sécurité. La compromission de l'identité d'un utilisateur ou d'un administrateur peut être le point d'entrée pour un attaquant.
+- **Accès aux données sensibles** : L'objectif principal de l'attaquant, dans la plupart des cas, est d'accéder à des données sensibles.
+- **Méthodes d'attaque** : Les attaquants peuvent utiliser différentes méthodes pour réaliser une première brèche, comme le brute force sur des comptes ou l'utilisation de justificatifs d'identité volés. Les protocoles comme RDP (Remote Desktop Protocol) et SSH (Secure Shell) sont souvent exploités pour obtenir un accès initial.
+
+### Attaques
+
+> *La perspective de l'attaquant se concentre sur la compréhension de la manière dont un attaquant perçoit et exploite un système ou réseau. - ChatGPT*
+
+- **Réflexion stratégique** : L'attaquant évalue quels nœuds contiennent des justificatifs d'identité privilégiés exploitables et quels nœuds peuvent être accessibles avec ces justificatifs.
+- **Analyse des coûts** : Évaluation du coût pour atteindre un nœud spécifique dans le réseau ou le système.
+- **Outils utilisés** :
+  - `Bloodhound` : Outil open-source utilisé pour visualiser les chemins de contrôle menant aux cibles identifiées, utilisant une base de données graphique (Neo4j). Il montre le chemin de contrôle pour `AD DS` (Active Directory Domain Services) et `Azure AD`.
+  - `Stormspotter` : Outil open-source développé par les équipes de sécurité de Microsoft pour visualiser les chemins de contrôle.
+
+![image-20240125141350466](./assets/image-20240125141350466.png)
+
+### MITRES
+
+> *MITRE ATT&CK et MITRE DEFEND frameworks, importants pour la compréhension des tactiques, techniques et procédures (TTP) utilisées par les attaquants et pour la défense. - ChatGPT*
+
+**MITRE ATT&CK**:
+- **Définition**: Un cadre de connaissance global utilisé pour décrire et classer les comportements des attaquants et les attaques basées sur des observations réelles.
+- **Objectif**: Aider les professionnels de la sécurité à comprendre et à anticiper les actions des attaquants, en identifiant leurs tactiques, techniques et procédures (TTP).
+- **Utilisation**:
+  - **Détection et réponse aux incidents**: Permet aux équipes de sécurité d'identifier rapidement les menaces potentielles.
+  - **Formation et sensibilisation**: Sert de base pour la formation en sécurité.
+  - **Évaluation des risques**: Aide à évaluer et à prioriser les risques de sécurité.
+
+**MITRE DEFEND**:
+- **Définition**: Un cadre complémentaire à ATT&CK, concentré sur les stratégies de défense.
+- **Objectif**: Fournir des conseils sur les moyens de prévenir, de détecter et de répondre aux menaces.
+- **Utilisation**:
+  - **Amélioration des contrôles de sécurité**: Guide pour renforcer les mesures de sécurité.
+  - **Planification de la défense**: Aide les organisations à élaborer des stratégies de défense efficaces.
+  - **Formation défensive**: Source d'informations pour la formation des équipes de sécurité.

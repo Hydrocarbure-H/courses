@@ -488,3 +488,12 @@ Les attaquants peuvent utiliser une position privilégiée dans un environnement
 3. **Déplacement latéral** : Une fois que l'attaquant a réussi à se connecter à un autre système en utilisant le hachage de mot de passe, il peut répéter le processus de vol de hachage de mots de passe sur le nouveau système cible.
 
 Il est possible de faire de même avec d'autres protocoles, comme `NTLM` par exemple.
+
+### DCShadow
+
+> *L'attaque DCShadow est une technique avancée d'attaque informatique qui cible les contrôleurs de domaine Windows (Domain Controllers) dans un environnement Active Directory. L'objectif principal de cette attaque est de manipuler et de répliquer des données de manière non autorisée sur un contrôleur de domaine, permettant ainsi à un attaquant de prendre le contrôle sur le domaine sans être détecté. - ChatGPT*
+
+1. **Compromission initiale** : L'attaquant doit d'abord compromettre un système au sein de l'infrastructure Active Directory, généralement en exploitant une vulnérabilité ou en obtenant des informations d'authentification.
+2. I**njection de fausses données** : Une fois compromis, l'attaquant utilise l'attaque DCShadow pour injecter de fausses données dans le contrôleur de domaine, en modifiant les attributs d'objets Active Directory ou en ajoutant de nouveaux objets.
+3. **Réplication de données** : Les contrôleurs de domaine répliquent automatiquement les modifications apportées aux données Active Directory. L'attaquant utilise cette réplication pour propager les fausses données à travers le réseau.
+4. **Prise de contrôle discrète** : L'attaque DCShadow peut être utilisée pour créer des comptes d'utilisateur, des groupes ou d'autres objets malveillants, ainsi que pour attribuer des privilèges d'administration à l'attaquant. Cela permet à l'attaquant de prendre le contrôle du domaine de manière discrète.

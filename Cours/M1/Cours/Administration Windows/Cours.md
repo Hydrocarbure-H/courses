@@ -351,6 +351,140 @@ Il existe deux types de délégation Kerberos :
 - **Définition**: Un cadre complémentaire à ATT&CK, concentré sur les stratégies de défense.
 - **Objectif**: Fournir des conseils sur les moyens de prévenir, de détecter et de répondre aux menaces.
 - **Utilisation**:
-  - **Amélioration des contrôles de sécurité**: Guide pour renforcer les mesures de sécurité.
-  - **Planification de la défense**: Aide les organisations à élaborer des stratégies de défense efficaces.
-  - **Formation défensive**: Source d'informations pour la formation des équipes de sécurité.
+  - Amélioration des contrôles de sécurité
+  - Planification de la défense
+  - Formation défensive
+
+## LDAP
+
+### Usefull Queries
+
+Les requêtes LDAP utiles peuvent inclure :
+
+- **Liste des membres de groupe** : Pour identifier les membres des groupes privilégiés.
+- **Groupes privilégiés** : Cibler des groupes spécifiques avec des droits élevés.
+- **Objets protégés** : Identifier les objets ayant des permissions spéciales.
+- **Paramètres de sécurité des utilisateurs** : Comprendre les configurations de sécurité appliquées aux utilisateurs, telles que les dates de changement de mot de passe et les options utilisateur.
+- **Liste des Unités d'Organisation (OU) et GPO liés** : Comprendre la structure organisationnelle et les politiques appliquées.
+
+### SAM-R
+
+> *L'interface de protocole `Security Account Manager Remote` (SAM-R) permet la gestion à distance des utilisateurs, des groupes et d'autres principes de sécurité. - ChatGPT*
+
+- **Usage par les attaquants** : Les attaquants peuvent exploiter SAM-R pour énumérer les comptes et les groupes sur un serveur, une station de travail ou un contrôleur de domaine.
+- **Restrictions d'accès** : Seuls les membres du groupe d'administrateurs locaux peuvent utiliser SAM-R. Avant Windows Server 2016/Windows 10, tout utilisateur authentifié pouvait l'utiliser.
+- **Paramètres de sécurité** : 
+  - **Accès réseau**: Restriction des clients autorisés à effectuer des appels distants vers SAM.
+  - **Compatibilité rétroactive** : Disponible sur Windows Server 2008 R2/Windows 7 et versions ultérieures.
+- **Recommandation** : Il est conseillé de restreindre l'accès à SAM-R pour toutes les versions de Windows sur les serveurs membres.
+- **Énumération anonyme** : Par défaut, l'énumération anonyme de comptes SAM est désactivée et est également régie par les paramètres de sécurité【46†source】.
+
+### Attaque par DNS
+
+> *La cartographie réseau utilisant le `Domain Name System` (DNS) dans le cadre de la reconnaissance réseau. - ChatGPT*
+
+- **DNS** : Protocole omniprésent ne nécessitant pas d'authentification, juste une connectivité réseau UDP/TCP sur le port 53.
+- **Brute forcing DNS** : Méthode consistant à essayer de nombreuses requêtes DNS pour découvrir des noms et services.
+- **Liste des contrôleurs de domaine** : Énumération en listant les enregistrements SRV utilisés pour le processus de localisation des contrôleurs de domaine (DC).
+- **Transferts de zone** :
+  - Parfois mal configurés, ils ne sont pas requis pour répliquer les données DNS lorsque la zone est intégrée dans `AD DS`.
+  - Peuvent être réalisés avec des outils comme `nslookup`.
+  - Devraient être désactivés ou restreints à des serveurs spécifiques pour éviter l'abus.
+- **Zones intégrées** : Permettent de transformer le DNS en un modèle multi-maître et autorisent les mises à jour dynamiques authentifiées. Les enregistrements sont stockés dans la base de données `AD DS`.
+
+### Attaque par SMB
+
+> *Cartographie des utilisateurs et des machines via l'énumération SMB (`Server Message Block`). - ChatGPT*
+
+- **Énumération de sessions SMB** : Permet aux attaquants de détecter d'où les utilisateurs sont connectés.
+- **Intérêt des attaquants pour SMB** : 
+  - L'énumération SMB est une méthode efficace pour comprendre la disposition et l'utilisation des ressources au sein d'un réseau.
+  - Peut révéler des informations sur les postes de travail et les serveurs, y compris les utilisateurs connectés et leurs rôles.
+  - Il n'est pas toujours supervisé.
+- **Protection contre l'énumération SMB dans `Active Directory`** : 
+  - Mettre en place des mesures pour restreindre ou surveiller l'énumération SMB afin de protéger le réseau contre l'exploitation par des attaquants.
+
+![image-20240125145250718](./assets/image-20240125145250718.png)
+
+Exemple d'une commande permettant de faire de l'énumération de sessions `SMB` avec `nmap`.
+
+```shell
+nmap.exe -p 445 --script smb-enum-sessions.nse --script-args
+smbuser=nomraluser,smbpass=password DC01
+```
+
+## Attaques sur les mots de passe
+
+### **Brute Force Password Attacks**:
+
+- Utilisation de techniques de brute force pour **deviner** les mots de passe.
+- Implique des **tentatives répétées** avec différentes combinaisons de mots de passe.
+- Nécessite des mesures de sécurité comme des **limites de tentatives** de connexion et des **alertes de sécurité**.
+- Plusieurs protocoles possibles
+
+![image-20240125150053787](./assets/image-20240125150053787.png)
+
+### **Password Spray Attacks on Passwords**:
+
+- Emploi de **mots de passe courants** sur plusieurs comptes.
+- **Difficile à détecter** car il s'agit de tentatives moins fréquentes par compte.
+- La défense nécessite une surveillance accrue et des **politiques de mot de passe** robustes.
+
+### **Kerberos Roasting Attacks**:
+
+- Cible les tickets de service Kerberos pour obtenir des mots de passe **faiblement chiffrés**.
+- Exploite les faiblesses dans le chiffrement des tickets de service.
+- La défense implique l'utilisation de **mots de passe forts** pour les comptes de services.
+
+### **Abuse of User Consent in Azure AD**:
+
+- Détournement des processus d'autorisation dans **Azure AD**.
+- Exploitation des applications autorisées pour accéder à des données sensibles.
+- Nécessite une surveillance et une **gestion rigoureuses des consentements**.
+
+### **Phishing Attack with Device Code**:
+
+- Utilisation de **faux flux de code** de périphérique pour tromper les utilisateurs.
+- Les utilisateurs sont amenés à **entrer des codes sur des sites Web malveillants**.
+
+## Lateral Movement
+
+> *Le "Lateral Movement" désigne les techniques utilisées par les attaquants pour se **déplacer à travers un réseau** après avoir initialement compromis un système ou un compte. Cette phase est cruciale dans une attaque car elle permet aux attaquants d'accéder à des ressources supplémentaires et d'étendre leur empreinte au sein du réseau compromis. Les méthodes de mouvement latéral incluent souvent **l'exploitation des protocoles de réseau**, **le vol d'identifiants, et l'utilisation de sessions existantes.** - ChatGPT*
+
+![image-20240125151105559](./assets/image-20240125151105559.png)
+
+### Abus du protocole WDigest 
+
+WDigest est un **protocole d'authentification utilisé par Windows** qui stocke les mots de passe en clair dans la mémoire du système. Les attaquants peuvent extraire ces mots de passe en clair **à partir de la mémoire** et les utiliser pour se connecter à d'autres systèmes.
+
+### Attaques Pass-the-Hash (PtH) 
+
+Lorsqu'un attaquant obtient un hachage du mot de passe d'un utilisateur ou d'un administrateur, il peut utiliser ce hachage pour se connecter à d'autres systèmes sans avoir besoin du mot de passe réel. Cela permet à l'attaquant de se déplacer latéralement en utilisant les informations d'authentification volées.
+
+### Abus du protocole NTLM 
+
+NTLM est un protocole **d'authentification Windows** vulnérable à diverses attaques. Les attaquants peuvent intercepter les informations d'authentification NTLM et les réutiliser pour accéder à d'autres systèmes.
+
+### Attaques Pass-The-Ticket 
+
+Les tickets **Kerberos** sont utilisés pour l'authentification dans les environnements Windows. Les attaquants peuvent voler ces tickets et les réutiliser pour accéder à d'autres systèmes **sans avoir besoin de se connecter à nouveau**.
+
+### Vol de session RDP 
+
+L'attaquant peut prendre le contrôle d'une session RDP déjà active sur un système compromis pour se déplacer latéralement vers d'autres systèmes accessibles via RDP.
+
+### Attaques de jetons Azure AD 
+
+Dans les environnements utilisant **Azure Active Directory**, les attaquants peuvent compromettre des **jetons d'authentification** Azure AD pour accéder à d'autres ressources cloud ou locales.
+
+### Pivot de l'administrateur vers l'administrateur AD 
+
+Les attaquants peuvent utiliser une position privilégiée dans un environnement de virtualisation pour cibler et compromettre des comptes d'administrateur Active Directory.
+
+### Détail de Pass-The-Hash
+
+1. **Obtention du hachage de mot de passe** : L'attaquant commence généralement par compromettre un système cible. Une fois qu'il a un accès administratif ou suffisamment élevé sur ce système, il peut extraire les hachages de mots de passe des comptes d'utilisateurs ou d'administrateurs stockés localement sur ce système ou dans la mémoire, généralement via des outils spécifiques tels que Mimikatz.
+2. **Utilisation du hachage** : L'attaquant peut ensuite utiliser ces hachages de mots de passe pour se connecter à d'autres systèmes dans le réseau sans connaître les mots de passe réels associés aux comptes cibles. Cela lui permet d'imiter l'utilisateur ciblé et d'accéder à des ressources réseau ou à des systèmes distants.
+3. **Déplacement latéral** : Une fois que l'attaquant a réussi à se connecter à un autre système en utilisant le hachage de mot de passe, il peut répéter le processus de vol de hachage de mots de passe sur le nouveau système cible.
+
+Il est possible de faire de même avec d'autres protocoles, comme `NTLM` par exemple.

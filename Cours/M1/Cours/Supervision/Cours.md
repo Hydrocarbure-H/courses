@@ -277,7 +277,7 @@ Par exemple, l'OID `1.3.6.1.2.1.200` serait encodé comme suit :
 
 TP effectué par `Thomas PEUGNET` et `David TEJEDA`.
 
-# Introduction
+## Introduction
 
 Préparation des VMs.
 

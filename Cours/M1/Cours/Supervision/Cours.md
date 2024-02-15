@@ -271,11 +271,9 @@ Par exemple, l'OID `1.3.6.1.2.1.200` serait encodé comme suit :
 
 # Rendus des TPs
 
-## TP01
-
 # Supervision - Rendu TP01
 
-TP effectué par `Thomas PEUGNET` et `David TEJEDA`.
+TP effectué par `Thomas PEUGNET`.
 
 ## Introduction
 

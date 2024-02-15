@@ -281,7 +281,7 @@ TP effectué par `Thomas PEUGNET` et `David TEJEDA`.
 
 Préparation des VMs.
 
-![image-20240215091120068](../../../../../../.././assets/image-20240215091120068.png)
+![image-20240215091120068](./assets/image-20240215091120068.png)
 
 ## Script d'installation
 

@@ -1,0 +1,36 @@
+# 1. Installer Git
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Install Git
+      apt:
+        name: git, apache2
+        state: present
+
+    - name: Change Apache port
+      lineinfile:
+        path: /etc/apache2/ports.conf
+        regexp: "^Listen"
+        line: "Listen 8080"
+
+    - name: Change VirtualHost port
+      lineinfile:
+        path: /etc/apache2/sites-available/000-default.conf
+        regexp: "^<VirtualHost"
+        line: "<VirtualHost *:8080>"
+
+    - name: Remove default website
+      file:
+        path: /var/www/html
+        state: absent
+
+    - name: Clone website
+      git:
+        repo: https://github.com/cloudacademy/static-website-example
+        dest: /var/www/html
+
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted

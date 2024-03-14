@@ -369,18 +369,6 @@ $ ldapadd -W -D "cn=admin,dc=Efrei,dc=fr" -x -f alexis.ldif
 
 ![image-20240314132137231](./assets/image-20240314132137231.png)
 
-## Connexion au serveur
-
-Utiliser la commande suivante pour vérifier qu'il est bien possible de se connecter au serveur :
-
-```shell
-$ LDAPTLS_REQCERT=never ldapsearch -H ldaps://192.168.1.28:636 -W -D "cn=admin,dc=Efrei,dc=fr" -b "dc=Efrei,dc=fr" "(objectClass=*)"
-```
-
-![image-20240314134918764](./assets/image-20240314134918764.png)
-
-Il est nécessaire d'ignorer temporairement la vérification du certificat, d'où la variable `LDAPTLS_REQCERT=never`.
-
 ## Interface Graphique `LDAP Accound Manager`
 
 ### Installation
@@ -414,3 +402,23 @@ Après avoir sauvegardé cette configuration, se reconnecter avec l'utilisateur 
 Nous pouvons constater le résultat suivant :
 
 ![image-20240314141502086](./assets/image-20240314141502086.png)
+
+## Connexion au serveur
+
+Utiliser la commande suivante pour vérifier qu'il est bien possible de se connecter au serveur :
+
+```shell
+$ LDAPTLS_REQCERT=never ldapsearch -H ldaps://192.168.1.28:636 -W -D "cn=admin,dc=Efrei,dc=fr" -b "dc=Efrei,dc=fr" "(objectClass=*)"
+```
+
+![image-20240314134918764](./assets/image-20240314134918764.png)
+
+Il est nécessaire d'ignorer temporairement la vérification du certificat, d'où la variable `LDAPTLS_REQCERT=never`.
+
+### Wireshark
+
+Après avoir lancé la capture Wireshark, et effectué une requête au serveur LDAP, on obtient le résultat suivant :
+
+![image-20240314144110434](./assets/image-20240314144110434.png)
+
+Etant donné que nous utilisons un protocole de chiffrement, il n'est pas étonnant de voir que nous ne pouvons pas déchiffrer directement dans Wireshark les informations du LDAP. Le traffic ne circule pas en clair sur le réseau.

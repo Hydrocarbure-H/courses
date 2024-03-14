@@ -1,0 +1,55 @@
+# Create a folder
+mkdir actions-runner && cd actions-runner
+curl -o actions-runner-linux-x64-2.313.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.313.0/actions-runner-linux-x64-2.313.0.tar.gz
+echo "56910d6628b41f99d9a1c5fe9df54981ad5d8c9e42fc14899dcc177e222e71c4  actions-runner-linux-x64-2.313.0.tar.gz" | shasum -a 256 -c
+tar xzf ./actions-runner-linux-x64-2.313.0.tar.gz
+./config.sh --url https://github.com/Hydrocarbure-H/TerrActions --token AXJ2G7B4KKSKYRKDAP3VD4TFZYS4E
+./run.sh
+
+
+aws_access_key_id=ASIA4EFHNIZ4XZSSJTOY
+aws_secret_access_key=gcHLfCk744wwhcRtl3eitNU8L2UY3DcOuvZTtxFP
+
+aws_access_key_id=ASIA4EFHNIZ4XZSSJTOY
+aws_secret_access_key=gcHLfCk744wwhcRtl3eitNU8L2UY3DcOuvZTtxFP
+
+
+
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Install Git Package # Installation des paquets nécessaires
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+    - name: Install Apache2 package
+      apt: name=apache2 update_cache=yes state=latest
+
+    - name: Change Apache port # Changement du port d'écoute d'Apache2
+      lineinfile:
+        path: /etc/apache2/ports.conf
+        regexp: "^Listen"
+        line: "Listen 8080"
+
+    - name: Change VirtualHost port # Changement du port dans la configuration du VHost
+      lineinfile:
+        path: /etc/apache2/sites-available/000-default.conf
+        regexp: "^<VirtualHost"
+        line: "<VirtualHost *:8080>"
+
+    - name: Remove default website # Suppression des fichiers HTML par défaut
+      file:
+        path: /var/www/html
+        state: absent
+
+    - name: Clone website # Dépoiement du site depuis un repository GitHub
+      git:
+        repo: https://github.com/cloudacademy/static-website-example
+        dest: /var/www/html
+
+    - name: Restart Apache # Redémarrage du service Apache2
+      service:
+        name: apache2
+        state: restarted

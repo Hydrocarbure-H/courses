@@ -295,3 +295,110 @@ $ sudo netstat -tulpen | grep slapd
 
 ![image-20240314121020709](./assets/image-20240314121020709.png)
 
+# Création des utilisateurs (DIT Personnel)
+
+Créer 3 fichiers correspondant aux informations des 3 utilisateurs, ayant respectivement chacun le contenu suivant :
+
+`thomas.ldif`:
+
+```
+dn: uid=thomas.peugnet,ou=users,dc=Efrei,dc=fr
+objectClass: person
+objectClass: top
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: posixAccount
+uidNumber: 6001
+gidNumber: 6001
+homeDirectory: /home/thomas
+loginShell: /bin/bash
+uid: thomas.peugnet
+sn: peugnet
+cn: thomas peugnet
+mail: thomas.peugnet@efrei.fr
+userPassword: thomas
+```
+
+`tom.ldif`:
+
+```
+dn: uid=tom.thioulouse,ou=users,dc=Efrei,dc=fr
+objectClass: person
+objectClass: top
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: posixAccount
+uidNumber: 6001
+gidNumber: 6001
+homeDirectory: /home/tom
+loginShell: /bin/bash
+uid: tom.thioulouse
+sn: thioulouse
+cn: tom thioulouse
+mail: tom.thioulouse@efrei.fr
+userPassword: tom
+```
+
+`alexis.ldif`:
+
+```
+dn: uid=alexis.plessias,ou=users,dc=Efrei,dc=fr
+objectClass: person
+objectClass: top
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: posixAccount
+uidNumber: 6001
+gidNumber: 6001
+homeDirectory: /home/alexis
+loginShell: /bin/bash
+uid: alexis.plessias
+sn: plessias
+cn: alexis plessias
+mail: alexis.plessias@efrei.fr
+userPassword: alexis
+```
+
+Nous les appliquons au serveur LDAP à l'aides des 3 commandes suivantes :
+
+```shell
+$ ldapadd -W -D "cn=admin,dc=Efrei,dc=fr" -x -f thomas.ldif
+$ ldapadd -W -D "cn=admin,dc=Efrei,dc=fr" -x -f tom.ldif
+$ ldapadd -W -D "cn=admin,dc=Efrei,dc=fr" -x -f alexis.ldif
+```
+
+![image-20240314132137231](./assets/image-20240314132137231.png)
+
+## Connexion au serveur
+
+Utiliser la commande suivante pour vérifier qu'il est bien possible de se connecter au serveur :
+
+```shell
+$ LDAPTLS_REQCERT=never ldapsearch -H ldaps://192.168.1.28:636 -W -D "cn=admin,dc=Efrei,dc=fr" -b "dc=Efrei,dc=fr" "(objectClass=*)"
+```
+
+![image-20240314134918764](./assets/image-20240314134918764.png)
+
+Il est nécessaire d'ignorer temporairement la vérification du certificat, d'où la variable `LDAPTLS_REQCERT=never`.
+
+## Interface Graphique `LDAP Accound Manager`
+
+### Installation
+
+Utiliser la commande suivante pour installer toutes les dépendances et `ldap-account-manager` : 
+
+```shell
+$ sudo apt install apache2 php php-cgi libapache2-mod-php php-mbstring php-common php-pear ldap-account-manager -y
+
+# Activer php-cgi
+$ sudo a2enconf php8.1-cgi
+
+# Resart apache2
+$ systemctl restart apache2
+```
+
+
+
+Une fois ces configurations terminées, nous pouvons constater le résultat suivant :
+
+![image-20240314141502086](./assets/image-20240314141502086.png)

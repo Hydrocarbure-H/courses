@@ -284,3 +284,14 @@ On applique ce fichier à l'aide de la commande suivante :
 $ ldapmodify -QY EXTERNAL -H ldapi:/// -f cert.ldif
 ```
 
+On modifie le fichier de configuration `/etc/default/slapd` pour ajouter le service `ldaps` en ajoutant à `ldaps:///` à la suite de la ligne `SLAPD_SERVICES`.
+
+Redémarrer le service et vérifier que le port `636` est bien sur écoute.
+
+```shell
+$ systemctl restart slapd.service
+$ sudo netstat -tulpen | grep slapd
+```
+
+![image-20240314121020709](./assets/image-20240314121020709.png)
+

@@ -95,3 +95,51 @@ $ slapcat
 
 ## Remplissage de l'annuaire
 
+### Organization Units
+
+Créer un fichier `org_unit.ldif` et le remplir avec le contenu suivant:
+
+```ldif
+dn: ou=users,dc=Efrei,dc=fr
+objectClass: organizationalUnit
+
+dn: ou=groups,dc=Efrei,dc=fr
+objectClass: organizationalUnit
+```
+
+Appliquer le contenu présent dans ce fichier à notre serveur LDAP par la commande suivante :
+
+```shell
+$ ldapadd -W -D "cn=admin,dc=Efrei,dc=fr" -x -f org_unit.ldif
+```
+
+![image-20240314090142215](./assets/image-20240314090142215.png)
+
+### Groups
+
+Créer un fichier `groups.ldif` et le remplir avec le contenu suivant:
+
+```ldif
+dn: cn=teachers,ou=groups,dc=Efrei,dc=fr
+objectClass: posixGroup
+objectClass: top
+gidNumber: 6001
+cn: teachers
+
+dn: cn=students,ou=groups,dc=Efrei,dc=fr
+objectClass: posixGroup
+objectClass: top
+gidNumber: 6002
+cn: students
+```
+
+Appliquer le contenu présent dans ce fichier à notre serveur LDAP par la commande suivante :
+
+```shell
+$ ldapadd -W -D "cn=admin,dc=Efrei,dc=fr" -x -f groups.ldif
+```
+
+![image-20240314090612532](./assets/image-20240314090612532.png)
+
+
+

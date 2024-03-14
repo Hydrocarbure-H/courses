@@ -243,27 +243,44 @@ $ ldapmodify -D cn=admin,dc=Efrei,dc=fr -W -f add_email.ldif
 Création d'un certificat à l'aide de la commande suivante :
 
 ```shell
-$ openssl genpkey -algorithm RSA -out server-key.pem
-$ openssl req -new -key server-key.pem -out server-csr.pem
+$ mkdir /etc/ldap/ssl && cd /etc/ldap/ssl
+$ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 3650 -nodes
 ```
+
+(Photo non-contractuelle)
 
 ![image-20240314105001573](./assets/image-20240314105001573.png)
-
-```shell
-$ openssl x509 -req -in server-csr.pem -signkey server-key.pem -out server-cert.pem
-```
-
-![image-20240314105310236](./assets/image-20240314105310236.png)
 
 Changer l'appartenance et les permissions avec les commandes suivantes : 
 
 ```shell
-$ chown openldap:openldap server-cert.pem
-$ chown openldap:openldap server-key.pem
-$ chmod 400 server-key.pem
+$ chown openldap:openldap /etc/ldap/ssl/cert.pem
+$ chown openldap:openldap /etc/ldap/ssl/key.pem
 ```
 
 ## Configuration du certificat avec `slapd`
 
 Créer un fichier `cert.ldif` avec le contenu suivant :
+
+```ldif
+dn: cn=config
+changetype: modify
+add: olcTLSCACertificateFile
+olcTLSCACertificateFile: /etc/ldap/ssl/cert.pem
+-
+add: olcTLSCertificateFile
+olcTLSCertificateFile: /etc/ldap/ssl/cert.pem
+-
+add: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/ldap/ssl/key.pem
+-
+add: olcTLSVerifyClient
+olcTLSVerifyClient: never
+```
+
+On applique ce fichier à l'aide de la commande suivante : 
+
+```shell
+$ ldapmodify -QY EXTERNAL -H ldapi:/// -f cert.ldif
+```
 

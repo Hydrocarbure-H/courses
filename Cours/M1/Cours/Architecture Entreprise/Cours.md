@@ -209,3 +209,30 @@ On met à jour le mot de passe à l'aide la commande suivante :
 $ ldappasswd -H ldap://127.0.0.1 -x -D "cn=admin,dc=Efrei,dc=fr" -W -S "uid=souheib.yousfi,ou=users,dc=Efrei,dc=fr"
 ```
 
+## Vérification et ajout d'un email
+
+On effectue une requête pour vérifier l'utilisateur à l'aide de la commande suivante :
+
+```shell
+$ ldapsearch -x -b "dc=Efrei,dc=fr" -LLL uid=souheib.yousfi cn mail
+```
+
+![image-20240314101259342](./assets/image-20240314101259342.png)
+
+On crée un nouvel email pour l'utilisateur au sein du fichier `add_email.ldif` :
+
+```
+dn: uid=souheib.yousfi,ou=users,dc=Efrei,dc=fr
+changetype: modify
+add: mail
+mail:souheib.yousfi@efrei.net
+```
+
+On ajoute  un email à l'utilisateur à l'aide de la commande suivante :
+
+```shell
+$ ldapmodify -D cn=admin,dc=Efrei,dc=fr -W -f add_email.ldif
+```
+
+![image-20240314102437790](./assets/image-20240314102437790.png)
+

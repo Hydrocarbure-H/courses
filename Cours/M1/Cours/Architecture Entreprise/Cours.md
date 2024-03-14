@@ -397,8 +397,20 @@ $ sudo a2enconf php8.1-cgi
 $ systemctl restart apache2
 ```
 
+Ensuite, se connecter sur `http://192.168.1.28/lam/templates/login.php`.
 
+![image-20240314141648484](./assets/image-20240314141648484.png)
 
-Une fois ces configurations terminées, nous pouvons constater le résultat suivant :
+Puis, se rendre dans `LAM configuration`, utiliser le mot de passe `lam` et modifier les paramètres de domaine dans la page `General Settings` :
+
+![image-20240314141746046](./assets/image-20240314141746046.png)
+
+Enfin, modifier également les informations de domaine dans la partie `Account Types` :
+
+![image-20240314141815755](./assets/image-20240314141815755.png)
+
+Après avoir sauvegardé cette configuration, se reconnecter avec l'utilisateur `admin`
+
+Nous pouvons constater le résultat suivant :
 
 ![image-20240314141502086](./assets/image-20240314141502086.png)

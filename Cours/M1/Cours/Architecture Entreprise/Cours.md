@@ -141,5 +141,71 @@ $ ldapadd -W -D "cn=admin,dc=Efrei,dc=fr" -x -f groups.ldif
 
 ![image-20240314090612532](./assets/image-20240314090612532.png)
 
+### Création de l'utilisateur Pierre et Souheib
 
+Créer un fichier `pierre.ldif` et le remplir avec le contenu suivant:
+
+```ldif
+dn: cn=teachers,ou=groups,dc=Efrei,dc=fr
+objectClass: posixGroup
+objectClass: top
+gidNumber: 6001
+cn: teachers
+
+dn: uid=pierre.dupont,ou=users,dc=Efrei,dc=fr
+objectClass: posixGroup
+objectClass: top
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: posixAccount
+uidNumber: 6002
+gidNumber: 6002
+homeDirectory: /home/pierre
+loginShell: /bin/bash
+uid: pierre.dupont
+sn: dupont
+cn: pierre dupont
+mail: pierre.dupont@efrei.fr
+userPassword: pierre
+```
+
+Appliquer le contenu présent dans ce fichier à notre serveur LDAP par la commande suivante :
+
+```shell
+$ ldapadd -W -D "cn=admin,dc=Efrei,dc=fr" -x -f pierre.ldif
+```
+
+Créer un fichier `souheib.ldif` et le remplir avec le contenu suivant:
+
+```ldif
+dn: uid=souheib.yousfi,ou=users,dc=Efrei,dc=fr
+objectClass: person
+objectClass: top
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: posixAccount
+uidNumber: 6001
+gidNumber: 6001
+homeDirectory: /home/souheib
+loginShell: /bin/bash
+uid: souheib.yousfi
+sn: yousfi
+cn: souheib yousfi
+mail: souheib.yousfi@efrei.fr
+userPassword: souheib
+```
+
+Appliquer le contenu présent dans ce fichier à notre serveur LDAP par la commande suivante :
+
+```shell
+$ ldapadd -W -D "cn=admin,dc=Efrei,dc=fr" -x -f souheib.ldif
+```
+
+![image-20240314094930423](./assets/image-20240314094930423.png)
+
+On met à jour le mot de passe à l'aide la commande suivante :
+
+```shell
+$ ldappasswd -H ldap://127.0.0.1 -x -D "cn=admin,dc=Efrei,dc=fr" -W -S "uid=souheib.yousfi,ou=users,dc=Efrei,dc=fr"
+```
 

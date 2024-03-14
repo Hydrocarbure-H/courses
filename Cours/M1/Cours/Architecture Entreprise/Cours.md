@@ -236,3 +236,34 @@ $ ldapmodify -D cn=admin,dc=Efrei,dc=fr -W -f add_email.ldif
 
 ![image-20240314102437790](./assets/image-20240314102437790.png)
 
+# TP02
+
+## Création des certificats
+
+Création d'un certificat à l'aide de la commande suivante :
+
+```shell
+$ openssl genpkey -algorithm RSA -out server-key.pem
+$ openssl req -new -key server-key.pem -out server-csr.pem
+```
+
+![image-20240314105001573](./assets/image-20240314105001573.png)
+
+```shell
+$ openssl x509 -req -in server-csr.pem -signkey server-key.pem -out server-cert.pem
+```
+
+![image-20240314105310236](./assets/image-20240314105310236.png)
+
+Changer l'appartenance et les permissions avec les commandes suivantes : 
+
+```shell
+$ chown openldap:openldap server-cert.pem
+$ chown openldap:openldap server-key.pem
+$ chmod 400 server-key.pem
+```
+
+## Configuration du certificat avec `slapd`
+
+Créer un fichier `cert.ldif` avec le contenu suivant :
+

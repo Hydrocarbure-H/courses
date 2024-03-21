@@ -718,6 +718,26 @@ Avec l'utilisateur `tom` qui est membre du groupe `teachers` :
 
 ![image-20240321152313261](./assets/image-20240321152313261.png)
 
+## Amélioration - HTTPS
+
+Création d'un certificat pour l'HTTPS:
+
+```shell
+$ openssl genpkey -algorithm RSA -out /etc/ssl/private/https_key.key -pkeyopt rsa_keygen_bits:2048
+$ openssl req -new -key /etc/ssl/private/https_key.key -out https_request.csr
+$ openssl x509 -signkey /etc/ssl/private/https_key.key -in https_request.csr -req -days 365 -out /etc/ssl/certs/https_cert.crt
+```
+
+
+
+Pour activer l'HTTPS sur notre serveur web, nous allons commencer par activer le module `ssl` à l'aide de la commande suivante:
+
+```shell
+$ a2enmod ssl
+```
+
+
+
 # TP05
 
 ## Installation de OpenVPN
@@ -747,6 +767,9 @@ remote 192.168.1.28 1194
 On teste le bon fonctionnement de ce VPN à l'aide de la commande suivante :
 
 ```shell
-```
+# Se placer dans le dossier contenant les certificats
+$ cd /usr/share/doc/openvpn/examples/sample-keys
 
- 
+# Lancer la configuration par défaut
+$ openvpn ../sample-config-files/server.conf
+```

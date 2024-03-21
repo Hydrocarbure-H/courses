@@ -708,7 +708,7 @@ Modification de la ligne `2` de la configuration du VHost avec le contenu suivan
 
 Avec `6001` le GID du groupe `teachers`.
 
-Avec la connexion en tant qu'utilisateur `alexis` du groupe `students` :
+Avec la connexion en tant qu'utilisateur `alexis.plessias` du groupe `students` :
 
 ![image-20240321152057247](./assets/image-20240321152057247.png)
 
@@ -718,3 +718,35 @@ Avec l'utilisateur `tom` qui est membre du groupe `teachers` :
 
 ![image-20240321152313261](./assets/image-20240321152313261.png)
 
+# TP05
+
+## Installation de OpenVPN
+
+```shell
+$ apt install openvpn
+```
+
+Vérifier la bonne installation en se rendant dans le dossier suivant :
+
+```shell
+$ cd /usr/share/doc/openvpn/examples
+```
+
+![image-20240321152949947](./assets/image-20240321152949947.png)
+
+On récupère l'adresse IP de notre instance par la commande `hostname -I`.
+
+On modifie le contenu de la configuration du fichier `sample-config-files/client.conf` avec la ligne suivante (varaible selon votre IP):
+
+```
+remote 192.168.1.28 1194
+```
+
+![image-20240321153740209](./assets/image-20240321153740209.png)
+
+On teste le bon fonctionnement de ce VPN à l'aide de la commande suivante :
+
+```shell
+```
+
+ 

@@ -4,6 +4,8 @@ Notes de cours de `Thomas PEUGNET`.
 
 Ce cours présente comment faire un speedrun des TPs 1 et 2.
 
+Le speedrun des TPs 3, 4 et 5 est en cours.
+
 # TP01
 
 ## Création de l'utilisateur Pierre
@@ -422,3 +424,33 @@ Après avoir lancé la capture Wireshark, et effectué une requête au serveur L
 ![image-20240314144110434](./assets/image-20240314144110434.png)
 
 Etant donné que nous utilisons un protocole de chiffrement, il n'est pas étonnant de voir que nous ne pouvons pas déchiffrer directement dans Wireshark les informations du LDAP. Le traffic ne circule pas en clair sur le réseau.
+
+# TP03
+
+## Configuration de PAM
+
+```shell
+$ sudo apt install libnss-ldap
+```
+
+Par la suite, un écran de configuration va être affiché, il s'agit de remplir les informations suivantes : 
+
+- URI du serveur LDAP : `Efrei.fr:636`
+- Base de recherche : `dc=Efrei,dc=fr`
+- Make local root Database admin : `Yes`
+- Does database require login : `No`
+- LDAP account for root : `cn=admin,dc=Efrei,dc=fr`
+- Configuration des services à configurer : Aucun
+
+![image-20240321135704132](./assets/image-20240321135704132.png)
+
+Utiliser la commande suivante pour vérifier le bon fonctionnement : 
+
+```shell
+$ LDAPTLS_REQCERT=never ldapsearch -H ldaps://Efrei.fr:636 -b 'dc=Efrei,dc=fr' -x uid=thomas.peugnet -LLL
+```
+
+On obtient le résultat suivant :
+
+![image-20240321140813646](./assets/image-20240321140813646.png)
+

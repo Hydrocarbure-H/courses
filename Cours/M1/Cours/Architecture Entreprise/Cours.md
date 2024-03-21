@@ -543,3 +543,38 @@ On obtient le résultat suivant :
 
 ![image-20240321142622819](./assets/image-20240321142622819.png)
 
+## Gestion des accès SSH
+
+On modifie le fichier de configuration SSH, pour n'autoriser que les membres du groupe `teachers` à se connecter via SSH, em ajoutant à la fin du fichier :
+
+```
+AllowGroups teachers
+```
+
+![image-20240321142919311](./assets/image-20240321142919311.png)
+
+On modifie égalemement le fichier de configuration `/etc/pam.d/sshd` en ajoutant la ligne suivante :
+
+```
+auth required pam_group.so
+```
+
+Ce qui donne le résultat suivant :
+
+![image-20240321143622334](./assets/image-20240321143622334.png)
+
+On redémarre le service ssh avec la commande suivante : 
+
+```shell
+$ systemctl restart ssh.service
+```
+
+Puis, on re-tente de se connecter en ssh avec un utilisateur du groupe `students` :
+
+```shell
+$ ssh alexis.plessias@192.168.1.28
+```
+
+On obtient le résultat suivant :
+
+![image-20240321143339059](./assets/image-20240321143339059.png)

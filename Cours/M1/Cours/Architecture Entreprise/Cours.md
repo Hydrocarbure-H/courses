@@ -310,8 +310,8 @@ objectClass: top
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: posixAccount
-uidNumber: 6001
-gidNumber: 6001
+uidNumber: 10002
+gidNumber: 6002
 homeDirectory: /home/thomas
 loginShell: /bin/bash
 uid: thomas.peugnet
@@ -330,8 +330,8 @@ objectClass: top
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: posixAccount
-uidNumber: 6001
-gidNumber: 6001
+uidNumber: 10003
+gidNumber: 6002
 homeDirectory: /home/tom
 loginShell: /bin/bash
 uid: tom.thioulouse
@@ -350,8 +350,8 @@ objectClass: top
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: posixAccount
-uidNumber: 6001
-gidNumber: 6001
+uidNumber: 10001
+gidNumber: 6002
 homeDirectory: /home/alexis
 loginShell: /bin/bash
 uid: alexis.plessias
@@ -531,17 +531,33 @@ $ getent passwd | grep thomas.peugnet
 
 ![image-20240321142304569](./assets/image-20240321142304569.png)
 
+**Note:** Une erreur avait été faite lors de la création de l'utilisateur ci-dessus, avec les mauvais UIDs.
+
+Si plusieurs utilisateurs ont les mêmes UIDs, il est possible de les changer via l'url de LAM:
+
+http://192.168.1.28/lam/templates/login.php
+
+**Note:** Si, en se connectant avec un utilisateur, on se retrouve connecté sur le compte d'un autre utilisateur, il est possible qu'il existe un conflit sur les UIDs.
+
+On crée les dossiers personnels des utilisateurs avec les bonnes permissions à l'aide des commandes suivantes:
+
+```shell
+$ mkdir /home/tom && chown tom.thioulouse:teachers -R /home/tom
+$ mkdir /home/thomas && chown thomas.peugnet:students -R /home/thomas
+$ mkdir /home/alexis && chown alexis.plessias:students -R /home/alexis
+```
+
 Enfin, on essaye de se connecter via une autre instance :
 
 ```shell
-$ ssh thomas.peugnet@192.168.1.28
+$ ssh alexis.plessias@192.168.1.28
 ```
 
 Le mot de passe étant défini dans le fichier `.ldif` du TP01.
 
 On obtient le résultat suivant :
 
-![image-20240321142622819](./assets/image-20240321142622819.png)
+![image-20240321144807014](./assets/image-20240321144807014.png)
 
 ## Gestion des accès SSH
 
@@ -578,3 +594,13 @@ $ ssh alexis.plessias@192.168.1.28
 On obtient le résultat suivant :
 
 ![image-20240321143339059](./assets/image-20240321143339059.png)
+
+Si on tente de se connecter avec un utilisateur du groupe `teachers`  :
+
+```shell
+$ ssh tom.thioulouse@192.168.1.28
+```
+
+![image-20240321145508436](./assets/image-20240321145508436.png)
+
+**Note:** Si l'erreur `Could not chdir to home directory /home/X: No such file or directory`, c'est que le dossier de l'utilisateur n'existe pas. Si une erreur de `Permission Denied` survient, c'est le `chown` qui n'a pas été correctement effectué.

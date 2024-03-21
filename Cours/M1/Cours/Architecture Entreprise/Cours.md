@@ -454,3 +454,92 @@ On obtient le résultat suivant :
 
 ![image-20240321140813646](./assets/image-20240321140813646.png)
 
+On modifie les fichiers `nsswitch.conf` et `nslcd.conf` pour avoir le résultat suivant:
+
+`nsswitch.conf` (attention aux lignes `passwd, group, shadow et gshadow`):
+
+```
+# /etc/nsswitch.conf
+#
+# Example configuration of GNU Name Service Switch functionality.
+# If you have the `glibc-doc-reference' and `info' packages installed, try:
+# `info libc "Name Service Switch"' for information about this file.
+
+passwd:         ldap files systemd
+group:          ldap files systemd
+shadow:         ldap files
+gshadow:        files
+
+hosts:          files dns
+networks:       files
+
+protocols:      db files
+services:       db files
+ethers:         db files
+rpc:            db files
+
+netgroup:       nis
+```
+
+`nslcd.conf`:
+
+```
+# /etc/nslcd.conf
+# nslcd configuration file. See nslcd.conf(5)
+# for details.
+
+# The user and group nslcd should run as.
+uid nslcd
+gid nslcd
+
+# The location at which the LDAP server(s) should be reachable.
+uri ldaps://Efrei.fr:636
+
+# The search base that will be used for all queries.
+base dc=Efrei,dc=fr
+
+# The LDAP protocol version to use.
+#ldap_version 3
+
+# The DN to bind with for normal lookups.
+#binddn cn=annonymous,dc=example,dc=net
+#bindpw secret
+
+# The DN used for password modifications by root.
+#rootpwmoddn cn=admin,dc=example,dc=com
+
+# SSL options
+#ssl off
+tls_reqcert never
+tls_cacertfile /etc/ldap/ssl/cert.pem
+
+# The search scope.
+#scope sub
+```
+
+On redémarre le service :
+
+```shell
+$ sudo service nslcd restart
+```
+
+On vérifie que le service a bien redémarré avec la commande suivante :
+
+```shell
+$ getent passwd | grep thomas.peugnet
+```
+
+![image-20240321142304569](./assets/image-20240321142304569.png)
+
+Enfin, on essaye de se connecter via une autre instance :
+
+```shell
+$ ssh thomas.peugnet@192.168.1.28
+```
+
+Le mot de passe étant défini dans le fichier `.ldif` du TP01.
+
+On obtient le résultat suivant :
+
+![image-20240321142622819](./assets/image-20240321142622819.png)
+

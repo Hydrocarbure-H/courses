@@ -604,3 +604,117 @@ $ ssh tom.thioulouse@192.168.1.28
 ![image-20240321145508436](./assets/image-20240321145508436.png)
 
 **Note:** Si l'erreur `Could not chdir to home directory /home/X: No such file or directory`, c'est que le dossier de l'utilisateur n'existe pas. Si une erreur de `Permission Denied` survient, c'est le `chown` qui n'a pas été correctement effectué.
+
+# TP04
+
+## Configuration de Apache2
+
+Installation du service Apache2 et activation du module d'authentification :
+
+```shell
+# Installation
+$ apt install apache2
+
+# Activation du module
+$ sudo a2enmod authnz_ldap
+
+# Restart du service
+$ systemctl restart apache2
+```
+
+Modification du VirtualHost par défaut d'Apache pour lui ajouter une Basic Auth:
+
+Le fichier `/etc/apache2/sites-availables/000-default.conf` doit donc avoir le contenu suivant:
+
+```conf
+<AuthnProviderAlias ldap myldap>
+    AuthLDAPURL "ldap://Efrei.fr/ou=users,dc=Efrei,dc=fr"
+</AuthnProviderAlias>
+
+<VirtualHost *:80>
+	# The ServerName directive sets the request scheme, hostname and port that
+	# the server uses to identify itself. This is used when creating
+	# redirection URLs. In the context of virtual hosts, the ServerName
+	# specifies what hostname must appear in the request's Host: header to
+	# match this virtual host. For the default virtual host (this file) this
+	# value is not decisive as it is used as a last resort host regardless.
+	# However, you must set it for any further virtual host explicitly.
+	#ServerName www.example.com
+
+	ServerAdmin webmaster@localhost
+	DocumentRoot /var/www/html
+
+	# Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+	# error, crit, alert, emerg.
+	# It is also possible to configure the loglevel for particular
+	# modules, e.g.
+	#LogLevel info ssl:warn
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+	# For most configuration files from conf-available/, which are
+	# enabled or disabled at a global level, it is possible to
+	# include a line for only one particular virtual host. For example the
+	# following line enables the CGI configuration for this host only
+	# after it has been globally disabled with "a2disconf".
+	#Include conf-available/serve-cgi-bin.conf
+
+        <Directory "/var/www/html">
+            AuthType Basic
+            AuthName "Top Secret"
+            AuthBasicProvider myldap
+            Require valid-user
+            LogLevel trace1
+        </Directory>
+</VirtualHost>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+```
+
+On redémarre le service:
+
+```shell
+$ systemctl restart apache2
+```
+
+On modifie le contenu de la page sur laquelle le VHost redirige avec le contenu suivant:
+
+```html
+<h1>It's working !</h1>
+<p>Si ce message est visible, c'est que la configuration est correcte !</p>
+<p style="font-size:5px">Meilleur site de speedruns sur les TPs, visitez <a href="https://iefrei.fr">iefrei.fr</a> !</p>
+```
+
+On accède à la page sur l'URL http://192.168.1.28, et on constate le résultat suivant :
+
+![image-20240321150710728](./assets/image-20240321150710728.png)
+
+Cela nous indique que la configuration de la Basic Auth fonctionne correctement.
+
+Si on entre les informations de l'utilisateur `alexis.plessias` :
+
+![image-20240321151318519](./assets/image-20240321151318519.png)
+
+## Restriction des accès au groupe `teachers`
+
+Modification de la ligne `2` de la configuration du VHost avec le contenu suivant :
+
+```
+<AuthnProviderAlias ldap myldap>
+    AuthLDAPURL "ldap://Efrei.fr/ou=users,dc=Efrei,dc=fr?uid?sub?(gidNumber=6001)"
+</AuthnProviderAlias>
+```
+
+Avec `6001` le GID du groupe `teachers`.
+
+Avec la connexion en tant qu'utilisateur `alexis` du groupe `students` :
+
+![image-20240321152057247](./assets/image-20240321152057247.png)
+
+**Note:** L'écran ci-dessus arrive lorsque l'on clique sur le bouton `Annuler`,  après plusieurs tentatives infructueuses de connexion.
+
+Avec l'utilisateur `tom` qui est membre du groupe `teachers` :
+
+![image-20240321152313261](./assets/image-20240321152313261.png)
+

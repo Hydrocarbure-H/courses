@@ -693,7 +693,7 @@ while true; do echo "AAAAAA" >> /tmp/fileToWatch; done;
 
 Quelques secondes après, nous obtenons le résultat suivant:
 
-![image-20240328101426613](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Supervision/assets/image-20240328101426613.png)
+![image-20240328101426613](./assets/image-20240328101426613.png)
 
 En vérifiant avec, à nouveau avec notre manager, notre commande `snmpwalk 192.168.1.137 1.3.6.1.4.1.2021.15`, nous obtenons le résultat suivant:
 

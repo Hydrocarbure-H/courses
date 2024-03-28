@@ -271,9 +271,9 @@ Par exemple, l'OID `1.3.6.1.2.1.200` serait encodé comme suit :
 
 # Rendus des TPs
 
-# Supervision - Rendu TP01
+Présentation d'un speedrun des TPs 1 et 2.
 
-TP effectué par `Thomas PEUGNET`.
+# Supervision - Rendu TP01
 
 ## Introduction
 
@@ -517,3 +517,273 @@ Visiblement, le ping fonctionne correctement. En éteignant le conteneur du serv
 
 ![image-20240215113724549](./assets/image-20240215113724549-7993645.png)
 
+# Supervision - Rendu TP02
+
+## Installation des paquets
+
+![image-20240328082309528](./assets/image-20240328082309528.png)
+
+*A gauche, le manager, à droite l'agent.*
+
+Nous commentons la ligne `mibs :` :
+
+![image-20240328082409799](./assets/image-20240328082409799.png)
+
+Nous créons le fichier de configuration minimal `/etc/snmp/snmpd.conf`:
+
+```
+agentAddress udp:161
+rocommunity public
+rwcommunity private
+```
+
+![image-20240328082823866](./assets/image-20240328082823866.png)
+
+
+
+## Surveillance des processus
+
+Nous configurons l'agent pour l'envoi de trap snmp au manager, en modifiant la configuration de `/etc/snmp/snmp.conf` sur l'agent.
+
+```
+agentAddress     udp:161
+rocommunity      mycom
+rwcommunity      mycom
+
+trapcommunity    mycom
+trap2sink        192.168.1.28
+
+createUser       user
+iquerySecName    user
+agentSecName     user
+rouser           user
+
+proc             sshd
+```
+
+![image-20240328090429097](./assets/image-20240328090429097.png)
+
+Nous modifions ensuite le fichier de démarrage de notre service en modifiant la configuration de `/lib/systemd/system/snmpd.service`.
+
+```conf
+[Unit]
+Description=Simple Network Management Protocol (SNMP) Daemon.
+After=network.target
+ConditionPathExists=/etc/snmp/snmpd.conf
+
+[Service]
+Type=notify
+RuntimeDirectory=agentx
+
+# Next line was the original one
+# ExecStart=/usr/sbin/snmpd -LOw -u Debian-snmp -g Debian-snmp -I -smux,mteTrigger,mteTriggerConf -f
+
+ExecStart=/usr/sbin/snmpd -LOw -u Debian-snmp -g Debian-snmp -f
+ExecReload=/bin/kill -HUP $MAINPID
+Environment="MIBS=ALL"
+
+[Install]
+WantedBy=multi-user.target
+```
+
+![image-20240328083856707](./assets/image-20240328083856707.png)
+
+On relance la configuration et le service `sshd` avec la commande suivante:
+
+```shell
+$ systemctl daemon-reload
+$ systemctl restart sshd
+```
+
+Sur le manager, on modifie la configuration par défaut de `snmp.conf` pour spécifier la version et la community:
+
+```
+defVersion 2c
+defCommunity mycom
+```
+
+Puis on exécute la commande suivante, avec `192.168.1.137` l'adresse de notre agent.
+
+```shell
+$ snmpwalk 192.168.1.137 1.3.6.1.4.1.2021.2
+```
+
+On btient le résultat suivant:
+
+![image-20240328090649876](./assets/image-20240328090649876.png)
+
+Dans le fichier de configuration de l'agent `snmpd.conf`,  on ajoute le contenu suivant:
+
+```
+notificationEvent      trapService 1.2.3.1.4.1.1000.10.1 -o prNames -o prErrMessage
+monitor                -r 10 -e trapService "erreur service" prErrorFlag != 0
+```
+
+**Note:** Les 2 VMs étant sur un Proxmox, le SSH n'est jamais complètement arrêté tant que nous sommes connectés dessus. Dans un souci de facilité de test sur ce TP, nous avons choisi de superviser le service `cron` en lieu et place de `sshd`.
+
+Nous avons donc une configuration de `snmpd.conf` suivante :
+
+```defaultMonitors yes
+agentAddress udp:161
+rocommunity mycom
+rwcommunity mycom
+
+trapcommunity mycom
+trap2sink 192.168.1.28
+
+createUser user
+iquerySecName user
+agentSecName user
+rouser user
+
+proc cron
+
+defaultMonitors yes
+linkUpDownNotifications yes
+
+monitor -r 5 -o prNames -o prErrMessage "ProcessMonitor" prErrorFlag != 0
+```
+
+Nous effectuons une capture sur l'agent et le manager avec `tcpdump` (Wireshark n'étant pas utilisable sur des VMs étant exclusivement en CLI). 
+
+On obtient le résultat suivant :
+
+![image-20240328095937738](./assets/image-20240328095937738.png)
+
+Pour répondre à une demande spécifique du TP concernant `sshd`, pour savoir que le nombre de processus `sshd` varie lors des connexions des utilisateurs, un regard à la commande nous explique tout.
+
+De notre côté:
+
+```shell
+$ pgrep sshd
+178
+335
+12185
+12205
+```
+
+## Surveillance du disque
+
+Nous ajoutons le ligne suivante dans le fichier `snmpd.conf` de l'agent:
+
+```
+file /tmp/fileToWatch 10
+```
+
+Nous redémarrons le service `snmpd`:
+
+```shell
+$ systemctl restart snmpd
+```
+
+Puis, nous exécutons la commande suivante depuis notre manager, pour tester le bon fonctionnement de notre configuration:
+
+```shell
+$ snmpwalk 192.168.1.137 1.3.6.1.4.1.2021.15
+```
+
+Nous obtenons le résultat suivant : 
+![image-20240328100925815](./assets/image-20240328100925815.png)
+
+Nous augmentons la taille de notre fichier par l'exécution de cette commande pendant quelques secondes:
+
+```shell
+while true; do echo "AAAAAA" >> /tmp/fileToWatch; done;
+```
+
+Quelques secondes après, nous obtenons le résultat suivant:
+
+![image-20240328101426613](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Supervision/assets/image-20240328101426613.png)
+
+En vérifiant avec, à nouveau avec notre manager, notre commande `snmpwalk 192.168.1.137 1.3.6.1.4.1.2021.15`, nous obtenons le résultat suivant:
+
+![image-20240328101508511](./assets/image-20240328101508511.png)
+
+## Traitement des notifications sur le Manager
+
+Nous commençons par installer `snmptrapd` sur notre manager:
+
+```shell
+$ apt install snmptrapd
+```
+
+Puis, nous ajoutons en fin de fichier `/etc/snmp/snmptrapd.conf` la ligne suivante:
+
+```
+authCommunity log,execute mycom
+```
+
+Ensuite, nous exécutons la commande suivante sur notre agent:
+
+```shell
+$ snmptrap -v 2c -c mycom 192.168.1.28 '' UCD-SNMP-MIB::ucdStart UCD-SNMP-MIB::ucdavis.0 s "Test Trap"
+```
+
+Nous obtenons, sur notre agent, le résultat suivant:
+
+![image-20240328102444053](./assets/image-20240328102444053.png)
+
+Puis, en analysant le fichier `/var/log/syslog` sur notre manager, nous obtenons le résultat suivant:
+
+![image-20240328104301652](./assets/image-20240328104301652.png)
+
+Nous ajoutons la ligne suivante à notre fichier `snmptrapd.conf` sur notre manager:
+
+```
+traphandle default /bin/traitement-notification
+```
+
+A noter que `traitement-notification` est le nom de notre script qui va s'exécuter pour chaque trap reçu.
+
+Puis, nous créons le script avec le contenu suivant:
+
+```shell
+#!/bin/bash
+
+read nom
+echo "Nom : "$nom
+read ip
+echo "IPs et ports : "$ip
+while read obj; do
+    echo "Objet : "$obj
+done
+```
+
+Nous lui appliquons les permissions nécessaires:
+
+```shell
+$ chmod +x  /bin/traitement-notification
+```
+
+Nous envoyons maintenant une notification `snmptrap` depuis notre agent, et observons le résultat suivant dans le journal:
+
+```shell
+$ snmptrap -v 2c -c mycom 192.168.1.28 '' UCD-SNMP-MIB::ucdStart UCD-SNMP-MIB::ucdavis.0 s "Test Trap"
+```
+
+![image-20240328104950667](./assets/image-20240328104950667.png)
+
+Nous pouvons donc bien en conclure que le script est bien exécuté lors de l'envoi de notre notification par notre agent.
+
+**Note:** Etant donné le fonctionnement des mails Postfix assez compliqué au vu des dernières mises à jour, nous allons modifier le script de traitement des notifications pour simplement écrire dans un fichier ce qui aurait dû être présent dans un mail.
+
+Nous modifions donc le contenu de notre fichier `/bin/traitement-notification` pour avoir le contenu suivant:
+
+```shell
+#!/bin/bash
+logFile="/tmp/traitement-log.log"
+echo "Date de réception: $(date)" >> $logFile
+read nom
+echo "Nom : "$nom >> $logFile
+read ip
+echo "IPs et ports : "$ip >> $logFile
+while read obj; do
+    echo "Objet : "$obj >> $logFile
+done
+```
+
+Nous envoyons à nouveau une notification SNMP, et obtenons le résultat suivant dans notre fichier `/tmp/traitement-log.log`:
+
+![image-20240328105937769](./assets/image-20240328105937769.png)
+
+En amélioration, nous pourrions mettre à jour le nom de notre agent, afin de ne pas avoir `<UNKNOWN>` figurant parmis les logs.

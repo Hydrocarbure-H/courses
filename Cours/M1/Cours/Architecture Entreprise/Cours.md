@@ -2,9 +2,9 @@
 
 Notes de cours de `Thomas PEUGNET`.
 
-Ce cours présente comment faire un speedrun des TPs 1 et 2.
+Ce cours présente comment faire un speedrun des TPs 1, 2, 3, 4.
 
-Le speedrun des TPs 3, 4. Le TP05 aura éte effectué à 90%, mais n'aboutit pas à une solution fonctionnelle.
+Le TP05 aura éte effectué à 90%, mais n'aboutit pas à une solution fonctionnelle.
 
 # TP01
 

@@ -912,3 +912,51 @@ Nous n'obtenons cette fois-ci plus d'erreur lors du restart de notre service Ope
 
 ![image-20240404094338767](./assets/image-20240404094338767.png)
 
+## Configuration
+
+Nous copions le contenu de `easy-rsa` dans notre dossier `server`:
+
+```shell
+$ cp -r /usr/share/easy-rsa /etc/openvpn/server
+```
+
+![image-20240404101017889](./assets/image-20240404101017889.png)
+
+Nous créons notre infrastructure de clés publiques à l'aide de la commande suivante:
+
+```shell
+$ ./easy-rsa/easyrsa init-pki
+$ ./easy-rsa/easyrsa build-ca
+```
+
+![image-20240404101223895](./assets/image-20240404101223895.png)
+
+**Note:** Lors de l'exécution de la deuxième commande, indiquer `autorite` pour `Common Name`.
+
+Nous effectuons ensuite la création de la clé et la demande de certificat pour Efrei et pour le client:
+
+```shell
+$ ./easy-rsa/easyrsa gen-req Efrei nopass
+$ ./easy-rsa/easyrsa sign-req server Efrei
+```
+
+Nous obtenons le résultat suivant:
+
+![image-20240404101758458](./assets/image-20240404101758458.png)
+
+```shell
+$ ./easy-rsa/easyrsa gen-req Client_VPN nopass
+$ ./easy-rsa/easyrsa sign-req client ClientVPN
+```
+
+Nous obtenons le résultat suivant:
+
+![image-20240404102005547](./assets/image-20240404102005547.png)
+
+Puis, nous créons la clé Diffie Hellman et la clé d’authentification TLS `TA.key`: 
+
+```shell
+$ ./easy-rsa/easyrsa gen-dh
+$ openvpn --genkey secret ta.key
+```
+

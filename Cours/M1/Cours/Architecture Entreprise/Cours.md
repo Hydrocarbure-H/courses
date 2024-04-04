@@ -728,15 +728,49 @@ $ openssl req -new -key /etc/ssl/private/https_key.key -out https_request.csr
 $ openssl x509 -signkey /etc/ssl/private/https_key.key -in https_request.csr -req -days 365 -out /etc/ssl/certs/https_cert.crt
 ```
 
-
-
 Pour activer l'HTTPS sur notre serveur web, nous allons commencer par activer le module `ssl` à l'aide de la commande suivante:
 
 ```shell
 $ a2enmod ssl
 ```
 
+On effectue une backup du fichier de configuration original.
 
+```shell
+$ cd /etc/apache2/sites-available
+$ cp default-ssl.conf default-ssl.conf.old
+$ echo "" > default-ssl.conf
+```
+
+On modifie notre configuration Apache dans notre fichier `default-ssl.conf` par la configuration suivante:
+
+```
+<VirtualHost *:443>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/certs/https_cert.crt
+    SSLCertificateKeyFile /etc/ssl/private/https_key.key
+
+    <Directory "/var/www/html">
+        AuthType Basic
+        AuthName "Top Secret"
+        AuthBasicProvider myldap
+        Require valid-user
+        LogLevel trace1
+    </Directory>
+</VirtualHost>
+```
+
+En nous rendant sur le site en `https` on obtient le résultat suivant:
+
+![image-20240404082834568](./assets/image-20240404082834568.png)
+
+Nous pouvons constater que cela fonctionne correctement.
 
 # TP05
 
@@ -773,3 +807,43 @@ $ cd /usr/share/doc/openvpn/examples/sample-keys
 # Lancer la configuration par défaut
 $ openvpn ../sample-config-files/server.conf
 ```
+
+Dû à des problèmes liés au kernel proxmox (`/dev/net/tun` inexistant dans cette version), nous passerons par l'utilisation d'un Docker en lieu et place de l'installer en bare metal.
+
+On commence donc par créer notre environnement de travail. Notes issues du site [Docker officiel](https://hub.docker.com/r/kylemanna/openvpn/#!).
+
+```shell
+$ cd
+$ mkdir openvpn && mkdir openvpn/ovpn-data-example && cd openvpn
+$ OVPN_DATA="ovpn-data-example"
+# Initialize the $OVPN_DATA container that will hold the configuration files and certificates. The container will
+# prompt for a passphrase to protect the private key used by the newly generated certificate authority.
+$ docker volume create --name $OVPN_DATA
+$ docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u udp://VPN.SERVERNAME.COM
+$ docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
+```
+
+On start le conteneur :
+
+```shell
+$ docker run -v $OVPN_DATA:/etc/openvpn -p 1194:1194/udp --cap-add=NET_ADMIN kylemanna/openvpn
+```
+
+Mais finalement, on obtient le même problème de `/dev/net/tun` inexistant.
+
+Nous essayons ensuite de passer par un conteneur template `lxc`, qui est une fonctionnalité Proxmox permettant de créer des conteneurs LXC directement à partir d'un template, dans notre cas OpenVPN.
+
+Après avoir lancé le conteneur, nous obtenons à nouveau une erreur sur le `/dev/net/tun`, mais l'installation semble se poursuivre. A l'issue de cette dernière, nous obtenons le résultat suivant:
+
+![image-20240404091616468](./assets/image-20240404091616468.png)
+
+Nous ajoutons ensuite un nouveau client:
+
+![image-20240404091733837](./assets/image-20240404091733837.png)
+
+Une fois ceci fait, nous obtenons une URL nous permettant de télécharger ou voir la configuration du client `tom.thioulouse` à partir d'un lien de la forme `http://192.168.1.252/profiles/1145ab468e54137e1f56079040561ab3296c3767/tom.thioulouse.ovpn`.
+
+Nous obtenons le fichier de configuration du client. Après avoir essayé de se connecter, nous pouvons constater que cela fonctionne parfaitement. Il reste maintenant à intégrer l'utilisation du module LDAP pour l'authentification.
+
+
+

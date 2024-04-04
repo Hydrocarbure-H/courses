@@ -4,7 +4,7 @@ Notes de cours de `Thomas PEUGNET`.
 
 Ce cours présente comment faire un speedrun des TPs 1 et 2.
 
-Le speedrun des TPs 3, 4 et 5 est en cours.
+Le speedrun des TPs 3, 4. Le TP05 aura éte effectué à 90%, mais n'aboutit pas à une solution fonctionnelle.
 
 # TP01
 
@@ -774,6 +774,8 @@ Nous pouvons constater que cela fonctionne correctement.
 
 # TP05
 
+> ***Note:** Cette partie n'aboutit pas à une configuration OpenVPN fonctionnelle. Elle détaille l'installation de 4 façons différentes, dont l'une avec succès, la configuration qui, normalement devrait fonctionner, mais la finalité demeure être une impossibilité de lancer le serveur OpenVPN, et donc d'initier une connexion depuis un client distant.*
+
 ## Installation de OpenVPN
 
 ```shell
@@ -960,3 +962,87 @@ $ ./easy-rsa/easyrsa gen-dh
 $ openvpn --genkey secret ta.key
 ```
 
+Nous récupérons les différents fichiers :
+
+```shell
+$ scp root@192.168.1.252:/etc/openvpn/server/pki/ca.crt ./Desktop
+$ scp root@192.168.1.252:/etc/openvpn/server/pki/issued/Client_VPN.crt ./Desktop
+$ scp root@192.168.1.252:/etc/openvpn/server/pki/private/Client_VPN.key ./Desktop
+$ scp root@192.168.1.252:/etc/openvpn/server/ta.key ./Desktop
+```
+
+Nous modifions maintenant le fichier de configuration `server.conf`, qui a maintenant le contenu suivant:
+
+```shell
+# PUBLIC_ADDRESS: vpn.Efrei.fr (used by openvpn-addclient)
+
+port 1194
+proto udp
+dev tun
+
+#keepalive 10 120
+
+#persist-key
+#persist-tun
+#user nobody
+#group nogroup
+
+#chroot /etc/openvpn/easy-rsa/keys/crl.jail
+#crl-verify /etc/openvpn/crl.pem
+
+ca /etc/openvpn/pki/ca.crt
+dh /etc/openvpn/pki/dh.pem
+cert /etc/openvpn/pki/issued/Efrei.crt
+
+#tls-auth /etc/openvpn/easy-rsa/keys/ta.key 0
+#key /etc/openvpn/easy-rsa/keys/private/server.key
+#cert /etc/openvpn/easy-rsa/keys/issued/server.crt
+
+#ifconfig-pool-persist /var/lib/openvpn/server.ipp
+#client-config-dir /etc/openvpn/server.ccd
+#status /var/log/openvpn/server.log
+#verb 4
+
+# virtual subnet unique for openvpn to draw client addresses from
+# the server will be configured with x.x.x.1
+# important: must not be used on your network
+#server 10.232.14.0 255.255.255.0
+# push routes to clients to allow them to reach private subnets
+#push "route 10.0.1.0 255.255.255.0"
+
+plugin /usr/local/lib/openvpn-auth-ldap.so "/etc/openvpn/auth-ldap.conf"
+```
+
+Sur la machine cliente, nous copions tous les fichiers nécessaires à la connexion dans `/etc/openvpn`, et obtenons le résultat suivant:
+
+![image-20240404103929969](./assets/image-20240404103929969.png)
+
+Nous modifions notre fichier de configuration `client.conf` pour correspondre à notre configuration serveur:
+
+![image-20240404104147362](./assets/image-20240404104147362.png)
+
+Nous essayons ensuite de lancer le serveur à l'aide de la commande suivante depuis le dossier `/etc/openvpn` sur le serveur:
+
+```shell
+$ openvpn server.conf
+```
+
+Notre configuration est donc la suivante:
+
+![image-20240404105734807](./assets/image-20240404105734807.png)
+
+Malgré nos efforts, nous obtenons toujours une erreur dû à notre configuration TLS, pourtant à priori assez proche de celle du TP.
+
+![image-20240404105015989](./assets/image-20240404105015989.png)
+
+La deuxième commande nous indique que l'utilisation d'un `ca.cert` nécessite l'utilisation du paramètre `–tls-server` d'après la commande `openvpn –help`. Le problème étant que, visiblement, ce paramètre n'est pas reconnu :
+
+```
+Options error: Unrecognized option or missing or extra parameter(s) in [CMD-LINE]:1: tls-client
+
+# Alors que dans la doc, nous avons bien: 
+--tls-server    : Enable TLS and assume server role during TLS handshake.
+# Qui ne semble pas nécessiter d'argument.
+```
+
+Étant à court d'idées et de temps, nous choisissons d'interrompre nos recherches ici.

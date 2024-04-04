@@ -845,5 +845,70 @@ Une fois ceci fait, nous obtenons une URL nous permettant de télécharger ou vo
 
 Nous obtenons le fichier de configuration du client. Après avoir essayé de se connecter, nous pouvons constater que cela fonctionne parfaitement. Il reste maintenant à intégrer l'utilisation du module LDAP pour l'authentification.
 
+## Configuration du plugin `ldap`
 
+Nous commençons par créer notre configuration LDAP qui sera utilisée par le plugin pour l'authentification. Nous créons donc le fichier `/etc/openvpn/auth-ldap.conf` avec le contenu suivant:
+
+```
+<LDAP>
+    # Connexion au serveur LDAP
+    URL             ldaps://192.168.1.28:636
+
+    # Paramètres de l'annuaire LDAP
+    BindDN          cn=admin,dc=Efrei,dc=fr
+    Password        bind_password
+    Timeout         15
+    TLSEnable       no
+    FollowReferrals no
+
+    # Base de recherche pour les utilisateurs
+    BaseDN          "ou=users,dc=Efrei,dc=fr"
+    SearchFilter    "(uid=%u)"
+
+    #RequireGroup    yes
+    #BaseDN          "ou=groups,dc=Efrei,dc=fr"
+    #GroupSearchFilter "(memberUid=%u)"
+    #GroupName       cn=vpn_users,ou=groups,dc=Efrei,dc=fr
+</LDAP>
+```
+
+Nous ajoutons maintenant cette ligne dans `/etc/openvpn/server.conf` pour intégrer l'utilisation du plugin `openvpn-auth-ldap`.
+
+```
+plugin /usr/lib/openvpn/plugins/openvpn-plugin-auth-ldap.so "/etc/openvpn/auth-ldap.conf"
+```
+
+Nous avons donc une configuration qui a le contenu suivant:
+
+![image-20240404093032666](./assets/image-20240404093032666.png)
+
+Enfin, nous redémarrons notre service à l'aide de la commande suivante:
+
+```shell
+$ systemctl restart openvpn@server
+```
+
+Hélas, encore une fois, le plugin `openvpn-plugin-auth-ldap.so` semble ne pas avoir été installé correctement, ou se trouve à un autre endroit comme en témoigne le `journalctl`.
+
+Nous essayons donc, en dernière tentative, de cloner directement le code source du plugin et de l'installer manuellement.
+
+```shell
+$ git clone https://github.com/snowrider311/openvpn-auth-ldap
+$ cd openvpn-auth-ldap/
+$ ./ubuntu_16.04_lts_build.sh
+```
+
+Avec cette commande, nous obtenons ENFIN notre plugin d'authentification:
+
+![image-20240404093955915](./assets/image-20240404093955915.png)
+
+Nous procédons à une modification du nom dans notre configuration de `server.conf`:
+
+```
+plugin /usr/local/lib/openvpn-auth-ldap.so "/etc/openvpn/auth-ldap.conf"
+```
+
+Nous n'obtenons cette fois-ci plus d'erreur lors du restart de notre service OpenVPN !
+
+![image-20240404094338767](./assets/image-20240404094338767.png)
 

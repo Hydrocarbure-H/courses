@@ -102,7 +102,149 @@ $ docker images
 
 ![image-20240329152837637](./assets/image-20240329152837637.png)
 
-Nous pouvons supprimer les images `docker` par la commande `docker rmi 92b11f67642b`.
+### Orchestration des Conteneurs
 
-## Création d'une image Docker
+**Définition:** L'orchestration des conteneurs est une méthode automatisée et évolutive pour gérer et déployer des conteneurs. Elle facilite la gestion efficace des applications conteneurisées, offrant un équilibrage des charges, une gestion de stockage, une mise à l'échelle des applications, et des mises à jour.
 
+### Kubernetes
+
+- **Origine:** Développé par Google en 2014, Kubernetes est une plateforme open-source pour l'orchestration de conteneurs.
+- **Architecture:** Comprend un ensemble de binaires compilés statiquement, écrits en Go, permettant une conteneurisation et un déploiement faciles sans dépendance d'OS.
+
+#### Composants Principaux
+
+- **ETCD:** Base de données distribuée clé/valeur stockant l'état du cluster.
+- **KUBE-APISERVER:** Interface de gestion centrale, interagissant via REST API ou `kubectl`.
+- **KUBE-SCHEDULER:** Attribue des ressources basées sur des règles de planification.
+- **KUBE-PROXY:** Gère la publication des services et le routage des paquets vers les conteneurs.
+- **KUBE-CONTROLLER-MANAGER:** Boucle de contrôle surveillant et ajustant l'état du cluster.
+- **KUBELET:** Interface entre le serveur d'API et le runtime des conteneurs sur les nodes.
+
+### Technologies Complémentaires
+
+- **CRI-O:** Runtime de conteneurs permettant l'orchestration sans dépendance à Docker.
+- **CLOUD-CONTROLLER:** Intègre Kubernetes avec les fournisseurs de services cloud.
+
+### Ressources Kubernetes
+
+- **Namespaces:** Isolent des groupes de ressources au sein d'un cluster.
+- **Pods:** Plus petite unité de déploiement contenant un ou plusieurs conteneurs.
+- **Deployments:** Gèrent le déploiement et la mise à jour des applications.
+- **StatefulSets:** Déploient des applications nécessitant un stockage persistant.
+- **Jobs & CronJobs:** Gèrent l'exécution de tâches une fois ou selon un calendrier.
+
+### Réseau et Sécurité
+
+- **Network Plugins (CNI):** Assurent la connectivité réseau entre les pods.
+- **Ingress:** Expose des services HTTP/S à l'extérieur du cluster via des règles de routage.
+- **Service Mesh:** Gère la communication entre microservices avec des fonctionnalités avancées.
+- **Volumes:** Unités de stockage de données pour les pods.
+- **Security:** Gestion des accès via RBAC, secrets pour stocker des données sensibles.
+
+### Supervision et Log
+
+- Importance de la collecte des métriques, visualisation via des outils comme Grafana, configuration d'alertes, et analyse des logs pour un monitoring efficace.
+
+### Pods : Unités Fondamentales d'Exécution
+
+Un **Pod** est la plus petite unité déployable créée et gérée par Kubernetes. Chaque Pod est conçu pour exécuter un ensemble spécifique de conteneurs.
+
+#### Exemple de Définition de Pod
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mon-pod
+spec:
+  containers:
+  - name: mon-container
+    image: nginx:1.17
+    ports:
+    - containerPort: 80
+```
+
+Cet exemple définit un Pod nommé `mon-pod`, contenant un conteneur basé sur l'image `nginx:1.17`, exposant le port `80`.
+
+### Réseau : Communication et Exposition
+
+Kubernetes utilise des **Services** et des **Ingress** pour gérer l'accès aux applications dans les Pods.
+
+#### Service
+
+Un **Service** définit une politique d'accès abstraite pour accéder aux Pods, permettant la communication interne et externe.
+
+##### Exemple de Service
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: mon-service
+spec:
+  selector:
+    app: mon-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9376
+```
+
+Ce Service expose les Pods marqués avec `app: mon-app` sur le port `80`, redirigeant le trafic vers le `targetPort` `9376` des Pods.
+
+#### Ingress
+
+**Ingress** gère l'accès externe au cluster, fournissant des règles de routage HTTP/S.
+
+##### Exemple de Configuration Ingress
+
+```
+yamlCopy code
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: exemple-ingress
+spec:
+  rules:
+  - host: www.exemple.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mon-service
+            port:
+              number: 80
+```
+
+Cet Ingress route le trafic pour `www.exemple.com` vers `mon-service` au port `80`.
+
+### Réseau : Network Policies
+
+**Network Policies** spécifient comment les groupes de Pods peuvent communiquer entre eux et avec d'autres réseaux.
+
+#### Exemple de Network Policy
+
+```
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: policy-exemple
+spec:
+  podSelector:
+    matchLabels:
+      app: mon-app
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 172.17.0.0/16
+    ports:
+    - protocol: TCP
+      port: 80
+```
+
+Cette politique permet aux Pods avec le label `app: mon-app` de recevoir du trafic TCP sur le port `80` uniquement de l'intérieur du CIDR `172.17.0.0/16`.

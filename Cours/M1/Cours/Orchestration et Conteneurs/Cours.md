@@ -102,7 +102,7 @@ $ docker images
 
 ![image-20240329152837637](./assets/image-20240329152837637.png)
 
-### Orchestration des Conteneurs
+# Orchestration des Conteneurs
 
 **Définition:** L'orchestration des conteneurs est une méthode automatisée et évolutive pour gérer et déployer des conteneurs. Elle facilite la gestion efficace des applications conteneurisées, offrant un équilibrage des charges, une gestion de stockage, une mise à l'échelle des applications, et des mises à jour.
 
@@ -145,13 +145,13 @@ $ docker images
 
 - Importance de la collecte des métriques, visualisation via des outils comme Grafana, configuration d'alertes, et analyse des logs pour un monitoring efficace.
 
-### Pods : Unités Fondamentales d'Exécution
+## Pods : Unités Fondamentales d'Exécution
 
 Un **Pod** est la plus petite unité déployable créée et gérée par Kubernetes. Chaque Pod est conçu pour exécuter un ensemble spécifique de conteneurs.
 
 #### Exemple de Définition de Pod
 
-```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -176,7 +176,7 @@ Un **Service** définit une politique d'accès abstraite pour accéder aux Pods,
 
 ##### Exemple de Service
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -198,7 +198,7 @@ Ce Service expose les Pods marqués avec `app: mon-app` sur le port `80`, rediri
 
 ##### Exemple de Configuration Ingress
 
-```
+```yaml
 yamlCopy code
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -226,7 +226,7 @@ Cet Ingress route le trafic pour `www.exemple.com` vers `mon-service` au port `8
 
 #### Exemple de Network Policy
 
-```
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:

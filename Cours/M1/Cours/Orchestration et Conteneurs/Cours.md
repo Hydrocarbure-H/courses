@@ -248,3 +248,624 @@ spec:
 ```
 
 Cette politique permet aux Pods avec le label `app: mon-app` de recevoir du trafic TCP sur le port `80` uniquement de l'intérieur du CIDR `172.17.0.0/16`.
+
+# Gestion des Ressources dans Kubernetes
+
+**Demandes et Limites**: Kubernetes permet de spécifier des ressources minimales (`requests`) et maximales (`limits`) pour les conteneurs. Ces paramètres sont cruciaux pour le bon fonctionnement et la planification efficace des conteneurs sur les nœuds.
+
+### Exemple de Configuration des Demandes et Limites
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mon-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+```
+
+Dans cet exemple, le conteneur demande au minimum 64 MiB de mémoire et 0.25 CPU et est limité à 128 MiB de mémoire et 0.5 CPU.
+
+**RAM et CPU**: Les configurations de RAM (`memory`) et de CPU (`cpu`) aident Kubernetes à allouer les ressources nécessaires et à éviter la surcharge des nœuds.
+
+### Gestion Avancée des Ressources
+
+**LimitRange**: Un `LimitRange` permet de définir des politiques minimales et maximales pour les ressources utilisées par les pods dans un namespace, empêchant ainsi l'utilisation excessive des ressources d'un nœud.
+
+#### Exemple de LimitRange
+
+```yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: limit-range
+spec:
+  limits:
+  - default:
+      memory: "512Mi"
+      cpu: "1"
+    defaultRequest:
+      memory: "256Mi"
+      cpu: "0.5"
+    type: Container
+```
+
+Ce `LimitRange` définit des demandes par défaut et des limites pour les conteneurs dans un namespace.
+
+**ResourceQuota**: Les `ResourceQuotas` permettent de limiter la consommation totale de ressources par namespace, ce qui est utile pour gérer efficacement les ressources dans un environnement multi-utilisateur.
+
+#### Exemple de ResourceQuota
+
+```yaml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: quota
+spec:
+  hard:
+    requests.cpu: "4"
+    requests.memory: 2Gi
+    limits.cpu: "10"
+    limits.memory: 10Gi
+```
+
+Ce `ResourceQuota` impose des quotas stricts sur les ressources demandées et les limites pour tout le namespace.
+
+# Autoscaling
+
+**Horizontal Pod Autoscaler (HPA)**: Le HPA permet d'ajuster automatiquement le nombre de répliques d'un déploiement en fonction de l'utilisation réelle des ressources par rapport aux cibles définies.
+
+#### Exemple d'HPA
+
+```yaml
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-example
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: my-deployment
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80
+```
+
+Cet HPA ajuste le nombre de répliques du déploiement `my-deployment` pour maintenir l'utilisation moyenne du CPU autour de 80%.
+
+**Vertical Pod Autoscaler (VPA)**: Le VPA ajuste les demandes de ressources et les limites des conteneurs dans un pod en fonction de l'utilisation pour optimiser l'utilisation des ressources.
+
+#### Exemple de VPA
+
+```yaml
+apiVersion: "autoscaling.k8s.io/v1"
+kind: VerticalPodAutoscaler
+metadata:
+  name: vpa-example
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind: Deployment
+    name: my-deployment
+  updatePolicy:
+    updateMode: "Auto"
+```
+
+Ce VPA ajustera automatiquement les demandes et les limites des conteneurs dans le déploiement `my-deployment` en fonction de leur utilisation réelle.
+
+# Scheduling des Pods
+
+**NodeSelector**: `NodeSelector` est une fonctionnalité de Kubernetes qui permet de planifier des pods sur des nœuds spécifiques en fonction des labels. C'est un des moyens les plus simples pour contrôler le placement des pods.
+
+#### Exemple de NodeSelector
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mon-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  nodeSelector:
+    disque: ssd
+```
+
+Ce Pod sera planifié sur un nœud qui a le label `disque=ssd`.
+
+**Affinités et Anti-affinités**: Les affinités et anti-affinités permettent une planification plus avancée et flexible par rapport à `NodeSelector`. Elles permettent de spécifier des règles qui incluent des préférences et des exigences.
+
+#### Exemple d'Affinité de Node
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: avec-affinite
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: disque
+            operator: In
+            values:
+            - ssd
+```
+
+Ce Pod nécessite un nœud avec le label `disque=ssd` pour être planifié.
+
+**Taints et Tolerances**: Les taints et tolerances travaillent ensemble pour s'assurer que les pods ne sont pas planifiés sur des nœuds inappropriés. Les taints repoussent les pods qui n'ont pas de tolérances correspondantes.
+
+#### Exemple de Taints et Tolerances
+
+```yaml
+# Sur un nœud
+kubectl taint nodes node1 key=value:NoSchedule
+
+# Dans la définition du Pod
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tolere-taint
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  tolerations:
+  - key: "key"
+    operator: "Equal"
+    value: "value"
+    effect: "NoSchedule"
+```
+
+Le Pod `tolere-taint` sera capable de tourner sur le nœud `node1` malgré le taint appliqué.
+
+**Pod Topology Spread Constraints**: Ces contraintes permettent de contrôler la dispersion des pods à travers le cluster en fonction de la topologie.
+
+#### Exemple de Pod Topology Spread Constraints
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: "kubernetes.io/hostname"
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app: myapp
+```
+
+Ce déploiement essaie de maintenir les pods aussi équilibrés que possible entre les nœuds du cluster.
+
+# Sécurité et Contrôle d'Accès dans Kubernetes
+
+**RBAC (Role-Based Access Control)**: RBAC est un mécanisme puissant dans Kubernetes qui gère l'accès aux ressources basé sur les rôles des utilisateurs dans un cluster.
+
+#### Exemple de RBAC
+
+```yaml
+# Création d'un Role
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: pod-reader
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
+
+# Création d'un RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-pods
+  namespace: default
+subjects:
+- kind: User
+  name: "jane"  # Nom de l'utilisateur
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+
+Ce RBAC configuration autorise l'utilisateur `jane` à lire les pods dans le namespace `default`.
+
+**Service Accounts**: Les comptes de service sont des identités pour les processus qui s'exécutent dans un pod, permettant aux applications de communiquer avec l'API Kubernetes.
+
+#### Exemple de Service Account
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: my-service-account
+  namespace: default
+```
+
+Ce ServiceAccount peut être utilisé pour donner des permissions spécifiques à un pod.
+
+**Pod Security Policies (PSP)**: Les politiques de sécurité des pods (PSP) sont un moyen de contrôler les paramètres de sécurité sensibles et de forcer les meilleures pratiques.
+
+#### Exemple de Pod Security Policy
+
+```yaml
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: example
+spec:
+  privileged: false  # Interdit l'exécution de pods privilégiés
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  runAsUser:
+    rule: MustRunAsNonRoot
+  fsGroup:
+    rule: RunAsAny
+  volumes:
+  - '*'
+```
+
+Cette PSP empêche l'exécution de pods en mode privilégié et force l'exécution en tant qu'utilisateur non root.
+
+**Network Policies**: Les politiques de réseau permettent de contrôler le flux de trafic entre les pods et les différents segments du réseau au sein d'un cluster Kubernetes.
+
+#### Exemple de Network Policy
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-network-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      role: db
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          role: frontend
+    ports:
+    - protocol: TCP
+      port: 3306
+```
+
+Cette politique autorise uniquement les pods avec le label `role: frontend` à accéder aux pods avec le label `role: db` sur le port `3306`.
+
+# Monitoring et Logging dans Kubernetes
+
+Le monitoring et le logging sont essentiels pour maintenir la santé et la performance des applications et de l'infrastructure dans un cluster Kubernetes.
+
+**Collecte des Métriques**: La collecte des métriques est essentielle pour observer l'état et la performance du cluster. Des outils comme Prometheus sont souvent utilisés pour cette tâche.
+
+#### Exemple de configuration pour Prometheus
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+  labels:
+    app: prometheus
+spec:
+  type: NodePort
+  ports:
+    - port: 9090
+      nodePort: 30090
+  selector:
+    app: prometheus
+```
+
+Ce Service expose Prometheus sur le port `30090` du nœud où il s'exécute, permettant l'accès via l'IP du nœud.
+
+**Visualisation des Métriques**: Grafana est couramment utilisé pour visualiser les métriques collectées par Prometheus.
+
+#### Exemple de déploiement Grafana
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  labels:
+    app: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - name: grafana
+        image: grafana/grafana
+        ports:
+        - containerPort: 3000
+```
+
+Ce déploiement crée un pod Grafana qui est accessible via le port `3000`.
+
+**Alertes et Notifications**: Configurer des alertes pour être notifié en cas de conditions anormales est crucial pour une gestion proactive.
+
+#### Exemple de configuration d'alertes avec Prometheus
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: example-alert
+  labels:
+    prometheus: example
+spec:
+  groups:
+  - name: example.rules
+    rules:
+    - alert: HighMemoryUsage
+      expr: process_memory_bytes > 100000000
+      for: 10m
+      labels:
+        severity: page
+      annotations:
+        summary: High Memory Usage
+```
+
+Cette règle configure une alerte pour tout processus consommant plus de 100MB de mémoire pendant plus de 10 minutes.
+
+**Surveillance des Logs**: L'utilisation de stacks comme ELK (Elasticsearch, Logstash, Kibana) ou EFK (Elasticsearch, Fluentd, Kibana) est standard pour la gestion des logs.
+
+#### Exemple de configuration Elasticsearch
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elasticsearch
+  labels:
+    app: elasticsearch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elasticsearch
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+    spec:
+      containers:
+      - name: elasticsearch
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
+        ports:
+        - containerPort: 9200
+```
+
+Ce déploiement crée un pod Elasticsearch accessible via le port `9200`.
+
+# GitOps : Principes et Implémentation
+
+**GitOps** est une approche pour la gestion de l'infrastructure et des configurations d'applications basée sur Git comme unique source de vérité. Cela permet l'automatisation, la reproductibilité, la transparence et la traçabilité pour la gestion des déploiements et des opérations.
+
+#### Principe Fondamental de GitOps
+
+GitOps utilise Git pour gérer les configurations d'infrastructure et les déployer automatiquement à l'aide d'outils d'orchestration comme Kubernetes, souvent par des agents dans le cluster qui observent le dépôt Git pour les changements.
+
+#### Exemple de Workflow GitOps
+
+1. **Stockage de Configurations**: Toutes les configurations de déploiement et d'infrastructure sont stockées dans un dépôt Git.
+2. **Déclenchement de Mise à Jour**: Les mises à jour sont appliquées au dépôt Git via des commits.
+3. **Détection Automatique**: Un outil dans le cluster, comme Argo CD ou Flux, détecte les changements dans le dépôt Git.
+4. **Synchronisation et Application**: L'outil synchronise automatiquement les changements dans le cluster.
+
+### Outils GitOps pour Kubernetes
+
+**Flux**: Flux est un outil GitOps qui synchronise automatiquement l'état d'un dépôt Git avec un cluster Kubernetes.
+
+#### Exemple de Configuration avec Flux
+
+```bash
+# Installation de Flux dans le cluster Kubernetes
+curl -s https://toolkit.fluxcd.io/install.sh | sudo bash
+
+# Initialisation de Flux sur un dépôt Git
+flux bootstrap github \
+  --owner=<github-user> \
+  --repository=<repo-name> \
+  --branch=main \
+  --path=./clusters/my-cluster \
+  --personal
+```
+
+Cet exemple montre comment installer Flux dans un cluster Kubernetes et l'initialiser pour qu'il observe les changements dans un dépôt Git spécifique.
+
+**Argo CD**: Un autre outil GitOps qui fournit une interface utilisateur visuelle, ainsi qu'une automatisation pour la synchronisation des états.
+
+#### Exemple de Configuration avec Argo CD
+
+```bash
+# Installation d'Argo CD
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+# Accès à l'interface utilisateur d'Argo CD
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+```
+
+Ce script installe Argo CD dans un cluster Kubernetes et redirige le port pour accéder à l'interface utilisateur via localhost sur le port 8080.
+
+### Avantages de GitOps
+
+1. **Automatisation**: Automatisation complète du déploiement et de la maintenance.
+2. **Traçabilité**: Chaque changement est enregistré dans Git.
+3. **Rétablissement Rapide**: Facilité de reprise après incident grâce à la reproductibilité des environnements.
+4. **Sécurité Améliorée**: Moins d'interventions manuelles et de risques d'erreurs humaines.
+
+# Fiche Pratique des Commandes `kubectl`
+
+**`kubectl`** est l'outil en ligne de commande pour interagir avec le cluster Kubernetes. Il permet aux administrateurs et aux développeurs de gérer et de déployer des applications sur Kubernetes.
+
+#### Généralités
+
+- **Obtenir de l'aide**:
+
+  ```bash
+  kubectl help
+  ```
+
+- **Configurer le contexte d'utilisation**:
+
+  ```
+  kubectl config use-context <context-name>
+  ```
+
+- **Lister tous les resources disponibles**:
+
+  ```
+  kubectl api-resources
+  ```
+
+#### Gestion des Ressources
+
+- **Lancer un déploiement**:
+
+  ```
+  kubectl create deployment <name> --image=<image>
+  ```
+
+- **Obtenir des pods**:
+
+  ```
+  kubectl get pods
+  ```
+
+- **Détails d'un pod spécifique**:
+
+  ```
+  kubectl describe pod <pod-name>
+  ```
+
+- **Exécuter une commande dans un pod existant**:
+
+  ```
+  kubectl exec -it <pod-name> -- <command>
+  ```
+
+- **Supprimer un pod**:
+
+  ```
+  kubectl delete pod <pod-name>
+  ```
+
+#### Gestion de Configuration
+
+- **Créer une ressource à partir d'un fichier YAML**:
+
+  ```
+  kubectl apply -f <filename>.yaml
+  ```
+
+- **Supprimer une ressource à partir d'un fichier YAML**:
+
+  ```
+  kubectl delete -f <filename>.yaml
+  ```
+
+- **Obtenir la configuration actuelle des ressources**:
+
+  ```
+  kubectl get deployment <name> -o yaml
+  ```
+
+#### Mise à l'échelle et Mises à jour
+
+- **Mettre à l'échelle un déploiement**:
+
+  ```
+  kubectl scale deployment <deployment-name> --replicas=<num>
+  ```
+
+- **Mettre à jour l'image d'un déploiement**:
+
+  ```
+  kubectl set image deployment/<deployment-name> <container-name>=<new-image>
+  ```
+
+- **Vérifier le rollout status d'un déploiement**:
+
+  ```
+  kubectl rollout status deployment/<deployment-name>
+  ```
+
+- **Annuler une mise à jour**:
+
+  ```
+  kubectl rollout undo deployment/<deployment-name>
+  ```
+
+#### Visualisation et Monitoring
+
+- **Lister les ressources avec des labels spécifiques**:
+
+  ```
+  kubectl get pods --show-labels
+  ```
+
+- **Afficher les logs d'un pod**:
+
+  ```
+  kubectl logs <pod-name>
+  ```
+
+- **Afficher les ressources utilisées par les pods**:
+
+  ```
+  kubectl top pod
+  ```

@@ -869,3 +869,314 @@ Ce script installe Argo CD dans un cluster Kubernetes et redirige le port pour a
   ```
   kubectl top pod
   ```
+
+# TP02 - Orchestration et conteneurs
+
+TP effectué par `Vincent LAGOGUÉ`, `Tom THIOULOUSE`, `Alexis PLESSIAS`, `David TEJEDA` et `Thomas PEUGNET`.
+
+# Installation
+
+Nous commençons par effectuer l'installation de Kubernetes par le gestionnaire de paquet `Homebrew` (macos) à l'aide de ces commandes.
+
+```bash
+# Minikube
+$ brew install minikube
+
+# Kubectl
+$ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
+
+# Ajout de l'alias
+echo "alias k='kubect'" >> ~/.zshrc
+
+# Installation de kubecolor
+$ brew install hidetatz/tap/kubecolor
+```
+
+![image-20240418150930322](assets/image-20240418150930322.png)
+
+# Premiers pas
+
+Lancement de minikube avec la commande `minikube start`.
+
+![image-20240418151324586](assets/image-20240418151324586.png)
+
+La commande `minikube status` donne le résultat suivant.
+
+```bash
+╭─thomas@Mac-mini-de-Thomas.local ~/GitHub/learn-k8s  ‹main*›
+╰─➤  minikube status                                                 14 ↵
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+```
+
+La commande `kubectl cluster-info` donne le résultat suivant.
+
+```
+╭─thomas@Mac-mini-de-Thomas.local ~/GitHub/learn-k8s  ‹main*›
+╰─➤  kubectl cluster-info
+Kubernetes control plane is running at https://127.0.0.1:32769
+CoreDNS is running at https://127.0.0.1:32769/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+```
+
+Activation du dashboard avec les commandes suivantes: `minikube addons enable dashboard` et `minikube addons enable metrics-server`.
+
+On peut accéder au dashboard avec la commande `minikube dashboard`.
+
+![image-20240418151948287](assets/image-20240418151948287.png)
+
+Nous pouvons voir la liste des nodes présents ici.
+
+![image-20240418152110193](assets/image-20240418152110193.png)
+
+Nous pouvons voir la liste des namespaces présents.
+
+Nous avons donc :
+
+- 1 node: `minikube`
+- 5 namespaces
+
+# Objets Kubernetes
+
+La commande `k get nodes` donne le résultat suivant:
+
+![image-20240418152400917](assets/image-20240418152400917.png)
+
+Nous voyons donc un seul et unique `node` dans notre cluster. C'est normal, nous n'avons pas encore créé de services ou déployé quelque chose.
+
+La commande `k get namespaces` donne le résultat suivant:
+
+![image-20240418152546726](assets/image-20240418152546726.png)
+
+Nous avons donc bel et bien 5 namespaces, comme nous l'avions constaté sur le navigateur.
+
+La commande `k describe ns/default` nous donne le résultat suivant:
+
+![image-20240418152709568](assets/image-20240418152709568.png)
+
+Il n'y a pas de `quota` ni de `LimitRange`. Nous avons cependant le label `kubernetes.io/metadata.name=default`.
+
+Pour obtenir la définition de notre namespace `default` en yaml, nous utilisons la commande suivante: `k get ns/default -o yaml`
+
+Nous obtenons le résultat suivant :
+
+![image-20240418152957317](assets/image-20240418152957317.png)
+
+Nous créons ensuite notre namespace `tp2` à l'aide de la commande suivante:
+
+```
+╭─thomas@Mac-mini-de-Thomas.local ~/GitHub/learn-k8s  ‹main*›
+╰─➤  k create ns tp2
+namespace/tp2 created
+```
+
+Pour le supprimer, nous utilisons la commande suivante:
+
+```
+╭─thomas@Mac-mini-de-Thomas.local ~/GitHub/learn-k8s  ‹main*›
+╰─➤  k delete ns tp2
+namespace "tp2" deleted
+```
+
+# Pod `nginx`
+
+Nous créons notre namespace `tp2` à l'aide de la commande suivante:
+
+```
+╭─thomas@Mac-mini-de-Thomas.local ~/GitHub/learn-k8s  ‹main*›
+╰─➤  k create ns tp2
+namespace/tp2 created
+```
+
+Puis, nous créons un fichier `pod.yaml` qui aura le contenu suivant:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+```
+
+Etant donné que nous évoluons maintenant exclusivement dans le namespace `tp2`, nous mettons automatiquement toutes nos futures commandes `kubectl` dans ce namespace à l'aide de la commande suivante.
+
+```bash
+$ k config set-context --current --namespace=default
+```
+
+Nous appliquons maintenant notre `fichier.yaml` à l'aide de la commande `k apply -f pod.yaml`.
+
+Nous obtenons le résultat suivant:
+
+![image-20240418153521910](assets/image-20240418153521910.png)
+
+Pour vérifier le bon lancement de notre pod, nous utilisons la commande `k get pods`:
+
+![image-20240418153609397](assets/image-20240418153609397.png)
+
+Pour obtenir davantage  d'informations sur nos pods, et en particulier notre pod `nginx`, nous utilisons la commande `k describe pod`:
+
+![image-20240418153745499](assets/image-20240418153745499.png)
+
+Nous avons donc un pod `nginx` en status `Running` et ayant en ContainerID (pour nginx) `docker://47951659f016d00f690e25f312ddedc55446acfcac6ba69b6e41bf6db55f930f` et l'adresse IP `10.244.0.6`.
+
+Nous pouvons attacher un shell à notre conteneur à l'aide de la commande `k exec pod/nginx -it -- bash`.
+
+![image-20240418154202744](assets/image-20240418154202744.png)
+
+Il y a 3 processus `nginx`. Avoir un conteneur minimaliste permet d'avoir des pods moins demandeur en performance.
+
+![image-20240418164112478](assets/image-20240418164112478.png)
+
+Nous supprimons notre pod créé par notre `fichier.yaml` à l'aide de la commande `k delete -f pod.yaml`
+
+# Déploiement
+
+Nous créons un fichier `deployment.yaml` qui aura le contenu suivant:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "1"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"
+```
+
+Nous appliquons ce déploiement à notre cluster à l'aide de la commande `k apply -f deployment.yaml`. Ce fichier nous indique qu'il y aura 2 pods de créés. Le retour de la commande nous indique le nom de notre déploiement.
+
+![image-20240418155009856](assets/image-20240418155009856.png)
+
+Pour vérifier le status de de notre déploiement, nous obtenons le résultat suivant:
+
+```
+╭─thomas@Mac-mini-de-Thomas.local ~/GitHub/learn-k8s  ‹main*›
+╰─➤  k rollout status deployment.apps/nginx-deployment
+deployment "nginx-deployment" successfully rolled out
+```
+
+L'état de notre déploiement est `successfully rolled out`.
+
+Nous obtenons la liste de replicaset à l'aide de la commande `k get rs`. Nous constatons que nous avons un replicaset nommé `nginx-deployment-7d98856d55`.
+
+Pour avoir davantage d'informations sur notre déploiement, nous utilisons la commande `k describe deployment` et obtenons le résultat suivant :
+
+![image-20240418155447528](assets/image-20240418155447528.png)
+
+Nous modifions donc notre fichier `deployment.yaml` pour mettre le nombre de replicas à 10.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 10
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "1"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"
+```
+
+Nous obtenons la liste des pods déployés à l'aide de la commande `k get pod`, qui nous donne le résultat suivant:
+
+![image-20240418155652115](assets/image-20240418155652115.png)
+
+En consultant le dashboard, nous constatons que seuls 5 des 10 pods ont été démarrés.
+
+![image-20240418155907675](assets/image-20240418155907675.png)
+
+Les autres n'ont pas été déployés car le CPU n'est pas suffisant.
+
+Pour supprimer notre déploiement, nous utilisons la commande `k delete -f deployment.yaml`.
+
+# Créer un service interne
+
+Nous créons un fichier `service.yaml` qui aura le contenu suivant:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+```
+
+Nous appliquons notre service par la commande `k apply -f service.yaml`.
+
+```
+╭─thomas@Mac-mini-de-Thomas.local ~/GitHub/learn-k8s  ‹main*›
+╰─➤  k apply -f service.yaml
+service/nginx created
+```
+
+Nous pouvons lister nos différents services à l'aide de la commande `k get svc`, qui nous donne le résultat suivant:
+
+![image-20240418160714273](assets/image-20240418160714273.png)
+
+Pour obtenir davantage d'informations sur notre service, nous utilisons la commande `k describe service/nginx`.
+
+Nous pouvons donc constater que l'adresse IP est `10.101.244.39`.
+
+Nous configurons du port forwarding entre `8080` et `80` à l'aide de la commande `k port-forward svc/nginx 8080:80`.
+
+![image-20240418164154111](assets/image-20240418164154111.png)
+
+![image-20240418164210078](assets/image-20240418164210078.png)
+
+# Loadbalancer
+

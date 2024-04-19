@@ -2,7 +2,7 @@
 
 Notes de cours de `Thomas PEUGNET`.
 
-Ce cours présente comment faire un speedrun des TPs 1, 2, 3, 4.
+Ce cours présente comment faire un speedrun des TPs 1, 2, 3, 4, et 6.
 
 Le TP05 aura éte effectué à 90%, mais n'aboutit pas à une solution fonctionnelle.
 
@@ -1046,3 +1046,133 @@ Options error: Unrecognized option or missing or extra parameter(s) in [CMD-LINE
 ```
 
 Étant à court d'idées et de temps, nous choisissons d'interrompre nos recherches ici.
+
+# TP06
+
+# Configuration du serveur DNS
+
+Nous modifions le fichier `/etc/hosts` pour obtenir le résultat suivant:
+
+![image-20240419135153742](./assets/image-20240419135153742.png)
+
+Puis, nous installons les packages suivants.
+
+```shell
+$ sudo apt install -y bind9 bind9utils bind9-doc dnsutils
+```
+
+Nous modifions ensuite notre fichier `/etc/bind/named.conf.options` et y insérons le contenu suivant:
+
+```java
+forwarders {
+		8.8.8.8;
+		8.8.4.4;
+};
+
+allow-query { any; };
+```
+
+Puis, nous modifions notre fichier `/etc/bind/named.conf.local` pour avoir le contenu suivant:
+
+```java
+zone "efrei.fr" IN  {
+        type master;
+        file "/etc/bind/forward.efrei.fr.db";
+        allow-update { none; };
+};
+
+zone "29.16.172.in-addr.arpa" IN {
+        type master;
+        file "/etc/bind/reverse.efrei.fr.db";
+        allow-update { none; };
+};
+```
+
+![image-20240419135252016](./assets/image-20240419135252016.png)
+
+Puis, nous copions le contenu de `db.local` vers `/etc/bind/forward.efrei.fr.db`
+
+```bash
+$ cp /etc/bind/db.local /etc/bind/forward.efrei.fr.db
+```
+
+Nous modifions ensuite le contenu de notre fichier `forward.efrei.fr.db` avec le contenu suivant:
+
+````java
+;
+; BIND data file for local loopback interface
+;
+$TTL	604800
+@	IN	SOA	efrei.fr. root.efrei.fr. (
+			      2		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@	IN	NS	efrei.fr.
+@	IN	A	192.168.1.137
+@	IN	AAAA	::1
+;
+ubuntu.efrei.fr.              IN           A      192.168.1.28
+````
+
+![image-20240419135919492](./assets/image-20240419135919492.png)
+
+Puis, nous opérons à l'identique pour le fichier `reverse`.
+
+```bash
+$ cp /etc/bind/db.local /etc/bind/reverse.efrei.fr.db
+```
+
+Nous modifions son contenu pour avoir le suivant:
+
+```java
+;
+; BIND data file for local loopback interface
+;
+$TTL	604800
+@	IN	SOA	efrei.fr. root.efrei.fr. (
+			      1		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@	    IN	NS	efrei.fr.
+efrei.fr    IN	A	192.168.1.137
+137	    IN	PTR	efrei.fr.
+28         IN  PTR     ubuntu.efrei.fr.
+```
+
+
+
+Puis, nous testons à l'aide des 2 commandes suivantes :
+
+```bash
+$ named-checkzone efrei.fr forward.efrei.fr.db
+
+$ named-checkzone 29.16.172.in-addr.arpa reverse.efrei.fr.db
+```
+
+![image-20240419140820859](./assets/image-20240419140820859.png)
+
+Nous redémarrons le service.
+
+```shell
+$ systemctl restart named
+```
+
+Nous pouvons constater les adresses de nos DNS en regardant le contenu du fichier  `/etc/resolv.conf`.
+
+![image-20240419141257536](./assets/image-20240419141257536.png)
+
+Nous pouvons donc maintenant vérifier la bonne résolution de `ubuntu.efrei.fr` par la commande `dig ubuntu.efrei.fr`.
+
+![image-20240419143946556](./assets/image-20240419143946556.png)
+
+![image-20240419143954358](./assets/image-20240419143954358.png)
+
+![image-20240419144039092](./assets/image-20240419144039092.png)
+
+Nous pouvons constater que tout résourd correctement.

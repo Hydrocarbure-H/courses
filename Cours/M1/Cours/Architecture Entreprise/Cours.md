@@ -1049,7 +1049,7 @@ Options error: Unrecognized option or missing or extra parameter(s) in [CMD-LINE
 
 # TP06
 
-# Configuration du serveur DNS
+## Configuration du serveur DNS
 
 Nous modifions le fichier `/etc/hosts` pour obtenir le résultat suivant:
 
@@ -1176,3 +1176,157 @@ Nous pouvons donc maintenant vérifier la bonne résolution de `ubuntu.efrei.fr`
 ![image-20240419144039092](./assets/image-20240419144039092.png)
 
 Nous pouvons constater que tout résourd correctement.
+
+## Kerberos
+
+Nous configurons maintenant une authentification SSH avec Kerberos.
+
+Pour un souci de simplicité au niveau des dépendances, nous allons passer par une image Docker custom.
+
+Nous commençons donc par créer un `Dockerfile` ayant le contenu suivant:
+
+```
+FROM ubuntu:20.04
+
+RUN apt-get update && \
+    apt-get install -y krb5-kdc krb5-admin-server && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY krb5.conf /etc/
+COPY kdc.conf /etc/krb5kdc/
+COPY kadm5.acl /etc/krb5kdc/
+
+RUN krb5_newrealm <<EOF
+secret123
+secret123
+EOF
+
+EXPOSE 8888
+
+CMD ["krb5kdc", "-n"]
+```
+
+Puis, nous créons 3 fichiers de configurations pour Kerberos.
+
+`krb5.conf`:
+
+```
+[libdefaults]
+    default_realm = EFREI.FR
+    dns_lookup_realm = false
+    dns_lookup_kdc = false
+
+[realms]
+    EFREI.FR = {
+        kdc = 192.168.1.137:8888
+        admin_server = 192.168.1.137
+    }
+
+[domain_realm]
+    .efrei.fr = EFREI.FR
+    efrei.fr = EFREI.FR
+[logging]
+    kdc = FILE:/var/log/krb5kdc.log
+    admin_server = FILE:/var/log/kadmind.log
+    default = FILE:/var/log/krb5libs.log
+```
+
+`kdc.conf`:
+
+```
+[kdcdefaults]
+    kdc_ports = 8888
+
+[realms]
+    EFREI.FR = {
+        database_module = DB2
+        acl_file = /etc/krb5kdc/kadm5.acl
+        dict_file = /usr/share/dict/words
+        admin_keytab = /etc/krb5kdc/kadm5.keytab
+        supported_enctypes = aes256-cts:normal aes128-cts:normal
+    }
+
+[logging]
+    kdc = FILE:/var/log/krb5kdc.log
+    admin_server = FILE:/var/log/kadmind.log
+
+```
+
+`kadm5.acl`:
+
+```
+*/admin@EFREI.FR   *
+```
+
+Nous construisons notre image Docker avec la commande suivante:
+
+```shell
+$ docker build -t kerberos-server .
+```
+
+Puis nous lançons notre conteneur de serveur.
+
+```shell
+docker run --name kerberos-server -p 8888:8888 --network="host" -d kerberos-server
+```
+
+Pour nous connecter en tant que client, nous allons également faire appel à un conteneur Docker (problèmes de dépendances sur les instances d'Ubuntu ne rendant pas possible l'installation des paquets).
+
+Nous créons donc un `Dockerfile` pour créer une image custom de notre client kerberos.
+
+```
+FROM ubuntu:20.04
+
+RUN apt-get update && \
+    apt-get install -y krb5-user ssh && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY krb5.conf /etc/
+
+CMD ["bash"]
+```
+
+Le fichier `krb5.conf` est rigoureusement identique à celui mentionné précédemment.
+
+Puis, une fois l'image construite, nous lançons notre conteneur client et nous connectons en shell dessus à l'aide de la commande suivante:
+```bash
+$ docker run -it --network="host" kerberos-client
+```
+
+Sur le serveur, nous nous connectons au shell de notre conteneur :
+
+```bash
+$ docker exec -it kerberos-server /bin/bash
+```
+
+Puis, nous ajoutons un utilisateur à la base de données :
+
+```bash
+# Connexion à la console
+$ kadmin.local
+
+# Ajout de l'utilisateur thomas
+$ kadmin.local: addprinc thomas@EFREI.FR
+```
+
+![image-20240419163040248](./assets/image-20240419163040248.png)
+
+Nous à avons ici, à gauche les logs du serveur, et à droite le `kinit admin@EFREI.FR` du client.
+
+Nous utilisons la commande `klist` pour vérifier que nous avons bien notre ticket.
+
+![image-20240419163316765](./assets/image-20240419163316765.png)
+
+Nous nous connectons ensuite à notre serveur depuis notre client en utilisant la commande suivante :
+
+```shell
+$ ssh -K thomas@192.168.1.137
+```
+
+Et nous obtenons le résultat suivant:
+
+![image-20240419163746593](./assets/image-20240419163746593.png)
+
+Notre authentification kerberos via SSH fonctionne donc correctement.

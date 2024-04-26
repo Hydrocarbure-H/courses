@@ -898,7 +898,7 @@ $ brew install hidetatz/tap/kubecolor
 
 Lancement de minikube avec la commande `minikube start`.
 
-![image-20240418151324586](./assets/image-20240418151324586.png)
+![image-20240418151324586](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418151324586.png)
 
 La commande `minikube status` donne le résultat suivant.
 
@@ -928,11 +928,11 @@ Activation du dashboard avec les commandes suivantes: `minikube addons enable da
 
 On peut accéder au dashboard avec la commande `minikube dashboard`.
 
-![image-20240418151948287](./assets/image-20240418151948287.png)
+![image-20240418151948287](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418151948287.png)
 
 Nous pouvons voir la liste des nodes présents ici.
 
-![image-20240418152110193](./assets/image-20240418152110193.png)
+![image-20240418152110193](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418152110193.png)
 
 Nous pouvons voir la liste des namespaces présents.
 
@@ -945,19 +945,19 @@ Nous avons donc :
 
 La commande `k get nodes` donne le résultat suivant:
 
-![image-20240418152400917](./assets/image-20240418152400917.png)
+![image-20240418152400917](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418152400917.png)
 
 Nous voyons donc un seul et unique `node` dans notre cluster. C'est normal, nous n'avons pas encore créé de services ou déployé quelque chose.
 
 La commande `k get namespaces` donne le résultat suivant:
 
-![image-20240418152546726](./assets/image-20240418152546726.png)
+![image-20240418152546726](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418152546726.png)
 
 Nous avons donc bel et bien 5 namespaces, comme nous l'avions constaté sur le navigateur.
 
 La commande `k describe ns/default` nous donne le résultat suivant:
 
-![image-20240418152709568](./assets/image-20240418152709568.png)
+![image-20240418152709568](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418152709568.png)
 
 Il n'y a pas de `quota` ni de `LimitRange`. Nous avons cependant le label `kubernetes.io/metadata.name=default`.
 
@@ -965,7 +965,7 @@ Pour obtenir la définition de notre namespace `default` en yaml, nous utilisons
 
 Nous obtenons le résultat suivant :
 
-![image-20240418152957317](./assets/image-20240418152957317.png)
+![image-20240418152957317](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418152957317.png)
 
 Nous créons ensuite notre namespace `tp2` à l'aide de la commande suivante:
 
@@ -1020,25 +1020,25 @@ Nous appliquons maintenant notre `fichier.yaml` à l'aide de la commande `k appl
 
 Nous obtenons le résultat suivant:
 
-![image-20240418153521910](./assets/image-20240418153521910.png)
+![image-20240418153521910](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418153521910.png)
 
 Pour vérifier le bon lancement de notre pod, nous utilisons la commande `k get pods`:
 
-![image-20240418153609397](./assets/image-20240418153609397.png)
+![image-20240418153609397](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418153609397.png)
 
 Pour obtenir davantage  d'informations sur nos pods, et en particulier notre pod `nginx`, nous utilisons la commande `k describe pod`:
 
-![image-20240418153745499](./assets/image-20240418153745499.png)
+![image-20240418153745499](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418153745499.png)
 
 Nous avons donc un pod `nginx` en status `Running` et ayant en ContainerID (pour nginx) `docker://47951659f016d00f690e25f312ddedc55446acfcac6ba69b6e41bf6db55f930f` et l'adresse IP `10.244.0.6`.
 
 Nous pouvons attacher un shell à notre conteneur à l'aide de la commande `k exec pod/nginx -it -- bash`.
 
-![image-20240418154202744](./assets/image-20240418154202744.png)
+![image-20240418154202744](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418154202744.png)
 
 Il y a 3 processus `nginx`. Avoir un conteneur minimaliste permet d'avoir des pods moins demandeur en performance.
 
-![image-20240418164112478](./assets/image-20240418164112478.png)
+![image-20240418164112478](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418164112478.png)
 
 Nous supprimons notre pod créé par notre `fichier.yaml` à l'aide de la commande `k delete -f pod.yaml`
 
@@ -1077,7 +1077,7 @@ spec:
 
 Nous appliquons ce déploiement à notre cluster à l'aide de la commande `k apply -f deployment.yaml`. Ce fichier nous indique qu'il y aura 2 pods de créés. Le retour de la commande nous indique le nom de notre déploiement.
 
-![image-20240418155009856](./assets/image-20240418155009856.png)
+![image-20240418155009856](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418155009856.png)
 
 Pour vérifier le status de de notre déploiement, nous obtenons le résultat suivant:
 
@@ -1093,7 +1093,7 @@ Nous obtenons la liste de replicaset à l'aide de la commande `k get rs`. Nous c
 
 Pour avoir davantage d'informations sur notre déploiement, nous utilisons la commande `k describe deployment` et obtenons le résultat suivant :
 
-![image-20240418155447528](./assets/image-20240418155447528.png)
+![image-20240418155447528](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418155447528.png)
 
 Nous modifions donc notre fichier `deployment.yaml` pour mettre le nombre de replicas à 10.
 
@@ -1128,11 +1128,11 @@ spec:
 
 Nous obtenons la liste des pods déployés à l'aide de la commande `k get pod`, qui nous donne le résultat suivant:
 
-![image-20240418155652115](./assets/image-20240418155652115.png)
+![image-20240418155652115](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418155652115.png)
 
 En consultant le dashboard, nous constatons que seuls 5 des 10 pods ont été démarrés.
 
-![image-20240418155907675](./assets/image-20240418155907675.png)
+![image-20240418155907675](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418155907675.png)
 
 Les autres n'ont pas été déployés car le CPU n'est pas suffisant.
 
@@ -1166,7 +1166,7 @@ service/nginx created
 
 Nous pouvons lister nos différents services à l'aide de la commande `k get svc`, qui nous donne le résultat suivant:
 
-![image-20240418160714273](./assets/image-20240418160714273.png)
+![image-20240418160714273](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418160714273.png)
 
 Pour obtenir davantage d'informations sur notre service, nous utilisons la commande `k describe service/nginx`.
 
@@ -1174,9 +1174,416 @@ Nous pouvons donc constater que l'adresse IP est `10.101.244.39`.
 
 Nous configurons du port forwarding entre `8080` et `80` à l'aide de la commande `k port-forward svc/nginx 8080:80`.
 
-![image-20240418164154111](./assets/image-20240418164154111.png)
+![image-20240418164154111](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418164154111.png)
 
-![image-20240418164210078](./assets/image-20240418164210078.png)
+![image-20240418164210078](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418164210078.png)
 
 # Loadbalancer
+
+Nous exécutons la commande `minikube tunnel` dans un terminal séparé.
+
+Nous créons un service de loadbalancing avec le contenu suivant:
+
+`lb.yaml`:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  type: LoadBalancer
+  selector:
+		app: nginx
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 80
+```
+
+**Note:** Nous utilisons le port 8081 car le 8080 est déjà utilisé par un autre service externe à ce TP.
+
+Nous exécutons ensuite la commande `k get svc` et récupérons l'adresse IP de notre LB.
+
+![image-20240425102518339](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240425102518339.png)
+
+Nous voyons donc notre adresse IP `127.0.0.1:8081` en External IP.
+
+![image-20240425102555009](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240425102555009.png)
+
+Puis, nous exécutons un `curl http://127.0.0.1:8081` et obtenons le résultat suivant : 
+![image-20240425102640571](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240425102640571.png)
+
+### Ingress
+
+Nous ajoutons le support pour ingress avec la commande suivante:
+
+```shell
+$ minikube addons enable ingress
+```
+
+Puis, nous pouvons constater que notre namespace est bien créé avec nos différents objets grâce à la commande suivante:
+
+```shell
+$ k get all -n ingress-nginx
+```
+
+![image-20240425103049508](./assets/image-20240425103049508.png)
+
+Puis, nous créons un fichier `ingress.yaml` ayant le contenu suivant:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+    - host: nginx.info
+      http: 
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 8081
+```
+
+Puis, après avoir `k apply -f ingress.yaml`, nous pouvons vérifier notre ingress s'est bien lancée:
+
+![image-20240425112233189](./assets/image-20240425112233189.png)
+
+Nous ajoutons donc une entrée dans notre `/etc/hosts` :
+
+```
+192.168.49.2            nginx.info
+```
+
+Après de multiples tentatives, nous ne parvenons pas à obtenir un `curl` satisfaisant (aucune réponse du serveur) sur l'url `http://nginx.info`. Il semblerait que le problème vienne de `minikube`, qui n'ajoute pas la route sur la machine hôte.
+
+## Ressources Quota
+
+Nous ajoutons un fichier `resource_quota.yaml` ayant le contenu suivant
+
+```yaml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: my-resource-quota
+spec:
+  hard:
+    limits.memory: "2Gi"
+    limits.cpu: "2"
+```
+
+Nous l'appliquons avec `k apply -f resource_quota.yaml`.
+
+Puis nous modifions notre `deployment.yaml` pour avoir le contenu suivant:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "0.75"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"
+```
+
+Que nous applyons avec `k apply -f deployment.yaml`.
+
+Nous pouvons constater que notre resource quota s'est bien déployée:
+
+![image-20240425113608136](./assets/image-20240425113608136.png)
+
+Puis, nous appliquons notre LimitRange qui a le contenu suivant:
+
+```yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: cpu-resource-constraint
+spec:
+  limits:
+    - default:
+        cpu: 500m
+      defaultRequest:
+        cpu: 500m
+      max:
+        cpu: 1
+      min:
+        cpu: 100m
+      type: Container
+```
+
+Puis `k apply -f limit_range.yaml`.
+
+Ensuite, nous récupérons les informations détaillées du namespace avec `k describe ns/tp2`.
+
+**PHOTO**
+
+Nous pouvons bien voir la limit range bien en place.
+
+Nous créons maintenant un Pod sans limite de ressources dans `pod_new.yaml`:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+```
+
+Nous tapons ensuite la commande `k describe pod/nginx` et pouvons constater ceci au niveau des limites en CPU.
+
+**PHOTO**
+
+Nous finissons par supprimer le pod et le limit range avec les commandes suivantes:
+
+```shell
+$ k delete pod/nginx
+
+$ k delete l
+```
+
+### HPA
+
+Nous créons un nouveau fichier `hpadeployment.yaml` ayant le contenu suivant:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-apache
+spec:
+  selector:
+    matchLabels:
+      run: php-apache
+  template:
+    metadata:
+      labels:
+        run: php-apache
+    spec:
+      containers:
+        - name: php-apache
+      image: registry.k8s.io/hpa-example
+      ports:
+        - containerPort: 80
+      resources:
+        limits:
+          cpu: 500m
+        requests:
+          cpu: 200m
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: php-apache
+        labels:
+          run: php-apache
+      spec:
+        ports:
+          - port: 80
+        selector:
+          run: php-apache
+```
+
+Puis, nous faisons `k apply -f hpadeployment.yaml`.
+
+Ensuite, nous créons notre autoscale avec la commande suivante:
+
+```shell
+$ k autoscale hpadeployment php-apache --cpu-percent=50 --min=1 --max=10
+```
+
+Puis, nous augmentons la charge dans un autre terminal avec la commande suivante:
+
+```shell
+$ k run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep0.01; do wget -q -O - http://php-apache; donek run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep0.01; do wget -q -O - http://php-apache; done""
+```
+
+Pour suivre l'hpa nous utilisons `k get hpa php-apache –watch`.
+
+**PHOTO**
+
+Nous pouvons en effet constater que, au bout de quelques instants, nous avons une augmentation du nombre de replicas créés.
+
+**PHOTO**
+
+Nous arrêtons de genérer la charge en killant notre autre terminal, et pouvons en effet constater que le nombre de réplicas a bien réduit.
+
+**PHOTO**
+
+## CronJob
+
+Nous créons un fichier `cron.yaml` ayant le contenu suivant:
+
+```yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello
+
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: hello
+              image: busybox
+              imagePullPolicy: IfNotPresent
+              command:
+                - /bin/sh
+                - -c
+                - date; echo Hello from the Kubernetes cluster
+          restartPolicy: OnFailure
+```
+
+Nous pouvons voir la liste des cronjobs à l'aide de la commande `k get cj`, ainsi que la liste des jobs avec `k get jobs`.
+
+**PHOTO**
+
+Nous regardons les logs de notre CronJob à  l'aide la commande `k logs cronjobs.batch/hello` et observons le résultat suivant:
+
+**PHOTO**
+
+## Storage
+
+Nous créons un volume d'1Go persistant avec le fichier `volume.yaml` ayant le contenu suivant:
+
+```yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: my-pvc-claim
+
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+```
+
+Nous exécutons ensuite les commandes `k get pvc` et `k get pv`  et obtenons le résultat suivant:
+
+**PHOTO et PHOTO**
+
+Nous créons maintenant un nouveau Pod, dans un fichier `storage_pod.yaml`  ayant le contenu suivant:
+
+```yaml
+kind: Pod
+apiVersion: v1
+metadata:
+  name: task-my-pod
+spec:
+  volumes:
+    - name: my-pv-claim
+      persistentVolumeClaim:
+        claimName: my-pv-claim
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: my-pv-claim
+```
+
+Nous appliquons le pod avec un `k apply -f storage_pod.yaml` puis nous rentrons dans le pod avec la commande suivante:
+
+```shell
+$ k exec pod/task-pv-pod -it -- bash
+```
+
+Nous nous plaçons dans `usr/share/nginx/html`.
+
+**PHOTO**
+
+Le retour de notre `curl http://127.0.0.1/test.html` est le suivant:
+
+**PHOTO**
+
+Puis, nous supprimons notre pod avec `k delete pod task-pv-pod`, nous le recréons avec `k apply -f storage_pod.yaml`, nous replaçons dans le conteneur et re-effectuons notre `curl`.
+
+**PHOTO**
+
+## Control Plane
+
+- Question sur les composants du control plane
+
+Nous créons un `role.yaml` ayant le contenu suivant:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: my-role
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["services"]
+  verbs: ["get", "list", "create", "update"]
+- apiGroups: [""]
+  resources: ["deployments"]
+  verbs: ["get", "list", "create", "update"]
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get", "list"]
+```
+
+Puis, nous créons un `role_binding.yaml` ayant le contenu suivant:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: my-role-binding
+subjects:
+  - kind: ServiceAccount
+    name: my-service-account
+    namespace: default
+
+roleRef:
+  kind: Role
+  name: my-role
+  apiGroup: rbac.authorization.k8s.io
+```
+
+**PHOTO des réponses pour la dernière page du TP.**
 

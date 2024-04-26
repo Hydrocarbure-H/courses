@@ -898,7 +898,7 @@ $ brew install hidetatz/tap/kubecolor
 
 Lancement de minikube avec la commande `minikube start`.
 
-![image-20240418151324586](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418151324586.png)
+![image-20240418151324586](./assets/image-20240418151324586.png)
 
 La commande `minikube status` donne le résultat suivant.
 
@@ -928,11 +928,11 @@ Activation du dashboard avec les commandes suivantes: `minikube addons enable da
 
 On peut accéder au dashboard avec la commande `minikube dashboard`.
 
-![image-20240418151948287](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418151948287.png)
+![image-20240418151948287](./assets/image-20240418151948287.png)
 
 Nous pouvons voir la liste des nodes présents ici.
 
-![image-20240418152110193](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418152110193.png)
+![image-20240418152110193](./assets/image-20240418152110193.png)
 
 Nous pouvons voir la liste des namespaces présents.
 
@@ -945,19 +945,19 @@ Nous avons donc :
 
 La commande `k get nodes` donne le résultat suivant:
 
-![image-20240418152400917](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418152400917.png)
+![image-20240418152400917](./assets/image-20240418152400917.png)
 
 Nous voyons donc un seul et unique `node` dans notre cluster. C'est normal, nous n'avons pas encore créé de services ou déployé quelque chose.
 
 La commande `k get namespaces` donne le résultat suivant:
 
-![image-20240418152546726](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418152546726.png)
+![image-20240418152546726](./assets/image-20240418152546726.png)
 
 Nous avons donc bel et bien 5 namespaces, comme nous l'avions constaté sur le navigateur.
 
 La commande `k describe ns/default` nous donne le résultat suivant:
 
-![image-20240418152709568](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418152709568.png)
+![image-20240418152709568](./assets/image-20240418152709568.png)
 
 Il n'y a pas de `quota` ni de `LimitRange`. Nous avons cependant le label `kubernetes.io/metadata.name=default`.
 
@@ -965,7 +965,7 @@ Pour obtenir la définition de notre namespace `default` en yaml, nous utilisons
 
 Nous obtenons le résultat suivant :
 
-![image-20240418152957317](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418152957317.png)
+![image-20240418152957317](./assets/image-20240418152957317.png)
 
 Nous créons ensuite notre namespace `tp2` à l'aide de la commande suivante:
 
@@ -1020,25 +1020,25 @@ Nous appliquons maintenant notre `fichier.yaml` à l'aide de la commande `k appl
 
 Nous obtenons le résultat suivant:
 
-![image-20240418153521910](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418153521910.png)
+![image-20240418153521910](./assets/image-20240418153521910.png)
 
 Pour vérifier le bon lancement de notre pod, nous utilisons la commande `k get pods`:
 
-![image-20240418153609397](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418153609397.png)
+![image-20240418153609397](./assets/image-20240418153609397.png)
 
 Pour obtenir davantage  d'informations sur nos pods, et en particulier notre pod `nginx`, nous utilisons la commande `k describe pod`:
 
-![image-20240418153745499](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418153745499.png)
+![image-20240418153745499](./assets/image-20240418153745499.png)
 
 Nous avons donc un pod `nginx` en status `Running` et ayant en ContainerID (pour nginx) `docker://47951659f016d00f690e25f312ddedc55446acfcac6ba69b6e41bf6db55f930f` et l'adresse IP `10.244.0.6`.
 
 Nous pouvons attacher un shell à notre conteneur à l'aide de la commande `k exec pod/nginx -it -- bash`.
 
-![image-20240418154202744](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418154202744.png)
+![image-20240418154202744](./assets/image-20240418154202744.png)
 
 Il y a 3 processus `nginx`. Avoir un conteneur minimaliste permet d'avoir des pods moins demandeur en performance.
 
-![image-20240418164112478](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418164112478.png)
+![image-20240418164112478](./assets/image-20240418164112478.png)
 
 Nous supprimons notre pod créé par notre `fichier.yaml` à l'aide de la commande `k delete -f pod.yaml`
 
@@ -1077,7 +1077,7 @@ spec:
 
 Nous appliquons ce déploiement à notre cluster à l'aide de la commande `k apply -f deployment.yaml`. Ce fichier nous indique qu'il y aura 2 pods de créés. Le retour de la commande nous indique le nom de notre déploiement.
 
-![image-20240418155009856](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418155009856.png)
+![image-20240418155009856](./assets/image-20240418155009856.png)
 
 Pour vérifier le status de de notre déploiement, nous obtenons le résultat suivant:
 
@@ -1093,7 +1093,7 @@ Nous obtenons la liste de replicaset à l'aide de la commande `k get rs`. Nous c
 
 Pour avoir davantage d'informations sur notre déploiement, nous utilisons la commande `k describe deployment` et obtenons le résultat suivant :
 
-![image-20240418155447528](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418155447528.png)
+![image-20240418155447528](./assets/image-20240418155447528.png)
 
 Nous modifions donc notre fichier `deployment.yaml` pour mettre le nombre de replicas à 10.
 
@@ -1128,11 +1128,11 @@ spec:
 
 Nous obtenons la liste des pods déployés à l'aide de la commande `k get pod`, qui nous donne le résultat suivant:
 
-![image-20240418155652115](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418155652115.png)
+![image-20240418155652115](./assets/image-20240418155652115.png)
 
 En consultant le dashboard, nous constatons que seuls 5 des 10 pods ont été démarrés.
 
-![image-20240418155907675](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418155907675.png)
+![image-20240418155907675](./assets/image-20240418155907675.png)
 
 Les autres n'ont pas été déployés car le CPU n'est pas suffisant.
 
@@ -1166,7 +1166,7 @@ service/nginx created
 
 Nous pouvons lister nos différents services à l'aide de la commande `k get svc`, qui nous donne le résultat suivant:
 
-![image-20240418160714273](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418160714273.png)
+![image-20240418160714273](./assets/image-20240418160714273.png)
 
 Pour obtenir davantage d'informations sur notre service, nous utilisons la commande `k describe service/nginx`.
 
@@ -1174,9 +1174,9 @@ Nous pouvons donc constater que l'adresse IP est `10.101.244.39`.
 
 Nous configurons du port forwarding entre `8080` et `80` à l'aide de la commande `k port-forward svc/nginx 8080:80`.
 
-![image-20240418164154111](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418164154111.png)
+![image-20240418164154111](./assets/image-20240418164154111.png)
 
-![image-20240418164210078](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240418164210078.png)
+![image-20240418164210078](./assets/image-20240418164210078.png)
 
 # Loadbalancer
 
@@ -1205,14 +1205,14 @@ spec:
 
 Nous exécutons ensuite la commande `k get svc` et récupérons l'adresse IP de notre LB.
 
-![image-20240425102518339](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240425102518339.png)
+![image-20240425102518339](./assets/image-20240425102518339.png)
 
 Nous voyons donc notre adresse IP `127.0.0.1:8081` en External IP.
 
-![image-20240425102555009](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240425102555009.png)
+![image-20240425102555009](./assets/image-20240425102555009.png)
 
 Puis, nous exécutons un `curl http://127.0.0.1:8081` et obtenons le résultat suivant : 
-![image-20240425102640571](/Users/thomas/Documents Serveur/Scolarité/EFREI/Cours/Orchestration et Conteneurs/assets/image-20240425102640571.png)
+![image-20240425102640571](./assets/image-20240425102640571.png)
 
 ### Ingress
 

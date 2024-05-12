@@ -1445,7 +1445,7 @@ Notre authentification kerberos via SSH fonctionne donc correctement.
 
 # QCM
 
-*Attention, les réponses ont été donnée par une analyse de ChatGPT. Aucune certitude à 100% ne peut y être associée.*
+*Attention, les réponses ont été données par une analyse de ChatGPT. Aucune certitude à 100% ne peut y être associée.*
 
 **Page 1**
 **Dans quel scénario utiliseriez-vous la commande ldapmodify plutôt que ldapadd?**

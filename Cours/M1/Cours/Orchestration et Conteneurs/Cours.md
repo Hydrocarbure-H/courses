@@ -1741,3 +1741,64 @@ $ helm uninstall nextcloud -n nextcloud
 > release "nextcloud" uninstalled
 ```
 
+## Flux
+
+Nous installons Flux à l'aide de la commande `brew install flux`.
+
+Puis, après avoir exporté notre token GitHub, nous exécutons la commande suivante:
+
+```shell
+$ flux bootstrap github --owner=Hydrocarbure-H --repository=learn-k8s --path=/tp3 --personal --private=false
+```
+
+**Note**: Si le lab a été restart, ne pas oublier de mettre à jour les credentials AWS. Ils changent à chaque restart du lab.
+
+![image-20240518105407243](./assets/image-20240518105407243.png)
+
+Nous exécutons `flux check` pour vérifier que tout est bon.
+
+![image-20240518105437768](./assets/image-20240518105437768.png)
+
+![image-20240518105538643](./assets/image-20240518105538643.png)
+
+Puis, nous effectuons les 2 commandes suivantes:
+
+```shell
+$ cd tp03 # pwd = GitHub/learn-k8s/tp03
+
+$ flux create source helm ww-gitops \                                        1 ↵
+--url=oci://ghcr.io/weaveworks/charts \
+--export > weave-gitops-source.yaml
+
+$ flux create helmrelease ww-gitops \
+--source=HelmRepository/ww-gitops \
+--chart=weave-gitops \
+--values=weave-gitops-values.yaml \
+--export > weave-gitops-helmrelease.yaml
+```
+
+Nous appliquons maintenant nos fichiers avec la commande suivante:
+
+```shell
+$  k apply -f weave-gitops-source.yaml
+
+$ k apply -f weave-gitops-helmrelease.yaml
+```
+
+Puis, avec `k get pods -n flux-system`, nous pouvons apercevoir le résultat cohérent suivant:
+
+![image-20240518112000740](./assets/image-20240518112000740.png)
+
+Nous faisons ensuite un port forwarding `9001:9001` avec la commande :
+
+```shell
+$ k port-forward pod/ww-gitops-weave-gitops-6fc66d8597-pjdrr 9001:9001 -n flux-system
+```
+
+Nous pouvons maintenant nous connecter sur `http://localhost:9001`.
+
+![image-20240518112203232](./assets/image-20240518112203232.png)
+
+Nous nous connectons avec `admin:admin`.
+
+![image-20240518112328719](./assets/image-20240518112328719.png)

@@ -1343,7 +1343,7 @@ Puis `k apply -f limit_range.yaml`.
 
 Ensuite, nous récupérons les informations détaillées du namespace avec `k describe ns/tp2`.
 
-**PHOTO**
+[BrokenFileError: image-20240517061500789: file not found]
 
 Nous pouvons bien voir la limit range bien en place.
 
@@ -1367,7 +1367,7 @@ spec:
 
 Nous tapons ensuite la commande `k describe pod/nginx` et pouvons constater ceci au niveau des limites en CPU.
 
-**PHOTO**
+[BrokenFileError: image-20240517063000456: file not found]
 
 Nous finissons par supprimer le pod et le limit range avec les commandes suivantes:
 
@@ -1434,15 +1434,15 @@ $ k run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bi
 
 Pour suivre l'hpa nous utilisons `k get hpa php-apache –watch`.
 
-**PHOTO**
+[BrokenFileError: image-20240517064500123: file not found]
 
 Nous pouvons en effet constater que, au bout de quelques instants, nous avons une augmentation du nombre de replicas créés.
 
-**PHOTO**
+[BrokenFileError: image-20240517070000890: file not found]
 
 Nous arrêtons de genérer la charge en killant notre autre terminal, et pouvons en effet constater que le nombre de réplicas a bien réduit.
 
-**PHOTO**
+[BrokenFileError: image-20240517073000567: file not found]
 
 ## CronJob
 
@@ -1473,11 +1473,11 @@ spec:
 
 Nous pouvons voir la liste des cronjobs à l'aide de la commande `k get cj`, ainsi que la liste des jobs avec `k get jobs`.
 
-**PHOTO**
+[BrokenFileError: image-20240517080000134: file not found]
 
 Nous regardons les logs de notre CronJob à  l'aide la commande `k logs cronjobs.batch/hello` et observons le résultat suivant:
 
-**PHOTO**
+[BrokenFileError: image-20240517081500912: file not found]
 
 ## Storage
 
@@ -1499,7 +1499,7 @@ spec:
 
 Nous exécutons ensuite les commandes `k get pvc` et `k get pv`  et obtenons le résultat suivant:
 
-**PHOTO et PHOTO**
+[BrokenFileError: image-20240517082500789: file not found]
 
 Nous créons maintenant un nouveau Pod, dans un fichier `storage_pod.yaml`  ayant le contenu suivant:
 
@@ -1531,19 +1531,26 @@ $ k exec pod/task-pv-pod -it -- bash
 
 Nous nous plaçons dans `usr/share/nginx/html`.
 
-**PHOTO**
-
 Le retour de notre `curl http://127.0.0.1/test.html` est le suivant:
 
-**PHOTO**
+[BrokenFileError: image-20240517082751023: file not found]
 
 Puis, nous supprimons notre pod avec `k delete pod task-pv-pod`, nous le recréons avec `k apply -f storage_pod.yaml`, nous replaçons dans le conteneur et re-effectuons notre `curl`.
 
-**PHOTO**
+[BrokenFileError: image-2024051708371351: file not found]
 
 ## Control Plane
 
 - Question sur les composants du control plane
+
+  - Nous obtenons les composants à l'aide de la commande suivante:
+
+    `kubectl get pods -n kube-system`. Les composants visibles sont déployés comme des pods.
+
+
+![image-20240517082752017](./assets/image-20240517082752017.png)
+
+Nous créons un serviceaccount à l'aide de la commande `kubectl create serviceaccount my-service-account -n tp2`.
 
 Nous créons un `role.yaml` ayant le contenu suivant:
 
@@ -1552,6 +1559,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: my-role
+  namespace: tp2
 rules:
 - apiGroups: [""]
   resources: ["pods"]
@@ -1567,6 +1575,8 @@ rules:
   verbs: ["get", "list"]
 ```
 
+Nous l'appliquons à l'aide de la commande `kubectl apply -f role.yaml`.
+
 Puis, nous créons un `role_binding.yaml` ayant le contenu suivant:
 
 ```yaml
@@ -1574,16 +1584,160 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: my-role-binding
+  namespace: tp2
 subjects:
-  - kind: ServiceAccount
-    name: my-service-account
-    namespace: default
-
+- kind: ServiceAccount
+  name: my-service-account
+  namespace: tp2 # default was previously here
 roleRef:
   kind: Role
   name: my-role
   apiGroup: rbac.authorization.k8s.io
 ```
 
-**PHOTO des réponses pour la dernière page du TP.**
+Nous appliquons ce role binding à l'aide de la commande `kubectl apply -f role-binding.yaml`.
+
+### Questions
+
+- **Vérification des droits du ServiceAccount :**
+
+  ```shell
+  $ kubectl auth can-i get pods --as=system:serviceaccount:tp2:my-service-account -n tp2
+  ```
+
+  Nous pouvons constater que tout est configuré correctement.
+
+![image-20240517083631104](./assets/image-20240517083631104.png)
+
+- Nous lançons la commande suivante:
+
+  ```shell
+  $ kubectl auth can-i get pods --as=system:serviceaccount:tp2:my-service-account -n default
+  ```
+
+  Nous avons `no` comme réponse, ce qui est parfaitement logique: Le RoleBinding n'accorde les droits que dans le namespace `tp2`, et non dans le `default`.
+
+![image-20240517083854762](./assets/image-20240517083854762.png)
+
+- Nous lançons la commande suivante:
+
+  ```shell
+  $ kubectl auth can-i get svc --as=system:serviceaccount:tp2:my-service-account -n tp2
+  ```
+
+  Nous avons `yes` en réponse, car le serviceAccount a bien les droits pour les services dans le namespace `tp2`.
+
+![image-20240517084031106](./assets/image-20240517084031106.png)
+
+- Nous lançons la commande suivante:
+
+  ```shell
+  $ kubectl auth can-i get secrets --as=system:serviceaccount:tp2:my-service-account -n default
+  ```
+
+  Nous avons bien `no` comme réponse, car le ServiceAccount n'a pas de droits suir les secrets dans le namespace `default`, comme mentionné précédemment.
+
+![image-20240517084148596](./assets/image-20240517084148596.png)
+
+# Projet
+
+Ce projet a été effectué par  `Vincent LAGOGUÉ`, `Tom THIOULOUSE`, `Alexis PLESSIAS`, `David TEJEDA` et `Thomas PEUGNET`.
+
+## Prérequis
+
+Nous commençons par récupérer l'ensemble des informations nécessaires à notre connexion aws. Nous installons `aws cli` sur notre machine cliente, et ajoutons notre fichier `.aws/credentials`.
+
+La commande `aws sts get-caller-identity` retourne bel et bien un résultat cohérent.
+
+Nous créons un fichier nommé `cluster-config.yaml` ayant le contenu suivant:
+
+```yaml
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: tp3-cluster
+  region: us-east-1
+
+nodeGroups:
+  - name: ng
+    instanceType: t3a.medium
+    desiredCapacity: 1
+    volumeSize: 80
+    iam:
+      instanceRoleARN: arn:aws:iam::<aws_account_id>:role/LabRole
+
+iam:
+  serviceRoleARN: arn:aws:iam::<aws_account_id>:role/LabRole
+```
+
+Puis, nous utilisons cette commande `eskctl` :
+
+```shell
+$ eksctl create cluster -f cluster-config.yaml
+```
+
+Et finalement obtenons le résultat suivant:
+
+![image-20240517094825175](./assets/image-20240517094825175.png)
+
+Nous ajoutons le repository nextcloud à l'aide de la commande `helm repo add nextcloud https://nextcloud.github.io/helm`.
+
+Puis, nous créons un namespace pour `Nextcloud` avec `kubectl create namespace nextcloud`.
+
+Nous faisons les modifications suivantes sur notre fichier de configuraiton `values.yaml`:
+
+```yaml
+redis:
+  enabled: true
+  master:
+   persistence:
+    enabled: false
+  replica:
+   persistence:
+    enabled: false
+    
+externalDatabase:
+  enabled: false
+internalDatabase:
+  enabled: true
+  name: nextcloud
+```
+
+Enfin, nous effectuons l'installations à l'aide de la commande suivante:
+
+```shell
+$ helm install nextcloud nextcloud/nextcloud -f values.yaml -n nextcloud
+```
+
+Nous récupérons le mot de passe de connexion du compte via cette commande : 
+
+```shell
+$ kubectl get secret --namespace nextcloud nextcloud -o jsonpath="{.data.nextcloud-password}" | base64 --decode # nous retourne le pwd par défaut: changeme
+```
+
+Nous vérifions que nos pods sont bien lancés:
+
+![image-20240517104055952](./assets/image-20240517104055952.png)
+
+Puis, nous effectuons un port forwarding vers le port 8080 à l'aide de la commande suivante:
+
+```shell
+$ k port-forward svc/nextcloud 8081:8080 -n nextcloud
+```
+
+Nous nous connectons ensuite sur `http://localhost:8081` et pouvons constater que nous tombons sur l'interface de connexion de Nextcloud.
+
+![image-20240517104235400](./assets/image-20240517104235400.png)
+
+Pour nous connecter, nous utilisons donc les identifiants `admin:changeme`, et obtenons le résultat suivant.
+
+![image-20240517104343961](./assets/image-20240517104343961.png)
+
+Nous finissons par désinstaller notre release Helm:
+
+```shell
+$ helm uninstall nextcloud -n nextcloud
+> release "nextcloud" uninstalled
+```
 

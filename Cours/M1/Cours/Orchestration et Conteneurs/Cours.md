@@ -1802,3 +1802,392 @@ Nous pouvons maintenant nous connecter sur `http://localhost:9001`.
 Nous nous connectons avec `admin:admin`.
 
 ![image-20240518112328719](./assets/image-20240518112328719.png)
+
+Nous avons le fichier `nextcloud-helm-source.yaml` grâce au GitHub. Nous l'appliquons grâce à:
+
+```shell
+$ k apply -f nextcloud-helm-source.yaml
+```
+
+Nous vérifions que tout fonctionne grâce à : `k get pods -n flux-system`.
+
+![image-20240518120520147](./assets/image-20240518120520147.png)
+
+Puis, toujours présent sur le git, nous appliquons le fichier `nextcloud-helmrelease.yaml` avec la commande `k apply -f nextcloud-helmrelease.yaml`.
+
+Enfin, nous appliquons le fichier de secrets `nextcloud-values-secret.yaml` avec la commande `kubectl apply -f nextcloud-values-secret.yaml`.
+
+Nous avons effectué les 2 commandes flux suivantes:
+
+```shell
+$ flux reconcile source helm nextcloud
+
+$ flux reconcile helmrelease nextcloud -n nextcloud
+```
+
+![image-20240518120803276](./assets/image-20240518120803276.png)
+
+Puis, nous avons constaté que nous avions bien notre pod de déployé grâce à `k get pods -n nextcloud`.
+
+![image-20240518120848831](./assets/image-20240518120848831.png)
+
+Avec un port forwarding nous obtenons le résultat escompté: Un nexctloud accessible en GUI depuis un navigateur déployé via flux.
+
+# DE - ChatGPT Generated
+
+## K8S
+
+**Qu'est-ce que Kubernetes ?**
+
+- a) Un système de gestion de bases de données
+- b) Un outil de virtualisation
+- c) Un système d'orchestration de conteneurs **(Réponse)**
+- d) Un serveur web
+
+**Quelle est la fonction principale d'un pod dans Kubernetes ?**
+
+- a) Héberger une application web
+- b) Contenir un ou plusieurs conteneurs **(Réponse)**
+- c) Gérer le stockage des données
+- d) Superviser les mises à jour du système
+
+**Quel composant Kubernetes est responsable de la gestion des conteneurs sur un nœud spécifique ?**
+
+- a) Kubelet **(Réponse)**
+- b) Kubectl
+- c) Kube-proxy
+- d) Etcd
+
+**Quel fichier est utilisé pour définir la configuration des ressources dans Kubernetes ?**
+
+- a) Dockerfile
+- b) Podfile
+- c) YAML **(Réponse)**
+- d) JSON
+
+**Quel composant Kubernetes est utilisé pour exposer les applications déployées en dehors du cluster ?**
+
+- a) Service **(Réponse)**
+- b) ConfigMap
+- c) PersistentVolume
+- d) ReplicaSet
+
+**Quel est le rôle d'un Deployment dans Kubernetes ?**
+
+- a) Stocker des données persistantes
+- b) Définir et gérer la configuration d'un pod unique
+- c) Définir et gérer des pods répliqués **(Réponse)**
+- d) Superviser la sécurité des conteneurs
+
+**Quel outil en ligne de commande est principalement utilisé pour interagir avec un cluster Kubernetes ?**
+
+- a) Kubelet
+- b) Docker
+- c) Kubectl **(Réponse)**
+- d) Helm
+
+**Qu'est-ce qu'un Namespace dans Kubernetes ?**
+
+- a) Un ensemble de pods liés entre eux
+- b) Un espace de noms pour isoler les ressources **(Réponse)**
+- c) Une méthode de stockage des conteneurs
+- d) Un outil de gestion des secrets
+
+**Quel est le rôle de Kube-proxy dans un cluster Kubernetes ?**
+
+- a) Gérer les secrets
+- b) Assurer la communication réseau des pods **(Réponse)**
+- c) Superviser les nœuds
+- d) Créer des volumes persistants
+
+**Qu'est-ce qu'un Helm Chart ?**
+
+- a) Un outil de monitoring pour Kubernetes
+- b) Un package de configuration Kubernetes **(Réponse)**
+- c) Un type de volume persistant
+- d) Un plugin pour Kubectl
+
+**Quel composant stocke l'état de l'ensemble du cluster Kubernetes ?**
+
+- a) Kube-scheduler
+- b) Kubelet
+- c) Etcd **(Réponse)**
+- d) Kube-proxy
+
+**À quoi sert un ConfigMap dans Kubernetes ?**
+
+- a) Stocker des données de configuration sous forme de paires clé-valeur **(Réponse)**
+- b) Stocker des images de conteneurs
+- c) Gérer les volumes persistants
+- d) Superviser la mise en réseau des pods
+
+**Quelle est la fonction principale d'un ReplicaSet dans Kubernetes ?**
+
+- a) Gérer la mise en réseau des conteneurs
+- b) Déployer des applications web
+- c) Assurer qu'un nombre spécifié de réplicas de pods sont en cours d'exécution **(Réponse)**
+- d) Stocker des données persistantes
+
+**Qu'est-ce qu'un Service de type LoadBalancer dans Kubernetes ?**
+
+- a) Un service qui expose une seule IP externe pour le trafic entrant **(Réponse)**
+- b) Un service qui gère la persistance des données
+- c) Un service qui configure des secrets
+- d) Un service qui gère les volumes de stockage
+
+**Quel composant est responsable de l'attribution des pods aux nœuds dans Kubernetes ?**
+
+- a) Kubelet
+- b) Kube-scheduler **(Réponse)**
+- c) Kubectl
+- d) Kube-proxy
+
+**Qu'est-ce qu'un PersistentVolume (PV) dans Kubernetes ?**
+
+- a) Une abstraction de stockage pour utiliser les ressources de stockage **(Réponse)**
+- b) Un conteneur qui stocke les logs
+- c) Un script pour déployer des applications
+- d) Un outil pour surveiller les performances des pods
+
+**Qu'est-ce qu'un PersistentVolumeClaim (PVC) ?**
+
+- a) Une demande d'un utilisateur pour un volume de stockage **(Réponse)**
+- b) Un volume temporaire pour un pod
+- c) Une méthode de mise en réseau des pods
+- d) Un type de service pour les applications externes
+
+**Quel est le rôle d'un Secret dans Kubernetes ?**
+
+- a) Stocker des données sensibles comme des mots de passe **(Réponse)**
+- b) Gérer les configurations de déploiement
+- c) Assurer la mise en réseau sécurisée des pods
+- d) Créer des volumes persistants
+
+**Quelle directive Kubernetes est utilisée pour scaler dynamiquement une application en fonction de la charge ?**
+
+- a) ConfigMap
+- b) Horizontal Pod Autoscaler (HPA) **(Réponse)**
+- c) Vertical Pod Autoscaler (VPA)
+- d) Deployment
+
+**Quel est le but principal de l'utilisation de labels dans Kubernetes ?**
+
+- a) Ajouter des informations de sécurité aux pods
+- b) Filtrer et sélectionner des groupes de ressources **(Réponse)**
+- c) Configurer les services de mise en réseau
+- d) Gérer les volumes de stockage
+
+## Commandes
+
+**Quelle commande kubectl est utilisée pour lister tous les pods dans un namespace spécifique ?**
+
+- a) `kubectl get nodes`
+- b) `kubectl list pods --namespace`
+- c) `kubectl get pods --namespace` **(Réponse)**
+- d) `kubectl pods --namespace`
+
+**Comment créer un déploiement à partir d'un fichier de configuration YAML avec kubectl ?**
+
+- a) `kubectl apply -f <filename>.yaml` **(Réponse)**
+- b) `kubectl create -f <filename>.yaml`
+- c) `kubectl deploy -f <filename>.yaml`
+- d) `kubectl start -f <filename>.yaml`
+
+**Quelle commande est utilisée pour afficher les journaux (logs) d'un pod spécifique ?**
+
+- a) `kubectl get logs <pod-name>`
+- b) `kubectl logs <pod-name>` **(Réponse)**
+- c) `kubectl describe logs <pod-name>`
+- d) `kubectl show logs <pod-name>`
+
+**Comment supprimer un pod spécifique en utilisant kubectl ?**
+
+- a) `kubectl delete pod <pod-name>` **(Réponse)**
+- b) `kubectl remove pod <pod-name>`
+- c) `kubectl destroy pod <pod-name>`
+- d) `kubectl terminate pod <pod-name>`
+
+**Quelle commande est utilisée pour obtenir des informations détaillées sur un pod spécifique ?**
+
+- a) `kubectl show pod <pod-name>`
+- b) `kubectl describe pod <pod-name>` **(Réponse)**
+- c) `kubectl details pod <pod-name>`
+- d) `kubectl info pod <pod-name>`
+
+**Comment lister tous les namespaces dans un cluster Kubernetes ?**
+
+- a) `kubectl list namespaces`
+- b) `kubectl get namespaces` **(Réponse)**
+- c) `kubectl describe namespaces`
+- d) `kubectl show namespaces`
+
+**Quelle commande kubectl est utilisée pour scaler un déploiement à 5 réplicas ?**
+
+- a) `kubectl scale --replicas=5 deployment/<deployment-name>` **(Réponse)**
+- b) `kubectl resize --replicas=5 deployment/<deployment-name>`
+- c) `kubectl replicate --count=5 deployment/<deployment-name>`
+- d) `kubectl extend --replicas=5 deployment/<deployment-name>`
+
+**Comment accéder de manière interactive à un conteneur d'un pod spécifique ?**
+
+- a) `kubectl exec -it <pod-name> -- /bin/sh` **(Réponse)**
+- b) `kubectl access -it <pod-name> -- /bin/sh`
+- c) `kubectl enter -it <pod-name> -- /bin/sh`
+- d) `kubectl shell -it <pod-name> -- /bin/sh`
+
+**Quelle commande est utilisée pour obtenir des informations sur les ressources et les limites des pods dans un namespace ?**
+
+- a) `kubectl top pods --namespace <namespace>` **(Réponse)**
+- b) `kubectl get resources --namespace <namespace>`
+- c) `kubectl describe limits --namespace <namespace>`
+- d) `kubectl show usage --namespace <namespace>`
+
+**Comment appliquer une mise à jour de configuration à un déploiement en cours ?**
+
+- a) `kubectl apply -f <filename>.yaml` **(Réponse)**
+- b) `kubectl update -f <filename>.yaml`
+- c) `kubectl set -f <filename>.yaml`
+- d) `kubectl refresh -f <filename>.yaml`
+
+## Virtualisation
+
+**Qu'est-ce que la virtualisation ?**
+
+- a) L'utilisation de plusieurs systèmes d'exploitation sur un seul matériel physique
+- b) Une abstraction des ressources informatiques physiques **(Réponse)**
+- c) La création de copies physiques des composants matériels
+- d) L'installation d'applications sur des serveurs physiques
+
+**Quels sont les avantages de la virtualisation ?**
+
+- a) Utilisation plus efficace des ressources matérielles **(Réponse)**
+- b) Augmentation des coûts opérationnels
+- c) Diminution de la sécurité des applications
+- d) Complexification de la gestion des infrastructures
+
+**Qu'est-ce qu'un hyperviseur ?**
+
+- a) Un logiciel qui gère les ressources physiques directement
+- b) Un logiciel qui isole les ressources physiques des environnements virtuels **(Réponse)**
+- c) Un matériel spécialisé pour la virtualisation
+- d) Un type de conteneur
+
+**Quels sont les types de virtualisation ?**
+
+- a) De serveurs **(Réponse)**
+- b) De réseaux **(Réponse)**
+- c) De données **(Réponse)**
+- d) Toutes les réponses ci-dessus **(Réponse)**
+
+**Quel est le rôle principal d'une image Docker ?**
+
+- a) Gérer les ressources du système d'exploitation
+- b) Contenir une collection ordonnée de changements d’un système de fichier **(Réponse)**
+- c) Surveiller les performances des conteneurs
+- d) Créer des réseaux pour les conteneurs
+
+**Qu'est-ce que la conteneurisation ?**
+
+- a) L'installation d'applications sur des serveurs physiques
+- b) L'isolation du code du logiciel et de ses composants dans un conteneur **(Réponse)**
+- c) La virtualisation des ressources physiques
+- d) La création de copies physiques des composants matériels
+
+**Quel est l'avantage principal de la conteneurisation ?**
+
+- a) Création et déploiement rapides d’applications **(Réponse)**
+- b) Augmentation des coûts d'infrastructure
+- c) Isolation inefficace des applications
+- d) Difficulté de gestion des ressources matérielles
+
+**Quel fichier est utilisé pour créer une image Docker ?**
+
+- a) Dockercompose
+- b) Dockerfile **(Réponse)**
+- c) Dockermanifest
+- d) Dockerconfig
+
+**Quels sont les points importants d'un Dockerfile ?**
+
+- a) Choix de l’image de base **(Réponse)**
+- b) Supprimer les caches **(Réponse)**
+- c) Utiliser un USER pour le runtime du conteneur **(Réponse)**
+- d) Toutes les réponses ci-dessus **(Réponse)**
+
+**Quelle directive est utilisée pour spécifier l'image de base dans un Dockerfile ?**
+
+- a) FROM **(Réponse)**
+- b) RUN
+- c) COPY
+- d) ADD
+
+**Qu'est-ce qu'un conteneur registry ?**
+
+- a) Un fichier de configuration des conteneurs
+- b) Un référentiel centralisé qui stocke et distribue des images de conteneurs **(Réponse)**
+- c) Un outil de surveillance des conteneurs
+- d) Un type de réseau pour les conteneurs
+
+**Pourquoi est-il important de scanner les images Docker ?**
+
+- a) Pour identifier les logiciels malveillants **(Réponse)**
+- b) Pour augmenter la vitesse de déploiement
+- c) Pour réduire les coûts de stockage
+- d) Pour améliorer les performances réseau
+
+**Qu'est-ce qu'un volume en termes de conteneur Docker ?**
+
+- a) Un composant pour gérer les réseaux des conteneurs
+- b) Un emplacement de stockage de données monté à l'intérieur des conteneurs **(Réponse)**
+- c) Un fichier de configuration des conteneurs
+- d) Une commande pour créer des conteneurs
+
+**Quelle est la différence principale entre les machines virtuelles et les conteneurs ?**
+
+- a) Les machines virtuelles sont plus rapides que les conteneurs
+- b) Les conteneurs sont plus légers et utilisent moins de ressources que les machines virtuelles **(Réponse)**
+- c) Les machines virtuelles sont plus sécurisées que les conteneurs
+- d) Les conteneurs ne peuvent pas être déployés sur des systèmes Linux
+
+**Quels sont les outils utilisés pour gérer des applications multi-conteneurs ?**
+
+- a) Docker/Podman Compose **(Réponse)**
+- b) Dockerfile
+- c) Hyperviseur
+- d) Kubernetes seulement
+
+**Quelles sont les limitations des conteneurs Docker ?**
+
+- a) Limitation des ressources **(Réponse)**
+- b) Complexité de gestion **(Réponse)**
+- c) Sécurité **(Réponse)**
+- d) Toutes les réponses ci-dessus **(Réponse)**
+
+**Quels sont les avantages de la conteneurisation ?**
+
+- a) Portabilité des applications **(Réponse)**
+- b) Isolation des applications **(Réponse)**
+- c) Création et déploiement rapides d’applications **(Réponse)**
+- d) Toutes les réponses ci-dessus **(Réponse)**
+
+**Quel est l'outil utilisé pour orchestrer les conteneurs sur plusieurs hôtes ?**
+
+- a) Dockerfile
+- b) Kubernetes **(Réponse)**
+- c) Hyperviseur
+- d) Compose
+
+**Pourquoi la persistance de la donnée est-elle un défi pour les conteneurs ?**
+
+- a) Les conteneurs sont conçus pour être immuables et éphémères **(Réponse)**
+- b) Les conteneurs ne peuvent pas stocker de données
+- c) Les données ne peuvent pas être partagées entre les conteneurs
+- d) Les conteneurs ne supportent pas les bases de données
+
+**Quelle technologie a révolutionné le déploiement d'applications modernes ?**
+
+- a) La virtualisation des réseaux
+- b) La conteneurisation **(Réponse)**
+- c) L'hyperviseur de type 1
+- d) Les serveurs physiques
+

@@ -623,7 +623,8 @@ monitor                -r 10 -e trapService "erreur service" prErrorFlag != 0
 
 Nous avons donc une configuration de `snmpd.conf` suivante :
 
-```defaultMonitors yes
+```
+defaultMonitors yes
 agentAddress udp:161
 rocommunity mycom
 rwcommunity mycom

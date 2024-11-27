@@ -38,3 +38,22 @@ La gestion des risques peut servir à :
 - Risque **résiduel**: Le risque brut $-$​ actions de maîtrise en place
 - Risque **cible**: Le risque résiduel $-$ plan d'actions de maîtrise à venir
 
+**Processus de fonctionnement**
+
+1. Identifier
+2. Evaluer
+3. Traiter
+4. Suivre
+
+**Les différents types de risques**
+
+- Stratégie digitale non adaptée
+- Technologies inadaptées
+- Résilience de toutes les couches (infra, applicative..)
+- Sous-traitance
+- Localisation des donnnées
+- Données à caractère personnel
+- Choix techniques du prestataires
+- Interventions à distance
+- Hébergement mutualisé
+- Développements internes

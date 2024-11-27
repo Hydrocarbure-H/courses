@@ -32,3 +32,9 @@ La gestion des risques peut servir à :
 
 ![image-20241127140601986](./assets/image-20241127140601986.png)
 
+## Décomposition des risques
+
+- Risque **brut**: Valeur initiale du risque (si on ne fait rien)
+- Risque **résiduel**: Le risque brut $-$​ actions de maîtrise en place
+- Risque **cible**: Le risque résiduel $-$ plan d'actions de maîtrise à venir
+

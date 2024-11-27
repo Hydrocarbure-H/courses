@@ -155,3 +155,37 @@ La gestion des risques peut servir à :
 - Organisme national en charge de l’application du RGPD.
 - Site : [www.cnil.fr](https://www.cnil.fr/)
 
+# Cas pratiques
+
+## Organigrammes
+
+### Cas 1
+
+![image-20241127163136473](./assets/image-20241127163136473.png)
+
+### Cas 2
+
+![image-20241127163307995](./assets/image-20241127163307995.png)
+
+### Cas 3
+
+![image-20241127163452583](./assets/image-20241127163452583.png)
+
+## Questions
+
+**Question 1:** Proposez un intitulé adapté pour nommer la fonction informatique dans chacune des organisations décrites. Les fonctions informatiques sont nommées XXX dans les organigrammes qui suivent.
+
+Premier Cas: SI $\rightarrow$ RSI
+
+Second Cas: PSI  $\rightarrow$​ DSI (directeur)
+
+Troisième Cas: DSIN $\rightarrow$ DSI (directeur)
+
+| Missions                                                     | Cas 1 | Cas 2 | Cas 3 |
+| ------------------------------------------------------------ | ----- | ----- | ----- |
+| Accompagner la veille technologique                          |       | ❌     | ❌     |
+| Accompagner ou réaliser les projets de l'organsation         |       | ❌     | ❌     |
+| Accompagner les utilisateurs                                 |       | ❌     | ❌     |
+| Assurer la continuité de fonctionnement<br />et de qualité des services et des applis | ✅     | ❌     | ❌     |
+| Assurer l'alignement stragégique du SI sur la stratégie<br />globale des métiers |       |       |       |
+

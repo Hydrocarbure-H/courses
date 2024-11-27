@@ -189,3 +189,68 @@ Troisième Cas: DSIN $\rightarrow$ DSI (directeur)
 | Assurer la continuité de fonctionnement<br />et de qualité des services et des applis | ✅                                                   | ✅                               | ✅                                             |
 | Assurer l'alignement stragégique du SI sur la stratégie<br />globale des métiers | ❌                                                   | ✅                               | ✅ - Veille technologique, stratégie proactive |
 
+# COSO ERM
+
+### **Cheat Sheet : Gestion des risques – COSO ERM & ISO 31000**
+
+------
+
+### **1️⃣ Qu’est-ce que c’est ?**
+
+- **COSO ERM** : Cadre pour intégrer la gestion des risques dans la stratégie globale d’une organisation.
+- **ISO 31000** : Norme généraliste pour identifier, évaluer et traiter les risques.
+
+------
+
+### **2️⃣ Objectifs communs**
+
+- Identifier, évaluer et gérer les risques pour atteindre les **objectifs stratégiques** (opérationnels, reporting, conformité).
+- Faciliter la **prise de décision** en intégrant les risques.
+- Améliorer la **résilience** et la **création de valeur**.
+
+------
+
+### **3️⃣ Principes et étapes clés**
+
+#### **COSO ERM : 5 Composantes**
+
+1. **Gouvernance et culture** : Définir les rôles et intégrer le risque dans la culture.
+2. **Stratégie et objectifs** : Aligner la gestion des risques avec la stratégie.
+3. **Identification et évaluation** : Cartographier et hiérarchiser les risques.
+4. **Réponse aux risques** : Agir (éviter, réduire, transférer, accepter).
+5. **Revue et amélioration** : Surveiller et ajuster en continu.
+
+#### **ISO 31000 : Processus en 6 Étapes**
+
+1. **Contexte** : Comprendre l’environnement interne/externe.
+2. **Identification** : Recenser les risques.
+3. **Analyse** : Probabilité + impact.
+4. **Évaluation** : Prioriser les risques.
+5. **Traitement** : Choisir une réponse (éviter, réduire, partager, accepter).
+6. **Suivi** : Mesurer l’efficacité et ajuster.
+
+------
+
+### **4️⃣ Réponses aux risques (Approche commune)**
+
+- **Éviter** : Supprimer l’activité risquée.
+- **Réduire** : Contrôles ou actions d’atténuation.
+- **Transférer** : Assurances, sous-traitance.
+- **Accepter** : Tolérer les risques résiduels.
+
+------
+
+### **5️⃣ Comparaison rapide**
+
+| **Aspect**    | **COSO ERM**                  | **ISO 31000**                   |
+| ------------- | ----------------------------- | ------------------------------- |
+| **Focus**     | Alignement avec la stratégie  | Norme adaptable, multi-secteurs |
+| **Structure** | 5 composantes                 | 6 étapes + 8 principes          |
+| **Approche**  | Vue stratégique et financière | Vue systématique et holistique  |
+
+------
+
+### **6️⃣ Utilisation**
+
+1. **COSO ERM** : Grandes entreprises cherchant à aligner gestion des risques et stratégie.
+2. **ISO 31000** : Toutes organisations voulant une norme flexible pour leur gestion des risques.

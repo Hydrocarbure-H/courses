@@ -181,11 +181,11 @@ Second Cas: PSI  $\rightarrow$​ DSI (directeur)
 
 Troisième Cas: DSIN $\rightarrow$ DSI (directeur)
 
-| Missions                                                     | Cas 1 | Cas 2 | Cas 3 |
-| ------------------------------------------------------------ | ----- | ----- | ----- |
-| Accompagner la veille technologique                          |       | ❌     | ❌     |
-| Accompagner ou réaliser les projets de l'organsation         |       | ❌     | ❌     |
-| Accompagner les utilisateurs                                 |       | ❌     | ❌     |
-| Assurer la continuité de fonctionnement<br />et de qualité des services et des applis | ✅     | ❌     | ❌     |
-| Assurer l'alignement stragégique du SI sur la stratégie<br />globale des métiers |       |       |       |
+| Missions                                                     | Cas 1 (RSI)                                         | Cas 2 (DSI)                     | Cas 3 DSIN)                                   |
+| ------------------------------------------------------------ | --------------------------------------------------- | ------------------------------- | --------------------------------------------- |
+| Accompagner la veille technologique                          | ❌                                                   | 🤷‍♂️ - Optionnel, non obligatoire | ✅                                             |
+| Accompagner ou réaliser les projets de l'organsation         | ❌ - Infrastructure uniquement, pas de développement | ✅                               | ✅                                             |
+| Accompagner les utilisateurs                                 | ❌                                                   | ✅                               | ✅                                             |
+| Assurer la continuité de fonctionnement<br />et de qualité des services et des applis | ✅                                                   | ✅                               | ✅                                             |
+| Assurer l'alignement stragégique du SI sur la stratégie<br />globale des métiers | ❌                                                   | ✅                               | ✅ - Veille technologique, stratégie proactive |
 

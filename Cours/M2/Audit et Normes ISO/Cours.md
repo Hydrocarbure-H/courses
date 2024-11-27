@@ -45,7 +45,9 @@ La gestion des risques peut servir à :
 3. Traiter
 4. Suivre
 
-**Les différents types de risques**
+![image-20241127150032301](./assets/image-20241127150032301.png)
+
+### **Les différents types de risques**
 
 - Stratégie digitale non adaptée
 - Technologies inadaptées
@@ -57,3 +59,14 @@ La gestion des risques peut servir à :
 - Interventions à distance
 - Hébergement mutualisé
 - Développements internes
+
+#### Risques liés à la sous-traitance
+
+- Prix du contrat initialement plus faible en faisant appel à l'extérieur, puis le coût du contrat augmente au fur-et-à-mesure, mais au moment où ça devient trop cher, il n'y a plus de personnes qui ont les connaissances en interne.
+
+### Cadre de référence
+
+1. Adapté aux métiers
+2. Prendre en compte les pratiques
+3. …
+

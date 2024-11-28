@@ -232,4 +232,15 @@ path = os.path.join(os.getenv("TEMP", "/tmp"), ".kernel.log")
 
 - Création du fichier de logs dans `/tmp`, masquage du nom par un autre nom moins suspect et transformation en fichier caché.
 
-Dernière mondification	
+Enfin, j'aurais transformé le script python en un exécutable moins repérable par l'utilisateur (les OS aujourd'hui le détecteront instantanément).
+
+Pour cela, il aurait fallu faire:
+
+```shell
+pip install pyinstaller
+pyinstaller --onefile keylogger.py
+```
+
+La seconde ligne donne un fichier `keylogger.exe`.
+
+Ce ne sera pas réalisé dans ce TP car je ne tiens pas à installer un keylogger sur mon ordinateur, mais il aurait pertinent de le mettre en tâche de démarrage. `systemd` pour Linux ou `launchd` pour macOS.

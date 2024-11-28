@@ -8,7 +8,7 @@ Notes de cours par `Thomas PEUGNET`.
 
 >  Qu'est-ce qu'un keylogger ?
 
-Un keylogger est un programme qui enregistre les frappes au clavier. Il existe 2 types de keyloggers, matériel et logiciels. Le premier type est comme un adaptateur inséré entre le clavier et l'ordinateur, qui intercepte et enregistrent les frappes directement au niveau matériel. Le second type est un programme informatique qui surveille et enregistre les frappes au clavier en s'exécutant en arrière-plan sur le système d'exploitation.
+Un keylogger est un programme qui enregistre les frappes au clavier. Il existe 2 types de keyloggers, matériel et logiciels. Le premier type est comme un adaptateur inséré entre le clavier et l'ordinateur, qui intercepte et enregistre les frappes directement au niveau matériel. Le second type est un programme informatique qui surveille et enregistre les frappes au clavier en s'exécutant en arrière-plan sur le système d'exploitation.
 
 > Y a-t-il une utilisation légitime pour ce genre de programme ? Expliquez.
 
@@ -243,4 +243,5 @@ pyinstaller --onefile keylogger.py
 
 La seconde ligne donne un fichier `keylogger.exe`.
 
-Ce ne sera pas réalisé dans ce TP car je ne tiens pas à installer un keylogger sur mon ordinateur, mais il aurait pertinent de le mettre en tâche de démarrage. `systemd` pour Linux ou `launchd` pour macOS.
+Ce ne sera pas réalisé dans ce TP car je ne tiens pas à installer un keylogger sur mon ordinateur, mais il aurait été pertinent de le mettre en tâche de démarrage. `systemd` pour Linux ou `launchd` pour macOS.
+

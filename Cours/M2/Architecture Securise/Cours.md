@@ -179,7 +179,7 @@ with keyboard.Listener(on_press=processkeys) as keyboard_listener:
     keyboard_listener.join()
 ```
 
-Nous lançons notre programme, et constatons que celui-ci se lance mais n'écris pas tout de suite dans le fichier `log.txt`.
+Nous lançons notre programme, et constatons que celui-ci se lance mais n'écrit pas tout de suite dans le fichier `log.txt`.
 
 ![image-20241128091704793](./assets/image-20241128091704793.png)
 

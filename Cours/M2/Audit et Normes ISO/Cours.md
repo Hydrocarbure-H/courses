@@ -172,7 +172,7 @@ Troisième Cas: DSIN $\rightarrow$ DSI (directeur)
 | Accompagner ou réaliser les projets de l'organsation         | ❌ - Infrastructure uniquement, pas de développement | ✅                               | ✅                                             |
 | Accompagner les utilisateurs                                 | ❌                                                   | ✅                               | ✅                                             |
 | Assurer la continuité de fonctionnement<br />et de qualité des services et des applis | ✅                                                   | ✅                               | ✅                                             |
-| Assurer l'alignement stragégique du SI sur la stratégie<br />globale des métiers | ❌                                                   | ✅                               | ✅ - Veille technologique, stratégie proactive |
+| Assurer l'alignement stragégique du SI sur la stratégie<br />globale des métiers | ❌                                                   | 🤷‍♂️ - Non précisé                | ✅ - Veille technologique, stratégie proactive |
 
 # COSO ERM & ISO 31000
 

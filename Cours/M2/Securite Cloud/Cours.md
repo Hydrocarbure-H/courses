@@ -758,3 +758,305 @@ Nous supprimons notre VPC.
 
 ![image-20241202163703121](./assets/image-20241202163703121.png)
 
+# Rendu TP08
+
+Compte rendu du TP 08 effectué par `Thomas PEUGNET`.
+
+Nous créons le VPC `VPC-THOMAS-ALB`.
+
+![image-20241211081909948](./assets/image-20241211081909948.png)
+
+![image-20241211081917584](./assets/image-20241211081917584.png)
+
+Nous créons un Security Group `HTTP-access`.
+
+![image-20241211082116936](./assets/image-20241211082116936.png)
+
+![image-20241211082122040](./assets/image-20241211082122040.png)
+
+Nous créons un template d'instance `WEB-SERVER`.
+
+![image-20241211083212101](./assets/image-20241211083212101.png)
+
+Nous ajoutons le code suivant dans User Data.
+
+```bash
+#!/bin/bash
+
+# Update the system and install necessary packages
+yum update -y
+yum install -y httpd
+
+# Start the Apache server
+systemctl start httpd
+systemctl enable httpd
+
+# Fetch the Availability Zone information using IMDSv2
+TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
+AZ=`curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/placement/availability-zone`
+
+# Create the index.html file
+cat > /var/www/html/index.html <<EOF
+<html>
+<head>
+    <title>Instance Availability Zone</title>
+    <style>
+        body {
+            background-color: #6495ED; /* Cornflower Blue - a darker shade */
+            color: white;
+            font-size: 36px; /* Significantly larger text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div>This instance is located in Availability Zone: $AZ</div>
+</body>
+</html>
+EOF
+
+# Ensure the httpd service is correctly set up to start on boot
+chkconfig httpd on
+```
+
+![image-20241211083246863](./assets/image-20241211083246863.png)
+
+
+
+Nous créons une instance à partir de ce template.
+
+![image-20241211083741333](./assets/image-20241211083741333.png)
+
+Les règles sont correctes.
+
+![image-20241211083812589](./assets/image-20241211083812589.png)
+
+Le `nslookup` donne bien le résultat suivant.
+
+![image-20241211083856436](./assets/image-20241211083856436.png)
+
+Nous avons bien un accès web à notre instance.
+
+![image-20241211083934279](./assets/image-20241211083934279.png)
+
+Nous créons un nouveau Auto Scaling Group.
+
+![image-20241211084418349](./assets/image-20241211084418349.png)
+
+![image-20241211084457217](./assets/image-20241211084457217.png)
+
+![image-20241211084915820](./assets/image-20241211084915820.png)
+
+![image-20241211084944595](./assets/image-20241211084944595.png)
+
+Nous constatons que nos instances se sont bien lancées.
+
+![image-20241211085027767](./assets/image-20241211085027767.png)
+
+Le `nslookup`est concluant.
+
+![image-20241211085117509](./assets/image-20241211085117509.png)
+
+![image-20241211085121681](./assets/image-20241211085121681.png)
+
+L'accès web est concuant également.
+
+![image-20241211085147841](./assets/image-20241211085147841.png)
+
+Idem pour l'accès web et le `nslookup` de la seconde instance.
+
+![image-20241211085236417](./assets/image-20241211085236417.png)
+
+Nous supprimons l'instance.
+
+![image-20241211085323688](./assets/image-20241211085323688.png)
+
+Nous constatons que l'auto scaling group la relance bien.
+
+![image-20241211085354634](./assets/image-20241211085354634.png)
+
+Ce processus est raccord avec les informations dans l'historique d'activité.
+
+![image-20241211085429341](./assets/image-20241211085429341.png)
+
+Nous créons un Target Group `TG-Thomas`.
+
+![image-20241211085546832](./assets/image-20241211085546832.png)
+
+Nous créons un LoadBalancer `ALBB-Thomas`.
+
+![image-20241211085747448](./assets/image-20241211085747448.png)
+
+![image-20241211085752487](./assets/image-20241211085752487.png)Nous assignons à notre Load Balancer notre Target Group.
+
+![image-20241211090112127](./assets/image-20241211090112127.png)
+
+Nous pouvons voir nos targets enregistrées après quelques instants.
+
+![image-20241211090205688](./assets/image-20241211090205688.png)
+
+Nous pouvons constater un changement de zone à chaque rafraîchissement.
+
+![image-20241211090313466](./assets/image-20241211090313466.png)
+
+![image-20241211090306646](./assets/image-20241211090306646.png)
+
+Nous mettons à jour notre Scaling Limit.
+
+![image-20241211090425048](./assets/image-20241211090425048.png)
+
+Nous ajoutons notre Subnet à notre ASG.
+
+![image-20241211090508616](./assets/image-20241211090508616.png)
+
+Nous ajoutons notre subnet à notre ALB.
+
+![image-20241211090611826](./assets/image-20241211090611826.png)
+
+Nous créons notre Automatic Scaling Policy.
+
+![image-20241211090719436](./assets/image-20241211090719436.png)
+
+Nous préparons une boucle shell pour intérroger notre ALB.
+
+```shell
+for i in {1..200}; do curl ALBB-Thomas-813760480.eu-west-3.elb.amazonaws.com & done; wait
+```
+
+Nous constatons un pic de requêtes.
+
+![image-20241211091443129](./assets/image-20241211091443129.png)
+
+Nous constatons en effet l'arrivée sur la zone numéro 3 après lancement de la 3e instance.
+
+![image-20241211091659205](./assets/image-20241211091659205.png)
+
+![image-20241211091638577](./assets/image-20241211091638577.png)
+
+
+
+Nous nous rendons à l'adresse de l'instance numéro 1.
+
+![image-20241211091819584](./assets/image-20241211091819584.png)
+
+Nous nous rendons à l'adresse de l'instance numéro 2.
+
+![image-20241211091837555](./assets/image-20241211091837555.png)
+
+Nous créons un Target Group `TG-NLB-Thomas`.
+
+![image-20241211092413490](./assets/image-20241211092413490.png)
+
+Nous créons notre NLB `NLB-Thomas`.
+
+![image-20241211093106355](./assets/image-20241211093106355.png)
+
+En mettant l'adresse du NLB, on obtient en effet la zone 1.
+
+![image-20241211093246486](./assets/image-20241211093246486.png)
+
+Depuis une fenêtre de navigation privée, après quelques rafraîchissement nous obtenons enfin la zone numéro 2.
+
+![image-20241211093334154](./assets/image-20241211093334154.png)
+
+Nous supprimons notre ASG.
+
+![image-20241211093420097](./assets/image-20241211093420097.png)
+
+Nous supprimons notre ALB et notre NLB.
+
+![image-20241211093455497](./assets/image-20241211093455497.png)
+
+Nous supprimons notre Launch Template.
+
+![image-20241211093523006](./assets/image-20241211093523006.png)
+
+Nous supprimons nos TG.
+
+![image-20241211093614389](./assets/image-20241211093614389.png)
+
+Nous terminons nos instances.
+
+![image-20241211093643015](./assets/image-20241211093643015.png)
+
+Nous supprimons notre VPC.
+
+![image-20241211093847114](./assets/image-20241211093847114.png)
+
+![image-20241211093850684](./assets/image-20241211093850684.png)
+
+# Rendu - TP09
+
+Compte rendu du TP09 effectué par `Thomas PEUGNET`.
+
+Nous créons un Rôle `EC2RoleforSSM`.
+
+![image-20241211094826833](./assets/image-20241211094826833.png)
+
+Nous créons notre instance `EC2 Linux Thomas Inspector`.
+
+![image-20241211095215556](./assets/image-20241211095215556.png)
+
+Nous vérifions notre règle.
+
+![image-20241211095134120](./assets/image-20241211095134120.png)
+
+Nous activons Inspector.
+
+![image-20241211095322518](./assets/image-20241211095322518.png)
+
+Nous activons l'inpsctor sur notre account management.
+
+![image-20241211095622037](./assets/image-20241211095622037.png)
+
+Nous constatons qu'AWS inspector a terminé de scanner notre instance.
+
+![image-20241211095743254](./assets/image-20241211095743254.png)
+
+Nous avons visiblement quelques failles, probablement dues à des mises à jour non effectuées pour le moment.
+
+![image-20241211095838396](./assets/image-20241211095838396.png)
+
+Nous configurons en Quick Setup notre Systems Manager.
+
+![image-20241211100311698](./assets/image-20241211100311698.png)
+
+Nous démarrons une session sur notre instance.
+
+![image-20241211100403274](./assets/image-20241211100403274.png)
+
+Nous constatons que l'adresse est bien celle de notre instance.
+
+![image-20241211100443613](./assets/image-20241211100443613.png)
+
+Nous exécutons Patch Manager sur notre instance.
+
+![image-20241211100657223](./assets/image-20241211100657223.png)
+
+Nous créons notre Security Group `allow-http-ftp`.
+
+![image-20241211100820445](./assets/image-20241211100820445.png)
+
+Nous ajoutons ce security group à notre instance.
+
+![image-20241211100908910](./assets/image-20241211100908910.png)
+
+Nous constatons en effet, lors du scan de notre instance, que nous avons une vulnérabilité sur le port 80.
+
+![image-20241211101329787](./assets/image-20241211101329787.png)
+
+
+
+Nous supprimons notre configuration SSM.
+
+![image-20241211101524184](./assets/image-20241211101524184.png)
+
+Nous désactivons AWS Inspector.
+
+![image-20241211101631578](./assets/image-20241211101631578.png)
+

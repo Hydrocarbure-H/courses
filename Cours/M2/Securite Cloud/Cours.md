@@ -990,7 +990,7 @@ Nous supprimons notre VPC.
 
 ![image-20241211093850684](./assets/image-20241211093850684.png)
 
-# Rendu - TP09
+# Rendu TP09
 
 Compte rendu du TP09 effectué par `Thomas PEUGNET`.
 

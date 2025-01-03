@@ -1060,3 +1060,448 @@ Nous désactivons AWS Inspector.
 
 ![image-20241211101631578](./assets/image-20241211101631578.png)
 
+# Projet
+
+Mise en place d'un server web Flask (Python) sur 2 instances EC2, faisant appels à une base de données PostgreSQL, se trouvant dans le subnet privé du VPC, protégées par un loadbalancer se trouvant dans le subnet public du VPC.
+
+Projet par `Vincent LAGOGUE`, `Tom THIOULOUSE`, `Alexis PLESSIAS`, `David TEJEDA` et `Thomas PEUGNET`.
+
+## Table des matières
+
+1. [Préparation](#préparation)  
+
+   - [Politique SLA](#politique-sla)  
+   - [Objectifs SLA, RPO et RTO](#objectifs-sla-rpo-et-rto)  
+   - [Diagramme d’Architecture](#diagramme-darchitecture)  
+   - [Politiques de sécurité](#politiques-de-sécurité)  
+   - [Surveillance et gestion des incidents](#surveillance-et-gestion-des-incidents)  
+   - [Tests de vulnérabilité et validation](#tests-de-vulnérabilité-et-validation)  
+
+2. [Réalisation](#réalisation)  
+
+   - [VPC](#vpc)  
+   - [EC2 & Loadbalancer](#ec2--loadbalancer)  
+   - [RDS](#rds)  
+   - [Configuration du backend Flask et PostgreSQL](#configuration-du-backend-flask-et-postgresql)  
+
+3. [Configurations Annexes](#configurations-annexes)  
+
+   - [Sauvegardes](#sauvegardes)  
+
+   - [Supervision](#supervision)  
+
+   - [Tests](#tests)  
+
+   - [Configurations annexes](#configurations-annexes)  
+
+   - [AWS Inspector](#aws-inspector)  
+
+4. [Améliorations](#améliorations)  
+
+   - [Réseau (VPC & Subnets)](#réseau-vpc--subnets)  
+   - [Instances EC2](#instances-ec2)  
+   - [Déploiement du code](#déploiement-du-code)  
+   - [Sécurité](#sécurité)  
+   - [Alarmes](#alarmes)  
+   - [IAM](#iam-1)  
+
+# Préparation
+
+##### Politique SLA
+
+- Objectif de disponibilité : 99,98 %.
+- Cela implique une architecture redondante avec :
+  - Un Load Balancer pour distribuer les requêtes.
+  - Deux zones de disponibilité (AZ) pour les instances EC2.
+  - Un système de basculement automatique en cas de panne.
+
+##### Objectifs SLA, RPO et RTO
+
+- SLA (Disponibilité) : 99,98 %.
+- RPO (Recovery Point Objective) : 5 minutes (données perdues max).
+- RTO (Recovery Time Objective) : 30 minutes (temps pour restaurer les services).
+
+##### Diagramme d’Architecture
+
+```mermaid
+graph TD
+    subgraph Public Subnet
+        ALB[Application Load Balancer]
+        IGW[Internet Gateway]
+        Bastion[Instance de rebond]
+    end
+    
+    subgraph Private Subnet 1
+        EC2A[EC2 Instance A]
+        EC2B[EC2 Instance B]
+        NAT[NAT Gateway]
+        RDS1[Amazon RDS]
+    end
+
+    subgraph Private Subnet 2
+        RDS2[Amazon RDS]
+    end
+
+    subgraph IAM
+        RoleEC2[ec2-backend-role]
+        UserDev[web-developper-user1]
+    end
+
+    ALB -->|Forward Requests| EC2A
+    ALB -->|Forward Requests| EC2B
+    EC2A -->|Database Queries| RDS1
+    EC2B -->|Database Queries| RDS1
+    EC2A -->|Database Queries| RDS2
+    EC2B -->|Database Queries| RDS2
+    EC2A -->|Internet Access| NAT
+    EC2B -->|Internet Access| NAT
+    NAT -->|Outbound Traffic| IGW
+    Bastion -->|SSH Access| EC2A
+    Bastion -->|SSH Access| EC2B
+    RoleEC2 -->|Attached to| EC2A
+    RoleEC2 -->|Attached to| EC2B
+    UserDev -->|AWS CLI Access| RoleEC2
+
+```
+
+*Affichage en PNG ci-dessous si le code Mermaid n'est pas interprété.*
+
+![diagram](./assets/diagram2.png)
+
+##### Politiques de sécurité
+
+- IAM :
+  - Rôles et politiques restreints pour les instances EC2 (accès S3 minimal).
+  - Rôle spécifique pour les instances EC2 (`ec2-backend-role`) permettant la gestion via AWS Systems Manager.
+  - Accès sécurisé à RDS pour les administrateurs uniquement, avec des permissions limitées via des Security Groups.
+- Security Groups :
+  - ALB : Autorise uniquement les connexions entrantes sur HTTP (port 80) depuis `0.0.0.0/0`.
+  - EC2 : Accepte les connexions uniquement depuis le ALB via son Security Group (`nlb-sg`).
+  - RDS :
+    - Accepte les connexions uniquement depuis les instances EC2 via leur Security Group (`ec2-sg`).
+    - Appliqué à toutes les sous-routes privées hébergeant RDS (Private Subnet 1 et Private Subnet 2).
+  - Instance de rebond (Rebond) :
+    - Accepte les connexions entrantes uniquement sur SSH (port 22).
+    - Accès SSH aux instances EC2 privées (`app-instance-1` et `app-instance-2`) via leurs Security Groups.
+
+##### Surveillance et gestion des incidents
+
+- AWS CloudWatch : Collecte des métriques système et configuration d'alertes pour détecter les indisponibilités.
+- AWS CloudTrail : Suivi des journaux d’activité pour détecter des anomalies.
+
+##### Tests de vulnérabilité et validation
+
+- AWS Inspector : Analyse des failles de sécurité sur les instances EC2.
+- Validation des objectifs SLA, RPO et RTO :
+  - Simulation de panne sur une zone de disponibilité pour vérifier le basculement automatique.
+  - Test de restauration des données depuis les snapshots RDS pour valider le RPO.
+
+# Réalisation
+
+#### VPC
+
+Nous configurons un environnement réseau dans le VPC `thomas-vpc` avec les éléments suivants :
+
+- Subnets : `public-subnet` pour les ressources accessibles depuis Internet et `private-subnet` pour les ressources sécurisées.
+- Route Tables :
+  - `public-route-table`, associée à `thomas-igw` (Internet Gateway), permet un accès Internet au sous-réseau public.
+  - `private-route-table`, associée à `nat-gateway`, garantit un accès sortant sécurisé au sous-réseau privé.
+- Passerelles :
+  - `thomas-igw` pour l'accès Internet depuis le public-subnet.
+  - `nat-gateway` pour l'accès sécurisé depuis le private-subnet.
+
+![image-20250103125502617](./assets/image-20250103125502617.png)
+
+#### EC2 & Loadbalancer
+
+Nous configurons deux instances EC2 (`app-instance-1` et `app-instance-2`) dans le private-subnet du VPC `thomas-vpc`, accessibles via un Network Load Balancer (`app-network-load-balancer`) situé dans le public-subnet. 
+
+- Le NLB utilise un Target Group (`nlb-target-group`) pour distribuer le trafic TCP (port 80) vers les instances privées. 
+
+-  `nlb-sg` autorise les connexions entrantes sur le NLB depuis l’extérieur, et `ec2-sg` restreint le trafic des instances à celui provenant du NLB uniquement.
+
+![Instance 1](./assets/image-20250102223946829.png)
+
+![Instance 2](./assets/image-20250102223957734.png)
+
+![NLB SG](./assets/image-20250102224108184.png)
+
+![EC2 SG](./assets/image-20250102224159369.png)
+
+![NLB TG](./assets/image-20250102224251112.png)
+
+![Network Load Balancer](./assets/image-20250102224404674.png)
+
+#### RDS
+
+Nous configurons une base de données RDS PostgreSQL (`app-database`) dans le VPC `thomas-vpc`, utilisant un DB Subnet Group couvrant les sous-réseaux privés (`private-subnet` et `private-subnet-2`, ce dernier ayant été créé pour respecter les contraintes d'AWS, la database ne doit pas être accessible depuis seulement une seule AZ). 
+
+Le Security Group de RDS (`rds-sg`) ayant été automatiquement créé est ajusté : toute règle autorisant une IP publique est supprimée, et une règle autorisant les connexions depuis les instances EC2 via leur Security Group (`ec2-sg`) est ajoutée. La base de données est isolée et uniquement accessible depuis les ressources internes du VPC.
+
+![RDS Subnet Group](./assets/image-20250102231850418.png)
+
+![RDS Database](./assets/image-20250102231825769.png)
+
+![RDS SG](./assets/image-20250102231541660.png)
+
+#### Configuration du backend Flask et PostgreSQL
+
+Nous avons créé une nouvelle instance EC2 pour faire rebond et permettre l'accès aux instances dans le `private-subnet`. Cette instance est nommée `public-instance`.
+
+![image-20250103000801033](./assets/image-20250103000801033.png)
+
+Installation des dépendances sur les 2 instances EC2 dans le subnet privé :
+
+- Mise à jour des paquets et installation de Python 3, `pip`, et des bibliothèques nécessaires (`flask`, `psycopg2-binary`).
+- Installation des outils PostgreSQL (`postgresql16`) pour interagir avec la base RDS.
+
+Configuration de l’application Flask :
+
+- Création d’un fichier `app.py` pour implémenter un serveur web minimal et établir une connexion avec la base de données RDS PostgreSQL.
+- Ajout d’une route principale (`/`) pour vérifier que l’application tourne et d’une route (`/data`) pour tester les interactions avec la base de données.
+
+Gestion des variables d’environnement :
+
+- Configuration d’un fichier `.env` contenant les informations sensibles comme l’endpoint RDS, le nom de la base, l’utilisateur, et le mot de passe.
+- Chargement des variables d’environnement dans l’environnement d’exécution Flask.
+
+Le code Python est le suivant.
+
+```python
+from flask import Flask, jsonify
+import psycopg2
+import os
+
+app = Flask(__name__)
+
+DB_HOST = os.getenv("DB_HOST")
+DB_NAME = os.getenv("DB_NAME")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+
+def get_db_connection():
+    try:
+        conn = psycopg2.connect(
+            host=DB_HOST,
+            database=DB_NAME,
+            user=DB_USER,
+            password=DB_PASSWORD
+        )
+        return conn
+    except Exception as e:
+        print(f"Connection to the database failed : {e}")
+        return None
+
+@app.route("/")
+def home():
+    return "Flask App is running!"
+
+@app.route("/data")
+def fetch_data():
+    conn = get_db_connection()
+    if conn is None:
+        return jsonify({"error": "Connection to the database failed"}), 500
+    
+    cur = conn.cursor()
+    cur.execute("SELECT NOW();")
+    result = cur.fetchone()
+    cur.close()
+    conn.close()
+    return jsonify({"current_time": result[0]})
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=80)
+```
+
+Lancement de Flask :
+
+- Exécution de l’application Flask sur le port 80 avec le paramètre `host="0.0.0.0"` pour permettre l’accès depuis d’autres machines dans le réseau.
+
+![image-20250103000839040](./assets/image-20250103000839040.png)
+
+Toutes les commandes qui auront été tapées pour installer correctement PostgreSQL, les bonnes dépendances, tester l'installation et lancer l'application se trouvent ci-dessous.
+
+```shell
+vim app.py
+sudo yum install python3-pip
+sudo yum install -y python3-devel gcc postgresql-devel
+sudo pip3 install psycopg2 flask
+python3 -c "import psycopg2; print(psycopg2.__version__)"
+sudo yum install -y postgresql16
+psql -h app-database.cps2aaq6etbj.eu-west-3.rds.amazonaws.com -U postgres -d postgres
+sudo python3 app.py
+vim app.py
+sudo python3 app.py
+```
+
+Tests locaux sur les instances :
+
+- Vérification que l’application répond correctement aux requêtes en accédant directement depuis l'instance elle-même (`127.0.0.1:80`).
+
+![image-20250103000255408](./assets/image-20250103000255408.png)
+
+Configuration de la connectivité publique :
+
+- Intégration des instances EC2 dans un Target Group associé au Network Load Balancer.
+- Vérification des règles des Security Groups :
+  - Le Load Balancer autorise le trafic HTTP (port 80) depuis `0.0.0.0/0`.
+  - Les instances EC2 autorisent uniquement le trafic HTTP provenant du Security Group du Load Balancer.
+
+Test final via le Load Balancer :
+
+- Accès public à l’application via l’adresse DNS du Load Balancer.
+- Validation des routes Flask (`/` et `/data`) pour confirmer que l’application et la base de données fonctionnent correctement.
+
+Sur `http://app-network-load-balancer-ee9867e767f894f8.elb.eu-west-3.amazonaws.com/` :
+
+![image-20250103000406420](./assets/image-20250103000406420.png)
+
+Sur `http://app-network-load-balancer-ee9867e767f894f8.elb.eu-west-3.amazonaws.com/data` :
+
+![image-20250103000342677](./assets/image-20250103000342677.png)
+
+En rafraîchissant plusieurs fois la page, nous constatons une alternance entre les différentes instances touchées.
+
+![image-20250103001857315](./assets/image-20250103001857315.png)
+
+![image-20250103001906689](./assets/image-20250103001906689.png)
+
+# Configurations Annexes
+
+#### Sauvegardes
+
+Nous configurons les sauvegardes automatiques pour notre base de données et nous sauvegardons nos images AMIs.
+
+Note: Nous considérons ici, bien que ce soit le sujet d'une amélioration future, que le code de l'application Flask est déployé via une pipeline CI/CD. Il n'est donc nécessaire de faire une sauvegarde de notre instance que pour en accélérer le déploiement, et non, à terme, pour en sauvegarder le code.
+
+![image-20250103002215868](./assets/image-20250103002215868.png)
+
+![image-20250103093322234](./assets/image-20250103093322234.png)
+
+#### Supervision
+
+Nous configurons la supervision de RDS avec CloudWatch et créons des alarmes pour le CPU de nos instances de serveurs web et de base de données.
+
+Nous constatons que nos logs sont bien visibles depuis CloudWatch.
+
+![image-20250103002622237](./assets/image-20250103002622237.png)
+
+![image-20250103105522284](./assets/image-20250103105522284.png)
+
+![image-20250103113219970](./assets/image-20250103113219970.png)
+
+Note: L'alarme ci-dessus (freespace) a été en status `in Alarm` car nous nous sommes trompés dans le threshold, nous avions indiqué que la notification devait partir si l'espace disponible était supérieur (et non inférieur) à 5.000.000.000 bytes (5GB). Cela a été corrigé, d'où le statut de l'alarme mis à jour en `OK`.
+
+En résumé, nous avons créé les alarmes suivantes:
+
+Alarme CPU pour EC2 (2 alarmes) :
+
+- Instances `app-instance-1` et `app-instance-2` : Déclenchées lorsque l’utilisation CPU dépasse 80 % pendant une période prolongée. Elles servent à détecter une surcharge de traitement sur les instances.
+
+Alarme sur les connexions actives pour RDS :
+
+- Déclenchée lorsque le nombre de connexions simultanées à la base de données dépasse un seuil défini à 20 connexions. Elle permet de surveiller les pics de trafic ou de charge sur la base.
+
+Alarme sur l’espace disque disponible pour RDS :
+
+- Déclenchée lorsque l’espace disque disponible sur la base de données descend en dessous de 5GB. Elle sert à prévenir une saturation du stockage.
+
+#### Tests
+
+Nous testons l'accès à notre application via un navigateur web.
+
+Cela semble bien fonctionner pour la route `/` en utilisant le nom DNS de notre loadbalancer.
+
+![image-20250103110955316](./assets/image-20250103110955316.png)
+
+Il en est de même pour la route `/data`.
+
+![image-20250103111028286](./assets/image-20250103111028286.png)
+
+Nous testons les sauvegardes, en vérifiant que les images AMIs ont bien été créés à notre demande.
+
+![image-20250103111131065](./assets/image-20250103111131065.png)
+
+Nous testons la résilience en éteignant une instance et en vérifiant que celle toujours up est bien utilisée pour servir notre application.
+
+Nous constatons que seule la première instance du serveur Flask est utilisée pour répondre, cela fonctionne donc correctement.
+
+![image-20250103111715720](./assets/image-20250103111715720.png)
+
+Nous testons l'une de nos alarmes (la plus rapide à mettre en place) pour valider la bonne réception des notification par mail.
+
+Après avoir fait notre erreur de threshold sur l'espace disponible sur la base de données, nous avons rapidement reçu le mail suivant. Les notifications semblent donc fonctionner correctement.
+
+![image-20250103110751351](./assets/image-20250103110751351.png)
+
+Nous utilisons le package `stress` pour faire un stress test des instances. Nous pouvons constater au niveau du monitoring que les graphs sont tout à fait cohérents.
+
+![image-20250103114702916](./assets/image-20250103114702916.png)
+
+Nous utilisons la commande `stress --cpu 1 --timeout 10000`.
+
+Les alarmes de CPU ne sont pas encore prêtes à être utilisées par manque de temps (elles demeurent en statut `Insuficien Data`), mais fonctionneront de façon similaire à l'alerte Freespace éprouvée juste auparavant.
+
+#### IAM
+
+Nous créons un rôle `ec2-backend-role` avec la permission AmazonSSMManagedInstanceCore pour gérer les instances EC2 dans le subnet privé via Systems Manager. 
+
+Nous créons ensuite l’utilisateur `web-developper-user1` et le groupe `web-developper-group`, auquel nous attachons également la permission AmazonSSMManagedInstanceCore. 
+
+L’utilisateur est ajouté au groupe et une clé d’accès est générée pour des connexions AWS CLI.
+
+Nous associons nos instances EC2 contenant l'application Flask à notre rôle `ec2-backend-role`. Nous avons testé la connexion via un autre utilisateur et cela fonctionne parfaitement.
+
+![Instance 1 linked to ec2backendrole](./assets/image-20250103122359982.png)
+
+![Web Developper User 1 Groups](./assets/image-20250103122709717.png)
+
+![Web Developper Group Permissions](./assets/image-20250103122720932.png)
+
+#### AWS Inspector
+
+Nous activons AWS Inspector pour analyser les vulnérabilités de nos ressources.
+
+Nous obtenons le résultat suivant, tout à fait cohérent avec la structure de notre VPC.
+
+![image-20250103115719415](./assets/image-20250103115719415.png)
+
+Nos 2 instances dans notre subnet privé sont bel et bien accessibles en HTTP via le Loadbalancer sur le port 80. Notre instance dans notre subnet public (servant de rebond) est bien exposée publiquement sur le port 22.
+
+# Améliorations 
+
+###### Réseau (VPC & Subnets)
+
+- Supprimer l’accès public direct à l'instance de rebond sur le port 22 (Systems Manager Session Manager)
+
+- Utiliser un WAF (Web Application Firewall) pour protéger l'application Flask
+
+###### Instances EC2
+
+- Éliminer l’utilisation directe de clés SSH (utiliser AWS Systems Manager)
+
+- Configurer des snapshots automatiques et réguliers via un Lifecycle Manager pour les volumes attachés aux instances.
+
+###### Déploiement du code
+
+- Mise en place d’une CI/CD avec GitHub Actions (ou équivalent GitLab) pour le déploiement de l'application Flask
+
+- Passer l'application Flask à une image Docker et utiliser un registry (EKS par exemple)
+
+###### Sécurité
+
+- Automatiser les mises à jour logicielles des instances EC2 (AWS Systems Manager Patch Manager)
+
+- Centraliser les logs avec AWS CloudWatch Logs Insights pour analyser les comportements considérés comme anormaux
+
+###### Alarmes
+
+- Ajouter d'autres alarmes pour surveiller encore davantage la santé des instances et des applications :
+  - Memory Utilization
+  - HTTP 4xx/5xx sur le Load Balancer
+
+###### IAM
+
+- Granularité des permissions : Créer des rôles spécifiques pour chaque type d’instance ou service. Dans notre cas, un rôle pour la gestion de base de données pourrait être fort intéressant.
+- Surveillance des accès : Mettre en place des alertes via CloudWatch et AWS CloudTrail pour détecter les accès considérés comme anormaux ou non autorisés.
+- Multi-Factor Authentication (MFA) : Activer le MFA pour tous les utilisateurs IAM ayant accès à des ressources critiques.

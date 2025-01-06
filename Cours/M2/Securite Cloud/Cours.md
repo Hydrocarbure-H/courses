@@ -1076,14 +1076,12 @@ Projet par `Vincent LAGOGUE`, `Tom THIOULOUSE`, `Alexis PLESSIAS`, `David TEJEDA
    - [Politiques de sécurité](#politiques-de-sécurité)  
    - [Surveillance et gestion des incidents](#surveillance-et-gestion-des-incidents)  
    - [Tests de vulnérabilité et validation](#tests-de-vulnérabilité-et-validation)  
-
 2. [Réalisation](#réalisation)  
 
    - [VPC](#vpc)  
    - [EC2 & Loadbalancer](#ec2--loadbalancer)  
    - [RDS](#rds)  
    - [Configuration du backend Flask et PostgreSQL](#configuration-du-backend-flask-et-postgresql)  
-
 3. [Configurations Annexes](#configurations-annexes)  
 
    - [Sauvegardes](#sauvegardes)  
@@ -1095,15 +1093,14 @@ Projet par `Vincent LAGOGUE`, `Tom THIOULOUSE`, `Alexis PLESSIAS`, `David TEJEDA
    - [Configurations annexes](#configurations-annexes)  
 
    - [AWS Inspector](#aws-inspector)  
-
 4. [Améliorations](#améliorations)  
-
    - [Réseau (VPC & Subnets)](#réseau-vpc--subnets)  
    - [Instances EC2](#instances-ec2)  
    - [Déploiement du code](#déploiement-du-code)  
    - [Sécurité](#sécurité)  
    - [Alarmes](#alarmes)  
    - [IAM](#iam-1)  
+5. [Suppression](#suppression)  
 
 # Préparation
 
@@ -1218,7 +1215,7 @@ Nous configurons deux instances EC2 (`app-instance-1` et `app-instance-2`) dans 
 
 - Le NLB utilise un Target Group (`nlb-target-group`) pour distribuer le trafic TCP (port 80) vers les instances privées. 
 
--  `nlb-sg` autorise les connexions entrantes sur le NLB depuis l’extérieur, et `ec2-sg` restreint le trafic des instances à celui provenant du NLB uniquement.
+- `nlb-sg` autorise les connexions entrantes sur le NLB depuis l’extérieur, et `ec2-sg` restreint le trafic des instances à celui provenant du NLB uniquement.
 
 ![Instance 1](./assets/image-20250102223946829.png)
 
@@ -1505,3 +1502,19 @@ Nos 2 instances dans notre subnet privé sont bel et bien accessibles en HTTP vi
 - Granularité des permissions : Créer des rôles spécifiques pour chaque type d’instance ou service. Dans notre cas, un rôle pour la gestion de base de données pourrait être fort intéressant.
 - Surveillance des accès : Mettre en place des alertes via CloudWatch et AWS CloudTrail pour détecter les accès considérés comme anormaux ou non autorisés.
 - Multi-Factor Authentication (MFA) : Activer le MFA pour tous les utilisateurs IAM ayant accès à des ressources critiques.
+
+# Suppression
+
+Nous procédons à la suppression des ressources dans l'ordre suivant :
+
+1. Nous supprimons les alarmes pour les métriques des instances EC2 et de la base de données RDS.
+2. Nous supprimons les sauvegardes, y compris les snapshots RDS et les AMIs EC2.
+3. Nous supprimons la base de données RDS et le DB Subnet Group associé.
+4. Nous supprimons le Network Load Balancer et le Target Group.
+5. Nous terminons les instances EC2, incluant celles du subnet privé et l’instance de rebond.
+6. Nous supprimons les Security Groups créés pour RDS, EC2, et le Load Balancer.
+7. Nous supprimons la NAT Gateway et libérons l’Elastic IP associée.
+8. Nous supprimons le VPC et toutes ses ressources associées (Internet Gateway, subnets, tables de routage).
+9. Nous supprimons les rôles, groupes, et utilisateurs IAM créés pour le projet.
+10. Nous utilisons AWS Resource Groups Tag Editor pour identifier et supprimer toute ressource résiduelle non détectée.
+

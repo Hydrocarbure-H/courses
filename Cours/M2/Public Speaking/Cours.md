@@ -78,14 +78,17 @@ You should use the following bullet points for your notecards:
 
 #### **I. Introduction**
 
-- **Hook:**
-   Imagine a world where your hard work, late nights, and exam stress are rewarded not just with grades but with cash in your pocket.
-- **Context/Background:**
-   Education is an investment in the future, and EFREI already emphasizes academic excellence. Monetary rewards could take this motivation to the next level.
-- **Establish Credibility:**
-   As an EFREI student, I understand the challenges we face and the effort we put into maintaining high academic standards.
-- **Thesis:**
-   EFREI should reward students for good grades because it will boost motivation, improve performance, and prepare students for the realities of a results-driven world.
+Hook:
+ Imagine a world where your hard work, late nights, and exam stress are rewarded not just with grades but with cash in your pocket.
+
+Context/Background:
+ Education is an investment in the future, and EFREI already emphasizes academic excellence. Monetary rewards could take this motivation to the next level.
+
+Establish Credibility**:**
+ As an EFREI student, I understand the challenges we face and the effort we put into maintaining high academic standards.
+
+Thesis:
+ EFREI should reward students for good grades because it will boost motivation, improve performance, and prepare students for the realities of a results-driven world.
 
 #### **II. Main Point #1: Boosting Motivation**
 

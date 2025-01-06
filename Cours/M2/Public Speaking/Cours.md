@@ -4,7 +4,7 @@ Notes de cours par `Thomas PEUGNET`.
 
 ### Speech Outline
 
-Fully GPT-generated, I completely assume that.
+Fully GPT-generated, I completely assume that. That all the energy (greatest thing I can say according to the subject of my speech) I can allow to a course which is only dedicated to discussion.
 
 #### **I. Introduction**
 

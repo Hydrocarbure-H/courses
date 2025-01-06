@@ -4,7 +4,7 @@ Notes de cours par `Thomas PEUGNET`.
 
 ### Speech Outline
 
-Fully GPT-generated, I completely assume that. That all the energy (greatest thing I can say according to the subject of my speech) I can allow to a course which is only dedicated to discussion.
+Fully GPT-generated, I completely assume that. That all the energy (greatest thing I can say according to the subject of my speech) I can allow to a course which is only dedicated to discussion and nothing else.
 
 #### **I. Introduction**
 
@@ -68,3 +68,49 @@ You should use the following bullet points for your notecards:
 - **Conclusion:**
   - Restate thesis: Reliable, low-carbon, scalable.
   - Call to action: Governments and citizens must embrace nuclear energy.
+
+## Second Speech (in-class)
+
+### Persuasive Speech Outline
+
+**Topic:** Should EFREI pay its students for good grades?
+ **Stance:** EFREI should reward students with monetary incentives for good grades.
+
+#### **I. Introduction**
+
+- **Hook:**
+   Imagine a world where your hard work, late nights, and exam stress are rewarded not just with grades but with cash in your pocket.
+- **Context/Background:**
+   Education is an investment in the future, and EFREI already emphasizes academic excellence. Monetary rewards could take this motivation to the next level.
+- **Establish Credibility:**
+   As an EFREI student, I understand the challenges we face and the effort we put into maintaining high academic standards.
+- **Thesis:**
+   EFREI should reward students for good grades because it will boost motivation, improve performance, and prepare students for the realities of a results-driven world.
+
+#### **II. Main Point #1: Boosting Motivation**
+
+- **Example:**
+   Research shows that monetary incentives significantly enhance performance and focus. According to a study in *Psychological Science*, students perform better when tangible rewards are at stake.
+- **Example:**
+   Many universities abroad already offer scholarships and financial perks, proving this approach works in fostering academic drive.
+
+#### **III. Main Point #2: Improved Performance and Reputation**
+
+- **Example:**
+   Financial rewards would encourage students to push harder, leading to higher GPAs across the board. A stronger student body means better rankings for EFREI.
+- **Example:**
+   Universities like Stanford and MIT use various incentives, attracting top-tier talent and elevating their global reputation. EFREI can follow suit.
+
+#### **IV. Main Point #3: Counterargument and Rebuttal**
+
+- **Counterargument:**
+   Critics may argue that monetary rewards could create unhealthy competition or devalue intrinsic motivation.
+- **Rebuttal:**
+   Grades are already competitive, and rewards would recognize effort rather than replace passion for learning. Moreover, students in the real world are often rewarded financially for their achievements—why not prepare them for this reality?
+
+#### **V. Conclusion**
+
+- **Restate Points:**
+   Paying students for good grades boosts motivation, enhances performance, and aligns education with real-world incentives.
+- **Call to Action:**
+   EFREI should implement a reward system to encourage students to strive for excellence. Together, we can create a culture of achievement and recognition.

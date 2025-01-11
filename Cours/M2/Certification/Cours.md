@@ -632,3 +632,78 @@ Which of the following allows attackers to draw a map or outline the target orga
 
 ---
 
+Your company was hired by a small healthcare provider to perform a technical assessment on the network. What is the best approach for discovering vulnerabilities on a Windows-based computer?
+
+- A. Use the built-in Windows Update tool
+- **B. Use a scan tool like Nessus**
+- C. Check MITRE.org for the latest list of CVE findings
+- D. Create a disk image of a clean Windows installation
+
+---
+
+Susan, a software developer, wants her web API to update other applications with the latest information. For this purpose, she uses a user-defined HTTP callback or push APIs that are raised based on trigger events; when invoked, this feature supplies data to other applications so that users can instantly receive real-time information.
+Which of the following techniques is employed by Susan?
+
+- A. Web shells
+- **B. Webhooks**
+- C. REST API
+- D. SOAP API
+
+---
+
+Which IOS jailbreaking technique patches the kernel during the device boot so that it becomes jailbroken after each successive reboot?
+
+- A. Tethered jailbreaking
+- B. Semi-untethered jailbreaking
+- C. Semi-tethered jailbreaking
+- **D. Untethered jailbreaking**
+
+---
+
+Stella, a professional hacker, performs an attack on web services by exploiting a vulnerability that provides additional routing information in the SOAP header to support asynchronous communication. This further allows the transmission of web-service requests and response messages using different TCP connections.
+Which of the following attack techniques is used by Stella to compromise the web services?
+
+- A. Web services parsing attacks
+- **B. WS-Address spoofing**
+- C. SOAPAction spoofing
+- D. XML injection
+
+---
+
+Attacker Steve targeted an organization’s network with the aim of redirecting the company’s web traffic to another malicious website. To achieve this goal, Steve performed DNS cache poisoning by exploiting the vulnerabilities in the DNS server software and modified the original IP address of the target website to that of a fake website.
+What is the technique employed by Steve to gather information for identity theft?
+
+- **A. Pharming**
+- B. Skimming
+- C. Pretexting
+- D. Wardriving
+
+---
+
+What is the port to block first in case you are suspicious that an IoT device has been compromised?
+
+- A. 22
+- **B. 48101**
+- C. 80
+- D. 443
+
+---
+
+Clark is a professional hacker. He created and configured multiple domains pointing to the same host to switch quickly between the domains and avoid detection. Identify the behavior of the adversary in the above scenario.
+
+- **A. Unspecified proxy activities**
+- B. Use of command-line interface
+- C. Data staging
+- D. Use of DNS tunneling
+
+---
+
+What firewall evasion scanning technique make use of a zombie system that has low network activity as well as its fragment identification numbers?
+
+- A. Packet fragmentation scanning
+- B. Spoof source address scanning
+- C. Decoy scanning
+- **D. Idle scanning**
+
+---
+

@@ -79,41 +79,81 @@ You should use the following bullet points for your notecards:
 #### **I. Introduction**
 
 Hook:
- Imagine a world where your hard work, late nights, and exam stress are rewarded not just with grades but with cash in your pocket.
+ Imagine a world where your **hard work**, **late nights**, and exam stress are rewarded **not just with grades** but with cash in your pocket.
 
 Context/Background:
- Education is an investment in the future, and EFREI already emphasizes academic excellence. Monetary rewards could take this motivation to the next level.
+ Education is an **investment** in the future, and EFREI already **push to academic excellence**. So we could think that monetize great grades could push it to the **next level**.
 
 Establish Credibility**:**
- As an EFREI student, I understand the challenges we face and the effort we put into maintaining high academic standards.
+ As an EFREI **student**, I understand every **challenges** we face and the effort we have to do to **maintain academic stdandards level.**
 
 Thesis:
- EFREI should reward students for good grades because it will boost motivation, improve performance, and prepare students for the realities of a results-driven world.
+ EFREI should reward students for good grades because it **will boost motivation**, improve **performance**, and prepare students for the world that we know, **a results-driven world.**
 
 #### **II. Main Point #1: Boosting Motivation**
 
 - **Example:**
    Research shows that monetary incentives significantly enhance performance and focus. According to a study in *Psychological Science*, students perform better when tangible rewards are at stake.
 - **Example:**
-   Many universities abroad already offer scholarships and financial perks, proving this approach works in fostering academic drive.
+   **Many universities** abroad already **offer scholarships and financial perks**, proving this approach works in fostering academic drive.
 
 #### **III. Main Point #2: Improved Performance and Reputation**
 
 - **Example:**
-   Financial rewards would encourage students to push harder, leading to higher GPAs across the board. A stronger student body means better rankings for EFREI.
+   Financial rewards would **encourage** students to **work harder**, that would lead to **higher scores** across the board. A stronger student head means a better **rankings for EFREI**, and much **more cash in your personal wallet.**
 - **Example:**
-   Universities like Stanford and MIT use various incentives, attracting top-tier talent and elevating their global reputation. EFREI can follow suit.
+   Universities like **Stanford and MIT** use various methods that are not **much far away**, and they are **attracting top-tier** talent and elevating their global reputation. EFREI can follow suit.
 
 #### **IV. Main Point #3: Counterargument and Rebuttal**
 
 - **Counterargument:**
-   Critics may argue that monetary rewards could create unhealthy competition or devalue intrinsic motivation.
+   We could also think that monetary rewards could create **unhealthy** **competition** or devalue the "learning for me" motivation.
 - **Rebuttal:**
-   Grades are already competitive, and rewards would recognize effort rather than replace passion for learning. Moreover, students in the real world are often rewarded financially for their achievements—why not prepare them for this reality?
+   **Grades are already competitive**, and rewards would **recognize** **effort** instead of replace the passion for learning. Another point is that these students **will become men and women** in the real world, and they are rewarded financially for their achievements—why not prepare them for this reality sonner than today ?
 
 #### **V. Conclusion**
 
 - **Restate Points:**
-   Paying students for good grades boosts motivation, enhances performance, and aligns education with real-world incentives.
+   Paying students for good grades boosts motivation, enhances performance, and aligns education to the real-world.
 - **Call to Action:**
-   EFREI should implement a reward system to encourage students to strive for excellence. Together, we can create a culture of achievement and recognition.
+   E**FREI should implement a reward system** to encourage students **to go for excellence**. Together, we can create a culture of **achievement** and **recognition**. Thank you.
+
+### Short Note Cards for Speech
+
+------
+
+#### **Card 1: Introduction**
+
+- **Hook:** Hard work + grades = cash in your pocket.
+- **Context:** Education = future investment. Monetizing good grades pushes excellence further.
+- **Credibility:** I’m an EFREI student; I know the challenges we face.
+- **Thesis:** Rewards = boost motivation, improve performance, prepare for a results-driven world.
+
+------
+
+#### **Card 2: Main Point #1 - Boosting Motivation**
+
+- **Example 1:** Research (*Psychological Science*) – Tangible rewards improve focus + performance.
+- **Example 2:** Other universities offer financial perks. Proven to foster academic drive.
+
+------
+
+#### **Card 3: Main Point #2 - Improved Performance & Reputation**
+
+- **Example 1:** Rewards = harder work → higher GPAs → better EFREI rankings + cash for students.
+- **Example 2:** Stanford/MIT models work. EFREI can follow and attract top talent.
+
+------
+
+#### **Card 4: Main Point #3 - Counterargument & Rebuttal**
+
+- **Counterargument:** Rewards = unhealthy competition, devalue “learning for me.”
+- **Rebuttal:** Grades already competitive. Rewards = recognize effort + prep for real-world incentives.
+
+------
+
+#### **Card 5: Conclusion**
+
+- **Restate:** Rewards = boost motivation, better performance, align with real-world success.
+- **Call to Action:** EFREI, create a reward system → culture of achievement and recognition.
+- **Close:** Thank you!

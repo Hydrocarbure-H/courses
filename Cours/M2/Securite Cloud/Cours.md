@@ -1,5 +1,278 @@
 # Sécurité Cloud
 
+# Cours basé sur les TPs
+
+Cours généré par Mistral à partir des TPs effectués par `Thomas Peugnet`.
+
+### Gestion des identités et des accès (IAM)
+
+La gestion des utilisateurs, des rôles et des politiques d’autorisations est un pilier essentiel sur AWS. Tous les TPs initiaux (TP01, TP02, TP03, TP06…) montrent différentes approches pour créer des utilisateurs, leur donner l’accès console, ajouter des permissions, configurer la MFA ou encore définir des politiques personnalisées.
+
+#### Utilisateurs et groupes
+
+- Création d’utilisateurs IAM : on peut leur attribuer un accès par console (login + mot de passe) et/ou un accès par clés d’API.
+- Groupes : ils facilitent la gestion de permissions communes. Associer un utilisateur à un groupe lui confère toutes les politiques IAM du groupe.
+
+#### Politiques IAM
+
+- Politiques gérées AWS : par exemple, `AmazonEC2ReadOnlyAccess` donne un accès en lecture seule au service EC2.
+
+- Politiques personnalisées : écrites en JSON, elles peuvent être attachées directement à un utilisateur, un groupe ou un rôle.
+
+- Exemples:
+
+   - `S3FullAccess` pour autoriser toutes les actions sur S3.
+- Politiques restreignant la création d’instances à la région `eu-west-3` ou au type `t2.micro`.
+
+#### Politiques basées sur des attributs (ABAC)
+
+- Permet de tagger un utilisateur (ex. `Department=EC2Admins`) et d’autoriser certaines actions uniquement si la ressource (EC2) porte aussi le tag correspondant (ex. `ec2:ResourceTag/Environment=Production`).
+- Avantage : échelle plus importante quand on gère de nombreux utilisateurs et ressources.
+
+#### Permissions Boundaries
+
+- Permettent d’imposer des limites maximales de permissions à un utilisateur ou un rôle IAM.
+- Empêchent l’octroi de droits excessifs, même si un administrateur IAM tente de s’accorder de nouvelles politiques.
+- Dans le TP03, on voit qu’on ne peut pas créer un utilisateur sans ce boundary, ni le retirer d’un utilisateur existant, si la politique l’interdit (ex. escalade de privilèges bloquée).
+
+#### Rôles IAM
+
+- Un rôle est un ensemble de permissions qu’une entité (utilisateur, service AWS, application) peut assumer.
+- Exemple : une instance EC2 assumant un rôle avec la politique `AmazonS3ReadOnlyAccess`. Ainsi, aucun besoin de clés d’accès stockées localement.
+- Possibilité de faire un “Switch Role” pour accéder à un autre compte ou un autre ensemble de permissions depuis la même console.
+
+### Sécurité du compte AWS
+
+Au-delà des permissions IAM, on a vu :
+
+- Activation de la MFA : protège le compte root, ou tout autre utilisateur, en demandant un code supplémentaire lors de la connexion.
+- Budgets & alertes : paramétrage d’alertes de dépassement budgétaire.
+- Facturation : on peut autoriser des utilisateurs IAM à consulter les informations de facturation (via la politique `Billing`).
+
+### Services de base : S3, EC2, etc.
+
+#### Amazon S3
+
+- Service de stockage d’objets.
+- Accessible via la console, la CLI ou des API.
+- Les TPs ont montré plusieurs tests d’accès : sans rôle, l’instance EC2 ne peut pas lister les buckets ; avec le rôle IAM correct, le `ls` sur S3 fonctionne.
+
+#### Amazon EC2
+
+- Permet de lancer des machines virtuelles (instances).
+- On peut choisir la région, le type (t2.micro, t2.small, etc.), le VPC, les subnets, les security groups, etc.
+- Les TPs illustrent comment associer un rôle IAM aux instances, démarrer/arrêter des instances, ou automatiser leur configuration via User Data (scripts de démarrage).
+
+### Mise en réseau (VPC, Subnets, Route Tables, IGW, Bastion/Jump Host)
+
+#### Création d’un VPC
+
+Un VPC (Virtual Private Cloud) est un réseau virtuel logiquement isolé dans AWS.
+
+- On définit la plage CIDR (ex. `10.0.0.0/16`).
+- On y crée des Subnets (publics, privés…) avec des CIDR plus petits (ex. `10.0.1.0/24`, `10.0.2.0/24`).
+
+#### Tables de routage
+
+- Route Table publique : route par défaut vers l’Internet Gateway (0.0.0.0/0 → IGW).
+- Route Table privée : pas de route vers l’Internet Gateway, éventuellement une route vers un NAT Gateway si on veut sortir vers Internet pour installer des paquets.
+
+#### Internet Gateway
+
+- Permet la connectivité entrante et sortante vers Internet.
+- Attachée au VPC, elle doit être référencée dans la table de routage publique.
+
+#### Accès SSH à une instance privée
+
+- On peut configurer une instance dans un subnet public (avec IP publique) jouant le rôle de bastion.
+- On transfère la clé SSH sur cette instance de rebond, puis on se connecte à l’instance privée (dans un subnet privé).
+
+### Sécurité au niveau VPC : Security Groups et NACL
+
+#### Security Groups
+
+- Fonctionnent comme des firewalls virtuels au niveau d’une instance.
+- Stateful : le retour de trafic est automatiquement autorisé.
+- On configure des règles inbound (ex. autoriser SSH depuis son IP publique) et outbound (par défaut autorisé).
+
+#### Network ACLs
+
+- Agissent au niveau des subnets.
+- Stateless : il faut autoriser explicitement l’aller ET le retour du trafic.
+- Permettent de gérer plus finement l’accès si nécessaire, mais sont plus complexes à maintenir (ordre, numérotation des règles).
+
+Les TPs illustrent comment un blocage ou une autorisation au niveau NACL peut fermer ou ouvrir l’accès HTTP, SSH, etc.
+
+### Auto Scaling et Load Balancing
+
+#### Auto Scaling Group (ASG)
+
+- Permet de définir des règles pour lancer/terminer automatiquement des instances en fonction d’indicateurs (CPU, nombre de requêtes, etc.).
+- Garantit la haute disponibilité et l’élasticité de l’application.
+- Les TPs montrent la création d’un ASG à partir d’un Launch Template incluant un script d’installation (Apache + page HTML).
+
+#### Elastic Load Balancing
+
+- Application Load Balancer (ALB) : fonctionne au niveau 7 (HTTP/HTTPS), peut diriger le trafic vers différents groupes cibles (Target Groups) en se basant sur le contenu de la requête.
+- Network Load Balancer (NLB) : fonctionne au niveau 4 (TCP), capable de gérer un gros volume de trafic très performant, moins d’options de routage que l’ALB.
+
+Dans le TP08, on crée deux Load Balancers (ALB et NLB) et on teste la répartition de charge sur plusieurs instances dans différentes zones de disponibilité.
+
+### Services de supervision et de maintenance : AWS Inspector et AWS Systems Manager
+
+#### AWS Inspector
+
+- Analyse automatisée de vulnérabilités et de conformité sur les instances EC2 (ou d’autres ressources).
+- Identifie des failles, packages obsolètes, ports exposés, etc.
+- Les TPs montrent des exemples de vulnérabilités détectées (par ex. port 80 ouvert, mises à jour non appliquées).
+
+#### AWS Systems Manager (SSM)
+
+- Permet la gestion et l’exécution de tâches sur les instances, sans devoir ouvrir SSH ni IP publique.
+- Session Manager : se connecter en « Remote Shell » via la console AWS.
+- Patch Manager : automatiser la mise à jour de sécurité des instances.
+
+### Conclusion et bonnes pratiques
+
+Au travers de ces 9 TPs, on a abordé :
+
+- La sécurisation des comptes AWS : MFA, budgets, alias, etc.
+- La gestion fine des identités et des permissions : IAM Users/Groups, ABAC, Permissions Boundaries, rôles pour EC2, Switch Role, etc.
+- Le déploiement et la configuration d’instances EC2 : subnets publics et privés, bascule via bastion, user data pour installer Apache, etc.
+- La mise en réseau avancée : VPC, tables de routage, security groups, network ACLs, Internet Gateway, etc.
+- La haute disponibilité et la scalabilité : utilisation d’Auto Scaling Group et de Load Balancers (ALB/NLB).
+- La conformité et la maintenance : AWS Inspector pour auditer les failles, AWS Systems Manager pour patcher et gérer les instances.
+
+# DE - Generated
+
+Ce DE a été généré par Mistral à partir de la description du partiel du professeur ainsi que des anciens DE de la matière.
+
+1. *(1 pt) Vous configurez un rôle IAM sur votre instance EC2 pour autoriser l’accès en lecture sur un bucket S3. Qu’est-ce qui permet d’éviter de stocker les clés d’accès directement sur la machine ?*
+    a. La politique “AmazonS3FullAccess” rattachée à l’utilisateur root
+    b. L’utilisation d’Instance Profile et de la métadonnée d’instance (STS)
+    c. Le fait de restreindre l’accès par Security Group
+    d. Les ACL S3 associées au bucket
+
+> Réponse : b
+
+1. *(1 pt) En plus d’un Security Group, vous configurez une Network ACL (NACL) pour un subnet. Quel est l’effet principal des NACL sur le trafic ?*
+    a. Elles sont stateful et vérifient automatiquement les flux de retour
+    b. Elles sont stateless et nécessitent des règles explicites pour l’aller et le retour
+    c. Elles forcent l’utilisation du Load Balancer
+    d. Elles remplacent totalement les Security Groups
+
+> Réponse : b
+
+1. *(1 pt) Quelle notion IAM décrit une limite maximale de permissions qu’un utilisateur ou un rôle ne peut pas dépasser, même en cas d’ajout de politiques ?*
+    a. La MFA (Multi-Factor Authentication)
+    b. Le Role trust policy
+    c. La Permissions Boundary
+    d. L’ABAC (Attribute-Based Access Control)
+
+> Réponse : c
+
+1. *(1 pt) Quel est l’avantage principal de configurer un ASG (Auto Scaling Group) couplé à un Load Balancer (ALB ou NLB) pour une application web ?*
+    a. Gérer automatiquement la montée/descente en charge et répartir le trafic sur plusieurs instances
+    b. Permettre aux utilisateurs d’accéder directement aux métadonnées d’instance
+    c. Bloquer toute tentative de connexion SSH
+    d. Garantir un usage unique de la région eu-west-3
+
+> Réponse : a
+
+1. *(1 pt) Lequel de ces composants n’est pas typiquement configuré dans un VPC public ?*
+    a. Internet Gateway
+    b. Route Table associée à 0.0.0.0/0 → IGW
+    c. NAT Gateway pour le trafic sortant des subnets privés
+    d. Instance Bastion accessible via IP publique
+
+> Réponse : c
+
+1. *(1 pt) L’ABAC (Attribute-Based Access Control) permet :*
+    a. D’accorder des permissions uniquement si les tags d’un utilisateur et d’une ressource correspondent
+    b. De gérer automatiquement tous les flux dans la NACL
+    c. De créer un fichier .aws/credentials pour chaque utilisateur
+    d. De forcer l’utilisation du protocole IPsec
+
+> Réponse : a
+
+1. *(1 pt) L’AWS Inspector sert principalement à :*
+    a. Scanner les buckets S3 pour en vérifier la présence ou l’absence de données chiffrées
+    b. Analyser les vulnérabilités et écarts de configuration sur des ressources EC2 (entre autres)
+    c. Automatiser le scaling d’un cluster EKS
+    d. Gérer la facturation et les alertes budgétaires
+
+> Réponse : b
+
+1. *(1 pt) Avec AWS Systems Manager (SSM), vous pouvez :*
+    a. Gérer des sessions SSH sur des instances EC2 sans ouvrir de port 22
+    b. Obtenir des alertes budgétaires
+    c. Gérer la console web IAM pour un utilisateur root
+    d. Configurer l’élasticité automatique d’un Load Balancer
+
+> Réponse : a
+
+1. *(1 pt) Lors de la création d’un Launch Template pour un ASG, où place-t-on le script d’installation de packages (ex. yum install httpd) ?*
+    a. Dans la User Data
+    b. Dans un Permissions Boundary
+    c. Dans la Role trust policy
+    d. Dans la NACL
+
+> Réponse : a
+
+1. *(1 pt) Quel est le bénéfice principal de définir la région eu-west-3 (Paris) comme seule région autorisée via une politique IAM ?*
+    a. Empêcher les utilisateurs IAM de lancer des instances hors de Paris
+    b. Permettre l’accès à un tarif unique pour toutes les régions
+    c. Forcer la création d’une NAT Gateway dans chaque AZ
+    d. Activer l’écriture automatique de logs CloudTrail
+
+> Réponse : a
+
+1. *(1 pt) En Haute Disponibilité, un Network Load Balancer (NLB) se distingue d’un Application Load Balancer (ALB) par :*
+    a. Sa gestion au niveau TCP/transport, au lieu de l’inspection HTTP de l’ALB
+    b. L’obligation d’utiliser un subnet privé
+    c. Sa compatibilité exclusive avec les conteneurs Docker
+    d. L’impossibilité de gérer des certificats TLS
+
+> Réponse : a
+
+1. *(1 pt) Lors de la configuration d’une politique IAM pour un utilisateur, le fait de sélectionner AmazonEC2ReadOnlyAccess :*
+    a. Donne la possibilité de démarrer et stopper des instances, mais pas de les supprimer
+    b. Permet seulement la consultation des ressources EC2 (descriptions des instances, volumes, snapshots, etc.)
+    c. Bloque tout trafic réseau depuis le VPC
+    d. Crée un rôle supplémentaire au niveau du système d’exploitation
+
+> Réponse : b
+
+**Partie 2 : Questions ouvertes (8 points au total)**
+ Vos réponses doivent être précises, concises et argumentées.
+
+1. *(3 points) Vous disposez de plusieurs instances EC2 dans un subnet privé, et vous devez tout de même exécuter des mises à jour (patchs système, etc.). Décrivez :*
+
+- Comment l’instance privée peut-elle accéder à Internet (principe d’architecture) ?
+- Quelles sont les mesures de sécurité à respecter pour garder l’infrastructure isolée, tout en autorisant les mises à jour ?
+
+Réponse :
+
+> L’instance privée peut accéder à Internet via une NAT Gateway placée dans un subnet public associé à une route par défaut vers l’Internet Gateway. On garde un subnet privé pour les instances afin qu’elles ne soient pas joignables en direct depuis l’extérieur. Les règles de sécurité impliquent de n’ouvrir que les flux sortants nécessaires vers la NAT Gateway, de limiter les règles inbound et de surveiller les logs (VPC Flow Logs ou autres).
+
+1. *(3 points) IAM et Permissions Boundaries : vous souhaitez qu’un administrateur IAM puisse créer des utilisateurs, mais sans pouvoir leur attribuer plus de permissions que celles d’un “développeur standard”.*
+
+- Expliquez comment les Permissions Boundaries fonctionnent pour empêcher une escalade de privilèges.
+- Donnez un exemple d’utilisation concrète dans un cas d’entreprise.
+
+Réponse :
+
+> Les Permissions Boundaries définissent la limite supérieure des autorisations qu’un utilisateur ou un rôle peut accorder. Même si l’administrateur IAM veut attribuer des droits plus élevés, il ne peut dépasser cette limite. Par exemple, dans une entreprise, on crée un boundary pour limiter les droits de création d’utilisateurs IAM à un ensemble de permissions basiques (lecture S3, lecture EC2) : l’administrateur gère l’onboarding, mais ne peut donner des droits admin complets.
+
+1. *(2 points) Un Load Balancer (ALB ou NLB) est mis en place pour répartir le trafic sur un Auto Scaling Group de serveurs web.*
+
+- Comment le Target Group effectue-t-il la surveillance (health check) ?
+- Pourquoi est-il important d’avoir ces mécanismes de vérification de l’état, en particulier dans une architecture scalable ?
+
+Réponse :
+
+> Le Target Group envoie régulièrement des requêtes de santé (health checks) aux instances, par exemple une requête HTTP/HTTPS sur un chemin défini pour l’ALB, ou un test TCP pour le NLB. Si une instance ne répond pas, elle est marquée comme unhealthy et ne reçoit plus de trafic. Dans une architecture scalable, cette vérification garantit que les nouvelles instances sont opérationnelles avant de recevoir du trafic et qu’une instance défaillante est automatiquement exclue de la rotation.
+
 # Rendu TP01
 
 ## Préparation
@@ -104,11 +377,11 @@ Nous activons l'accès des utilisateurs IAM aux informations de facturation.
 
 ![image-20241113112856804](./assets/image-20241113112856804.png)
 
-Nous ajoutons un groupe **facturation** et nous le rattachons aux permissions `Billing`.
+Nous ajoutons un groupe facturation et nous le rattachons aux permissions `Billing`.
 
 ![image-20241113113025267](./assets/image-20241113113025267.png)
 
-Nous créons un utilisateur `Mathias` et le mettons dans le groupe **facturation**.
+Nous créons un utilisateur `Mathias` et le mettons dans le groupe facturation.
 
 ![image-20241113113136605](./assets/image-20241113113136605.png)
 

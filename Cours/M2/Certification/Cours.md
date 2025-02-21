@@ -1,8 +1,789 @@
 # Certification
 
-Fiche sur la certification par `Thomas PEUGNET`.
+Notes de cours par `Thomas Peugnet` assisté par Mistral AI.
 
-Il est possible que certaines ressources présentes dans ces notes de cours proviennent d'Internet, de ChatGPT ou d'autres documents.
+## Module 01
+
+### 1. Elements of Information Security
+
+- **Confidentiality**: Ensures that only authorized parties can access data.
+- **Integrity**: Guarantees that information is accurate and unaltered.
+- **Availability**: Ensures data and systems are accessible when needed.
+- **Authenticity**: Verifies the genuineness of users and data.
+- **Non-Repudiation**: Prevents parties from denying their actions or communications.
+
+------
+
+### 2. Tactics, Techniques, and Procedures (TTPs)
+
+- **Definition**: TTPs refer to the patterns of activities or methods associated with a specific threat actor or group, detailing how they plan and execute an attack.
+
+------
+
+### 3. Classifications of Attacks
+
+###### 3.1 Passive Attacks
+
+- Examples:
+  - Footprinting (gathering information about a target)
+  - Sniffing (capturing network traffic)
+  - Eavesdropping (listening to private communications)
+  - Network Traffic Analysis (monitoring and analyzing traffic patterns)
+  - Decryption of Weakly Encrypted Traffic (breaking weak encryption)
+
+###### 3.2 Active Attacks
+
+- Examples:
+  - Spoofing Attacks (impersonating another identity)
+  - Password-Based Attacks (guessing or cracking passwords)
+  - Session Hijacking (taking over a legitimate session)
+  - Denial-of-Service (DoS/DDoS) Attacks (overwhelming systems or networks)
+  - Man-in-the-Middle (MITM) Attacks (intercepting communications)
+  - SQL Injection (injecting malicious SQL queries)
+
+###### 3.3 Closing Attacks
+
+- **Definition**: Attempts to wrap up or finalize an attack phase, possibly erasing traces or leaving backdoors.
+
+###### 3.4 Insider Attacks
+
+- **Definition**: Attacks originating from within an organization by employees or trusted individuals.
+
+###### 3.5 Distribution Attacks
+
+- **Definition**: Attacks involving the distribution of malicious hardware or software (e.g., supply chain compromises).
+
+------
+
+### 4. CEH Ethical Hacking Framework
+
+1. Phase 1 – Reconnaissance
+   - Gathering initial information about the target through scanning, enumeration, and open-source intelligence.
+2. Phase 2 – Vulnerability Scanning
+   - Identifying vulnerabilities and weaknesses in the target’s systems or networks.
+3. Phase 3 – Gaining Access
+   - Exploiting identified vulnerabilities to obtain unauthorized access.
+4. Phase 4 – Maintaining Access
+   - Establishing persistence (e.g., backdoors) to retain ongoing control.
+5. Phase 5 – Clearing Tracks
+   - Covering evidence of compromise and malicious activity.
+
+------
+
+### 5. MITRE ATT&CK Framework
+
+- **Purpose**: A knowledge base of adversary tactics and techniques based on real-world observations.
+
+###### 5.1 Pre-Attack
+
+- **Recon**: Gathering information about the target.
+- **Weaponize**: Creating or customizing malicious payloads or exploits.
+
+###### 5.2 Enterprise Attack
+
+- **Deliver**: Sending the exploit or payload to the target (e.g., phishing).
+- **Exploit**: Triggering the vulnerability to gain initial access.
+- **Control**: Establishing command and control (C2) channels.
+- **Execute**: Running malicious code or commands on the compromised system.
+- **Maintain**: Ensuring continued access and persistence within the environment.
+
+------
+
+### 6. Continual Adaptive Security Strategy
+
+- **Concept**: Continuous **prediction**, **prevention**, **detection**, and **response** to ensure comprehensive defense.
+
+------
+
+### 7. Defense In-Depth
+
+A multi-layered approach where an attacker must penetrate each layer to reach the data:
+
+| **Layer**                           | **Description**                                              |
+| ----------------------------------- | ------------------------------------------------------------ |
+| Policies, Procedures, and Awareness | Security policies, training, and user awareness.             |
+| Physical                            | Locks, badges, security guards, physical barriers.           |
+| Perimeter                           | Firewalls, intrusion detection systems (IDS), perimeter routers. |
+| Internal Network                    | Network segmentation, internal firewalls, monitoring.        |
+| Host                                | Endpoint protection, OS hardening, patch management.         |
+| Application                         | Secure coding practices, application firewalls, input validation. |
+| Data                                | Encryption, access controls, data loss prevention (DLP).     |
+
+------
+
+### 8. Risk
+
+- Formula:
+
+  - Risk = Threats × Vulnerabilities × Impact
+  - Or Risk = Threat × Vulnerability × Asset Value
+
+------
+
+### 9. Risk Management
+
+1. **Risk Identification**: Recognize potential threats and vulnerabilities.
+2. **Risk Assessment**: Evaluate the likelihood and impact of each risk.
+3. **Risk Treatment**: Decide on measures to mitigate, transfer, accept, or avoid the risks.
+4. **Risk Tracking and Review**: Continuously monitor risks and reassess controls.
+
+------
+
+### 10. Types of Threat Intelligence
+
+- **Strategic Threat Intelligence**: High-level, long-term insights into overall threat landscape.
+- **Tactical Threat Intelligence**: Focused on immediate tactics and procedures used by attackers.
+- **Operational Threat Intelligence**: Real-time intelligence on specific attacks or campaigns.
+- **Technical Threat Intelligence**: Indicators of Compromise (IoCs) like IP addresses, domains, file hashes.
+
+------
+
+### 11. Threat Intelligence Lifecycle
+
+1. **Planning and Direction**: Define goals and requirements for intelligence.
+2. **Collection**: Gather data from internal and external sources.
+3. **Processing and Exploitation**: Clean, organize, and convert collected data for analysis.
+4. **Analysis and Production**: Interpret data to produce actionable intelligence.
+5. **Dissemination and Integration**: Share intelligence with relevant stakeholders and apply it.
+
+------
+
+### 12. Threat Modeling
+
+- **Definition**: Risk assessment approach to analyze application security by capturing and organizing information affecting security.
+
+1. **Identify Security Objectives**
+2. **Application Overview**
+   - Identify Roles
+   - Identify Key Usage Scenarios
+   - Identify Technologies
+   - Identify Application Security Mechanisms
+3. **Decompose the Application**
+   - Identify Threat Boundaries
+   - Identify Data Flows
+   - Identify Entry Points
+   - Identify Exit Points
+4. **Identify Threats**
+5. **Identify Vulnerabilities**
+
+------
+
+### 13. Incident Handling and Response
+
+1. **Preparation**: Policies, training, and tools in place before an incident occurs.
+2. **Incident Recording and Assignment**: Document details and assign roles/responsibilities.
+3. **Incident Triage**: Prioritize incidents based on severity and impact.
+4. **Notification**: Inform stakeholders, management, or external parties as needed.
+5. **Containment**: Stop the spread of the incident and isolate affected systems.
+6. **Evidence Gathering and Forensic Analysis**: Collect data for analysis and potential legal action.
+7. **Eradication**: Remove malware, close vulnerabilities, and eliminate root causes.
+8. **Recovery**: Restore systems and services to normal operation.
+9. **Post-Incident Activities**: Lessons learned, documentation, and improvements to defenses.
+
+------
+
+### 14. Machine Learning in Cybersecurity
+
+**Key Areas of Use**
+
+- Password Protection and Authentication
+- Phishing Detection and Prevention
+- Threat Detection
+- Vulnerability Management
+- Behavioral Analytics
+- Network Security
+- AI-Based Antivirus
+- Fraud Detection
+- Botnet Detection
+- AI to Combat AI Threats
+
+(*Supervised and unsupervised learning methods can be applied in these areas.*)
+
+------
+
+### 15. Relevant Laws and Regulations
+
+Below is a brief overview of each regulation and its main focus:
+
+| **Name**                                            | **Acronym** | **Purpose / Focus**                                          |
+| --------------------------------------------------- | ----------- | ------------------------------------------------------------ |
+| Payment Card Industry Data Security Standard        | PCI DSS     | Protects cardholder data through security controls and regular assessments. |
+| ISO/IEC Standards (e.g., ISO/IEC 27001)             | ISO/IEC     | Provides guidelines and requirements for an information security management system (ISMS). |
+| Health Insurance Portability and Accountability Act | HIPAA       | Secures and protects healthcare information and patient privacy in the U.S. |
+| Sarbanes-Oxley Act                                  | SOX         | Ensures accurate financial reporting and corporate accountability for public companies in the U.S. |
+| Digital Millennium Copyright Act                    | DMCA        | Protects copyright holders’ rights in the digital environment and addresses anti-circumvention of access controls. |
+| Federal Information Security Management Act         | FISMA       | Requires federal agencies in the U.S. to develop, document, and implement information security programs. |
+| General Data Protection Regulation                  | GDPR        | Regulates data protection and privacy for individuals within the EU; establishes strict data handling and breach notification rules. |
+| Data Protection Act 2018                            | DPA         | UK-specific data protection legislation implementing and supplementing GDPR requirements. |
+
+## Module 02
+
+### 1. Passive vs. Active Footprinting
+
+- **Passive Footprinting**: Gathering information without directly interacting with the target (e.g., public websites, social media, open-source resources).
+- **Active Footprinting**: Direct engagement with the target’s systems or networks (e.g., port scans, ping sweeps).
+
+---
+
+### 2. Information Obtained in Footprinting
+
+- **Organization Information**: Company structure, employee names, addresses.
+- **Network Information**: IP ranges, DNS details, connectivity methods.
+- **System Information**: OS versions, server types, technology stacks.
+
+> **Note**: Remember to check **page 10** of the module for the “Footprinting Techniques” table/graphic.
+
+---
+
+### 3. Search Engine Footprinting
+
+#### 3.1 Google Search Operators
+
+Below is a table of 30 commonly used Google operators (Google Dorks). These can help refine searches and find specific information about a target.
+
+| Operator               | Syntax Example                  | Description                                                  |
+| ---------------------- | ------------------------------- | ------------------------------------------------------------ |
+| **1. site:**           | `site:example.com`              | Returns results only from the specified domain.              |
+| **2. intitle:**        | `intitle:"login page"`          | Returns pages with the specified phrase in the HTML title.   |
+| **3. allintitle:**     | `allintitle:admin site:gov`     | Returns pages where all keywords are in the title.           |
+| **4. inurl:**          | `inurl:admin`                   | Returns pages with the specified keyword in the URL.         |
+| **5. allinurl:**       | `allinurl:login.asp`            | Returns pages where all keywords are in the URL.             |
+| **6. filetype:**       | `filetype:pdf "internal memo"`  | Returns files of a specific type containing the keywords.    |
+| **7. link:**           | `link:example.com`              | Returns pages that link to the specified domain or URL.      |
+| **8. related:**        | `related:example.com`           | Returns pages related to the specified domain or URL.        |
+| **9. cache:**          | `cache:example.com`             | Shows the Google-cached version of the page.                 |
+| **10. before:**        | `before:2020 "product launch"`  | Shows results published or updated before a specific year.   |
+| **11. after:**         | `after:2021 "policy update"`    | Shows results published or updated after a specific year.    |
+| **12. inanchor:**      | `inanchor:"click here"`         | Searches for pages with specified text in anchor links.      |
+| **13. allinanchor**    | `allinanchor:"web login"`       | Searches for pages where all keywords appear in anchor text. |
+| **14. intext:**        | `intext:"error message"`        | Searches for pages containing the specified text in the body. |
+| **15. allintext:**     | `allintext:"username password"` | Searches where all words appear in the text body.            |
+| **16. around(X)**      | `"admin" AROUND(5) "login"`     | Searches for terms within X words of each other.             |
+| **17. "exact phrase"** | `"login portal"`                | Searches for the exact phrase in quotes.                     |
+| **18. OR**             | `admin OR administrator`        | Combines multiple search terms; either may appear.           |
+| **19. AND**            | `admin AND filetype:txt`        | Narrows search to results including both terms.              |
+| **20. - (minus)**      | `login -wordpress`              | Excludes results containing the specified term.              |
+| **21. + (plus)**       | `+pdf +internal`                | Ensures terms are included in results (less common today).   |
+| **22. info:**          | `info:example.com`              | Provides information about the specified domain.             |
+| **23. define:**        | `define:spear phishing`         | Displays Google’s definition of a term (varies by region).   |
+| **24. map:**           | `map:"San Francisco"`           | Shows map results for a location (in some regions).          |
+| **25. phonebook:**     | `phonebook:"John Doe"`          | (Deprecated) Used to look up phone listings.                 |
+| **26. weather:**       | `weather:New York`              | Shows weather for a specific location.                       |
+| **27. stocks:**        | `stocks:GOOG`                   | Returns stock information (in some regions).                 |
+| **28. cacheurl:**      | `cacheurl:example.com`          | Alternate syntax to view cached pages.                       |
+| **29. inposttitle:**   | `inposttitle:"vulnerability"`   | Searches in the post titles of forums or blog platforms (older). |
+| **30. blogurl:**       | `blogurl:example.com`           | Might return blog URLs associated with a domain (less common usage). |
+
+---
+
+#### 3.2 Lynx (Command-Line Web Browser)
+
+- **Purpose**: Text-based browsing; ideal for scripting and automation.
+- **Basic Use**:  
+  - `lynx https://example.com` (interactive mode: arrow keys to navigate, `q` to quit).
+  - `lynx --dump https://example.com` (outputs page text and URLs to terminal).
+
+**Recon Example**  
+
+```bash
+lynx --dump "http://www.google.com/search?q=inurl:%22remote+login%22+fortinet+OR+fortigate+OR+%22ss1+vpn%22" \
+| grep "http" \
+| cut -d "=" -f2 \
+| grep -o "http[^&]*"
+```
+
+1. **lynx --dump**: Fetches Google search results for `inurl:"remote login"` + Fortinet/Fortigate/“ss1 vpn”.
+2. **grep "http"**: Filters lines containing `http`.
+3. **cut -d "=" -f2**: Splits each line on `=` and selects the second field.
+4. **grep -o "http[^&]\*"**: Extracts clean URLs.
+
+---
+
+#### 3.3 Google Hacking Database (GHDB)
+
+- Contains a collection of Google search queries (“dorks”) that reveal:
+  - **Sensitive files** (e.g., configuration files, backup files).
+  - **Exposed directories** (like `/admin/`, `/backup/`).
+  - **Error messages** that may expose system paths or technologies.
+  - **Vulnerable devices** (e.g., exposed webcams, printers).
+- Can also be leveraged to find captive VPN or FTP portals through specialized dorks.
+
+---
+
+#### 3.4 Shodan
+
+- A search engine that indexes internet-connected devices (IoT, servers, databases).
+- Useful for discovering open ports, services, or known vulnerabilities on devices.
+
+---
+
+#### 3.5 Netcraft and DNSDumpster
+
+- **Netcraft**: Gathers information about hosting providers, subdomains, technologies in use.
+- **DNSDumpster**: Visual mapper of DNS records and subdomains of a domain.
+
+---
+
+### 4. Additional Tools and Techniques
+
+#### 4.1 Cheat Sheet: `dig`
+
+- **Basic query**:  
+  - `dig example.com` – Default query for A record.
+- **Specify DNS record**:  
+  - `dig example.com MX` – Queries the MX records.
+- **Reverse lookup**:  
+  - `dig -x 8.8.8.8` – Finds the domain associated with an IP address.
+- **Specify DNS server**:  
+  - `dig @8.8.8.8 example.com` – Uses Google’s public DNS server.
+
+#### 4.2 Blist3r
+
+- A lesser-known tool for DNS enumeration and footprinting.
+- Typical usage might involve commands like:  
+  - `blist3r -domain example.com -mode scan`
+- Offers quick enumeration of subdomains and potential vulnerabilities.
+
+#### 4.3 Archive.org (Wayback Machine)
+
+- Allows viewing of historical snapshots of websites (old content, removed pages, etc.).
+- Useful for retrieving previously exposed information or older site structures.
+
+---
+
+### 5. Dark Web Footprinting
+
+- Using **DuckDuckGo** as a Tor-friendly search engine.
+- **DuckDuckDorks**: Similar to Google Dorks but focusing on `.onion` sites.
+  - Example: Searching for leaked credentials, hidden services, or private forums.
+  - Syntax is less standardized than Google Dorks; often uses keywords plus `site:.onion`.
+
+---
+
+### 6. Google Finance and Google Alerts
+
+- **Google Finance**: Provides financial information about publicly traded companies (stock prices, historical data).
+- **Google Alerts**: Sends email notifications when new results appear for specific keywords (e.g., company name, product, or competitor).
+
+---
+
+### 7. Gathering Information from LinkedIn
+
+#### 7.1 TheHarvester
+
+- A tool used to find email addresses and subdomains from different public sources (including LinkedIn).
+- **Examples**:
+  - `theharvester -d microsoft.com -l 200 -b linkedin`  
+    Collects data from LinkedIn for the domain `microsoft.com`.
+  - `theharvester -d example.com -l 100 -b all`  
+    Uses all available search engines (Google, Bing, etc.) to gather info.
+
+#### 7.2 BuzzSumo, Sherlock, SocialSearcher.com
+
+- **BuzzSumo**: Discovers popular content and influencer information.  
+- **Sherlock**: Finds usernames across multiple social networks.  
+- **SocialSearcher.com**: Searches across various social media platforms for real-time mentions.
+
+---
+
+### 8. Whois
+
+- Reveals domain registrant details (organization name, address, creation/expiration dates).
+- May provide:
+  - **Registrar** info,
+  - **Contact** info (email/phone),
+  - **Nameservers** used,
+  - etc.
+
+---
+
+### 9. Extracting DNS Information
+
+#### 9.1 Common DNS Record Types
+
+| Record Type | Purpose                                             |
+| ----------- | --------------------------------------------------- |
+| **A**       | Maps a hostname to an IPv4 address                  |
+| **AAAA**    | Maps a hostname to an IPv6 address                  |
+| **MX**      | Mail Exchange record for email routing              |
+| **NS**      | Nameserver record, indicates DNS servers for domain |
+| **CNAME**   | Canonical name, alias for another domain name       |
+| **SOA**     | Start of Authority, primary DNS server info         |
+| **SRV**     | Service record for specific services (e.g., SIP)    |
+| **PTR**     | Pointer record for reverse DNS lookups              |
+| **RP**      | Responsible Person record (contact info)            |
+| **HINFO**   | Host info (CPU/OS type) – often deprecated          |
+| **TXT**     | Text record (SPF, DMARC, or other arbitrary data)   |
+
+#### 9.2 Tools: SecurityTrails, FIRC
+
+- **SecurityTrails**: Offers historical DNS data, subdomain enumeration, IP information.
+  - Example usage: Searching historical records for `example.com`.
+
+---
+
+### 10. Network Footprinting
+
+#### 10.1 Traceroute (TCP & UDP)
+
+- **Default Traceroute (UDP)**:
+  - `traceroute example.com` – Sends UDP packets, increments TTL to map hops.
+- **TCP Traceroute**:
+  - `tcptraceroute example.com 80` – Uses TCP packets on port 80 to bypass some firewalls.
+
+#### 10.2 PingPlotter
+
+- A graphical tool that combines ping and traceroute data for continuous route monitoring.
+
+---
+
+### 11. Tracking Email Communications
+
+#### 11.1 Email Header Examination
+
+Common details in an email header:
+
+- **From/To/CC**: Sender and recipient email addresses.
+- **Date/Subject**: Timestamp and email subject.
+- **Message-ID**: Unique identifier for the email.
+- **Received**: Shows the email’s path through mail servers (IP addresses, timestamps).
+- **Content-Type**: Format of the email (text/html, etc.).
+
+#### 11.2 Tools
+
+- **Email Tracker Pro**: Tracks if/when emails are opened, recipient location, etc.
+- **IP to Location**: Converts IP addresses found in headers to approximate geographic locations.
+
+---
+
+### 12. Physical / Social Engineering Footprinting
+
+1. **Eavesdropping**: Listening to conversations or network traffic (e.g., open Wi-Fi).
+2. **Shoulder Surfing**: Observing someone’s screen or keyboard to capture sensitive info.
+3. **Dumpster Diving**: Retrieving documents or hardware from trash/recycling to find confidential data.
+4. **Impersonation**: Pretending to be someone else (e.g., an employee, partner) to gain information or access.
+
+## Module 3
+
+### 1. TCP Communication Flags
+
+| Flag | Meaning                                                 |
+| ---- | ------------------------------------------------------- |
+| SYN  | Initiate a connection (synchronize sequence numbers).   |
+| ACK  | Acknowledge received data.                              |
+| PSH  | Push data to the receiving application immediately.     |
+| URG  | The data contained is urgent and should be prioritized. |
+| FIN  | Gracefully close a connection (no more data to send).   |
+| RST  | Immediately reset a connection.                         |
+
+#### TCP 3-Way Handshake (Simplified)
+
+1. Client → Server: Sends `SYN` (synchronize).
+2. Server → Client: Replies with `SYN+ACK`.
+3. Client → Server: Sends `ACK` to confirm.
+
+When this handshake completes, the TCP session is considered established. A quick visual:
+
+```
+Client:  SYN --->    Server
+Client:       <--- SYN+ACK  Server
+Client:  ACK --->    Server
+```
+
+------
+
+### 2. Quick Summary of Nmap & hping3
+
+- Nmap: A powerful network scanner capable of host discovery, port scanning, OS detection, and more.
+  - Official docs: https://nmap.org/book/man.html
+- hping3: A TCP/IP packet assembler/analyzer for the command line. Often used to craft custom packets.
+  - Official docs: https://github.com/antirez/hping
+
+------
+
+### 3. Common Port Reference (30 Well-Known Ports)
+
+Here’s a quick table of 30 well-known ports, their protocols, and typical services:
+
+| Port | Protocol | Service/Name       |
+| ---- | -------- | ------------------ |
+| 20   | TCP      | FTP (Data)         |
+| 21   | TCP      | FTP (Control)      |
+| 22   | TCP      | SSH                |
+| 23   | TCP      | Telnet             |
+| 25   | TCP      | SMTP (Mail)        |
+| 53   | TCP/UDP  | DNS                |
+| 67   | UDP      | DHCP (Server)      |
+| 68   | UDP      | DHCP (Client)      |
+| 69   | UDP      | TFTP               |
+| 80   | TCP      | HTTP (Web)         |
+| 110  | TCP      | POP3 (Mail)        |
+| 111  | TCP/UDP  | RPCbind/Portmapper |
+| 119  | TCP      | NNTP               |
+| 123  | UDP      | NTP                |
+| 135  | TCP/UDP  | Microsoft RPC      |
+| 137  | UDP      | NetBIOS Name Svc   |
+| 138  | UDP      | NetBIOS Datagram   |
+| 139  | TCP      | NetBIOS Session    |
+| 143  | TCP      | IMAP               |
+| 161  | UDP      | SNMP               |
+| 389  | TCP/UDP  | LDAP               |
+| 443  | TCP      | HTTPS              |
+| 445  | TCP      | SMB                |
+| 631  | TCP/UDP  | IPP (Printing)     |
+| 993  | TCP      | IMAPS (SSL IMAP)   |
+| 995  | TCP      | POP3S (SSL POP3)   |
+| 1433 | TCP      | MS SQL Server      |
+| 3306 | TCP      | MySQL              |
+| 3389 | TCP      | RDP                |
+| 8080 | TCP      | HTTP Proxy         |
+
+------
+
+### 4. Basic Nmap Usage Examples
+
+Below are some common scanning scenarios, along with the official flags. Keep in mind:
+
+- `-sS`: SYN scan
+- `-sA`: ACK scan
+- `-sU`: UDP scan
+- `-sn`: Host discovery only (no port scan)
+- `-p <port>`: Specify the port (or port range)
+- `-oG -`: Greppable output to standard out
+
+#### 4.1. ICMP Ping (Host Discovery)
+
+```bash
+nmap -sn -PE <target>
+```
+
+- `-sn` (No port scan, just ping).
+- `-PE` (ICMP echo request; capital ‘P’ stands for “Probe”, `E` = “Echo”).
+
+#### 4.2. ACK Scan on Port 80
+
+```bash
+nmap -sA -p 80 <target>
+```
+
+- `-sA` sets the ACK scan mode.
+
+#### 4.3. UDP Scan on Port 80
+
+```bash
+nmap -sU -p 80 <target>
+```
+
+- `-sU` sets the UDP scan mode.
+
+#### 4.4. SYN Scan on Ports 50–60
+
+```bash
+nmap -sS -p 50-60 <target>
+```
+
+- `-sS` is the classic TCP SYN (“stealth”) scan.
+- `-p 50-60` sets the port range to scan.
+
+------
+
+### 5. Saving Only Active Hosts to a File (Example)
+
+Goal: “Scan the target network `10.10.1.0/24` for active hosts and place only the IP addresses into a file `scan1.txt`.”
+
+Example (using `-sn` + `-oG` + `awk`):
+
+```bash
+nmap -sn 10.10.1.0/24 -oG - | awk '/Up$/{print $2}' > scan1.txt
+```
+
+- `-sn`: Ping scan only (no ports).
+- `-oG -`: Greppable output sent to standard output.
+- `awk '/Up$/{print $2}'`: Filters lines that end with “Up” and prints only the second field (the IP).
+
+------
+
+### 6. Nmap Parameter Naming Logic
+
+- Lowercase vs. uppercase often indicates different types of probes or toggle behavior.
+
+  - For example, `-sn` is “no port scan,” while `-S` with uppercase can mean “set a spoofed IP address” (under certain conditions).
+  - `-PE` stands for “ICMP Echo” probe. The `P` in uppercase typically indicates a type of ping, followed by a letter for the specific method (E=Echo, N=NetBIOS, etc.).
+
+- `-iL` = "input list" (lowercase “i” for input, uppercase “L” for "list").
+
+------
+
+### 7. Port Scanning Techniques
+
+Nmap supports multiple scanning techniques. Below is a brief mention (we keep it minimal, as requested):
+
+- TCP Scanning: Standard approach to detect open TCP ports (e.g., `-sS`, `-sT`, etc.).
+- UDP Scanning: Checks UDP ports (e.g., `-sU`).
+- SCTP Scanning: For SCTP endpoints (stream control transmission protocol); uses `-sY`, `-sZ` in some versions of Nmap.
+- SSDP Scanning: Typically done by scanning UDP port 1900 or using scripts to find UPnP devices.
+- IPv6 Scanning: Nmap supports IPv6 with the same syntax, just specify IPv6 addresses or `-6`.
+
+#### 7.1. Inverse TCP Flag Scans
+
+- Null Scan (`-sN`): Sends no flags.
+- FIN Scan (`-sF`): Sends only FIN flags.
+- Xmas Scan (`-sX`): Sends FIN+PSH+URG.
+
+#### 7.2. Example: Inverse TCP Flag Scan Table
+
+Below is a table with up to 10 popular scan types. The third column shows an official Nmap command that matches each scan if available.
+
+| Scan Name    | Description                                                  | Nmap Command                         |
+| ------------ | ------------------------------------------------------------ | ------------------------------------ |
+| SYN Scan     | Stealthy scan that sends SYN packets and waits for responses (half-open). | `nmap -sS -p <port> <target>`        |
+| Connect Scan | Uses the OS’s connect() call; fully established TCP sessions. | `nmap -sT -p <port> <target>`        |
+| ACK Scan     | Sends ACK packets to map out firewall rules (open vs. filtered). | `nmap -sA -p <port> <target>`        |
+| FIN Scan     | Sends FIN flags only to probe responses (inverse scan).      | `nmap -sF -p <port> <target>`        |
+| NULL Scan    | Sends packets with no flags set.                             | `nmap -sN -p <port> <target>`        |
+| Xmas Scan    | Sends FIN+PSH+URG. Often called “Christmas Tree” scan.       | `nmap -sX -p <port> <target>`        |
+| Maimon Scan  | Rarely used; sends FIN/ACK to probe BSD-derived systems.     | `nmap -sM` *(Removed in newer Nmap)* |
+| Window Scan  | Variation of ACK scan that checks window size to glean more info. | `nmap -sW -p <port> <target>`        |
+| UDP Scan     | Checks for open UDP ports by sending UDP packets.            | `nmap -sU -p <port> <target>`        |
+| SCTP Cookie  | SCTP-specific scanning method (cookie echo).                 | `nmap -sY -p <port> <target>`        |
+
+### 8. OS Discovery with Nmap
+
+Nmap can detect the OS of a target by analyzing TCP/IP stack behavior (e.g., TCP window sizes, Timestamps, and other fingerprintable traits).
+
+- TCP Window Size: Different OSes respond with characteristic window sizes or modifications in the handshake.
+
+- Nmap OS Detection Commands:
+
+  1. `nmap -O <target>`: Enables OS detection (requires root privileges on most systems).
+  2. `nmap -A <target>`: Enables OS detection, version detection, script scanning, and traceroute all together.
+  3. `--osscan-limit` / `--osscan-guess`: Additional toggles to refine or guess OS results.
+  4. Nmap Scripting Engine (NSE): Some scripts (e.g., `os-*`) can help identify OS details.
+
+------
+
+### 9. Scanning Beyond IDS and Firewalls
+
+Various evasion or stealth techniques exist:
+
+1. **Packet Fragmentation**
+
+   - Sends tiny fragments to bypass simple signature-based IDS/IPS.
+
+   - Nmap Option: `--mtu <val>` (e.g., `--mtu 16` to fragment packets).
+
+   - > Countermeasure: Use reassembly at the perimeter (IDS/IPS that handles fragmented packets properly).
+
+2. **Source Routing**
+
+   - Embeds route information in packets to bypass certain network paths.
+
+   - Modern systems often drop source-routed packets by default.
+
+   - Nmap: The older option `--ip-options <RR|LSR|SSRR>` can set IP options, but real source routing is rarely fully supported in modern networks.
+
+   - > Countermeasure: Disable source routing on routers and hosts.
+
+3. **Source Port Manipulation**
+
+   - Sets a common trusted port (e.g., 53 for DNS) to bypass firewall rules.
+
+   - Nmap: `-g <port>` or `--source-port <port>`
+
+   - > Countermeasure: Proper egress filtering and deep packet inspection to detect anomalies.
+
+4. **IP Address Decoy**
+
+   - Makes it appear that multiple decoy IPs are scanning the target along with your real IP.
+
+   - Nmap: `-D <decoy1,decoy2,...,ME>` or `-D RND:10`
+
+   - > Countermeasure: Correlate timing and packet patterns to see which host is the real scanner.
+
+5. **IP Address Spoofing**
+
+   - Fake source IP so replies go elsewhere (usually you can’t see open ports unless you receive the replies).
+
+   - Nmap: `-S <IP>` is possible *if* you have raw socket privileges and are in an environment that won’t discard those packets.
+
+   - > Countermeasure: Ingress filtering (RFC 2827), block private IPs at the perimeter.
+
+6. **MAC Address Spoofing**
+
+   - Changes the MAC address of your interface to bypass certain network filters or log correlation.
+
+   - Nmap: 
+
+     ```
+     --spoof-mac <mac|0|vendor>
+     ```
+
+     - e.g. `nmap --spoof-mac Cisco <target>`
+
+   - > Countermeasure: Port security on switches (e.g., sticky MAC) or use 802.1X.
+
+7. **Creating Custom Packets**
+
+   - Tools like hping3 let you craft packets with arbitrary flags, sequence numbers, etc.
+
+   - hping3 example for a simple SYN on port 80:
+
+     ```bash
+     hping3 --syn -p 80 <target>
+     ```
+
+   - Countermeasure: Deep packet inspection, robust IPS.
+
+8. **Randomizing Host Order**
+
+   - Avoid scanning IP addresses in ascending order to look less suspicious.
+
+   - Nmap: `--randomize-hosts`
+
+   - > Countermeasure: Statistical traffic analysis to detect unusual patterns.
+
+9. **Sending Bad Checksums**
+
+   - Some IDS/IPS might ignore packets with invalid checksums, but the target OS may still process them.
+
+   - Nmap: `--badsum` (listed in older docs; it’s a “TCP probe with a bogus TCP/UDP checksum”).
+
+   - > Countermeasure: Proper normalization at the firewall or IDS that re-checks checksums and discards invalid packets.
+
+10. **Proxy Servers and Anonymizers**
+
+    - Use a chain of proxies, VPNs, or anonymity networks (e.g., Tor, Tails) to hide the true source of scans.
+
+    - Nmap: Direct proxy usage is limited. Some scanning types do not work well over proxies.
+
+    - > Countermeasure: Block known proxy/VPN IP ranges, use advanced correlation, or implement strong authentication.
+
+------
+
+#### 9.1. Anonymizers & Proxy-Chaining (Short Overview)
+
+- Proxies: Single-hop intermediaries that forward traffic.
+- Proxy-Chaining: Using multiple proxies in series to hide the origin.
+- Types of Anonymizers:
+  - Network-based: Tor, I2P, or corporate VPN solutions.
+  - Single-Point: A single HTTP/SOCKS proxy.
+  - Censorship Circumvention Tools: Tails (live OS with Tor), Astral VPN, etc.
+
+------
+
+### 10. Quick Countermeasures Reference
+
+It helps to note potential defensive measures alongside each technique:
+
+- Ping Sweep: Configure firewalls/routers to drop ICMP echo from untrusted networks, use IDS that detects unusual ICMP rates.
+- ACK Scan: Employ stateful firewalls that detect non-standard ACK traffic.
+- Xmas/Null/FIN Scans: IDS signatures or stateful inspection can detect these abnormal flag combinations.
+- IP Spoofing: Use ingress/egress filtering (BCP 38) to stop non-routable or spoofed IP packets.
+- MAC Spoofing: Implement port security (e.g., limit MAC addresses per port), or 802.1X for strict authentication.
+- Decoys: Watch for timing correlation in logs.
+- Packet Fragmentation: Use an IDS that reassembles fragments properly.
+- Source Port Manipulation: Don’t rely solely on the source port for trust; use application-level verification.
+- Bad Checksums: Use firewalls or IDS that properly validate checksums before forwarding.
 
 # Questions Pack
 
@@ -20,7 +801,9 @@ In this form of encryption algorithm, every individual block contains 64-bit dat
 ---
 
 John is investigating web-application firewall logs and observers that someone is attempting to inject the following:
+
 ![image1](https://img.examtopics.com/312-50v13/image1.png)
+
 What type of attack is this?
 
 - A. SQL injection

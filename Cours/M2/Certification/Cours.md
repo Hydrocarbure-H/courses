@@ -2,7 +2,7 @@
 
 Notes de cours par `Thomas Peugnet` assisté par Mistral AI.
 
-## Module 01
+## Module 01 - Introduction
 
 ### 1. Elements of Information Security
 
@@ -216,7 +216,7 @@ Below is a brief overview of each regulation and its main focus:
 | General Data Protection Regulation                  | GDPR        | Regulates data protection and privacy for individuals within the EU; establishes strict data handling and breach notification rules. |
 | Data Protection Act 2018                            | DPA         | UK-specific data protection legislation implementing and supplementing GDPR requirements. |
 
-## Module 02
+## Module 02 - Footprinting
 
 ### 1. Passive vs. Active Footprinting
 
@@ -463,7 +463,7 @@ Common details in an email header:
 3. **Dumpster Diving**: Retrieving documents or hardware from trash/recycling to find confidential data.
 4. **Impersonation**: Pretending to be someone else (e.g., an employee, partner) to gain information or access.
 
-## Module 3
+## Module 03 - Network Scanning
 
 ### 1. TCP Communication Flags
 
@@ -784,6 +784,361 @@ It helps to note potential defensive measures alongside each technique:
 - Packet Fragmentation: Use an IDS that reassembles fragments properly.
 - Source Port Manipulation: Don’t rely solely on the source port for trust; use application-level verification.
 - Bad Checksums: Use firewalls or IDS that properly validate checksums before forwarding.
+
+## Module 16 - Hacking Wireless Networks
+
+### 1. Core Wireless Terminology
+
+| Term                                              | Technical Definition                                         |
+| ------------------------------------------------- | ------------------------------------------------------------ |
+| Global System for Mobile Communication (GSM)      | A worldwide standard for 2G cellular networks, primarily for voice and low-rate data transmissions. |
+| Bandwidth                                         | The data transfer capacity of a connection, measured in bits per second (e.g., Mbps). Higher bandwidth supports more data throughput. |
+| Access Point (AP)                                 | A networking device that creates a wireless local area network, often bridging wireless clients to a wired LAN. |
+| Basic Service Set Identifier (BSSID)              | The unique MAC address of an AP. Identifies a specific radio on a given AP in a Wi-Fi network. |
+| Industrial, Scientific, and Medical (ISM) Band    | Frequency bands allocated for non-commercial use (e.g., 2.4 GHz, 5 GHz), often exploited by Wi-Fi. |
+| Hotspot Association                               | The process where a wireless client connects (associates) to a public (or private) wireless network (hotspot). |
+| Service Set Identifier (SSID)                     | The network name broadcast by the AP. It can be hidden, but still discoverable via sniffing. |
+| Orthogonal Frequency Division Multiplexing (OFDM) | A modulation method distributing data across multiple closely spaced subcarriers to reduce interference and improve efficiency. |
+
+------
+
+### 2. Types of Wireless Networks
+
+1. Extensions to Wired Networks
+   - Software AP (SAP): A device (e.g., laptop) configured via software to act as an AP.
+   - Hardware AP: A dedicated hardware device designed as an AP.
+   - Multiple Access Points: Several APs operating under the same SSID or extended network to increase coverage and balance loads.
+2. LAN-to-LAN Wireless Networks
+   - Used to link two separate LANs over a wireless bridge (e.g., point-to-point or point-to-multipoint bridging).
+
+------
+
+### 3. Wireless Standards (Common Examples)
+
+| Standard | Frequency Band       | Max Theoretical Throughput | Key Characteristics                                          |
+| -------- | -------------------- | -------------------------- | ------------------------------------------------------------ |
+| 802.11b  | 2.4 GHz (ISM)        | 11 Mbps                    | Early widespread adoption, prone to interference, slower speeds. |
+| 802.11g  | 2.4 GHz (ISM)        | 54 Mbps                    | Backward compatible with 11b, better throughput but same 2.4 GHz band. |
+| 802.11n  | 2.4 GHz and/or 5 GHz | 150–600 Mbps (with MIMO)   | Introduced MIMO (multiple antennas), significantly improved speeds. |
+
+------
+
+### 4. SSID (Service Set Identifier)
+
+- An SSID is the human-readable name of a wireless network (e.g., `MyOfficeWiFi`).
+- Hidden SSID: Broadcasting can be disabled, but a determined attacker can discover it by capturing beacon frames or probe responses.
+
+------
+
+### 5. Wi-Fi Authentication Process
+
+1. Preshared Key (PSK) Mode
+   - Relies on a shared password known by the AP and clients (e.g., WPA2-PSK).
+   - Common in home or small office environments.
+2. Centralized Authentication Mode
+   - Enterprise environment using a RADIUS or LDAP server (e.g., WPA2-Enterprise).
+   - Individual credentials are verified centrally, improving security and manageability.
+
+------
+
+### 6. Wireless Encryption (Comparison Table)
+
+| Protocol | Usage / Principle                        | Advantages                                                 | Limitations / Vulnerabilities                                |
+| -------- | ---------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
+| WEP      | Legacy encryption (RC4 with static key). | Easy to configure initially (historic).                    | Key easily cracked (IV-based attacks). Obsolete, insecure.   |
+| WPA      | Successor to WEP (TKIP, RC4-based).      | Fixed some WEP flaws (per-packet key mixing).              | Still uses RC4/TKIP. Vulnerable to some exploits.            |
+| WPA2     | Widely used standard (AES/CCMP).         | Robust security (AES), widely supported.                   | Weak passphrases can be brute-forced. WPS can be an attack vector. |
+| WPA3     | Latest iteration (SAE key exchange).     | Stronger encryption, mitigates offline dictionary attacks. | Limited backward compatibility, requires modern hardware support. |
+
+Additional:
+
+- EAP/PEAP: Extensible authentication protocols (common in WPA-Enterprise).
+- LEAP: Cisco proprietary, largely replaced by more secure EAP variants.
+- RADIUS: Centralized authentication service for WPA2/WPA3-Enterprise.
+
+------
+
+### 7. Wireless Threats (Access Control Attacks, etc.)
+
+- Access Control Attacks:
+  - MAC Spoofing (impersonate a legitimate device).
+  - AP Misconfiguration (weak creds, open APs).
+  - SSID Broadcast (not inherently a security hole, but eases network discovery).
+  - Weak Passwords / Config Errors.
+  - Ad Hoc Associations.
+  - Promiscuous Clients / Client Misassociation.
+  - Unauthorized Association.
+
+------
+
+### 8. Wireless Hacking Methodology
+
+1. Wi-Fi Discovery
+   - Find available networks and their parameters (channel, security, BSSID, etc.).
+2. Wireless Traffic Analysis
+   - Capture and examine packets (e.g., via Wireshark, airodump-ng).
+3. Launch of Wireless Attacks
+   - Deauthentication, Fake AP (Evil Twin), ARP poisoning, DoS, etc.
+4. Wi-Fi Encryption Cracking
+   - Capturing WPA(2) handshakes, brute forcing or dictionary attacks, WEP IV exploitation.
+5. Wi-Fi Network Compromise
+   - Once access is gained, attacker can pivot to internal resources.
+
+#### War-X Tactics
+
+- War-walking: Scanning Wi-Fi on foot.
+- War-driving: Scanning Wi-Fi in a vehicle.
+- War-chalking: Marking discovered Wi-Fi on public surfaces with chalk symbols.
+- War-flying: Using drones/aircraft to scan networks from the air.
+
+------
+
+### 9. Finding WPS-Enabled APs with `wash`
+
+`wash` (part of Reaver’s toolset) scans for APs that have WPS enabled:
+
+| Argument | Description                                                  |
+| -------- | ------------------------------------------------------------ |
+| -i       | Specify the interface (e.g., `-i wlan0mon`).                 |
+| -a       | Show all APs, including those locked or with WPS disabled states. |
+| -f       | Faster refresh rate for displayed APs.                       |
+| -c       | Restrict scanning to a specific channel (e.g., `-c 6`).      |
+| -o       | Output results to a file (e.g., `-o results.txt`).           |
+| -m       | Set a minimum RSSI to filter out weak AP signals.            |
+| -d       | Exclude specific BSSIDs from the scan.                       |
+| -5       | Force scanning in 5 GHz range.                               |
+| -s       | Silent/short mode (fewer details).                           |
+| -u       | Attempt to unlock locked WPS (in specific conditions).       |
+
+Example:
+
+```bash
+wash -i wlan0mon -c 1 -o wps_list.txt
+```
+
+Scans channel 1 for WPS-enabled APs and writes results to `wps_list.txt`.
+
+------
+
+### 10. Aircrack-ng Suite
+
+The Aircrack-ng suite is a collection of tools for auditing (and potentially attacking) wireless networks. Below is an in-depth overview with commonly used arguments and examples.
+
+#### 10.1 Common Tools and Purpose
+
+1. Airmon-ng
+
+   - Manages wireless interfaces in Monitor mode.
+   - Syntax: `airmon-ng start <interface>` / `airmon-ng stop <interface>`
+   - Example: `airmon-ng start wlan0` switches `wlan0`  to `wlan0mon` (Monitor mode).
+
+2. Airodump-ng
+
+   - Captures and displays wireless traffic, listing APs, clients, encryption, signal strength, etc.
+
+   - Key arguments:
+
+     - `-c <channel>`: Listen on a specific channel.
+     - `--bssid <MAC>`: Filter capture to a specific BSSID.
+     - `-w <file>`: Write output to capture files (`.cap`, `.csv`).
+
+   - Example:
+
+     ```bash
+     airodump-ng -c 6 --bssid 00:11:22:33:44:55 -w handshake_capture wlan0mon
+     ```
+
+     Sniffs channel 6, looking specifically for BSSID `00:11:22:33:44:55`, saving data into `handshake_capture.cap`.
+
+3. Aircrack-ng
+
+   - Used to crack WEP and WPA(2) keys.
+
+   - Key arguments:
+
+     - `-w <wordlist>`: Dictionary file for brute force attacks.
+     - `-b <BSSID>`: Target a specific BSSID in the capture.
+     - `-e <ESSID>`: Target a specific network name if multiple networks are in the capture.
+
+   - Example:
+
+     ```bash
+     aircrack-ng -w /usr/share/wordlists/rockyou.txt -b 00:11:22:33:44:55 handshake_capture.cap
+     ```
+
+     Attempts to crack the WPA(2) handshake in `handshake_capture.cap` using the wordlist.
+
+4. Aireplay-ng
+
+   - Packet injection tool (e.g., deauthentication, fake authentication, ARP request replay, etc.).
+
+   - Key arguments:
+
+     - `--deauth <count>`: Sends deauthentication frames.
+     - `-a <AP_MAC>`: MAC address of the target AP.
+     - `-c <Client_MAC>`: MAC address of the client to deauth (optional if targeting all).
+
+   - Example:
+
+     ```bash
+     aireplay-ng --deauth 5 -a 00:11:22:33:44:55 -c AA:BB:CC:DD:EE:FF wlan0mon
+     ```
+
+     Sends 5 deauth frames to a specific client on the AP.
+
+5. Airbase-ng
+
+   - Creates a rogue AP (Evil Twin), or fake AP for MITM and phishing.
+
+   - Example:
+
+     ```bash
+     airbase-ng -e "FakeSSID" -c 6 wlan0mon
+     ```
+
+     Sets up a fake AP named `"FakeSSID"` on channel 6 using `wlan0mon`.
+
+6. Airdecap-ng
+
+   - Decrypts WEP/WPA/WPA2 capture files if you know the key.
+
+   - Example:
+
+     ```bash
+     airdecap-ng -w mypassword handshake_capture.cap
+     ```
+
+     Attempts to decrypt traffic in `handshake_capture.cap` using the supplied key.
+
+7. Airdrop-ng / Airgraph-ng
+
+   - Airdrop-ng: Can enforce deauth on specific targets (e.g., intruders).
+   - Airgraph-ng: Visualizes relationships between APs and stations.
+
+------
+
+#### 10.2 Aircrack-ng Arguments Table
+
+Below is a focused table of Aircrack-ng’s most commonly used arguments (for cracking phase):
+
+| Argument        | Purpose / Explanation                                        | Example Usage                                       |
+| --------------- | ------------------------------------------------------------ | --------------------------------------------------- |
+| `-w <wordlist>` | Specify a dictionary file for brute force or dictionary attack. | `-w /usr/share/wordlists/rockyou.txt`               |
+| `-b <BSSID>`    | Target a specific BSSID in the capture file.                 | `-b 00:11:22:33:44:55`                              |
+| `-e <ESSID>`    | If multiple ESSIDs are in the capture, target one specifically by name. | `-e "HomeNetwork"`                                  |
+| `-l <file>`     | Write the cracked key to a file in plaintext.                | `-l cracked_key.txt`                                |
+| `-p <threads>`  | Number of threads (for WEP or wordlist splitting tasks).     | `-p 4` (use 4 threads)                              |
+| `-q`            | Quiet/less verbose output mode.                              | `-q`                                                |
+| `-S`            | Bruteforce search for WEP or WPA if uncertain.               | `-S` (rarely used; tries to auto-detect encryption) |
+| `--stat`        | Display advanced statistics during cracking.                 | `--stat`                                            |
+| `--help` / `-h` | Show help text for Aircrack-ng.                              | `aircrack-ng -h`                                    |
+
+Technical Example:
+
+```bash
+aircrack-ng -w /usr/share/wordlists/custom_list.txt -b 12:34:56:78:9A:BC -l mycrackedkey.txt handshake_capture.cap
+```
+
+- Uses a custom wordlist `custom_list.txt`.
+- Targets BSSID `12:34:56:78:9A:BC`.
+- Saves the cracked key to `mycrackedkey.txt`.
+- Cracks the handshake from `handshake_capture.cap`.
+
+------
+
+### 11. Other Tools: Hashcat, Reaver, Ettercap
+
+#### 11.1 Hashcat
+
+- Purpose: A GPU-accelerated password recovery tool. Can crack WPA/WPA2 handshakes offline using PMKID or captured 4-way handshakes.
+- Common Usage:
+  1. Convert `.cap` handshake to `hccapx` or `.hc22000` format (e.g., via `cap2hccapx` or `hcxpcapngtool`).
+  2. Run Hashcat with a wordlist or rules.
+
+Example (WPA2 cracking):
+
+```bash
+hashcat -m 22000 handshake.hc22000 /usr/share/wordlists/rockyou.txt -w 3 --force
+```
+
+- `-m 22000`: Hash mode for WPA-PMKID-PBKDF2 or WPA-EAPOL-PBKDF2.
+- `handshake.hc22000`: The converted capture file.
+- `-w 3`: Workload profile (3 is a balanced approach).
+- `--force`: Force Hashcat to run even if some warnings appear.
+
+#### 11.2 Reaver
+
+- Purpose: Exploits the WPS PIN vulnerability to obtain the WPA(2) passphrase.
+
+- Example:
+
+  ```bash
+  reaver -i wlan0mon -b 00:11:22:33:44:55 -c 6 -vv -K 1
+  ```
+
+  - `-i`: Interface (in monitor mode).
+  - `-b`: Target BSSID.
+  - `-c`: Channel.
+  - `-vv`: Very verbose output.
+  - `-K 1`: Enables small diff WPS P/N switch for speed improvement. (Parameters may differ based on Reaver version.)
+
+#### 11.3 Ettercap
+
+- Purpose: A comprehensive suite for man-in-the-middle (MITM) attacks and network sniffing, including ARP poisoning.
+
+- Example
+
+  (ARP poisoning in a wireless network):
+
+  ```bash
+  # Enable IP forwarding first (on Linux):
+  echo 1 > /proc/sys/net/ipv4/ip_forward
+  
+  # Then run Ettercap:
+  ettercap -T -i wlan0 -M arp /192.168.1.10// /192.168.1.1//
+  ```
+
+  - `-T`: Text mode.
+  - `-i wlan0`: Interface to use (wireless).
+  - `-M arp`: ARP poisoning MITM.
+  - `/192.168.1.10//`: Target host.
+  - `/192.168.1.1//`: Gateway or router.
+
+------
+
+### 12. Wireless Attack Countermeasures & Best Practices
+
+#### 12.1 Multi-Layered Defense Approach
+
+1. Signal Security: Adjust transmit power, place APs in secure areas to limit external coverage.
+2. Connection Security: Enforce WPA2 or WPA3 with strong passphrases.
+3. Device Security: Firmware updates for APs, disable unused services (WPS if not needed).
+4. Data Protection: Use end-to-end encryption (VPN or TLS) on sensitive data.
+5. Network Protection: Implement VLANs, firewalls, Wireless Intrusion Detection/Prevention Systems (WIDS/WIPS).
+6. End-User Protection: Train users on safe Wi-Fi practices (avoid rogue APs, use strong passwords).
+
+#### 12.2 Defenses Against WPA/WPA2/WPA3 Cracking
+
+- Use robust passphrases (at least 12+ characters, random).
+- Disable WPS (unless absolutely required, but still risky).
+- Upgrade to WPA3 if hardware supports it.
+- Periodically rotate keys (especially in enterprise settings).
+
+#### 12.3 Best Practices
+
+1. Configuration
+   - Update AP firmware regularly.
+   - Disable legacy protocols (WEP, TKIP).
+   - Avoid default SSIDs and admin credentials.
+   - Use VLAN segmentation for guest vs. internal networks.
+2. SSID Settings
+   - Use non-descriptive SSIDs.
+   - Consider hiding the SSID broadcast (minor obfuscation).
+   - Monitor for rogue APs or SSID clones.
+3. Authentication
+   - Prefer WPA2-Enterprise or WPA3-Enterprise for corporate environments (RADIUS-based).
+   - Enforce strong PSK complexity if using WPA2-PSK.
+   - Regular passphrase rotation policy (e.g., every 90 days).
 
 # Questions Pack
 

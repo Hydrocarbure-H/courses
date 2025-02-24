@@ -1,6 +1,6 @@
 # Certification
 
-Notes de cours par `Thomas Peugnet` assisté par Mistral AI.
+Notes de cours par `Thomas Peugnet` assisté par Mistral.
 
 ## Module 01 - Introduction
 

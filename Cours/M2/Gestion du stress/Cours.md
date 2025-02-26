@@ -53,10 +53,10 @@ Notes de cours par `Thomas Peugnet`, assisté par Mistral AI.
 - **Définition** : Communiquer sans jugement ni violence, avec empathie et clarté.
 - **Bénéfices** : Diminution du stress relationnel, amélioration de la coopération, respect mutuel.
 - Quatre étapes O-S-B-D :
-  1 Observation** (des faits concrets, sans interprétation).
-  2 Sentiment** (exprimer ce que l’on ressent).
-  3 Besoin** (identifier le besoin sous-jacent).
-  4 Demande** (claire, réalisable, négociable).
+  - **Observation** (des faits concrets, sans interprétation).
+  - **Sentiment** (exprimer ce que l’on ressent).
+  - **Besoin** (identifier le besoin sous-jacent).
+  - **Demande** (claire, réalisable, négociable).
 - **Pièges :**
   - Confondre sentiment et jugement : « Je me sens ignoré » vs. « Tu m’ignores tout le temps. »
   - Formuler des exigences plutôt que des demandes (pas de liberté de réponse).

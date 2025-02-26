@@ -2,7 +2,7 @@
 
 Notes de cours par `Thomas Peugnet`, assisté par Mistral AI.
 
-### 1. **Les fondamentaux du stress**
+### 1. Les fondamentaux du stress
 
 - **Définition du stress** : Réaction adaptative face à un stresseur, distincte de l’anxiété.
 - **Eustress vs Distress** : Différences, effets sur la performance (modèle de Yerkes-Dodson).
@@ -10,7 +10,7 @@ Notes de cours par `Thomas Peugnet`, assisté par Mistral AI.
 - **Le SGA (Syndrome Général d’Adaptation)** : Phases d’alarme, de résistance, d’épuisement.
 - **Signes et symptômes** : Physiques, cognitifs, émotionnels, comportementaux.
 
-### 2. **Les lois du temps et la gestion du stress**
+### 2. Les lois du temps et la gestion du stress
 
 - **Pareto (20/80)** : 20 % des actions produisent 80 % des résultats.
 - **Parkinson** : « Plus on a de temps, plus on en prend. »
@@ -20,7 +20,7 @@ Notes de cours par `Thomas Peugnet`, assisté par Mistral AI.
 - **Conséquences** : Multitasking, interruptions, urgences, surcharge cognitive augmentent le stress.
 - **Outils** : Matrice d’Eisenhower (Importance/Urgence), 6 P (Proper, Prior, Planning, Prevents, Poor, Performance), Time Boxing (blocs de 25–90 min).
 
-### 3. **Procrastination**
+### 3. Procrastination
 
 - **Types de procrastinateurs :**
   - Débordé (manque d’organisation, trop de tâches).
@@ -34,7 +34,7 @@ Notes de cours par `Thomas Peugnet`, assisté par Mistral AI.
   - Création de challenges planifiés et gestion de l’énergie (pour l’adepte de l’adrénaline).
 - **Technique Pomodoro** : 25 minutes de concentration puis 5 minutes de pause, pour rester focus.
 
-### 4. **Gestion des émotions et « messages contraignants »**
+### 4. Gestion des émotions et « messages contraignants »
 
 - **Émotions de base** : Peur, colère, joie, tristesse, dégoût, surprise.
 - **Régulation émotionnelle** : Reconnaissance, expression, réévaluation, lien avec le besoin.
@@ -47,22 +47,22 @@ Notes de cours par `Thomas Peugnet`, assisté par Mistral AI.
 - **Leur impact** : Génèrent des circuits émotionnels favorisant l’anxiété, la culpabilité, l’épuisement ou l’agitation.
 - **Permissions libératrices** : Droit à l’erreur, à la fragilité, au « non », au temps, à la facilité.
 
-### 5. **Communication Non Violente (CNV)**
+### 5. Communication Non Violente (CNV)
 
 - **Origine** : Marshall Rosenberg.
 - **Définition** : Communiquer sans jugement ni violence, avec empathie et clarté.
 - **Bénéfices** : Diminution du stress relationnel, amélioration de la coopération, respect mutuel.
 - Quatre étapes O-S-B-D :
-  1. **Observation** (des faits concrets, sans interprétation).
-  2. **Sentiment** (exprimer ce que l’on ressent).
-  3. **Besoin** (identifier le besoin sous-jacent).
-  4. **Demande** (claire, réalisable, négociable).
+  1 Observation** (des faits concrets, sans interprétation).
+  2 Sentiment** (exprimer ce que l’on ressent).
+  3 Besoin** (identifier le besoin sous-jacent).
+  4 Demande** (claire, réalisable, négociable).
 - **Pièges :**
   - Confondre sentiment et jugement : « Je me sens ignoré » vs. « Tu m’ignores tout le temps. »
   - Formuler des exigences plutôt que des demandes (pas de liberté de réponse).
 - **Outils complémentaires** : Écoute active, reformulation (écho, miroir, résumé, clarification), questionnement ouvert.
 
-### 6. **Autres outils de communication**
+### 6. Autres outils de communication
 
 - **Cadre de référence** : Chaque individu perçoit la réalité différemment selon son vécu.
 - **Filtre de perception** : Émotions et préjugés modifient instantanément ce qu’on comprend.

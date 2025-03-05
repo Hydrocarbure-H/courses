@@ -860,7 +860,7 @@ C. Le polymorphisme est un concept applicable uniquement aux ransomwares, alors 
 - C. Une combinaison d’opérandes interdite sur x86.
 - D. Un saut inconditionnel à l’adresse stockée dans ecx.
 
-**Réponse :** A. On lit un élément d’un tableau d’entiers (taille 4) avec offset 0x10, base ebx.
+> **Réponse :** A. On lit un élément d’un tableau d’entiers (taille 4) avec offset 0x10, base ebx.
 ------
 
 ### 12. Lors d’un **reverse-engineering**, pourquoi l’absence de symboles (fonction “stripped”) dans le binaire Windows peut-elle poser problème ?
@@ -881,7 +881,7 @@ C. Le polymorphisme est un concept applicable uniquement aux ransomwares, alors 
 - C. Un montage d’images ISO dans la base de registre.
 - D. La longueur du chemin d’installation du malware.
 
-**Réponse :** A. Vérifier la quantité de RAM/CPU est classique pour détecter un environnement virtuel limité.
+> **Réponse :** A. Vérifier la quantité de RAM/CPU est classique pour détecter un environnement virtuel limité.
 ------
 
 ### 14. **YARA** est souvent employé en analyse de malwares. À quoi sert-il ?

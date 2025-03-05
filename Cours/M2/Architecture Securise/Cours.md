@@ -313,10 +313,10 @@ ret             ; pop l’ancienne EIP, retourne à l’appelant
 
 ### 1. Qu’appelle-t-on un **malware** ?
 
-A. Un ensemble de règles de sécurité.
- B. Un logiciel malveillant visant à endommager ou prendre le contrôle d’un système.
- C. Un outil de supervision réseau autorisé.
- D. Un protocole chiffré dédié à la communication sécurisée.
+- A. Un ensemble de règles de sécurité.
+- B. Un logiciel malveillant visant à endommager ou prendre le contrôle d’un système.
+- C. Un outil de supervision réseau autorisé.
+- D. Un protocole chiffré dédié à la communication sécurisée.
 
 > **Réponse :** B. Un logiciel malveillant visant à endommager ou prendre le contrôle d’un système.
 
@@ -324,10 +324,10 @@ A. Un ensemble de règles de sécurité.
 
 ### 2. Parmi les vecteurs d’attaque courants pour propager un malware, on trouve :
 
-A. Les pare-feu matériels uniquement.
- B. Les failles de navigateur, les e-mails, les disques amovibles, etc.
- C. Les ondes radio cryptées seulement.
- D. Uniquement les serveurs SSH mal configurés.
+- A. Les pare-feu matériels uniquement.
+- B. Les failles de navigateur, les e-mails, les disques amovibles, etc.
+- C. Les ondes radio cryptées seulement.
+- D. Uniquement les serveurs SSH mal configurés.
 
 > **Réponse :** B. Les failles de navigateur, les e-mails, les disques amovibles, etc.
 
@@ -335,21 +335,21 @@ A. Les pare-feu matériels uniquement.
 
 ### 3. Quel est le **principal objectif** d’un cheval de Troie (Trojan) ?
 
-A. Se propager de manière autonome sur un réseau.
- B. Se cacher en modifiant le noyau de l’OS.
- C. Se faire passer pour un logiciel légitime et exécuter des actions malveillantes.
- D. Chiffrer les données de l’utilisateur pour demander une rançon.
+- A. Se propager de manière autonome sur un réseau.
+- B. Se cacher en modifiant le noyau de l’OS.
+- C. Se faire passer pour un logiciel légitime et exécuter des actions malveillantes.
+- D. Chiffrer le- s données de l’utilisateur pour demander une rançon- - .
 
-> **Réponse :** C. Se faire passer pour un logiciel légitime et exécuter des actions malveillantes.
+> **Réponse :**C. Se faire passer pour un logiciel légitime et exécuter des actions malveillantes.
 
 ------
 
 ### 4. Les **vers (worms)** se caractérisent principalement par :
 
-A. Leur propagation via des supports physiques (clés USB, CD).
- B. Leur propagation autonome par le réseau, sans exiger d'interaction humaine.
- C. Un chiffrement des fichiers de la victime.
- D. Le blocage complet de la machine cible au démarrage.
+- A. Leur propagation via des supports physiques (clés USB, CD).
+- B. Leur propagation autonome par le réseau, sans exiger d'interaction humaine.
+- C. Un chiffrement des fichiers de la victime.
+- D. Le blocage complet de la machine cible au démarrage.
 
 > **Réponse :** B. Leur propagation autonome par le réseau, sans exiger d’interaction humaine.
 
@@ -357,32 +357,31 @@ A. Leur propagation via des supports physiques (clés USB, CD).
 
 ### 5. Un **ransomware** :
 
-A. Chiffre les données d’une victime et réclame une rançon.
- B. Surveille silencieusement les frappes clavier (keylogger).
- C. Désactive toutes les protections antivirus d’un système.
- D. Bloque uniquement l’accès à Internet.
+- A. Chiffre les données d’une victime et réclame une rançon.
+- B. Surveille silencieusement les frappes clavier (keylogger).
+- C. Désactive toutes les protections antivirus d’un système.
+- D. Bloque uniquement l’accès à Internet.
 
 > **Réponse :** A. Chiffre les données d’une victime et réclame une rançon.
-
 ------
 
 ### 6. Parmi les logiciels malveillants suivants, lequel est conçu pour **camoufler** son existence au sein du système ?
 
-A. Le ver (worm).
- B. Le keylogger.
- C. Le rootkit.
- D. L’adware.
+- A. Le ver (worm).
+- B. Le keylogger.
+- C. Le rootkit.
+- D. L’adware.-- -  
 
-> **Réponse :** C. Le rootkit.
+> **Réponse :**C. Le rootkit.
 
 ------
 
 ### 7. La notion de **botnet** se définit comme :
 
-A. Un réseau pair-à-pair légitime pour le partage de fichiers.
- B. Un réseau de machines infectées (zombies) contrôlées à distance par un attaquant.
- C. Une technique d’isolation applicative.
- D. Un système de détection d’intrusions basé sur l’hôte.
+- A. Un réseau pair-à-pair légitime pour le partage de fichiers.
+- B. Un réseau de machines infectées (zombies) contrôlées à distance par un attaquant.
+- C. Une technique d’isolation applicative.
+- D. Un système de détection d’intrusions basé sur l’hôte.
 
 > **Réponse :** B. Un réseau de machines infectées (zombies) contrôlées à distance par un attaquant.
 
@@ -390,10 +389,10 @@ A. Un réseau pair-à-pair légitime pour le partage de fichiers.
 
 ### 8. Les **RATs (Remote Administration Tools)** :
 
-A. Sont des outils réseau qui scannent les ports ouverts.
- B. Permettent une prise de contrôle à distance d’une machine infectée.
- C. Ne fonctionnent que sur des systèmes Linux.
- D. Sont des kits de compilation pour créer des vers polymorphes.
+- A. Sont des outils réseau qui scannent les ports ouverts.
+- B. Permettent une prise de contrôle à distance d’une machine infectée.
+- C. Ne fonctionnent que sur des systèmes Linux.
+- D. Sont des kits de compilation pour créer des vers polymorphes.
 
 > **Réponse :** B. Permettent une prise de contrôle à distance d’une machine infectée.
 
@@ -401,10 +400,10 @@ A. Sont des outils réseau qui scannent les ports ouverts.
 
 ### 9. Un **keylogger** a pour fonction première de :
 
-A. Chiffrer tous les fichiers de l’ordinateur.
- B. Surveiller et enregistrer toutes les frappes au clavier.
- C. Bloquer le fonctionnement des navigateurs web.
- D. Empêcher les mises à jour du système.
+- A. Chiffrer tous les fichiers de l’ordinateur.
+- B. Surveiller et enregistrer toutes les frappes au clavier.
+- C. Bloquer le fonctionnement des navigateurs web.
+- D. Empêcher les mises à jour du système.
 
 > **Réponse :** B. Surveiller et enregistrer toutes les frappes au clavier.
 
@@ -412,87 +411,84 @@ A. Chiffrer tous les fichiers de l’ordinateur.
 
 ### 10. À propos du **format PE (Portable Executable)** sur Windows :
 
-A. Il n’est utilisé que pour les bibliothèques (DLL).
- B. Il s’agit d’un format propriétaire Mac OS.
- C. Il contient des sections (.text, .data, .rdata, etc.) et un header décrivant l’exécutable.
- D. Il a complètement remplacé le format ELF sur toutes les plateformes.
+- A. Il n’est utilisé que pour les bibliothèques (DLL).
+- B. Il s’agit d’un format propriétaire Mac OS.
+- C. Il contient des sections (.text, .data, .rdata, etc.) et un header décrivant l’exécutable.
+- D. Il a complè- tement remplacé le format ELF sur toutes les plateformes- - .
 
-> **Réponse :** C. Il contient des sections (.text, .data, .rdata, etc.) et un header décrivant l’exécutable.
+> **Réponse :**C. Il contient des sections (.text, .data, .rdata, etc.) et un header décrivant l’exécutable.
 
 ------
 
 ### 11. Dans le cadre d’une **analyse statique** basique d’un binaire malveillant, on peut :
 
-A. Lancer le malware en mode sans échec pour observer son comportement.
- B. Surveiller en temps réel la mémoire et les connexions réseau.
- C. Examiner le code sans l’exécuter, par exemple avec un désassembleur ou la commande `strings`.
- D. Calculer la durée d’exécution totale pour chaque sous-routine.
+- A. Lancer le malware en mode sans échec pour observer son comportement.
+- B. Surveiller en temps réel la mémoire et les connexions réseau.
+- C. Examiner le code sans l’exécuter, par exemple avec un désassembleur ou la commande `strings`.
+- D. Calculer la-  durée d’exécution totale pour chaque sous-routine- - .
 
-> **Réponse :** C. Examiner le code sans l’exécuter, par exemple avec un désassembleur ou `strings`.
+> **Réponse :**C. Examiner le code sans l’exécuter, par exemple avec un désassembleur ou `strings`.
 
 ------
 
 ### 12. Quel est **l’intérêt** de calculer le **hash** (MD5, SHA-1, etc.) d’un fichier suspect ?
 
-A. Accélérer l’exécution du malware.
- B. Empêcher l’antivirus de détecter le malware.
- C. Disposer d’une empreinte unique permettant l’identification et la recherche de ce fichier.
- D. Déterminer la taille mémoire maximale occupée par le malware.
+- A. Accélérer l’exécution du malware.
+- B. Empêcher l’antivirus de détecter le malware.
+- C. Disposer d’une empreinte unique permettant l’identification et la recherche de ce fichier.
+- D. Déterminer - la taille mémoire maximale occupée par le malware- - .
 
-> **Réponse :** C. Avoir une empreinte unique pour identifier et rechercher ce fichier.
+> **Réponse :**C. Avoir une empreinte unique pour identifier et rechercher ce fichier.
 
 ------
 
 ### 13. Au sujet d’un **packer** (ou d’un binaire packé) :
 
-A. C’est un binaire dont le code est compressé ou chiffré, et décompressé en mémoire à l’exécution.
- B. C’est un programme d’installation légitime pour Windows.
- C. C’est la même chose qu’un Virtual Machine Monitor (VMM).
- D. Il ne peut fonctionner que sur 32 bits.
+- A. C’est un binaire dont le code est compressé ou chiffré, et décompressé en mémoire à l’exécution.
+- B. C’est un programme d’installation légitime pour Windows.
+- C. C’est la même chose qu’un Virtual Machine Monitor (VMM).
+- D. Il ne peut fonctionner que sur 32 bits.
 
 > **Réponse :** A. Un binaire compressé/chiffré, décompressé en mémoire à l’exécution.
-
 ------
 
 ### 14. Dans une **analyse dynamique basique**, on cherche souvent à :
 
-A. Exécuter le malware sur une machine de production pour avoir un test réaliste.
- B. Scanner le binaire uniquement à l’aide d’un moteur heuristique.
- C. Observer, en environnement isolé (VM), les actions (création de fichiers, clés de registre, trafic réseau).
- D. Mesurer précisément le temps d’affichage de chaque fenêtre du malware.
+- A. Exécuter le malware sur une machine de production pour avoir un test réaliste.
+- B. Scanner le binaire uniquement à l’aide d’un moteur heuristique.
+- C. Observer, en environnement isolé (VM), les actions (création de fichiers, clés de registre, trafic réseau).
+- D. Mesurer pré- cisément le temps d’affichage de chaque fenêtre du malware- - .
 
-> **Réponse :** C. Observer, en environnement isolé, les actions concrètes du malware.
+> **Réponse :**C. Observer, en environnement isolé, les actions concrètes du malware.
 
 ------
 
 ### 15. **Process Monitor** (Sysinternals) est un outil qui :
 
-A. Permet de tracer les appels système et les modifications d’éléments clés (fichiers, registre) en temps réel.
- B. Est un pare-feu local bloquant tous les ports réseaux.
- C. Est utilisé exclusivement pour déboguer du code assembleur.
- D. N’existe que sur Linux.
+- A. Permet de tracer les appels système et les modifications d’éléments clés (fichiers, registre) en temps réel.
+- B. Est un pare-feu local bloquant tous les ports réseaux.
+- C. Est utilisé exclusivement pour déboguer du code assembleur.
+- D. N’existe que sur Linux.
 
 > **Réponse :** A. Il trace en temps réel appels système, modifications de fichiers, du Registre, etc.
-
 ------
 
 ### 16. L’**édition de liens dynamique** (Dynamic Linking) sur Windows :
 
-A. Permet au système de charger les DLL nécessaires à l’exécutable au moment du lancement.
- B. Indique l’échec d’une compilation en C.
- C. Ne se fait qu’au niveau du BIOS.
- D. N’est jamais utilisée par les malwares pour charger des fonctions à la volée.
+- A. Permet au système de charger les DLL nécessaires à l’exécutable au moment du lancement.
+- B. Indique l’échec d’une compilation en C.
+- C. Ne se fait qu’au niveau du BIOS.
+- D. N’est jamais utilisée par les malwares pour charger des fonctions à la volée.
 
 > **Réponse :** A. Le système charge les DLL quand le programme démarre.
-
 ------
 
 ### 17. L’**analyse statique avancée** implique généralement :
 
-A. Se fier uniquement aux signatures antivirus.
- B. Utiliser un désassembleur (IDA Pro, radare2), et étudier le code assembleur pour comprendre la logique.
- C. Lancer le malware sur un OS mobile (Android) pour “voir ce qui se passe”.
- D. Désactiver toutes les défenses du système hôte.
+- A. Se fier uniquement aux signatures antivirus.
+- B. Utiliser un désassembleur (IDA Pro, radare2), et étudier le code assembleur pour comprendre la logique.
+- C. Lancer le malware sur un OS mobile (Android) pour “voir ce qui se passe”.
+- D. Désactiver toutes les défenses du système hôte.
 
 > **Réponse :** B. Employer un désassembleur et analyser l’assembleur pour décrypter la logique.
 
@@ -500,21 +496,20 @@ A. Se fier uniquement aux signatures antivirus.
 
 ### 18. L’**analyse dynamique avancée** peut inclure :
 
-A. Un débogage pas à pas (step-by-step) via un outil comme x64dbg ou Immunity Debugger.
- B. Une simple exécution du code dans un navigateur web.
- C. Aucun usage de logs ni de snapshots.
- D. L’assemblage du malware à partir de zéro.
+- A. Un débogage pas à pas (step-by-step) via un outil comme x64dbg ou Immunity Debugger.
+- B. Une simple exécution du code dans un navigateur web.
+- C. Aucun usage de logs ni de snapshots.
+- D. L’assemblage du malware à partir de zéro.
 
 > **Réponse :** A. Utiliser un débogueur pas à pas pour observer l’état interne du malware.
-
 ------
 
 ### 19. On appelle **“signature-based detection”** :
 
-A. La méthode de surveillance du trafic réseau pour intercepter les paquets illégitimes.
- B. L’approche consistant à détecter un malware grâce à l’empreinte (hash) ou un pattern de code connu.
- C. L’installation d’un mot de passe pour chiffrer un exécutable malveillant.
- D. L’analyse en sandbox automatique du comportement global.
+- A. La méthode de surveillance du trafic réseau pour intercepter les paquets illégitimes.
+- B. L’approche consistant à détecter un malware grâce à l’empreinte (hash) ou un pattern de code connu.
+- C. L’installation d’un mot de passe pour chiffrer un exécutable malveillant.
+- D. L’analyse en sandbox automatique du comportement global.
 
 > **Réponse :** B. Détecter via une empreinte (hash) ou un pattern de code connu.
 
@@ -522,21 +517,20 @@ A. La méthode de surveillance du trafic réseau pour intercepter les paquets il
 
 ### 20. Concernant les **signatures host-based** et **network-based** :
 
-A. Les signatures host-based examinent des patterns dans des fichiers, clés de registre ou processus locaux.
- B. Les signatures network-based ne détectent jamais les chevaux de Troie.
- C. Les signatures host-based s’appliquent exclusivement aux machines Linux.
- D. Les signatures network-based requièrent toujours un agent physique branché sur le réseau.
+- A. Les signatures host-based examinent des patterns dans des fichiers, clés de registre ou processus locaux.
+- B. Les signatures network-based ne détectent jamais les chevaux de Troie.
+- C. Les signatures host-based s’appliquent exclusivement aux machines Linux.
+- D. Les signatures network-based requièrent toujours un agent physique branché sur le réseau.
 
 > **Réponse :** A. Les signatures host-based portent sur les fichiers, le Registre, les processus locaux.
-
 ------
 
 ### 21. Quel est le **rôle** d’un **dropper** dans un cheval de Troie ?
 
-A. Empêcher la victime d’ouvrir un navigateur.
- B. Installer le code malveillant sur la machine (souvent discrètement), avant l’exécution finale du malware.
- C. Chiffrer tout le trafic sortant.
- D. Afficher des publicités ciblées.
+- A. Empêcher la victime d’ouvrir un navigateur.
+- B. Installer le code malveillant sur la machine (souvent discrètement), avant l’exécution finale du malware.
+- C. Chiffrer tout le trafic sortant.
+- D. Afficher des publicités ciblées.
 
 > **Réponse :** B. Installer secrètement le malware final sur la machine.
 
@@ -544,10 +538,10 @@ A. Empêcher la victime d’ouvrir un navigateur.
 
 ### 22. Les **virus polymorphes** :
 
-A. Ne fonctionnent plus depuis Windows XP.
- B. Utilisent des techniques de rotation de clés de chiffrement pour modifier leur signature à chaque infection.
- C. Sont strictement identiques à un rootkit.
- D. Sont un type de ransomware en cloud.
+- A. Ne fonctionnent plus depuis Windows XP.
+- B. Utilisent des techniques de rotation de clés de chiffrement pour modifier leur signature à chaque infection.
+- C. Sont strictement identiques à un rootkit.
+- D. Sont un type de ransomware en cloud.
 
 > **Réponse :** B. Ils changent leur signature (chiffrement, mutation) à chaque infection.
 
@@ -555,21 +549,22 @@ A. Ne fonctionnent plus depuis Windows XP.
 
 ### 23. Les **RATs** (Remote Administration Tools) se différencient des **botnets** classiques car :
 
-A. Les RATs peuvent cibler moins de machines mais de façon plus ciblée (attaques dirigées, espionnage).
- B. Les botnets sont forcément utilisés pour miner de la cryptomonnaie.
- C. Les RATs sont des antivirus officiels développés par Microsoft.
- D. Les RATs ne s’installent jamais de façon persistante.
+- A. Les RATs peuvent cibler moins de machines mais de façon plus ciblée (attaques dirigées, espionnage).
+- B. Les botnets sont forcément utilisés pour miner de la cryptomonnaie.
+- C. Les RATs sont des antivirus officiels développés par Microsoft.
+- D. Les RATs ne s’installent jamais de façon persistante.
 
-> **Réponse :** A. Les RATs sont souvent employés dans des attaques ciblées, alors que les botnets concernent plus de machines simultanément pour des usages massifs (DDoS, spam…).
+> **Réponse :** A. Les RATs sont souvent employés dans des attaques ciblées, alors que les botnets concernent plus de 
+chines simultanément pour des usages massifs (DDoS, spam…).
 
 ------
 
 ### 24. Dans la **méthodologie d’analyse d’un incident** lié à un malware découvert :
 
-A. On se contente de redémarrer la machine pour s’assurer de l’éradication.
- B. On cherche à identifier la source d’infection et à savoir si un rootkit/backdoor s’est déployé.
- C. On ne procède jamais à la création de règles de détection.
- D. On ne fait aucune sauvegarde.
+- A. On se contente de redémarrer la machine pour s’assurer de l’éradication.
+- B. On cherche à identifier la source d’infection et à savoir si un rootkit/backdoor s’est déployé.
+- C. On ne procède jamais à la création de règles de détection.
+- D. On ne fait aucune sauvegarde.
 
 > **Réponse :** B. On tente notamment de déterminer l’origine de l’intrusion et si d’autres malwares (rootkit, backdoor) persistent.
 
@@ -577,10 +572,10 @@ A. On se contente de redémarrer la machine pour s’assurer de l’éradication
 
 ### 25. L’**adresse EIP** (Extended Instruction Pointer) sur x86 :
 
-A. Indique l’adresse de la pile (Stack Pointer).
- B. Est le registre qui pointe vers l’instruction en cours d’exécution.
- C. N’existe pas, c’est un mythe.
- D. Appartient aux registres de segment (DS, CS, FS…).
+- A. Indique l’adresse de la pile (Stack Pointer).
+- B. Est le registre qui pointe vers l’instruction en cours d’exécution.
+- C. N’existe pas, c’est un mythe.
+- D. Appartient aux registres de segment (DS, CS, FS…).
 
 > **Réponse :** B. EIP pointe vers l’instruction en cours ou la suivante (compteur ordinal).
 
@@ -588,21 +583,20 @@ A. Indique l’adresse de la pile (Stack Pointer).
 
 ### 26. Les **Instructions NOP** (No Operation, opcode 0x90) :
 
-A. Permettent parfois d’ajouter un “sled” (suite de NOP) pour faciliter l’exécution d’un shellcode.
- B. Interrompent immédiatement l’exécution du programme.
- C. Déclenchent une exception de type “division par zéro”.
- D. Établissent un tunnel chiffré.
+- A. Permettent parfois d’ajouter un “sled” (suite de NOP) pour faciliter l’exécution d’un shellcode.
+- B. Interrompent immédiatement l’exécution du programme.
+- C. Déclenchent une exception de type “division par zéro”.
+- D. Établissent un tunnel chiffré.
 
 > **Réponse :** A. On peut former un “NOP-sled” pour orienter l’exécution vers le shellcode.
-
 ------
 
 ### 27. Dans le cadre d’un **buffer overflow**, la **pile** (stack) :
 
-A. N’est jamais modifiable par un code C.
- B. Peut être écrasée si on dépasse la taille allouée à un tampon, corrompant EIP.
- C. N’existe pas en mode utilisateur.
- D. Est toujours protégée par défaut par le système d’exploitation.
+- A. N’est jamais modifiable par un code C.
+- B. Peut être écrasée si on dépasse la taille allouée à un tampon, corrompant EIP.
+- C. N’existe pas en mode utilisateur.
+- D. Est toujours protégée par défaut par le système d’exploitation.
 
 > **Réponse :** B. Un dépassement de tampon peut écraser la pile jusqu’à EIP.
 
@@ -610,10 +604,10 @@ A. N’est jamais modifiable par un code C.
 
 ### 28. On parle de **Dynamic Analysis** si :
 
-A. On teste le code sans jamais l’exécuter (uniquement via un éditeur hexadécimal).
- B. On exécute le malware dans un environnement contrôlé pour en surveiller l’impact et le comportement.
- C. On modifie le binaire pour changer son endianness.
- D. On s’appuie sur l’arborescence des symboles en C.
+- A. On teste le code sans jamais l’exécuter (uniquement via un éditeur hexadécimal).
+- B. On exécute le malware dans un environnement contrôlé pour en surveiller l’impact et le comportement.
+- C. On modifie le binaire pour changer son endianness.
+- D. On s’appuie sur l’arborescence des symboles en C.
 
 > **Réponse :** B. Exécuter le malware en sandbox/VM et observer son comportement.
 
@@ -621,21 +615,20 @@ A. On teste le code sans jamais l’exécuter (uniquement via un éditeur hexad�
 
 ### 29. Dans l’**architecture x86**, le registre **EBP** (Base Pointer) :
 
-A. Est souvent utilisé pour référencer les variables locales et paramètres d’une fonction (dans un stack frame).
- B. Stocke la valeur de retour d’une fonction.
- C. N’existe que sur des processeurs ARM.
- D. Désigne l’adresse physique absolue.
+- A. Est souvent utilisé pour référencer les variables locales et paramètres d’une fonction (dans un stack frame).
+- B. Stocke la valeur de retour d’une fonction.
+- C. N’existe que sur des processeurs ARM.
+- D. Désigne l’adresse physique absolue.
 
 > **Réponse :** A. EBP sert de base pour référencer les variables/paramètres dans un stack frame.
-
 ------
 
 ### 30. Les **dlls** (Dynamic Link Libraries) :
 
-A. Ne peuvent jamais être importées statiquement.
- B. Fournissent au programme principal des fonctions externalisées qu’il peut appeler.
- C. Rendent obligatoirement le logiciel open source.
- D. Se chargent uniquement en mode noyau.
+- A. Ne peuvent jamais être importées statiquement.
+- B. Fournissent au programme principal des fonctions externalisées qu’il peut appeler.
+- C. Rendent obligatoirement le logiciel open source.
+- D. Se chargent uniquement en mode noyau.
 
 > **Réponse :** B. Elles offrent des fonctions externes au programme qui les importe.
 
@@ -643,21 +636,20 @@ A. Ne peuvent jamais être importées statiquement.
 
 ### 31. En **analyse statique** basique, la commande `strings` sous Linux :
 
-A. Affiche toutes les chaînes de caractères (ASCII ou Unicode) d’un fichier, susceptibles d’indiquer des URLs ou API.
- B. Exécute un test d’intrusion réseau.
- C. Permet de lancer le binaire en mode debug.
- D. Sert exclusivement à renommer un fichier.
+- A. Affiche toutes les chaînes de caractères (ASCII ou Unicode) d’un fichier, susceptibles d’indiquer des URLs ou API.
+- B. Exécute un test d’intrusion réseau.
+- C. Permet de lancer le binaire en mode debug.
+- D. Sert exclusivement à renommer un fichier.
 
 > **Réponse :** A. `strings` affiche les chaînes textuelles repérables dans un binaire.
-
 ------
 
 ### 32. Dans un malware, la **section .rsrc** (ressources) peut contenir :
 
-A. Les registres du noyau.
- B. Des icônes, menus, ou chaînes de texte utilisées par le programme.
- C. Les instructions principales (code exécutable).
- D. Les paramètres de l’ASLR (Address Space Layout Randomization).
+- A. Les registres du noyau.
+- B. Des icônes, menus, ou chaînes de texte utilisées par le programme.
+- C. Les instructions principales (code exécutable).
+- D. Les paramètres de l’ASLR (Address Space Layout Randomization).
 
 > **Réponse :** B. Des ressources (icônes, menus, textes) embarquées dans l’exécutable.
 
@@ -665,10 +657,10 @@ A. Les registres du noyau.
 
 ### 33. Le **rootkit en mode noyau** (kernel-mode) :
 
-A. Ne peut pas modifier les appels systèmes (syscalls).
- B. Dispose de privilèges élevés et peut altérer la façon dont l’OS gère les processus, rendant sa détection plus difficile.
- C. Se limite à faire du spam.
- D. Fonctionne uniquement sur Android.
+- A. Ne peut pas modifier les appels systèmes (syscalls).
+- B. Dispose de privilèges élevés et peut altérer la façon dont l’OS gère les processus, rendant sa détection plus difficile.
+- C. Se limite à faire du spam.
+- D. Fonctionne uniquement sur Android.
 
 > **Réponse :** B. Il a un accès privilégié et peut masquer ses traces de manière très profonde.
 
@@ -676,21 +668,20 @@ A. Ne peut pas modifier les appels systèmes (syscalls).
 
 ### 34. Lorsqu’on évoque **l’entropie** d’un fichier exécutable :
 
-A. Une entropie proche de 8 indique souvent que le fichier est compressé ou chiffré.
- B. Elle ne se calcule pas, c’est un concept purement théorique.
- C. On obtient toujours une valeur négative.
- D. Cela signifie que le fichier est trop gros pour être analysé.
+- A. Une entropie proche de 8 indique souvent que le fichier est compressé ou chiffré.
+- B. Elle ne se calcule pas, c’est un concept purement théorique.
+- C. On obtient toujours une valeur négative.
+- D. Cela signifie que le fichier est trop gros pour être analysé.
 
 > **Réponse :** A. Plus l’entropie est élevée, plus il est probable que le fichier soit packé ou chiffré.
-
 ------
 
 ### 35. Dans un **code assembleur x86**, l’instruction `cmp eax, ebx` sert à :
 
-A. Déplacer la valeur de ebx dans eax.
- B. Soustraire ebx de eax et modifier les flags sans stocker le résultat.
- C. Décompiler ebx en pseudo-code.
- D. Convertir eax en 64 bits.
+- A. Déplacer la valeur de ebx dans eax.
+- B. Soustraire ebx de eax et modifier les flags sans stocker le résultat.
+- C. Décompiler ebx en pseudo-code.
+- D. Convertir eax en 64 bits.
 
 > **Réponse :** B. Elle effectue eax - ebx pour mettre à jour les drapeaux (ZF, CF, etc.) sans conserver le résultat.
 
@@ -698,21 +689,21 @@ A. Déplacer la valeur de ebx dans eax.
 
 ### 36. L’instruction `call` en assembleur :
 
-A. Permet de réaliser un saut inconditionnel sans sauvegarder l’adresse de retour.
- B. Charge un driver en kernel mode.
- C. Empile (push) l’adresse de retour, puis saute à la fonction appelée.
- D. Renvoie systématiquement l’exécution à l’instruction suivante.
+- A. Permet de réaliser un saut inconditionnel sans sauvegarder l’adresse de retour.
+- B. Charge un driver en kernel mode.
+- C. Empile (push) l’adresse de retour, puis saute à la fonction appelée.
+- D. Renvoie sys- tématiquement l’exécution à l’instruction suivante- - .
 
-> **Réponse :** C. `call` empile l’adresse de retour et saute vers la fonction.
+> **Réponse :**C. `call` empile l’adresse de retour et saute vers la fonction.
 
 ------
 
 ### 37. Le concept d’**anti-VM** (anti-virtualisation) dans certains malwares :
 
 A. Est une technique visant à rendre un binaire incompatible avec l’architecture x64.
- B. Permet de détecter si l’environnement d’exécution est une machine virtuelle afin d’arrêter ou de modifier le comportement du malware.
- C. N’existe que sur des systèmes macOS.
- D. Ne concerne que la virtualisation CPU.
+- B. Permet de détecter si l’environnement d’exécution est une machine virtuelle afin d’arrêter ou de modifier le - comportement du malware- .
+C. N’existe que sur des systèmes macOS.
+- D. Ne concerne que la virtualisation CPU.
 
 > **Réponse :** B. Le malware vérifie s’il tourne dans une VM et réagit (freine l’exécution, arrête ses actions…).
 
@@ -721,20 +712,19 @@ A. Est une technique visant à rendre un binaire incompatible avec l’architect
 ### 38. **Reverse Shell** Trojan signifie :
 
 A. La machine victime initie la connexion vers la machine de l’attaquant pour lui offrir un shell distant.
- B. L’attaquant se connecte librement à la machine victime sur un port aléatoire, sans que la victime ne fasse quoi que ce soit.
- C. Le Trojan ne sert qu’à chiffrer des données.
- D. Le Trojan s’exécute uniquement dans un navigateur.
+- B. L’attaquant se connecte librement à la machine victime sur un port aléatoire, sans que la victime ne fasse quoi que ce - soit.
+- C. Le Trojan ne sert qu’à chiffrer des données.
+- D. Le Trojan s’exécute uniquement dans un navigateur.
 
 > **Réponse :** A. C’est la cible qui initie la connexion vers le pirate, offrant un shell à distance.
-
 ------
 
 ### 39. Dans le contexte des **malwares bancaires** (ex. e-banking Trojan) :
 
 A. Ils ne ciblent que les systèmes Linux.
- B. Ils visent souvent à intercepter les données de connexion aux comptes, numéros de carte, ou à modifier des transactions bancaires en direct.
- C. Ils ne manipulent que les icônes sur le bureau.
- D. Ils se désactivent dès que l’antivirus est actif.
+- B. Ils visent souvent à intercepter les données de connexion aux comptes, numéros de carte, ou à modifier des transactions - bancaires en direct.
+- C. Ils ne manipulent que les icônes sur le bureau.
+- D. Ils se désactivent dès que l’antivirus est actif.
 
 > **Réponse :** B. L’objectif typique est de voler ou d’altérer les données bancaires et transactions.
 
@@ -743,9 +733,9 @@ A. Ils ne ciblent que les systèmes Linux.
 ### 40. Pour **protéger** un système face aux malwares, on conseille notamment :
 
 A. De laisser les ports réseau ouverts pour la fluidité.
- B. De patcher régulièrement l’OS et les applications, utiliser des solutions de sécurité (antivirus, IDS/IPS), surveiller les journaux.
- C. De désactiver toutes les mises à jour.
- D. D’utiliser exclusivement un pare-feu matériel pour se protéger des rootkits.
+- B. De patcher régulièrement l’OS et les applications, utiliser des solutions de sécurité (antivirus, IDS/IPS), surveiller - les journaux.
+- C. De désactiver toutes les mises à jour.
+- D. D’utiliser exclusivement un pare-feu matériel pour se protéger des rootkits.
 
 > **Réponse :** B. Mettre à jour, employer des solutions de sécurité et auditer l’activité réseau/logs.
 
@@ -755,21 +745,21 @@ A. De laisser les ports réseau ouverts pour la fluidité.
 
 ### 1. Au sein d’un **packeur multistage**, à quel moment un analyste a-t-il le plus de chances d’observer le code malveillant réel ?
 
-A. Dès l’ouverture du binaire dans un éditeur hexadécimal.
- B. Immédiatement après le calcul de hash (MD5).
- C. Une fois que le stub de décompression ou de déchiffrement a déroulé son code en mémoire.
- D. À aucun moment, car le packeur supprime le code en mémoire après exécution.
+- A. Dès l’ouverture du binaire dans un éditeur hexadécimal.
+- B. Immédiatement après le calcul de hash (MD5).
+- C. Une fois que le stub de décompression ou de déchiffrement a déroulé son code en mémoire.
+- D. À aucun m- oment, car le packeur supprime le code en mémoire après exécution- - .
 
-**Réponse :** C. Le code réel apparaît après la décompression/déchiffrement en mémoire.
+**Réponse :**C. Le code réel apparaît après la décompression/déchiffrement en mémoire.
 
 ------
 
 ### 2. Dans le contexte des **malwares bancaires** utilisant l’injection de code en temps réel (HTML Injection), quel est le principal objectif ?
 
-A. Afficher un simple pop-up d’erreur sans incidence financière.
- B. Récupérer des identifiants en insérant des champs supplémentaires dans les pages bancaires légitimes.
- C. Empêcher l’accès au site web de la banque via des blocages DNS.
- D. Déclencher des sauvegardes automatiques sur le système ciblé.
+- A. Afficher un simple pop-up d’erreur sans incidence financière.
+- B. Récupérer des identifiants en insérant des champs supplémentaires dans les pages bancaires légitimes.
+- C. Empêcher l’accès au site web de la banque via des blocages DNS.
+- D. Déclencher des sauvegardes automatiques sur le système ciblé.
 
 **Réponse :** B. Intercepter ou récupérer les données bancaires via champs ajoutés dans la page.
 
@@ -777,10 +767,10 @@ A. Afficher un simple pop-up d’erreur sans incidence financière.
 
 ### 3. Lors d’une **analyse dynamique avancée** dans un debugger, si un malware exécute une instruction `cpuid` suivie d’un test de certains registres, quel comportement cherche-t-il potentiellement à mettre en place ?
 
-A. Déceler la version exacte de l’API Windows.
- B. Vérifier la présence d’une sandbox ou d’une machine virtuelle (technique anti-VM).
- C. Déterminer la vitesse du processeur pour adapter sa charge.
- D. Transférer le contrôle à un shellcode embarqué dans la pile.
+- A. Déceler la version exacte de l’API Windows.
+- B. Vérifier la présence d’une sandbox ou d’une machine virtuelle (technique anti-VM).
+- C. Déterminer la vitesse du processeur pour adapter sa charge.
+- D. Transférer le contrôle à un shellcode embarqué dans la pile.
 
 **Réponse :** B. C’est une méthode courante pour détecter VM/sandbox (anti-virtualisation).
 
@@ -788,10 +778,10 @@ A. Déceler la version exacte de l’API Windows.
 
 ### 4. Les **rootkits en mode noyau** (kernel-mode) peuvent détourner la table IDT (Interrupt Descriptor Table). Pourquoi un malware ferait-il cela ?
 
-A. Pour empêcher définitivement l’activation de l’ASLR (Address Space Layout Randomization).
- B. Pour intercepter des événements système (interruptions) et masquer ses propres actions ou celles d’autres malwares.
- C. Parce que la table IDT est l’unique emplacement où se trouve le code exécutable du noyau.
- D. Pour accélérer le temps de réponse du processeur en mode utilisateur.
+- A. Pour empêcher définitivement l’activation de l’ASLR (Address Space Layout Randomization).
+- B. Pour intercepter des événements système (interruptions) et masquer ses propres actions ou celles d’autres malwares.
+- C. Parce que la table IDT est l’unique emplacement où se trouve le code exécutable du noyau.
+- D. Pour accélérer le temps de réponse du processeur en mode utilisateur.
 
 **Réponse :** B. Détourner l’IDT permet de cacher ou rediriger les interruptions à des fins malveillantes.
 
@@ -799,10 +789,10 @@ A. Pour empêcher définitivement l’activation de l’ASLR (Address Space Layo
 
 ### 5. Dans l’**analyse statique** d’un binaire Windows par IDA Pro, quelle particularité indique fréquemment l’usage d’un **import par chargement manuel** (LoadLibrary/GetProcAddress) plutôt que d’un import statique ?
 
-A. L’absence de section .rsrc dans le fichier PE.
- B. L’absence ou la très faible liste de fonctions dans la table d’import (IAT).
- C. L’impossibilité de calculer l’entropie du fichier.
- D. Des signatures d’anti-debug intégrées dans la section .edata.
+- A. L’absence de section .rsrc dans le fichier PE.
+- B. L’absence ou la très faible liste de fonctions dans la table d’import (IAT).
+- C. L’impossibilité de calculer l’entropie du fichier.
+- D. Des signatures d’anti-debug intégrées dans la section .edata.
 
 **Réponse :** B. Une IAT quasi vide suggère un chargement dynamique via LoadLibrary/GetProcAddress.
 
@@ -810,43 +800,43 @@ A. L’absence de section .rsrc dans le fichier PE.
 
 ### 6. Quel est l’**intérêt principal d’une “API Hooking”** effectuée par un malware user-mode ?
 
-A. Surveiller et altérer, au niveau utilisateur, les appels à des fonctions critiques (ex. CreateFile) pour échapper à la détection ou intercepter des données.
- B. Établir une connexion directe avec le BIOS pour modifier les routines d’amorçage.
- C. Gérer la table des interruptions réseau (NIDT).
- D. Obtenir automatiquement les droits administrateur sur n’importe quel OS.
+A. Surveiller et altérer, au niveau utilisateur, les appels à des fonctions critiques (ex. CreateFile) pour échapper à la 
+- tection ou intercepter des données.
+-  B. Établir une connexion directe avec le BIOS pour modifier les routines d’amorçage.
+- C. Gérer la table des interruptions réseau (NIDT).
+- D. Obtenir automatiquement les droits administrateur sur n’importe quel OS.
 
 **Réponse :** A. Permet de modifier/espionner les appels d’API critiques en user-mode.
-
 ------
 
 ### 7. Lorsqu’on parle de **malware multi-plateforme**, utilisant par exemple Java ou Python, quelle contrainte reste souvent difficile à contourner ?
 
-A. Les signatures de code polyalphabétiques.
- B. Les incompatibilités liées au shell Windows vs shell Linux.
- C. L’absence de capacité d’obfuscation pour les langages interprétés.
- D. La présence ou non de l’environnement d’exécution (JRE, interpréteur Python) sur la machine cible.
+- A. Les signatures de code polyalphabétiques.
+- B. Les incompatibilités liées au shell Windows vs shell Linux.
+- C. L’absence de capacité d’obfuscation pour les langages interprétés.
+- D. La présence ou non de l’environnement d’exécution (JRE, interpréteur Python) sur la machine cible.
 
-**Réponse :** D. Il faut que la cible dispose de la JVM ou de l’interpréteur Python.
+**Réponse :**- D. Il faut que la cible dispose de la JVM ou de l’interpréteur Python.
 
 ------
 
 ### 8. En **analyse dynamique**, pourquoi l’usage de **snapshots VM** est-il si important ?
 
-A. Pour ne pas avoir à régler la taille mémoire du binaire.
- B. Parce que les snapshots ajoutent systématiquement une protection anti-buffer overflow.
- C. Pour pouvoir revenir à un état propre (pré-infection) après avoir exécuté le malware.
- D. Afin d’étendre automatiquement l’espace disque à chaque itération.
+- A. Pour ne pas avoir à régler la taille mémoire du binaire.
+- B. Parce que les snapshots ajoutent systématiquement une protection anti-buffer overflow.
+- C. Pour pouvoir revenir à un état propre (pré-infection) après avoir exécuté le malware.
+- D. Afin d’ét- endre automatiquement l’espace disque à chaque itération- - .
 
-**Réponse :** C. On peut réinitialiser la VM à l’état d’avant l’infection.
+**Réponse :**C. On peut réinitialiser la VM à l’état d’avant l’infection.
 
 ------
 
 ### 9. Un **outil d’analyse mémoire** (ex. Volatility) peut aider à :
 
-A. Déboguer en direct un programme utilisateur en langage Java.
- B. Analyser l’image de la mémoire vive d’une machine pour localiser des artefacts malveillants (processus, hooks, etc.).
- C. Bloquer les ports TCP en écoute.
- D. Compresser un fichier PE chiffré.
+- A. Déboguer en direct un programme utilisateur en langage Java.
+- B. Analyser l’image de la mémoire vive d’une machine pour localiser des artefacts malveillants (processus, hooks, etc.).
+- C. Bloquer les ports TCP en écoute.
+- D. Compresser un fichier PE chiffré.
 
 **Réponse :** B. Volatility & co. inspectent la mémoire pour trouver traces de malwares en RAM.
 
@@ -855,9 +845,9 @@ A. Déboguer en direct un programme utilisateur en langage Java.
 ### 10. Les **malwares Polymorphes** et **Métamorphiques** se distinguent principalement par :
 
 A. Le polymorphisme ne modifie pas l’empreinte binaire, alors que le métamorphisme la modifie grandement.
- B. Le polymorphisme inclut un moteur de mutation qui conserve la logique de base, tandis que le métamorphisme peut réécrire complètement le code à chaque génération.
- C. Le polymorphisme est un concept applicable uniquement aux ransomwares, alors que le métamorphisme concerne les trojans.
- D. Ils sont identiques, seuls les noms diffèrent.
+- B. Le polymorphisme inclut un moteur de mutation qui conserve la logique de base, tandis que le métamorphisme peut - réécrire complètement le code à chaque génération- .
+C. Le polymorphisme est un concept applicable uniquement aux ransomwares, alors que le métamorphisme concerne les trojans.
+- D. Ils sont identiques, seuls les noms diffèrent.
 
 **Réponse :** B. Polymorphisme = même algorithme, code “muté”. Métamorphisme = réécriture plus profonde.
 
@@ -865,65 +855,63 @@ A. Le polymorphisme ne modifie pas l’empreinte binaire, alors que le métamorp
 
 ### 11. Dans le cas d’une **analyse statique avancée** en assembleur x86, l’instruction `mov eax, [ebx+ecx*4+0x10]` indique :
 
-A. Un accès à un tableau d’entiers (4 octets) indexé par ecx, avec un offset 0x10, en utilisant ebx comme base.
- B. Un décalage d’1 bit de la valeur contenue dans ecx.
- C. Une combinaison d’opérandes interdite sur x86.
- D. Un saut inconditionnel à l’adresse stockée dans ecx.
+- A. Un accès à un tableau d’entiers (4 octets) indexé par ecx, avec un offset 0x10, en utilisant ebx comme base.
+- B. Un décalage d’1 bit de la valeur contenue dans ecx.
+- C. Une combinaison d’opérandes interdite sur x86.
+- D. Un saut inconditionnel à l’adresse stockée dans ecx.
 
 **Réponse :** A. On lit un élément d’un tableau d’entiers (taille 4) avec offset 0x10, base ebx.
-
 ------
 
 ### 12. Lors d’un **reverse-engineering**, pourquoi l’absence de symboles (fonction “stripped”) dans le binaire Windows peut-elle poser problème ?
 
-A. Parce qu’il devient impossible d’exécuter le programme.
- B. Parce que sans symboles, IDA ne peut pas afficher les chaînes en ASCII.
- C. Parce qu’il est plus difficile d’identifier le rôle exact des fonctions et de leurs variables internes.
- D. Parce que la signature du code ne peut plus être validée par Microsoft.
+- A. Parce qu’il devient impossible d’exécuter le programme.
+- B. Parce que sans symboles, IDA ne peut pas afficher les chaînes en ASCII.
+- C. Parce qu’il est plus difficile d’identifier le rôle exact des fonctions et de leurs variables internes.
+- D. Parce que-  la signature du code ne peut plus être validée par Microsoft- - .
 
-**Réponse :** C. L’absence de symboles rend plus compliqué l’attribution de noms et l’interprétation des fonctions.
+**Réponse :**C. L’absence de symboles rend plus compliqué l’attribution de noms et l’interprétation des fonctions.
 
 ------
 
 ### 13. Un **dropper évolué** peut recourir à un mécanisme d’**anti-sandbox** en vérifiant :
 
-A. La quantité de mémoire RAM ou le nombre de CPU/cores afin de détecter un environnement artificiel minimaliste.
- B. La présence d’une connexion stable à un serveur distant.
- C. Un montage d’images ISO dans la base de registre.
- D. La longueur du chemin d’installation du malware.
+- A. La quantité de mémoire RAM ou le nombre de CPU/cores afin de détecter un environnement artificiel minimaliste.
+- B. La présence d’une connexion stable à un serveur distant.
+- C. Un montage d’images ISO dans la base de registre.
+- D. La longueur du chemin d’installation du malware.
 
 **Réponse :** A. Vérifier la quantité de RAM/CPU est classique pour détecter un environnement virtuel limité.
-
 ------
 
 ### 14. **YARA** est souvent employé en analyse de malwares. À quoi sert-il ?
 
-A. Un système de contrôle d’accès basé sur l’attribut “Yet Another Role Access”.
- B. Un langage de script pour injecter du code manuellement en user-mode.
- C. Un outil permettant de définir des règles (patterns) de détection de malwares sur le contenu binaire (strings, sections, etc.).
- D. Une version modifiée de l’antivirus ClamAV fournie par l’ANSSI.
+- A. Un système de contrôle d’accès basé sur l’attribut “Yet Another Role Access”.
+- B. Un langage de script pour injecter du code manuellement en user-mode.
+- C. Un outil permettant de définir des règles (patterns) de détection de malwares sur le contenu binaire (strings, sections, etc.).
+- D. Une versi- on modifiée de l’antivirus ClamAV fournie par l’ANSSI- - .
 
-**Réponse :** C. YARA sert à créer des règles de détection par motifs de chaînes, sections, etc.
+**Réponse :**C. YARA sert à créer des règles de détection par motifs de chaînes, sections, etc.
 
 ------
 
 ### 15. Dans un malware implémentant un **mécanisme de persistence** via le registre Windows (Run keys, etc.), que peut observer un analyste pendant l’analyse dynamique ?
 
-A. Un crash immédiat du système d’exploitation.
- B. L’ajout automatique de lignes dans la table d’import du PE.
- C. La création ou la modification de clés `HKCU\...\Run` ou `HKLM\...\Run`.
- D. La copie du binaire en ELF format.
+- A. Un crash immédiat du système d’exploitation.
+- B. L’ajout automatique de lignes dans la table d’import du PE.
+- C. La création ou la modification de clés `HKCU\...\Run` ou `HKLM\...\Run`.
+- D. La copie - du binaire en ELF format- - .
 
-**Réponse :** C. Une clé Run est un vecteur de persistance courant dans le registre Windows.
+**Réponse :**C. Une clé Run est un vecteur de persistance courant dans le registre Windows.
 
 ------
 
 ### 16. À propos de la **technique anti-debug** `IsDebuggerPresent()` sous Windows :
 
-A. Elle est spécifique à Linux Kernel 5.x.
- B. Elle renvoie un booléen que le malware peut vérifier pour interrompre son exécution s’il se sent “débogué”.
- C. C’est une API imposée par la suite SysInternals.
- D. Elle installe un driver en ring 0 pour bloquer OllyDbg.
+- A. Elle est spécifique à Linux Kernel 5.x.
+- B. Elle renvoie un booléen que le malware peut vérifier pour interrompre son exécution s’il se sent “débogué”.
+- C. C’est une API imposée par la suite SysInternals.
+- D. Elle installe un driver en ring 0 pour bloquer OllyDbg.
 
 **Réponse :** B. Cette API, si elle renvoie TRUE, peut faire cesser le malware ou déclencher d’autres contremesures.
 
@@ -931,10 +919,10 @@ A. Elle est spécifique à Linux Kernel 5.x.
 
 ### 17. Un **ransomware** cherchant à **exfiltrer** des clés de chiffrement peut utiliser un protocole inhabituel (ex. DNS, ICMP). Pourquoi ?
 
-A. Parce que ces protocoles fournissent un débit plus rapide que TCP/HTTP.
- B. Pour contourner certaines surveillances de trafic (pare-feu, proxies) focalisées sur les canaux courants (HTTP, HTTPS).
- C. Les protocoles standard (HTTP/HTTPS) ne supportent pas l’envoi de clés binaires.
- D. Les solutions EDR ignorent systématiquement tout trafic ICMP.
+- A. Parce que ces protocoles fournissent un débit plus rapide que TCP/HTTP.
+- B. Pour contourner certaines surveillances de trafic (pare-feu, proxies) focalisées sur les canaux courants (HTTP, HTTPS).
+- C. Les protocoles standard (HTTP/HTTPS) ne supportent pas l’envoi de clés binaires.
+- D. Les solutions EDR ignorent systématiquement tout trafic ICMP.
 
 **Réponse :** B. Ces protocoles peuvent échapper au filtrage ou à la surveillance traditionnelle.
 
@@ -942,32 +930,32 @@ A. Parce que ces protocoles fournissent un débit plus rapide que TCP/HTTP.
 
 ### 18. Un **ransomware** qui implémente un **Kill Switch** (URL ou nom de domaine) :
 
-A. Montre qu’il n’a pas réellement l’intention de chiffrer les données.
- B. Cherche à chiffrer uniquement les données déjà présentes sur un serveur distant.
- C. Peut cesser son activité si un domaine particulier est enregistré ou si une requête réseau aboutit, permettant parfois aux chercheurs de stopper sa propagation.
- D. Est forcément inoffensif, car il s’arrête tout seul après 2 minutes.
+- A. Montre qu’il n’a pas réellement l’intention de chiffrer les données.
+- B. Cherche à chiffrer uniquement les données déjà présentes sur un serveur distant.
+- C. Peut cesser son activité si un domaine particulier est enregistré ou si une requête réseau aboutit, permettant parfois aux chercheurs de stopper sa propagation.
+- D. Est forcé- ment inoffensif, car il s’arrête tout seul après 2 minutes- - .
 
-**Réponse :** C. L’existence d’un Kill Switch peut permettre aux chercheurs de neutraliser la menace.
+**Réponse :**C. L’existence d’un Kill Switch peut permettre aux chercheurs de neutraliser la menace.
 
 ------
 
 ### 19. En **analyse statique**, un haut niveau d’**obfuscation** (code spaghetti, faux flux de contrôle, etc.) vise à :
 
-A. Faciliter la compréhension du code pour le débogage.
- B. Rendre le binaire plus compatible avec Windows 11.
- C. Compliquer considérablement le reverse-engineering en rendant la logique réelle difficile à isoler.
- D. Respecter la norme C11 sur la compilation.
+- A. Faciliter la compréhension du code pour le débogage.
+- B. Rendre le binaire plus compatible avec Windows 11.
+- C. Compliquer considérablement le reverse-engineering en rendant la logique réelle difficile à isoler.
+- D. Respecter-  la norme C11 sur la compilation- - .
 
-**Réponse :** C. L’obfuscation rend la tâche de reverse-engineering nettement plus ardue.
+**Réponse :**C. L’obfuscation rend la tâche de reverse-engineering nettement plus ardue.
 
 ------
 
 ### 20. Lorsqu’un **botnet** est géré par un **C&C (Command and Control)** utilisant un modèle “Fast Flux” :
 
 A. Le code du bot se réécrit en permanence en mode noyau.
- B. Les adresses IP associées au domaine du serveur de contrôle changent très régulièrement, rendant la détection et la mise sur liste noire plus complexes.
- C. Le trafic est systématiquement compressé avant envoi pour gagner en rapidité.
- D. Les bots n’utilisent plus du tout de DNS pour résoudre le serveur de contrôle.
+- B. Les adresses IP associées au domaine du serveur de contrôle changent très régulièrement, rendant la détection et la - mise sur liste noire plus complexes- .
+C. Le trafic est systématiquement compressé avant envoi pour gagner en rapidité.
+- D. Les bots n’utilisent plus du tout de DNS pour résoudre le serveur de contrôle.
 
 **Réponse :** B. Le “Fast Flux” repose sur des changements rapides d’adresses IP pour contourner la détection.
 
